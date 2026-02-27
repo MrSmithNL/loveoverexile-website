@@ -1,111 +1,101 @@
-# Technical Architecture — Love Over Exile
+# Project Architecture — Love Over Exile
 
+> **Scope: Project-specific — components unique to loveoverexile.com.**
+> This project is built on the global foundation. See `~/.claude/docs/architecture.md` for the shared tooling layer (Claude Code, VS Code, Bitwarden, GitHub CLI, etc.).
+>
 > **Last updated:** 2026-02-27
 > **Status:** Active — local environment complete, GitHub connected, Bitwarden active, WordPress API pending
->
-> This diagram shows every technical component, connection, and platform involved in this project.
-> Updated every time we add, change, or remove something.
 
-## System Overview Diagram
+---
+
+## Project System Diagram
 
 ```mermaid
 graph TD
-    subgraph LOCAL["Malcolm's MacBook Pro"]
-        VSCODE[VS Code<br/>Main Workspace]
-        CCEXT[Claude Code Extension<br/>Chat Panel in VS Code]
-        MERMAID[Mermaid Extension<br/>Diagram Preview]
-        PROJ[Project Folder<br/>~/Projects/loveoverexile-website/]
-        BROWSER[Chrome Browser<br/>+ Claude in Chrome Extension]
-        BW[Bitwarden CLI + Desktop<br/>Credential Manager]
-
-        VSCODE --> CCEXT
-        VSCODE --> MERMAID
-        CCEXT --> PROJ
-        VSCODE --> PROJ
-        CCEXT --> BROWSER
-        CCEXT -->|bw get/create| BW
-    end
-
-    subgraph ANTHROPIC["Anthropic Cloud"]
-        API[Claude API<br/>Powers Claude Code]
+    subgraph GLOBAL["Global Foundation (see ~/.claude/docs/architecture.md)"]
+        CC[Claude Code<br/>+ VS Code + Bitwarden]
+        BROWSER[Chrome Browser]
     end
 
     subgraph VPS["VPS Server"]
-        OWUI[Open WebUI<br/>Claude Bot]
         WP[WordPress<br/>loveoverexile.com]
+        OWUI[Open WebUI<br/>Claude Bot]
     end
 
-    subgraph GITHUB["GitHub"]
-        GH[GitHub Repository<br/>Version Control & Backup]
+    subgraph GITHUB_PROJECT["GitHub — This Project"]
+        REPO[loveoverexile-website<br/>github.com/MrSmithNL/loveoverexile-website<br/>Private repo]
     end
 
     subgraph EXTERNAL["External Services"]
         DOMAIN[Domain Registrar<br/>loveoverexile.com]
     end
 
-    CCEXT <-->|API Calls| API
-    BROWSER <-->|Admin Access| WP
-    DOMAIN -->|DNS Points To| VPS
-    OWUI <-->|API Calls| API
-    PROJ -->|git push| GH
+    CC -->|git push| REPO
+    BROWSER <-->|Admin access| WP
+    CC -.->|REST API — not yet set up| WP
+    DOMAIN -->|DNS points to| VPS
+    OWUI <-->|Claude API calls| CC
 
-    style LOCAL fill:#e8f4f8,stroke:#2196F3,stroke-width:2px
-    style ANTHROPIC fill:#f3e5f5,stroke:#9C27B0,stroke-width:2px
+    style GLOBAL fill:#e8f4f8,stroke:#2196F3,stroke-width:2px,stroke-dasharray:5 5
     style VPS fill:#e8f5e9,stroke:#4CAF50,stroke-width:2px
+    style GITHUB_PROJECT fill:#f5f5f5,stroke:#333,stroke-width:2px
     style EXTERNAL fill:#fff3e0,stroke:#FF9800,stroke-width:2px
-    style GITHUB fill:#f5f5f5,stroke:#333,stroke-width:2px
 ```
 
-## Component Registry
+---
 
-| # | Component | What It Is | Where It Lives | Installed On |
-|---|-----------|-----------|----------------|--------------|
-| 1 | VS Code | Code editor — main workspace | Applications | MacBook Pro |
-| 2 | Claude Code Extension | AI chat panel inside VS Code | VS Code extension | MacBook Pro |
-| 3 | Mermaid Extension | Renders architecture diagrams in VS Code | VS Code extension | MacBook Pro |
-| 4 | Claude Code v2.1.62 | AI coding assistant (CLI) | ~/.local/bin/claude | MacBook Pro |
-| 5 | Project Folder | Local workspace for this project | ~/Projects/loveoverexile-website/ | MacBook Pro |
-| 6 | Chrome + Claude Extension | Browser with AI integration | MacBook Pro | MacBook Pro |
-| 7 | WordPress | Website CMS | VPS Server | VPS |
-| 8 | Open WebUI | Chat interface for Claude | VPS Server | VPS |
-| 9 | Claude API (Anthropic) | AI model powering Claude Code & Open WebUI | Anthropic Cloud | Cloud |
-| 10 | Domain: loveoverexile.com | Domain name | Domain Registrar | External |
-| 11 | GitHub Repository | Version control & backup | github.com/MrSmithNL/loveoverexile-website | Cloud |
-| 12 | GitHub CLI (gh) v2.87.3 | Manage GitHub from terminal | /opt/homebrew/bin/gh | MacBook Pro |
-| 13 | Bitwarden CLI (bw) v2025.12.1 | Read/write credential vault from terminal | /opt/homebrew/bin/bw | MacBook Pro |
-| 14 | Bitwarden Desktop v2026.1.1 | Visual credential vault browser | /Applications/Bitwarden.app | MacBook Pro |
+## Project-Specific Components
 
-## Connections & Data Flow
+| # | Component | What It Is | Where It Lives | Status |
+|---|-----------|-----------|----------------|--------|
+| 1 | WordPress | Website CMS — loveoverexile.com | VPS Server | Active |
+| 2 | Open WebUI | Self-hosted AI chat interface | VPS Server | Active |
+| 3 | VPS Server | Hosts WordPress + Open WebUI | Cloud (provider TBD) | Active |
+| 4 | Domain — loveoverexile.com | Domain name | Domain Registrar (TBD) | Active |
+| 5 | GitHub Repo | Version control and backup for this project | github.com/MrSmithNL/loveoverexile-website | Active — private |
 
-| From | To | How | Purpose |
-|------|----|-----|---------|
-| Terminal | Claude Code | CLI command `claude` | Start AI assistant |
-| Claude Code | Claude API | HTTPS API calls | AI processing |
-| Claude Code | Project Folder | File read/write | Manage content & docs |
-| Project Folder | GitHub Repository | git push (via GitHub CLI) | Version control & offsite backup |
-| Claude Code | Bitwarden CLI | bw get / bw create (session-scoped) | Read and store credentials during active session |
-| Chrome | WordPress Admin | HTTPS (wp-admin) | Edit website |
-| Open WebUI | Claude API | HTTPS API calls | VPS-based AI chat |
-| Domain Registrar | VPS | DNS records | Route loveoverexile.com to server |
+---
 
-## Authentication Points
+## Project-Specific Connections
+
+| From | To | How | Status | Purpose |
+|------|----|-----|--------|---------|
+| Project Folder | GitHub Repo | git push (via GitHub CLI) | Active | Version control and offsite backup |
+| Chrome Browser | WordPress Admin | HTTPS (wp-admin) | Active | Edit website content |
+| Claude Code | WordPress REST API | HTTPS + Application Password | Not yet set up | Programmatic content management |
+| Domain Registrar | VPS | DNS records | Active | Routes loveoverexile.com to server |
+| Open WebUI | Claude API | HTTPS | Active | VPS-based AI chat interface |
+
+---
+
+## Project-Specific Authentication
 
 | Service | Auth Method | Status | Notes |
 |---------|------------|--------|-------|
-| Claude Code | Anthropic account login | Active | Authenticated on MacBook |
-| GitHub (MrSmithNL) | OAuth via GitHub CLI | Active | Token stored in macOS keyring — see RISK-005 |
-| Bitwarden (msmithnl@gmail.com) | Master password + session token | Active | Unlocked per-session via `bwunlock` — see RISK-007 |
-| WordPress Admin | Username + password | TBD | Need to set up application password for API access |
+| WordPress Admin | Username + password | Active — login TBD | Need to confirm credentials in Bitwarden |
+| WordPress REST API | Application password | Not yet set up | See RISK-002 in security-risk-log.md |
 | Open WebUI | TBD | Active | Running on VPS |
-| Domain Registrar | TBD | Active | Malcolm manages |
+| Domain Registrar | TBD | Active | Malcolm manages directly |
+| VPS Server | TBD (SSH / control panel) | Active | Malcolm manages directly |
+
+---
+
+## Project-Specific Accounts
+
+| Service | URL | Purpose | Credentials |
+|---------|-----|---------|-------------|
+| WordPress Admin | https://loveoverexile.com/wp-admin | Manage website content | Bitwarden |
+| VPS Provider | TBD | Server management | Bitwarden |
+| Domain Registrar | TBD | DNS and domain renewal | Bitwarden |
 
 ---
 
 ## Change Log
 
 | Date | What Changed | Diagram Updated |
-|------|-------------|-----------------|
+|------|-------------|----------------|
 | 2026-02-27 | Initial setup — Claude Code installed on MacBook, project folder created | Yes — initial diagram |
-| 2026-02-27 | Added VS Code, Mermaid extension, Claude Code extension, GitHub CLI. Added GitHub (future) to diagram | Yes |
-| 2026-02-27 | GitHub account created (MrSmithNL), repo pushed. Updated diagram — GitHub connection now active | Yes |
-| 2026-02-27 | Bitwarden desktop installed, bwunlock workflow added, duplicate PATH fixed. Added BW to diagram | Yes |
+| 2026-02-27 | Added VS Code, Mermaid extension, Claude Code extension, GitHub CLI | Yes |
+| 2026-02-27 | GitHub account created (MrSmithNL), repo pushed | Yes |
+| 2026-02-27 | Bitwarden desktop installed, bwunlock workflow added | Yes |
+| 2026-02-27 | Refactored — global components moved to ~/.claude/docs/architecture.md; this file now shows project-specific layer only | Yes |
