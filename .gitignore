@@ -1,0 +1,20 @@
+# Claude Code local settings (machine-specific, not for sharing)
+.claude/
+
+# Secrets and credentials — NEVER commit these
+.env
+.env.*
+*.key
+*.pem
+
+# macOS system files
+.DS_Store
+.AppleDouble
+.LSOverrideIcon
+
+# VS Code workspace settings (machine-specific)
+.vscode/
+
+# Temporary files
+*.tmp
+*.log
