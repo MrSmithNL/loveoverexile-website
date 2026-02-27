@@ -347,10 +347,36 @@ rm -rf ~/.claude/skills/
 
 ---
 
+## Step 15 — Connected WordPress REST API
+
+**Date:** 2026-02-27
+**Category:** API integration
+
+**What was done:**
+1. Created a WordPress Application Password in WordPress Admin:
+   - Users → Profile → Application Passwords → "Claude Code" → Add New
+   - Password stored in: `.env` file (gitignored) + Bitwarden desktop app
+2. Created `.env` file at project root with:
+   - `WP_SITE_URL`, `WP_USERNAME`, `WP_APP_PASSWORD`
+   - File is excluded from git via `.gitignore` — never pushed to GitHub
+3. Tested REST API connection — confirmed working:
+   - Endpoint: `https://loveoverexile.com/wp-json/wp/v2/users/me`
+   - Response: user account details returned successfully
+
+**What this means in plain English:**
+Claude Code can now read and write content on the WordPress site programmatically. Instead of you manually logging into WordPress and editing pages, Claude can do it directly via the REST API — drafting posts, updating pages, managing media, etc.
+
+**How to reverse:**
+- In WordPress Admin: Users → Profile → Application Passwords → find "Claude Code" → Revoke
+- Delete the `.env` file from the project folder
+- This immediately cuts off all API access — nothing is broken on the live site
+
+---
+
 ## Next Steps (Not Yet Done)
 
 - [x] Enable 2-factor authentication on GitHub account ✅ (2026-02-27)
 - [x] Enable 2FA on Bitwarden account ✅ (2026-02-27)
-- [ ] Set up WordPress REST API access (application password)
+- [x] Set up WordPress REST API access (application password) ✅ (2026-02-27)
 - [ ] Create content drafting workflow (local → review → publish)
 - [ ] Map existing WordPress site structure (pages, menus, plugins)

@@ -40,23 +40,8 @@ Each entry includes:
 
 ### RISK-002 — WordPress REST API access not yet configured
 
-**Risk level:** 🟡 Medium
-**Status:** Open
-**Category:** API access
-
-**What the risk is:**
-When we set up the WordPress REST API with an application password, that password will grant programmatic write access to the website. If it's stored insecurely or scoped too broadly, it's a meaningful attack surface.
-
-**Current mitigation:**
-Not set up yet — no risk exists until it's created.
-
-**Better long-term solution:**
-- Use WordPress Application Passwords (built-in feature) with a descriptive label so we know what each one is for
-- Store in a `.env` file that is gitignored (never pushed to GitHub)
-- Create one application password per use case (e.g., one for Claude Code, one for any future automation) — not a single shared password for everything
-- Revoke individual passwords if a use case changes
-
-**Review by:** When WordPress REST API is set up.
+**Risk level:** 🟢 Low
+**Status:** Resolved — moved to Resolved Risks section below
 
 ---
 
@@ -113,6 +98,27 @@ Revoke if device is lost or access needs to be removed: `gh auth logout`
 
 **Risk level:** 🟢 Low
 **Status:** Resolved — moved to Resolved Risks section below
+
+---
+
+### RISK-008 — Bitwarden CLI unlock not working reliably
+
+**Risk level:** 🟢 Low
+**Status:** Open — workaround in place
+**Category:** Credential management tooling
+
+**What the risk is:**
+The `bwunlock` terminal command (which uses `bw unlock --raw`) fails silently with the correct master password. Root cause unknown — may be a CLI version issue or input handling bug. This means Claude Code cannot write to Bitwarden automatically during a session.
+
+**Current mitigation:**
+- Credentials are stored manually via the Bitwarden desktop app
+- The `.env` file (gitignored) holds credentials locally for Claude Code to use
+- No credentials are at risk — this is a tooling convenience issue, not a security breach
+
+**Better long-term solution:**
+Investigate `bw unlock --raw` vs `bw unlock` behaviour on this machine. May require updating the bw CLI or adjusting the bwunlock function.
+
+**Review by:** Next session when convenient.
 
 ---
 

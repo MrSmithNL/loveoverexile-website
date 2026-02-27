@@ -4,7 +4,7 @@
 > This project is built on the global foundation. See `~/.claude/docs/architecture.md` for the shared tooling layer (Claude Code, VS Code, Bitwarden, GitHub CLI, etc.).
 >
 > **Last updated:** 2026-02-27
-> **Status:** Active — local environment complete, GitHub connected, Bitwarden active, WordPress API pending
+> **Status:** Active — local environment complete, GitHub connected, Bitwarden active, WordPress REST API connected
 
 ---
 
@@ -32,7 +32,7 @@ graph TD
 
     CC -->|git push| REPO
     BROWSER <-->|Admin access| WP
-    CC -.->|REST API — not yet set up| WP
+    CC -->|REST API — Application Password| WP
     DOMAIN -->|DNS points to| VPS
     OWUI <-->|Claude API calls| CC
 
@@ -62,7 +62,7 @@ graph TD
 |------|----|-----|--------|---------|
 | Project Folder | GitHub Repo | git push (via GitHub CLI) | Active | Version control and offsite backup |
 | Chrome Browser | WordPress Admin | HTTPS (wp-admin) | Active | Edit website content |
-| Claude Code | WordPress REST API | HTTPS + Application Password | Not yet set up | Programmatic content management |
+| Claude Code | WordPress REST API | HTTPS + Application Password | Active | Programmatic content management |
 | Domain Registrar | VPS | DNS records | Active | Routes loveoverexile.com to server |
 | Open WebUI | Claude API | HTTPS | Active | VPS-based AI chat interface |
 
@@ -73,7 +73,7 @@ graph TD
 | Service | Auth Method | Status | Notes |
 |---------|------------|--------|-------|
 | WordPress Admin | Username + password | Active — login TBD | Need to confirm credentials in Bitwarden |
-| WordPress REST API | Application password | Not yet set up | See RISK-002 in security-risk-log.md |
+| WordPress REST API | Application password | Active | Credential in .env (gitignored) + Bitwarden |
 | Open WebUI | TBD | Active | Running on VPS |
 | Domain Registrar | TBD | Active | Malcolm manages directly |
 | VPS Server | TBD (SSH / control panel) | Active | Malcolm manages directly |
@@ -99,3 +99,4 @@ graph TD
 | 2026-02-27 | GitHub account created (MrSmithNL), repo pushed | Yes |
 | 2026-02-27 | Bitwarden desktop installed, bwunlock workflow added | Yes |
 | 2026-02-27 | Refactored — global components moved to ~/.claude/docs/architecture.md; this file now shows project-specific layer only | Yes |
+| 2026-02-27 | WordPress REST API connected — Application Password created, .env file set up, connection tested and confirmed | Yes |
