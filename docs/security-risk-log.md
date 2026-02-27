@@ -44,6 +44,26 @@ Path: github.com → Settings → Password and authentication → Enable 2FA
 
 ---
 
+### RISK-007 — Bitwarden account has no 2-factor authentication confirmed
+
+**Risk level:** 🔴 High
+**Status:** Open — unknown if 2FA is enabled on existing account
+**Category:** Authentication
+
+**What the risk is:**
+Bitwarden is the master vault for ALL credentials across ALL projects. If the account is compromised without 2FA, every password, API key, and credential we store is exposed.
+
+**Current mitigation:**
+Unknown — account `msmithnl@gmail.com` pre-existed, 2FA status not confirmed.
+
+**Better long-term solution:**
+Verify and enable 2FA on Bitwarden account using an authenticator app.
+Path: Bitwarden desktop app → Account settings → Security → Two-step login
+
+**Review by:** This session — check before storing any credentials in the vault.
+
+---
+
 ### RISK-002 — WordPress REST API access not yet configured
 
 **Risk level:** 🟡 Medium
@@ -69,23 +89,7 @@ Not set up yet — no risk exists until it's created.
 ### RISK-003 — Duplicate PATH entry in ~/.zshrc
 
 **Risk level:** 🟢 Low
-**Status:** Temporary fix in place
-**Category:** System configuration
-
-**What the risk is:**
-During Step 2 (adding Claude Code to PATH), the same line was added to `~/.zshrc` twice. This is harmless in practice but creates minor configuration debt and is a sign of a slightly messy system.
-
-**Current mitigation:**
-Accepted — duplicates don't cause any functional or security issue.
-
-**Better long-term solution:**
-Open `~/.zshrc` and remove the duplicate line. The file should contain:
-```
-export PATH="$HOME/.local/bin:$PATH"
-```
-...only once.
-
-**Review by:** Next routine maintenance session.
+**Status:** Resolved — moved to Resolved Risks section below
 
 ---
 
@@ -139,6 +143,20 @@ Revoke if device is lost or access needs to be removed: `gh auth logout`
 ---
 
 ## Resolved Risks
+
+---
+
+### RISK-003 — Duplicate PATH entry in ~/.zshrc ✅
+
+**Risk level:** 🟢 Low → Resolved
+**Resolved on:** 2026-02-27
+**Category:** System configuration
+
+**What the risk was:**
+`~/.zshrc` contained two identical `export PATH` lines from Step 2. Harmless but messy.
+
+**How it was resolved:**
+`~/.zshrc` was rewritten during Bitwarden setup (Step 13) — duplicate removed, single clean PATH entry remains.
 
 ---
 

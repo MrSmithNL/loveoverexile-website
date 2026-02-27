@@ -268,9 +268,47 @@ The project folder is now backed up to GitHub. Every time we make changes and co
 
 ---
 
+## Step 13 — Set up Bitwarden password manager
+
+**Date:** 2026-02-27
+**Category:** Credential management
+
+**What was done:**
+- Bitwarden CLI (v2025.12.1) was already installed — account `msmithnl@gmail.com` already existed
+- Installed Bitwarden desktop app:
+```bash
+brew install --cask bitwarden
+```
+- Fixed duplicate PATH entry in `~/.zshrc` (resolves RISK-003)
+- Added `bwunlock` shell function to `~/.zshrc`:
+```bash
+bwunlock() {
+  export BW_SESSION=$(bw unlock --raw)
+  ...
+}
+```
+
+**What this means in plain English:**
+Bitwarden is a secure password manager. The desktop app lets you browse and manage credentials visually. The CLI lets Claude Code read and create credentials automatically during a session. Running `bwunlock` in the terminal at the start of a session activates vault access for that session only — the vault re-locks when the terminal closes.
+
+**How to use at the start of a session:**
+```bash
+bwunlock
+# Enter master password when prompted
+# Vault is now active for this terminal session
+```
+
+**How to reverse:**
+- Remove `bwunlock` function from `~/.zshrc`
+- Uninstall desktop app: `brew uninstall --cask bitwarden`
+- CLI was pre-existing — leave in place
+
+---
+
 ## Next Steps (Not Yet Done)
 
 - [ ] Enable 2-factor authentication on GitHub account (see RISK-001 in security-risk-log.md)
+- [ ] Enable 2FA on Bitwarden account (see RISK-007 in security-risk-log.md)
 - [ ] Set up WordPress REST API access (application password)
 - [ ] Create content drafting workflow (local → review → publish)
 - [ ] Map existing WordPress site structure (pages, menus, plugins)

@@ -82,3 +82,29 @@ Each entry includes:
 
 **Revisit if:**
 - Documentation becomes burdensome (simplify, don't abandon)
+
+---
+
+## Decision #004 — Use Bitwarden as universal credential vault
+
+**Date:** 2026-02-27
+**Category:** Security / Credential management
+
+**Decision:** Use Bitwarden (CLI + desktop) as the single credential vault for all projects. Session-based unlock model: Malcolm runs `bwunlock` at the start of any session requiring credentials; Claude Code reads/writes via the CLI for that session only.
+
+**Alternatives considered:**
+1. macOS Keychain — built-in, no extra setup, but no CLI that Claude can easily use
+2. 1Password — popular, has a CLI, but paid and Malcolm already has Bitwarden
+3. `.env` files only — simple, but no central vault, duplicates across projects
+4. Bitwarden with persistent session token stored in a file — rejected (security risk)
+
+**Why this choice:**
+- Bitwarden account already existed (`msmithnl@gmail.com`)
+- Open source, free tier covers all needs, end-to-end encrypted
+- CLI (`bw`) allows Claude Code to read and create credentials autonomously during an unlocked session
+- Session token expires when terminal closes — master password never stored anywhere
+- One vault across all projects — single place to audit and manage access
+
+**Revisit if:**
+- Moving to a team setup (Bitwarden Teams adds shared vaults)
+- Need for persistent automation without manual unlock (would require careful re-evaluation of security model)

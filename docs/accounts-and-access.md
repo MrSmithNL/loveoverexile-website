@@ -60,7 +60,21 @@
 | **Connected to** | Claude API (Anthropic) |
 | **Credentials stored in** | TBD — password manager |
 
-### 6. GitHub
+### 6. Bitwarden (Password Manager)
+| Field | Value |
+|-------|-------|
+| **What it is** | Password manager — master vault for all credentials |
+| **URL** | https://vault.bitwarden.com |
+| **Account email** | msmithnl@gmail.com |
+| **Account holder** | Malcolm Smith |
+| **Used for** | Storing all passwords, API keys, and credentials across all projects |
+| **CLI installed** | Yes — `bw` v2025.12.1 at /opt/homebrew/bin/bw |
+| **Desktop app** | Yes — Bitwarden.app v2026.1.1 in /Applications/ |
+| **CLI unlock command** | `bwunlock` (defined in ~/.zshrc) |
+| **2FA enabled** | ❓ Unconfirmed — see RISK-007 in security-risk-log.md |
+| **Session model** | Malcolm runs `bwunlock` → vault active for that terminal session only |
+
+### 7. GitHub
 | Field | Value |
 |-------|-------|
 | **What it is** | Version control and offsite backup platform |
@@ -95,4 +109,11 @@
 - [ ] WordPress admin username
 - [ ] Anthropic subscription plan
 - [ ] Open WebUI access URL
-- [ ] Preferred password manager for credential storage
+- [x] Preferred password manager: **Bitwarden** ✅
+- [ ] VPS provider name and control panel URL
+- [ ] VPS IP address
+- [ ] Domain registrar name
+- [ ] Domain expiry date
+- [ ] WordPress admin username
+- [ ] Anthropic subscription plan
+- [ ] Open WebUI access URL
