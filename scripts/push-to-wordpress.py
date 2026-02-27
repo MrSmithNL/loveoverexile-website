@@ -87,9 +87,10 @@ def push(filepath):
         data = response.json()
         new_id   = data.get('id')
         edit_url = f"{site_url}/wp-admin/post.php?post={new_id}&action=edit"
+        preview_url = f"{site_url}/wp-admin/post.php?post={new_id}&preview=true"
         print(f"✅ Success! ID: {new_id}")
-        print(f"   Review in wp-admin: {edit_url}")
-        print(f"   Preview: {data.get('link', '')}")
+        print(f"   Preview (must be logged into wp-admin): {preview_url}")
+        print(f"   Edit in wp-admin: {edit_url}")
         if not wp_id:
             print(f"\n   👉 Add this to your file's frontmatter so future pushes UPDATE instead of create:")
             print(f"   wp_id: {new_id}")
