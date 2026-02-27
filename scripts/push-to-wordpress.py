@@ -86,7 +86,7 @@ def push(filepath):
     if response.status_code in (200, 201):
         data = response.json()
         new_id   = data.get('id')
-        edit_url = f"{site_url}/wp-admin/{'page' if type_ == 'page' else 'post'}.php?post={new_id}&action=edit"
+        edit_url = f"{site_url}/wp-admin/post.php?post={new_id}&action=edit"
         print(f"✅ Success! ID: {new_id}")
         print(f"   Review in wp-admin: {edit_url}")
         print(f"   Preview: {data.get('link', '')}")

@@ -37,7 +37,7 @@ Visitors need a way to sign up to be notified when the book launches. Must be li
 **What was built:**
 - `content/pages/` and `content/posts/` folder structure
 - `scripts/push-to-wordpress.py` — pushes any Markdown file to WordPress as a draft
-- Privacy Policy drafted and pushed to WordPress (ID: 3) — ready for Malcolm to publish
+- Privacy Policy drafted, pushed, and **published** → loveoverexile.com/privacy-policy/
 - Full workflow documented in `docs/content-workflow.md`
 
 ---

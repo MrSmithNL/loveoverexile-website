@@ -2,7 +2,7 @@
 title: "Privacy Policy"
 type: page
 slug: privacy-policy
-status: draft
+status: publish
 wp_id: 3
 ---
 
