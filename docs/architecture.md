@@ -182,6 +182,7 @@ Docs: `docs/content-workflow.md`
 | Privacy Policy | https://loveoverexile.com/privacy-policy/ | ✅ Published |
 | Home | https://loveoverexile.com/ | ⚠️ Draft — LOE text + Imagen 4 images pushed, awaiting Malcolm review |
 | The Book | https://loveoverexile.com/the-book/ | ⚠️ Draft — needs Avada layout (currently plain text) |
+| Malcolm's Story (About Us) | https://loveoverexile.com/about-us/ | ⚠️ Draft — full LOE content pushed (ID 1887), awaiting Malcolm review |
 | All other pages | — | ⚠️ Demo content — to be replaced |
 
 ---
@@ -200,3 +201,4 @@ Docs: `docs/content-workflow.md`
 | 2026-02-27 | Rube MCP removed — auth model changed, broken. Composio direct setup needed instead. | Yes |
 | 2026-02-27 | Google AI Studio added — Imagen 4 API key stored in .env. loe-image-generator skill created. | Yes |
 | 2026-02-27 | Home page updated — LOE text content + 13 Imagen 4 images generated, optimised, and pushed as draft (ID 1023) | No |
+| 2026-02-27 | Malcolm's Story page — About Us (ID 1887) replaced with full LOE narrative content across all 6 Avada sections (53 replacements). Script: scripts/replace-about-us.py | No |
