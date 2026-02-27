@@ -21,30 +21,53 @@
 **See:** `docs/site-map.md`
 
 **Summary of findings:**
-- 13 published pages + 1 draft (Privacy Policy — needs finishing)
-- Site is a recruitment agency: Home, About, Our Services (4 sub-pages), Case Studies, Hiring Advice, News Insights, Contact
-- 6 real blog posts (all Nov 2024) + 2 default WordPress placeholders to delete
-- No posts for ~3 months — content workflow is the next priority
-- Plugins and theme still need checking manually in wp-admin
+- Theme: **Avada Recruitment** — a premium recruitment agency theme
+- All existing content (pages, posts, text, images) is **demo content from the theme** — none of it is real
+- Site structure: Home, About, Our Services (4 sub-pages), Case Studies, Hiring Advice, News Insights, Contact
+- 1 draft page: Privacy Policy (needs writing and publishing)
+- 2 WordPress default placeholders to delete: "Sample Page" and "Hello world!"
+- The real job: replace ALL demo content with real Love Over Exile content
 
 ---
 
-### WP-002 — Create content drafting workflow
-**Priority:** 🟡 Medium
-**Depends on:** WP-001
+### WP-002 — Set up content drafting workflow
+**Priority:** 🔴 High
+**Depends on:** WP-001 ✅
 
 **What needs doing:**
-Set up a clear process for creating, reviewing, and publishing content:
-1. Draft content locally (in this project folder)
+Now that we know all content is demo, we need a reliable way to write and publish real content. The workflow:
+1. Draft content locally as Markdown files (in `content/` folder)
 2. Review with Malcolm before publishing
-3. Push to WordPress via REST API
-4. Confirm live on site
+3. Push to WordPress via REST API as a draft
+4. Malcolm reviews in wp-admin, then publishes manually
 
-**Steps (to design in a future session):**
-- Decide on a folder structure for drafts (e.g., `content/drafts/`)
-- Decide on file format (Markdown is simplest)
-- Write a simple script or process to push a draft to WordPress as a draft post
-- Malcolm reviews in wp-admin, then publishes manually
+**Steps:**
+- Create `content/pages/` and `content/posts/` folder structure
+- Write a push script: reads a Markdown file → sends it to WordPress as a draft via REST API
+- Test with one page (e.g. About Us draft)
+
+---
+
+### WP-005 — Write real content for all pages and posts
+**Priority:** 🔴 High
+**Depends on:** WP-002
+
+**What needs doing:**
+Replace all Avada Recruitment demo content with real Love Over Exile content. Needs input from Malcolm on:
+- What services does Love Over Exile actually offer?
+- What's the company story / About Us?
+- Who are the team members?
+- What are the real contact details?
+- Do we have any real case studies yet?
+
+**Pages to rewrite (in rough priority order):**
+1. Homepage — most important, first thing visitors see
+2. About Us — company story and credibility
+3. Our Services (x4 sub-pages) — what we actually sell
+4. Contact Us — real details
+5. Privacy Policy — legal requirement, unblock this draft
+6. Case Studies — only if real ones exist
+7. Hiring Advice / News Insights — can use blog posts once workflow is set up
 
 ---
 

@@ -1,13 +1,29 @@
 # Site Map — loveoverexile.com
 
-> Pulled via WordPress REST API on 2026-02-27.
+> Pulled via WordPress REST API on 2026-02-27. Theme confirmed via wp-admin: **Avada Recruitment**.
 > Re-run the API calls in `docs/setup-steps.md` to refresh this whenever the site changes.
+
+---
+
+## Theme: Avada Recruitment
+
+The site uses the **Avada Recruitment** theme — a premium WordPress theme purpose-built for recruitment agencies. It ships with a full demo content pack, which is what is currently live on the site.
+
+**This means: all current content (pages, posts, images, text) is demo content from the theme installer — none of it is real Love Over Exile content.**
+
+The demo content is useful because it shows us:
+- What page layouts and sections the theme supports (hero banners, service cards, testimonials, case study layouts, team sections, etc.)
+- What the navigation structure could look like
+- What blog post formats and categories the theme supports
+- What content *types* we need to create (e.g. we'll need real case studies, real service descriptions, real team bios)
+
+The task ahead is to **replace all demo content with real Love Over Exile content**, using the existing page structure as a template.
 
 ---
 
 ## What the Site Is
 
-**Love Over Exile** is a recruitment agency website. The site offers services for both employers (hiring) and job seekers (career advice, salary guidance). It has a blog section with articles on recruitment and career topics.
+**Love Over Exile** is a recruitment agency. The site's structure (set up by the Avada Recruitment demo) covers both sides of recruitment: services for employers (hiring) and resources for job seekers (career advice, salary guidance). The blog section is called "News Insights".
 
 ---
 
@@ -56,7 +72,7 @@
 | 656 | Why soft skills are key to career growth in today's market | 2024-11-20 | https://loveoverexile.com/why-soft-skills-are-key-to-career-growth-in-todays-market/ |
 | 1 | Hello world! | 2026-02-13 | https://loveoverexile.com/hello-world/ | ⚠️ Default WordPress placeholder — should be deleted |
 
-**Last real content published:** November 2024 — the site has had no new posts in ~3 months.
+**Note:** All 6 posts are demo content from the Avada Recruitment theme — not real Love Over Exile articles. They need to be replaced with real content (or deleted and replaced).
 
 ---
 
@@ -76,28 +92,37 @@ HR Process, Jobs, Leadership, Marketing, Productivity, Research, Trending
 
 ---
 
-## Cleanup Needed
+## What Needs to Be Done
 
-These two items are default WordPress placeholders that were never removed:
+### 1. Replace all demo content with real content
+Every page and post needs real Love Over Exile content. The demo gives us the structure and layout options — we fill it with the real story, services, and expertise.
 
+| Page / Section | What's Needed |
+|----------------|--------------|
+| Homepage | Real headline, value proposition, real service highlights |
+| About Us | Real company story, team, mission |
+| Our Services (x4) | Real descriptions of each service Love Over Exile actually offers |
+| Case Studies | Real case studies (or remove if none ready yet) |
+| Hiring Advice | Real advice content (or use blog posts) |
+| News Insights (blog) | Real articles — replace all 6 demo posts |
+| Contact Us | Real contact details, real form |
+
+### 2. Fix the privacy policy
 | Item | Type | ID | Action |
 |------|------|----|--------|
-| "Sample Page" | Page | 2 | Delete — it's just a WordPress demo page |
-| "Hello world!" | Post | 1 | Delete — it's just a WordPress demo post |
+| Privacy Policy | Page (draft) | 3 | Write and publish — legally required (GDPR) |
 
-And one important item that needs finishing:
-
+### 3. Delete the WordPress default placeholders
 | Item | Type | ID | Action |
 |------|------|----|--------|
-| Privacy Policy | Page (draft) | 3 | Write and publish — required for GDPR compliance |
+| "Sample Page" | Page | 2 | Delete |
+| "Hello world!" | Post | 1 | Delete |
 
 ---
 
 ## What to Do Next
 
-Based on this map, the logical priorities are:
-
-1. **Content workflow (WP-002)** — set up a process for drafting and publishing new posts
-2. **Privacy Policy** — finish and publish the draft (legal requirement)
-3. **Cleanup** — delete the two placeholder items once confirmed
-4. **Check plugins and theme** — do this manually via wp-admin (REST API doesn't expose plugin list)
+1. **Decide on real content** — What are Love Over Exile's actual services? What's the real story? This is the content we'll write.
+2. **Content workflow (WP-002)** — Set up a process to draft content here locally, review it, then publish to WordPress
+3. **Privacy Policy** — Can be generated and published quickly once we know the company details
+4. **Cleanup** — Delete the two WordPress default placeholders
