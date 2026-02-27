@@ -21,64 +21,145 @@
 **See:** `docs/site-map.md`
 
 **Summary of findings:**
-- Theme: **Avada Recruitment** — a premium recruitment agency theme
-- All existing content (pages, posts, text, images) is **demo content from the theme** — none of it is real
-- Site structure: Home, About, Our Services (4 sub-pages), Case Studies, Hiring Advice, News Insights, Contact
-- 1 draft page: Privacy Policy (needs writing and publishing)
-- 2 WordPress default placeholders to delete: "Sample Page" and "Hello world!"
-- The real job: replace ALL demo content with real Love Over Exile content
+- Theme: **Avada** (installed with Recruitment demo — all demo content, none of it real)
+- Site purpose: Book platform + parental alienation community + marketing engine
+- All 13 pages and 6 posts are demo content — will be replaced
+- Draft Privacy Policy exists (ID: 3) — needs writing and publishing
+- Two default WP placeholders to delete: "Sample Page" and "Hello world!"
 
 ---
 
-### WP-002 — Set up content drafting workflow
-**Priority:** 🔴 High
-**Depends on:** WP-001 ✅
+### WP-006 — Get book manuscript into the project
+**Priority:** 🔴 High — blocks everything else
 
 **What needs doing:**
-Now that we know all content is demo, we need a reliable way to write and publish real content. The workflow:
-1. Draft content locally as Markdown files (in `content/` folder)
+The book is the core of the entire website. Without it, we can't design the site structure, write any content, or plan the SEO strategy.
+
+Malcolm has the book files on Google Drive (manuscript + images).
+
+**Options to share the file:**
+1. **Download and drop into project folder** — Malcolm downloads from Drive, places in `content/source/` folder in this project. Claude can then read it directly.
+2. **Share Google Drive link** — Malcolm shares the folder/file as a link; Claude fetches it.
+
+**Next step:** Malcolm to share the file however works best.
+
+---
+
+### WP-007 — Design the real site structure (based on book)
+**Priority:** 🔴 High
+**Depends on:** WP-006 (need the book first)
+
+**What needs doing:**
+Once we have the book, map its structure (chapters / themes) to a site structure:
+- What pages does the site need?
+- What goes in the main navigation menu?
+- What content sections mirror the book's chapters?
+- What extra content does the site add that the book doesn't cover?
+
+Document the result in `docs/site-structure.md`.
+
+---
+
+### WP-008 — Set up email waitlist / subscription
+**Priority:** 🔴 High — book not yet published, visitors need a way to sign up
+
+**What needs doing:**
+Visitors who land on the site before the book is published need to be able to sign up for a notification when it launches. This is the most important conversion action on the site right now.
+
+**Steps (to design):**
+- Choose an email platform (Mailchimp, Kit/ConvertKit, or similar)
+- Set up a signup form on the homepage and "The Book" page
+- Connect form to email list
+- Set up a welcome/confirmation email
+
+---
+
+### WP-002 — Set up content drafting and publishing workflow
+**Priority:** 🔴 High
+
+**What needs doing:**
+A reliable way to write content locally and push it to WordPress:
+1. Draft locally as Markdown files in `content/` folder
 2. Review with Malcolm before publishing
-3. Push to WordPress via REST API as a draft
-4. Malcolm reviews in wp-admin, then publishes manually
+3. Push to WordPress via REST API as a draft post/page
+4. Malcolm reviews in wp-admin, publishes manually
 
 **Steps:**
 - Create `content/pages/` and `content/posts/` folder structure
-- Write a push script: reads a Markdown file → sends it to WordPress as a draft via REST API
-- Test with one page (e.g. About Us draft)
+- Write a push script: Markdown file → WordPress draft via REST API
+- Test with one page
 
 ---
 
-### WP-005 — Write real content for all pages and posts
-**Priority:** 🔴 High
-**Depends on:** WP-002
+### WP-009 — SEO foundation setup
+**Priority:** 🔴 High — should be done before any real content goes live
 
 **What needs doing:**
-Replace all Avada Recruitment demo content with real Love Over Exile content. Needs input from Malcolm on:
-- What services does Love Over Exile actually offer?
-- What's the company story / About Us?
-- Who are the team members?
-- What are the real contact details?
-- Do we have any real case studies yet?
+Before publishing any real pages, the SEO basics need to be in place:
+- Install and configure an SEO plugin (Yoast or Rank Math) — check if already installed
+- Set site title and tagline correctly
+- Set up Google Search Console
+- Plan keyword strategy based on the book's topics
+- Every page will need: title tag, meta description, proper heading structure (H1/H2/H3), internal links
 
-**Pages to rewrite (in rough priority order):**
-1. Homepage — most important, first thing visitors see
-2. About Us — company story and credibility
-3. Our Services (x4 sub-pages) — what we actually sell
-4. Contact Us — real details
-5. Privacy Policy — legal requirement, unblock this draft
-6. Case Studies — only if real ones exist
-7. Hiring Advice / News Insights — can use blog posts once workflow is set up
+---
+
+### WP-005 — Write real content for all pages
+**Priority:** 🔴 High
+**Depends on:** WP-006 (book), WP-007 (structure), WP-002 (workflow)
+
+**Pages to create (rough order):**
+1. Homepage — headline, book intro, waitlist signup
+2. About Malcolm — story, credentials, why this book
+3. The Book — what it covers, who it's for, waitlist CTA
+4. Topic/chapter pages — one page per major theme in the book
+5. Articles/blog — expanded content on each topic
+6. Community / Forum — intro page + forum setup
+7. Resources — external links, support organisations
+8. Contact Us — real details
+9. Privacy Policy — legal requirement (GDPR)
+
+---
+
+### WP-010 — Forum setup
+**Priority:** 🟡 Medium
+**Depends on:** WP-007 (structure)
+
+**What needs doing:**
+A moderated forum where alienated parents can connect. Options:
+- **bbPress** — free WordPress plugin, integrates natively, simple to moderate
+- **BuddyPress** — more social network-style, heavier
+- Recommendation: bbPress first, can upgrade later
+
+**Steps (future session):**
+- Install bbPress plugin
+- Set up forum categories based on the book's topics
+- Configure moderation settings
+- Create forum landing page
+
+---
+
+### WP-011 — Social media content pipeline
+**Priority:** 🟡 Medium
+**Depends on:** WP-005 (content exists first)
+
+**What needs doing:**
+Articles written for the website should be structured so they can easily be:
+- Cut down into LinkedIn posts
+- Turned into Twitter/X threads
+- Used as newsletter content
+
+This is a workflow design task — not building the social accounts, just making sure the content is structured to work across channels.
 
 ---
 
 ### WP-003 — Document VPS and domain registrar details
 **Priority:** 🟡 Medium
-**Relates to:** TOOL-003 in global todo
 
 **What needs doing:**
-The VPS provider and domain registrar are listed as "TBD" in the architecture. We need to:
-1. Identify the VPS provider (Malcolm knows this)
-2. Identify the domain registrar (Malcolm knows this)
+VPS provider and domain registrar are listed as "TBD" in the architecture docs. Malcolm to confirm:
+1. VPS provider name and control panel URL
+2. Domain registrar name
 3. Confirm credentials are in Bitwarden
 4. Update `docs/accounts-and-access.md` and `docs/architecture.md`
 
@@ -88,11 +169,10 @@ The VPS provider and domain registrar are listed as "TBD" in the architecture. W
 **Priority:** 🟢 Low
 
 **What needs doing:**
-Open WebUI is listed in the architecture as "Active" but with TBD credentials. Confirm:
-1. What URL is Open WebUI accessible at?
-2. How is it secured (login, API key)?
+Open WebUI is listed as "Active" but with TBD credentials. Confirm:
+1. What URL is it accessible at?
+2. How is it secured?
 3. Is it still being used?
-4. Update architecture and accounts-and-access.md accordingly
 
 ---
 
@@ -115,3 +195,4 @@ Open WebUI is listed in the architecture as "Active" but with TBD credentials. C
 |------|--------------------|
 | 2026-02-27 | Full environment setup — Claude Code, VS Code, GitHub, Bitwarden, WordPress REST API |
 | 2026-02-27 | WP-001 — Mapped full site structure via REST API, documented in site-map.md |
+| 2026-02-27 | Site purpose clarified — book platform + parental alienation community. All docs updated. |

@@ -1,128 +1,112 @@
 # Site Map — loveoverexile.com
 
-> Pulled via WordPress REST API on 2026-02-27. Theme confirmed via wp-admin: **Avada Recruitment**.
-> Re-run the API calls in `docs/setup-steps.md` to refresh this whenever the site changes.
+> Last updated: 2026-02-27
+> Page/post data pulled via WordPress REST API. Site purpose documented from Malcolm's brief.
 
 ---
 
-## Theme: Avada Recruitment
+## What the Site Actually Is
 
-The site uses the **Avada Recruitment** theme — a premium WordPress theme purpose-built for recruitment agencies. It ships with a full demo content pack, which is what is currently live on the site.
+**Love Over Exile** is a book written by Malcolm Smith about parental alienation.
 
-**This means: all current content (pages, posts, images, text) is demo content from the theme installer — none of it is real Love Over Exile content.**
+The website serves four connected purposes:
 
-The demo content is useful because it shows us:
-- What page layouts and sections the theme supports (hero banners, service cards, testimonials, case study layouts, team sections, etc.)
-- What the navigation structure could look like
-- What blog post formats and categories the theme supports
-- What content *types* we need to create (e.g. we'll need real case studies, real service descriptions, real team bios)
+| Purpose | Description |
+|---------|-------------|
+| **Book platform** | Home base for the book — pre-launch waitlist, eventual sales/info page |
+| **Content repository** | Articles, guides, and resources for alienated parents, grounded in the book's themes |
+| **Community hub** | A moderated forum where alienated parents can connect and support each other |
+| **Marketing engine** | Content produced here gets repurposed across LinkedIn, social media, and other channels |
 
-The task ahead is to **replace all demo content with real Love Over Exile content**, using the existing page structure as a template.
-
----
-
-## What the Site Is
-
-**Love Over Exile** is a recruitment agency. The site's structure (set up by the Avada Recruitment demo) covers both sides of recruitment: services for employers (hiring) and resources for job seekers (career advice, salary guidance). The blog section is called "News Insights".
-
----
-
-## Page Structure (13 published + 1 draft)
-
-### Top-Level Pages
-
-| ID | Title | URL | Notes |
-|----|-------|-----|-------|
-| 1023 | Recruitment Home Alt | https://loveoverexile.com/ | **Actual homepage** — served at the root URL |
-| 21 | Recruitment Home | https://loveoverexile.com/recruitment-home/ | Old/alternative homepage — not linked from nav |
-| 1887 | About Us | https://loveoverexile.com/about-us/ | |
-| 2324 | Our Services | https://loveoverexile.com/our-services/ | Parent page for service sub-pages |
-| 2530 | News Insights | https://loveoverexile.com/news-insights/ | Blog index page |
-| 2420 | Contact Us | https://loveoverexile.com/contact-us/ | |
-| 3446 | Case Studies | https://loveoverexile.com/case-studies/ | |
-| 3836 | Hiring Advice | https://loveoverexile.com/hiring-advice/ | |
-| 2 | Sample Page | https://loveoverexile.com/sample-page/ | ⚠️ Default WordPress placeholder — should be deleted |
-
-### Service Sub-Pages (children of Our Services, ID: 2324)
-
-| ID | Title | URL |
-|----|-------|-----|
-| 3242 | Career Counseling | https://loveoverexile.com/our-services/career-counseling/ |
-| 3418 | Executive Search | https://loveoverexile.com/our-services/executive-search/ |
-| 3424 | Talent Sourcing | https://loveoverexile.com/our-services/talent-sourcing/ |
-| 3429 | Jobs Advertising | https://loveoverexile.com/our-services/jobs-advertising/ |
-
-### Draft Pages (not yet published)
-
-| ID | Title | Notes |
-|----|-------|-------|
-| 3 | Privacy Policy | Required by law — needs to be finished and published |
+The book has not yet been published. The immediate goal is to build the site so that:
+1. Visitors understand what the book is about
+2. Visitors can **sign up for a waiting list** to be notified when the book launches
+3. The site ranks well on search engines (SEO-first approach)
+4. Content can be easily repurposed for social media and marketing
 
 ---
 
-## Posts (7 published, 0 drafts)
+## Site Structure Philosophy
 
-| ID | Title | Date | URL |
-|----|-------|------|-----|
-| 638 | Attracting the top talent: Strategies for hiring executives | 2024-11-19 | https://loveoverexile.com/attracting-the-top-talent-strategies-for-hiring-executives/ |
-| 640 | Get recruiter's insider tips for crafting the perfect resume | 2024-11-19 | https://loveoverexile.com/get-recruiters-insider-tips-for-crafting-the-perfect-resume/ |
-| 642 | How recruitment agencies can help startups build teams | 2024-11-20 | https://loveoverexile.com/how-recruitment-agencies-can-help-startups-build-teams/ |
-| 645 | Your perfect guide to navigate salary negotiations | 2024-11-20 | https://loveoverexile.com/your-perfect-guide-to-navigate-salary-negotiations/ |
-| 653 | The future of recruitment: Trends to watch by job seekers | 2024-11-20 | https://loveoverexile.com/the-future-of-recruitment-trends-to-watch-by-job-seekers/ |
-| 656 | Why soft skills are key to career growth in today's market | 2024-11-20 | https://loveoverexile.com/why-soft-skills-are-key-to-career-growth-in-todays-market/ |
-| 1 | Hello world! | 2026-02-13 | https://loveoverexile.com/hello-world/ | ⚠️ Default WordPress placeholder — should be deleted |
+The website structure follows the structure of the book. Each major theme or chapter of the book becomes a section of the site. Articles and blog posts expand on those themes with more depth than the book alone provides.
 
-**Note:** All 6 posts are demo content from the Avada Recruitment theme — not real Love Over Exile articles. They need to be replaced with real content (or deleted and replaced).
+This means the site has more content than the book — the book is the foundation, the website builds on it.
 
 ---
 
-## Post Categories (5)
+## Theme: Avada
 
-| ID | Name | Post Count |
-|----|------|-----------|
-| 46 | For Employers | 2 |
-| 48 | Talent Strategies | 2 |
-| 47 | Recruitment | 1 |
-| 45 | Case Study | 1 |
-| 1 | Uncategorized | 1 — "Hello world!" placeholder |
+The site uses the **Avada** theme (currently installed with the Recruitment demo). Avada is the #1 selling WordPress theme and has a powerful page builder (Fusion Builder) with many interactive elements available:
 
-## Post Tags (7)
+- Hero sections / full-width sliders
+- Accordion / tab / toggle sections
+- Testimonial carousels
+- Team/person profile sections
+- Countdown timers (useful for book launch)
+- Email opt-in / subscription forms
+- Portfolio / case study grids
+- Custom blog layouts
+- Mega menus
+- Icon boxes and feature lists
 
-HR Process, Jobs, Leadership, Marketing, Productivity, Research, Trending
-
----
-
-## What Needs to Be Done
-
-### 1. Replace all demo content with real content
-Every page and post needs real Love Over Exile content. The demo gives us the structure and layout options — we fill it with the real story, services, and expertise.
-
-| Page / Section | What's Needed |
-|----------------|--------------|
-| Homepage | Real headline, value proposition, real service highlights |
-| About Us | Real company story, team, mission |
-| Our Services (x4) | Real descriptions of each service Love Over Exile actually offers |
-| Case Studies | Real case studies (or remove if none ready yet) |
-| Hiring Advice | Real advice content (or use blog posts) |
-| News Insights (blog) | Real articles — replace all 6 demo posts |
-| Contact Us | Real contact details, real form |
-
-### 2. Fix the privacy policy
-| Item | Type | ID | Action |
-|------|------|----|--------|
-| Privacy Policy | Page (draft) | 3 | Write and publish — legally required (GDPR) |
-
-### 3. Delete the WordPress default placeholders
-| Item | Type | ID | Action |
-|------|------|----|--------|
-| "Sample Page" | Page | 2 | Delete |
-| "Hello world!" | Post | 1 | Delete |
+**The goal is to use these elements actively** — not just text-with-image pages, but dynamic, interactive, professional layouts that reflect the seriousness and depth of the topic.
 
 ---
 
-## What to Do Next
+## Current WordPress State (as of 2026-02-27)
 
-1. **Decide on real content** — What are Love Over Exile's actual services? What's the real story? This is the content we'll write.
-2. **Content workflow (WP-002)** — Set up a process to draft content here locally, review it, then publish to WordPress
-3. **Privacy Policy** — Can be generated and published quickly once we know the company details
-4. **Cleanup** — Delete the two WordPress default placeholders
+All current content is demo content from the Avada Recruitment installer. **None of it is real.** It will all be replaced.
+
+### Pages (13 published — all demo)
+
+| ID | Title | URL | Status |
+|----|-------|-----|--------|
+| 1023 | Recruitment Home Alt | https://loveoverexile.com/ | Demo — replace |
+| 21 | Recruitment Home | https://loveoverexile.com/recruitment-home/ | Demo — delete |
+| 1887 | About Us | https://loveoverexile.com/about-us/ | Demo — replace |
+| 2324 | Our Services | https://loveoverexile.com/our-services/ | Demo — repurpose or replace |
+| 3242 | Career Counseling | https://loveoverexile.com/our-services/career-counseling/ | Demo — repurpose or delete |
+| 3418 | Executive Search | https://loveoverexile.com/our-services/executive-search/ | Demo — repurpose or delete |
+| 3424 | Talent Sourcing | https://loveoverexile.com/our-services/talent-sourcing/ | Demo — repurpose or delete |
+| 3429 | Jobs Advertising | https://loveoverexile.com/our-services/jobs-advertising/ | Demo — repurpose or delete |
+| 2530 | News Insights | https://loveoverexile.com/news-insights/ | Demo — repurpose as blog/articles |
+| 2420 | Contact Us | https://loveoverexile.com/contact-us/ | Demo — replace with real details |
+| 3446 | Case Studies | https://loveoverexile.com/case-studies/ | Demo — evaluate |
+| 3836 | Hiring Advice | https://loveoverexile.com/hiring-advice/ | Demo — delete |
+| 2 | Sample Page | https://loveoverexile.com/sample-page/ | Default WP — delete |
+
+### Draft pages
+| ID | Title | Status |
+|----|-------|--------|
+| 3 | Privacy Policy | Draft — needs writing and publishing (GDPR) |
+
+### Posts (6 real demo posts + 1 WP default)
+All are recruitment demo content. Will be deleted or replaced with parental alienation articles.
+
+---
+
+## Planned Real Site Structure
+
+**To be designed** — will be based on the book's structure once Malcolm shares the manuscript.
+
+High-level sections expected:
+- **Home** — book intro, value proposition, waitlist signup
+- **About** — Malcolm's story and credentials
+- **The Book** — what it covers, who it's for, pre-order/waitlist
+- **Topics / Chapters** — content sections mirroring the book's themes
+- **Articles / Blog** — expanded articles on each topic
+- **Community / Forum** — moderated space for alienated parents
+- **Resources** — links, tools, support organisations
+- **Contact**
+
+---
+
+## Key Features to Build
+
+| Feature | Priority | Notes |
+|---------|----------|-------|
+| Waitlist / email signup | 🔴 High | Book not yet published — visitors need a way to be notified |
+| SEO optimisation | 🔴 High | Every page and article needs proper meta, headings, structure |
+| Forum | 🟡 Medium | Moderated community — needs plugin (e.g. bbPress) |
+| Social media content pipeline | 🟡 Medium | Articles structured so they can be cut down for LinkedIn etc. |
+| Marketing automation | 🟢 Low | Later phase — once content base is established |
