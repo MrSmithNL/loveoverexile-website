@@ -27,19 +27,20 @@ Each entry includes:
 ### RISK-001 — GitHub account has no 2-factor authentication yet
 
 **Risk level:** 🔴 High
-**Status:** Open — account not yet created
+**Status:** Open — account created, 2FA not yet enabled
 **Category:** Authentication
 
 **What the risk is:**
-GitHub account will be created with only a password. If the password is compromised, someone gains full access to all code, documentation, and project history.
+GitHub account (MrSmithNL) exists with only a password. If the password is compromised, someone gains full access to all code, documentation, and project history.
 
 **Current mitigation:**
-None yet — account not created.
+Account created 2026-02-27. Password presumably stored in password manager.
 
 **Better long-term solution:**
-Enable 2FA immediately after account creation using an authenticator app (e.g., Apple's built-in, Google Authenticator, or 1Password). Authenticator apps are more secure than SMS-based 2FA.
+Enable 2FA immediately using an authenticator app (e.g., Apple's built-in, Google Authenticator, or 1Password). Authenticator apps are more secure than SMS-based 2FA.
+Path: github.com → Settings → Password and authentication → Enable 2FA
 
-**Review by:** Same session as GitHub account creation.
+**Review by:** Next session — do this before any other work.
 
 ---
 
@@ -112,49 +113,49 @@ Complete the TBD items in `docs/accounts-and-access.md`. For each one:
 
 ### RISK-005 — GitHub CLI token scope
 
-**Risk level:** 🟡 Medium
-**Status:** Open — not yet authenticated
+**Risk level:** 🟢 Low
+**Status:** Acceptable — scopes reviewed and documented
 **Category:** Authentication / Access scope
 
 **What the risk is:**
-When we run `gh auth login`, the GitHub CLI will request OAuth permissions. By default it requests broad access. Claude Code, acting through this CLI on your machine, will have the same permissions the token grants.
+The GitHub CLI OAuth token grants Claude Code broad terminal access to GitHub as MrSmithNL.
 
 **Current mitigation:**
-Not yet set up.
+Token granted scopes: `repo`, `gist`, `read:org`, `workflow`. No destructive admin scopes (`admin:org`, `delete_repo`) were granted. Stored in macOS keyring.
 
 **Better long-term solution:**
-During `gh auth login`, choose the minimal required scopes:
-- `repo` — access to repositories (needed for our work)
-- Avoid granting `admin:org`, `delete_repo`, or other destructive scopes unless specifically needed
+Monitor token at: github.com → Settings → Developer settings → Authorized OAuth Apps → "GitHub CLI"
+Revoke if device is lost or access needs to be removed: `gh auth logout`
 
-Review token permissions at: **github.com → Settings → Developer settings → Personal access tokens**
-
-**Review by:** Same session as GitHub account creation.
+**Review by:** Routine — check during monthly security review.
 
 ---
 
 ### RISK-006 — No offsite backup of project folder
 
-**Risk level:** 🟡 Medium
-**Status:** Temporary — GitHub push will resolve this
-**Category:** Data resilience
-
-**What the risk is:**
-The project folder currently exists only on your MacBook. If the machine is lost, stolen, or fails, all documentation, content drafts, and configuration records are gone.
-
-**Current mitigation:**
-None yet. Waiting for GitHub setup.
-
-**Better long-term solution:**
-Push the repository to GitHub (private repo). This provides an offsite backup automatically on every commit.
-
-**Review by:** End of current GitHub setup session.
+**Risk level:** 🟢 Low
+**Status:** Resolved — moved to Resolved Risks section below
 
 ---
 
 ## Resolved Risks
 
-> Nothing resolved yet — this section will grow over time.
+---
+
+### RISK-006 — No offsite backup of project folder ✅
+
+**Risk level:** 🟡 Medium → Resolved
+**Resolved on:** 2026-02-27
+**Category:** Data resilience
+
+**What the risk was:**
+Project folder existed only on MacBook. Loss or failure of the machine would lose all work.
+
+**How it was resolved:**
+Private GitHub repository created at https://github.com/MrSmithNL/loveoverexile-website and project pushed. All future commits are automatically backed up offsite.
+
+**Ongoing requirement:**
+Commit and push regularly — backup only covers what has been committed.
 
 ---
 

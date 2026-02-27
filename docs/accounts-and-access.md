@@ -60,6 +60,19 @@
 | **Connected to** | Claude API (Anthropic) |
 | **Credentials stored in** | TBD — password manager |
 
+### 6. GitHub
+| Field | Value |
+|-------|-------|
+| **What it is** | Version control and offsite backup platform |
+| **URL** | https://github.com/MrSmithNL |
+| **Account holder** | Malcolm Smith |
+| **Username** | MrSmithNL |
+| **Repository** | https://github.com/MrSmithNL/loveoverexile-website (private) |
+| **Used for** | Version control, backup, project history |
+| **2FA enabled** | ❌ Not yet — see RISK-001 in security-risk-log.md |
+| **CLI auth** | GitHub CLI (gh) authenticated via OAuth, stored in macOS keyring |
+| **Credentials stored in** | Password manager |
+
 ---
 
 ## API Keys & Integrations

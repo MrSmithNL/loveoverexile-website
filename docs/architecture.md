@@ -45,7 +45,7 @@ graph TD
     BROWSER <-->|Admin Access| WP
     DOMAIN -->|DNS Points To| VPS
     OWUI <-->|API Calls| API
-    PROJ -.->|Future| GH
+    PROJ -->|git push| GH
 
     style LOCAL fill:#e8f4f8,stroke:#2196F3,stroke-width:2px
     style ANTHROPIC fill:#f3e5f5,stroke:#9C27B0,stroke-width:2px
@@ -68,7 +68,7 @@ graph TD
 | 8 | Open WebUI | Chat interface for Claude | VPS Server | VPS |
 | 9 | Claude API (Anthropic) | AI model powering Claude Code & Open WebUI | Anthropic Cloud | Cloud |
 | 10 | Domain: loveoverexile.com | Domain name | Domain Registrar | External |
-| 11 | GitHub Repository | Version control & backup (NOT YET SET UP) | github.com | Cloud |
+| 11 | GitHub Repository | Version control & backup | github.com/MrSmithNL/loveoverexile-website | Cloud |
 | 12 | GitHub CLI (gh) v2.87.3 | Manage GitHub from terminal | /opt/homebrew/bin/gh | MacBook Pro |
 
 ## Connections & Data Flow
@@ -99,3 +99,4 @@ graph TD
 |------|-------------|-----------------|
 | 2026-02-27 | Initial setup — Claude Code installed on MacBook, project folder created | Yes — initial diagram |
 | 2026-02-27 | Added VS Code, Mermaid extension, Claude Code extension, GitHub CLI. Added GitHub (future) to diagram | Yes |
+| 2026-02-27 | GitHub account created (MrSmithNL), repo pushed. Updated diagram — GitHub connection now active | Yes |

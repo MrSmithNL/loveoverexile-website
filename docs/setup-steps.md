@@ -198,10 +198,79 @@ sudo rm /usr/local/bin/claude
 
 ---
 
+## Step 10 — Created GitHub account
+
+**Date:** 2026-02-27
+**Category:** Account creation
+
+**What was done:**
+Malcolm created a GitHub account at github.com.
+- **Username:** MrSmithNL
+- **Account URL:** https://github.com/MrSmithNL
+
+**What this means in plain English:**
+GitHub is a cloud platform that stores code and project files with full version history. Every change we make gets saved as a "commit" — a permanent record you can always go back to.
+
+**How to reverse:**
+GitHub account deletion: github.com → Settings → Account → Delete account (irreversible — avoid unless certain).
+
+---
+
+## Step 11 — Authenticated GitHub CLI
+
+**Date:** 2026-02-27
+**Category:** Authentication
+
+**What was done:**
+```bash
+gh auth login
+```
+- Protocol: HTTPS
+- Authentication: web browser (OAuth)
+- Token scopes granted: `repo`, `gist`, `read:org`, `workflow`
+- Token stored in: macOS keyring
+
+**What this means in plain English:**
+Linked the GitHub CLI tool on your MacBook to your GitHub account. Claude Code can now create repos, commit files, and push changes to GitHub — all acting as you (MrSmithNL).
+
+**How to reverse:**
+```bash
+gh auth logout
+```
+
+---
+
+## Step 12 — Initialized Git repository and pushed to GitHub
+
+**Date:** 2026-02-27
+**Category:** Version control
+
+**What was done:**
+```bash
+git init
+git add .
+git commit -m "Initial commit — project documentation framework"
+gh repo create loveoverexile-website --private --push
+```
+
+- Created `.gitignore` to exclude secrets, `.claude/` settings, and macOS junk files
+- Set git commit identity: Malcolm Smith / MrSmithNL@users.noreply.github.com (privacy-preserving)
+- Repository created as **private** at: https://github.com/MrSmithNL/loveoverexile-website
+
+**What this means in plain English:**
+The project folder is now backed up to GitHub. Every time we make changes and commit, the full history is saved in the cloud. If your MacBook dies, nothing is lost.
+
+**Note on email:** Git commits use `MrSmithNL@users.noreply.github.com` — a GitHub-provided address that keeps your real email private.
+
+**How to reverse:**
+- Delete the GitHub repo: github.com/MrSmithNL/loveoverexile-website → Settings → Delete repository
+- Remove local git history: `rm -rf .git` (removes version control from the folder, keeps the files)
+
+---
+
 ## Next Steps (Not Yet Done)
 
-- [ ] Create GitHub account (Malcolm — must do this manually at github.com)
-- [ ] Initialize Git repository and push project to GitHub
+- [ ] Enable 2-factor authentication on GitHub account (see RISK-001 in security-risk-log.md)
 - [ ] Set up WordPress REST API access (application password)
 - [ ] Create content drafting workflow (local → review → publish)
 - [ ] Map existing WordPress site structure (pages, menus, plugins)
