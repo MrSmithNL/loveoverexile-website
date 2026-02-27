@@ -83,7 +83,7 @@
 | **Username** | MrSmithNL |
 | **Repository** | https://github.com/MrSmithNL/loveoverexile-website (private) |
 | **Used for** | Version control, backup, project history |
-| **2FA enabled** | ❌ Not yet — see RISK-001 in security-risk-log.md |
+| **2FA enabled** | ✅ Yes — authenticator app (2026-02-27) |
 | **CLI auth** | GitHub CLI (gh) authenticated via OAuth, stored in macOS keyring |
 | **Credentials stored in** | Password manager |
 

@@ -26,21 +26,8 @@ Each entry includes:
 
 ### RISK-001 — GitHub account has no 2-factor authentication yet
 
-**Risk level:** 🔴 High
-**Status:** Open — account created, 2FA not yet enabled
-**Category:** Authentication
-
-**What the risk is:**
-GitHub account (MrSmithNL) exists with only a password. If the password is compromised, someone gains full access to all code, documentation, and project history.
-
-**Current mitigation:**
-Account created 2026-02-27. Password presumably stored in password manager.
-
-**Better long-term solution:**
-Enable 2FA immediately using an authenticator app (e.g., Apple's built-in, Google Authenticator, or 1Password). Authenticator apps are more secure than SMS-based 2FA.
-Path: github.com → Settings → Password and authentication → Enable 2FA
-
-**Review by:** Next session — do this before any other work.
+**Risk level:** 🟢 Low
+**Status:** Resolved — moved to Resolved Risks section below
 
 ---
 
@@ -130,6 +117,20 @@ Revoke if device is lost or access needs to be removed: `gh auth logout`
 ---
 
 ## Resolved Risks
+
+---
+
+### RISK-001 — GitHub account 2FA ✅
+
+**Risk level:** 🔴 High → Resolved
+**Resolved on:** 2026-02-27
+**Category:** Authentication
+
+**What the risk was:**
+GitHub account (MrSmithNL) had no 2FA. A compromised password would give full access to all repos and project history.
+
+**How it was resolved:**
+2FA enabled on GitHub account (MrSmithNL) using an authenticator app.
 
 ---
 

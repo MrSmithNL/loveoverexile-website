@@ -307,8 +307,8 @@ bwunlock
 
 ## Next Steps (Not Yet Done)
 
-- [ ] Enable 2-factor authentication on GitHub account (see RISK-001 in security-risk-log.md)
-- [ ] Enable 2FA on Bitwarden account (see RISK-007 in security-risk-log.md)
+- [x] Enable 2-factor authentication on GitHub account ✅ (2026-02-27)
+- [x] Enable 2FA on Bitwarden account ✅ (2026-02-27)
 - [ ] Set up WordPress REST API access (application password)
 - [ ] Create content drafting workflow (local → review → publish)
 - [ ] Map existing WordPress site structure (pages, menus, plugins)
