@@ -71,7 +71,7 @@
 | **CLI installed** | Yes — `bw` v2025.12.1 at /opt/homebrew/bin/bw |
 | **Desktop app** | Yes — Bitwarden.app v2026.1.1 in /Applications/ |
 | **CLI unlock command** | `bwunlock` (defined in ~/.zshrc) |
-| **2FA enabled** | ❓ Unconfirmed — see RISK-007 in security-risk-log.md |
+| **2FA enabled** | ✅ Yes — Google Authenticator (2026-02-27) |
 | **Session model** | Malcolm runs `bwunlock` → vault active for that terminal session only |
 
 ### 7. GitHub
@@ -102,13 +102,6 @@
 
 > These are details Malcolm needs to confirm. Update this file as information is gathered.
 
-- [ ] VPS provider name and control panel URL
-- [ ] VPS IP address
-- [ ] Domain registrar name
-- [ ] Domain expiry date
-- [ ] WordPress admin username
-- [ ] Anthropic subscription plan
-- [ ] Open WebUI access URL
 - [x] Preferred password manager: **Bitwarden** ✅
 - [ ] VPS provider name and control panel URL
 - [ ] VPS IP address

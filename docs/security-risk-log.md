@@ -46,21 +46,8 @@ Path: github.com → Settings → Password and authentication → Enable 2FA
 
 ### RISK-007 — Bitwarden account has no 2-factor authentication confirmed
 
-**Risk level:** 🔴 High
-**Status:** Open — unknown if 2FA is enabled on existing account
-**Category:** Authentication
-
-**What the risk is:**
-Bitwarden is the master vault for ALL credentials across ALL projects. If the account is compromised without 2FA, every password, API key, and credential we store is exposed.
-
-**Current mitigation:**
-Unknown — account `msmithnl@gmail.com` pre-existed, 2FA status not confirmed.
-
-**Better long-term solution:**
-Verify and enable 2FA on Bitwarden account using an authenticator app.
-Path: Bitwarden desktop app → Account settings → Security → Two-step login
-
-**Review by:** This session — check before storing any credentials in the vault.
+**Risk level:** 🟢 Low
+**Status:** Resolved — moved to Resolved Risks section below
 
 ---
 
@@ -160,6 +147,22 @@ Revoke if device is lost or access needs to be removed: `gh auth logout`
 
 ---
 
+### RISK-007 — Bitwarden account 2FA ✅
+
+**Risk level:** 🔴 High → Resolved
+**Resolved on:** 2026-02-27
+**Category:** Authentication
+
+**What the risk was:**
+Bitwarden vault had unconfirmed 2FA status. As the master credential vault for all projects, a compromised account without 2FA would expose everything.
+
+**How it was resolved:**
+2FA enabled on Bitwarden account (`msmithnl@gmail.com`) using Google Authenticator.
+
+**Note:** Preferred 2FA method going forward is Apple Passwords (built-in, no extra account needed). Google Authenticator works fine but is an extra app. Consider migrating to Apple Passwords authenticator when convenient.
+
+---
+
 ### RISK-006 — No offsite backup of project folder ✅
 
 **Risk level:** 🟡 Medium → Resolved
@@ -192,3 +195,4 @@ Commit and push regularly — backup only covers what has been committed.
 3. **Least privilege** — every account and token should have only the access it actually needs
 4. **One credential per purpose** — don't reuse passwords or tokens across different use cases
 5. **Audit regularly** — review this log at least monthly and before any major change
+6. **No account sprawl** — never create a new account to support another account; if a feature requires a third-party service, find the built-in alternative first; every account must justify its existence
