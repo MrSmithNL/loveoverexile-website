@@ -1,7 +1,7 @@
 # Technical Architecture — Love Over Exile
 
 > **Last updated:** 2026-02-27
-> **Status:** Initial setup
+> **Status:** Active — local environment complete, GitHub connected, WordPress API pending
 >
 > This diagram shows every technical component, connection, and platform involved in this project.
 > Updated every time we add, change, or remove something.
@@ -78,6 +78,7 @@ graph TD
 | Terminal | Claude Code | CLI command `claude` | Start AI assistant |
 | Claude Code | Claude API | HTTPS API calls | AI processing |
 | Claude Code | Project Folder | File read/write | Manage content & docs |
+| Project Folder | GitHub Repository | git push (via GitHub CLI) | Version control & offsite backup |
 | Chrome | WordPress Admin | HTTPS (wp-admin) | Edit website |
 | Open WebUI | Claude API | HTTPS API calls | VPS-based AI chat |
 | Domain Registrar | VPS | DNS records | Route loveoverexile.com to server |
@@ -87,6 +88,7 @@ graph TD
 | Service | Auth Method | Status | Notes |
 |---------|------------|--------|-------|
 | Claude Code | Anthropic account login | Active | Authenticated on MacBook |
+| GitHub (MrSmithNL) | OAuth via GitHub CLI | Active | Token stored in macOS keyring — see RISK-005 |
 | WordPress Admin | Username + password | TBD | Need to set up application password for API access |
 | Open WebUI | TBD | Active | Running on VPS |
 | Domain Registrar | TBD | Active | Malcolm manages |
