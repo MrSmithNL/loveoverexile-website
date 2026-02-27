@@ -305,6 +305,48 @@ bwunlock
 
 ---
 
+## Step 14 — Installed Claude Code skills library
+
+**Date:** 2026-02-27
+**Category:** Tool enhancement
+
+**What was done:**
+Installed all 864 skills from the [awesome-claude-skills](https://github.com/ComposioHQ/awesome-claude-skills) repository into `~/.claude/skills/`.
+
+```bash
+# Clone the repository
+git clone https://github.com/ComposioHQ/awesome-claude-skills.git /tmp/awesome-claude-skills
+
+# Install each skill directory
+for dir in /tmp/awesome-claude-skills/*/; do
+  skill_name=$(basename "$dir")
+  cp -r "$dir" ~/.claude/skills/"$skill_name"
+done
+```
+
+**Result:**
+- 32 core skills installed (document processing, writing, design, research, productivity, development)
+- 832 Composio automation skills installed (CRM, project management, email, social media, etc.)
+- Skills take effect immediately — no restart needed
+- Full registry documented in: `docs/skills-registry.md`
+
+**What this means in plain English:**
+Skills are instruction files that teach Claude Code how to do specific tasks — like creating PDFs, writing Twitter posts, downloading videos, or connecting to apps like Gmail, Slack, and Notion. With 864 skills installed, Claude can now handle a much wider range of tasks automatically.
+
+**How to check what's installed:**
+```bash
+ls ~/.claude/skills/ | wc -l    # Count of installed skills
+ls ~/.claude/skills/             # List all skills
+```
+
+**How to reverse:**
+```bash
+rm -rf ~/.claude/skills/
+```
+> WARNING: This removes all installed skills. Reinstall from the source repo if needed.
+
+---
+
 ## Next Steps (Not Yet Done)
 
 - [x] Enable 2-factor authentication on GitHub account ✅ (2026-02-27)
