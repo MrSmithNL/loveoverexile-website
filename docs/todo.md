@@ -31,19 +31,14 @@ Visitors need a way to sign up to be notified when the book launches. Must be li
 ---
 
 ### WP-002 — Set up content drafting and publishing workflow
-**Priority:** 🔴 High
+**Priority:** ✅ Done — 2026-02-27
+**See:** `docs/content-workflow.md`
 
-**What needs doing:**
-A reliable way to write content locally and push it to WordPress:
-1. Draft locally as Markdown files in `content/pages/` and `content/posts/`
-2. Review with Malcolm
-3. Push to WordPress via REST API as a draft
-4. Malcolm publishes manually from wp-admin
-
-**Steps:**
-- Create folder structure: `content/pages/` and `content/posts/`
-- Write a push script: Markdown → WordPress draft via REST API
-- Test with Privacy Policy (first real page to publish)
+**What was built:**
+- `content/pages/` and `content/posts/` folder structure
+- `scripts/push-to-wordpress.py` — pushes any Markdown file to WordPress as a draft
+- Privacy Policy drafted and pushed to WordPress (ID: 3) — ready for Malcolm to publish
+- Full workflow documented in `docs/content-workflow.md`
 
 ---
 
@@ -125,6 +120,7 @@ Confirm URL, access method, whether still in use.
 | WP-001 | WordPress site structure mapped → `docs/site-map.md` | 2026-02-27 |
 | WP-006 | Book manuscript read in full + memory file written → `memory/book-summary.md` | 2026-02-27 |
 | WP-007 | Real site structure designed → `docs/site-structure.md` | 2026-02-27 |
+| WP-002 | Content workflow built — push script + folder structure → `docs/content-workflow.md` | 2026-02-27 |
 
 ---
 
@@ -138,3 +134,4 @@ Confirm URL, access method, whether still in use.
 | 2026-02-27 | WP-006 — Both book files read in full. Comprehensive memory file written. |
 | 2026-02-27 | WP-007 — Full site structure designed based on book's 3-part structure. |
 | 2026-02-27 | File permissions configured — Read/Edit/Write now auto-approved in settings.json. |
+| 2026-02-27 | WP-002 — Content workflow built. Push script works. Privacy Policy pushed to WP as draft. |

@@ -4,6 +4,19 @@ These instructions apply to this project in every session.
 
 ---
 
+## Skills Check — Always First
+
+Before taking any action (installing tools, running scripts, setting up integrations, publishing content, building workflows), check `~/.claude/skills/` for a relevant skill. 864 are installed. This is non-negotiable.
+
+```
+ls ~/.claude/skills/ | grep -i [relevant keyword]
+```
+
+If a skill exists: read it, understand what it needs, and use it.
+If no skill exists: proceed with the direct approach.
+
+---
+
 ## Autonomous Permissions
 
 Malcolm has granted full autonomous permission for the following — no confirmation needed:
