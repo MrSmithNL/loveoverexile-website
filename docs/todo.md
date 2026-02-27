@@ -17,20 +17,15 @@
 ## Open Items
 
 ### WP-001 — Map existing WordPress site structure
-**Priority:** 🟡 Medium
+**Priority:** ✅ Done — 2026-02-27
+**See:** `docs/site-map.md`
 
-**What needs doing:**
-We don't yet have a clear picture of what's on the site. Before building any content workflow, we need to know what already exists.
-
-**Steps:**
-1. Use the REST API to pull a list of all published pages
-2. Use the REST API to pull a list of all published posts
-3. Check what plugins are active (via wp-admin → Plugins)
-4. Check what theme is active and what menus exist
-5. Document findings in `docs/site-map.md`
-
-**Why it matters:**
-Without knowing what's there, we might duplicate content, break navigation, or miss important pages when setting up workflows.
+**Summary of findings:**
+- 13 published pages + 1 draft (Privacy Policy — needs finishing)
+- Site is a recruitment agency: Home, About, Our Services (4 sub-pages), Case Studies, Hiring Advice, News Insights, Contact
+- 6 real blog posts (all Nov 2024) + 2 default WordPress placeholders to delete
+- No posts for ~3 months — content workflow is the next priority
+- Plugins and theme still need checking manually in wp-admin
 
 ---
 
@@ -87,6 +82,7 @@ Open WebUI is listed in the architecture as "Active" but with TBD credentials. C
 | — | GitHub 2FA enabled | 2026-02-27 |
 | — | Bitwarden set up with 2FA | 2026-02-27 |
 | — | WordPress REST API connected and tested | 2026-02-27 |
+| WP-001 | WordPress site structure mapped → `docs/site-map.md` | 2026-02-27 |
 
 ---
 
@@ -95,3 +91,4 @@ Open WebUI is listed in the architecture as "Active" but with TBD credentials. C
 | Date | What was worked on |
 |------|--------------------|
 | 2026-02-27 | Full environment setup — Claude Code, VS Code, GitHub, Bitwarden, WordPress REST API |
+| 2026-02-27 | WP-001 — Mapped full site structure via REST API, documented in site-map.md |
