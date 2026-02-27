@@ -4,7 +4,7 @@
 > This project is built on the global foundation. See `~/.claude/docs/architecture.md` for the shared tooling layer (Claude Code, VS Code, Bitwarden, GitHub CLI, etc.).
 >
 > **Last updated:** 2026-02-27
-> **Status:** Active — content workflow live, Rube MCP configured, email accounts created, Privacy Policy published
+> **Status:** Active — content workflow live, home page LOE content + AI images pushed as draft. Rube MCP removed (broken). Composio setup pending.
 
 ---
 
@@ -18,9 +18,7 @@ graph TD
     end
 
     subgraph AUTOMATION["Automation Layer"]
-        RUBE[Rube MCP<br/>rube.app/mcp]
-        COMPOSIO[Composio<br/>Service Connector]
-        RUBE --> COMPOSIO
+        COMPOSIO[Composio<br/>Service Connector<br/>⚠️ Account needed]
     end
 
     subgraph VPS["VPS Server"]
@@ -46,11 +44,13 @@ graph TD
     subgraph EXTERNAL["External Services"]
         DOMAIN[Domain Registrar<br/>loveoverexile.com — TBD]
         GSC[Google Search Console<br/>⚠️ Setup pending]
+        GAIAPI[Google AI Studio<br/>Imagen 4 — image generation<br/>✅ API key in .env]
     end
 
     CC -->|git push| REPO
     CC -->|REST API — .env credentials| WPAPI
-    CC -->|Rube MCP tools| RUBE
+    CC -->|MCP tools — pending setup| COMPOSIO
+    CC -->|API key — .env| GAIAPI
     COMPOSIO -->|OAuth| ZOHO
     COMPOSIO -->|OAuth| ML
     COMPOSIO -->|OAuth| WPAPI
@@ -76,8 +76,8 @@ graph TD
 | 1 | WordPress | Website CMS — Avada theme | VPS Server | ✅ Active |
 | 2 | WordPress REST API | Programmatic content management | VPS Server | ✅ Active — credentials in .env |
 | 3 | Email Server | loveoverexile.com mailboxes | VPS Server | ✅ Active — info, contact, malcolm |
-| 4 | Rube MCP | Bridge connecting Claude to external services | rube.app/mcp | ✅ Configured in ~/.claude.json |
-| 5 | Composio | OAuth connector for external service APIs | Via Rube MCP | ⚠️ Configured — services not yet connected |
+| 4 | Rube MCP | Bridge connecting Claude to external services | rube.app/mcp | ❌ Removed — auth model changed, broken |
+| 5 | Composio | OAuth connector for external service APIs | composio.dev | ⚠️ Account needed — direct setup (no Rube) |
 | 6 | Zoho Mail | Manages loveoverexile.com inboxes with full API | Zoho cloud | ⚠️ Account needed — will connect via Composio |
 | 7 | MailerLite | Email waitlist + newsletter for book launch | MailerLite cloud | ⚠️ Account needed — will connect via Composio |
 | 8 | Google Search Console | SEO monitoring and indexing | Google | ⚠️ Setup pending |
@@ -85,6 +85,7 @@ graph TD
 | 10 | VPS Server | Hosts WordPress + email + Open WebUI | Cloud — provider TBD | ✅ Active |
 | 11 | Domain — loveoverexile.com | Domain name + DNS | Registrar TBD | ✅ Active |
 | 12 | GitHub Repo | Version control and project backup | github.com/MrSmithNL | ✅ Active — private |
+| 13 | Google AI Studio (Imagen 4) | AI image generation for website | Google cloud | ✅ Active — API key in .env |
 
 ---
 
@@ -93,7 +94,8 @@ graph TD
 | From | To | How | Status | Purpose |
 |------|----|-----|--------|---------|
 | Claude Code | WordPress REST API | HTTPS + Application Password (.env) | ✅ Active | Push content, publish pages, manage posts |
-| Claude Code | Rube MCP | HTTP MCP server | ✅ Configured — needs VS Code reload | Gateway to all Composio automations |
+| Claude Code | Google AI Studio | HTTPS + API Key (.env) | ✅ Active | Generate images with Imagen 4 |
+| Claude Code | Composio MCP | HTTP MCP server | ⚠️ Pending — account needed | Gateway to Zoho Mail + MailerLite automations |
 | Composio | Zoho Mail | OAuth | ⚠️ Pending connection | Read, send, monitor loveoverexile.com inboxes |
 | Composio | MailerLite | OAuth | ⚠️ Pending connection | Manage waitlist subscribers and campaigns |
 | Project folder | GitHub | git push via CLI | ✅ Active | Version control + backup |
@@ -108,7 +110,7 @@ graph TD
 | WordPress REST API | Application Password | ✅ Active | `.env` file (gitignored) + Bitwarden |
 | WordPress Admin | Username + password | ✅ Active | Bitwarden |
 | GitHub | OAuth via GitHub CLI | ✅ Active | macOS keyring |
-| Rube MCP | No auth — open endpoint | ✅ Configured | `~/.claude.json` |
+| Rube MCP | N/A — removed | ❌ Removed | Deleted from `~/.claude.json` |
 | Composio | Per-service OAuth tokens | ⚠️ Pending | Managed by Composio |
 | Zoho Mail | OAuth via Composio | ⚠️ Pending | Composio |
 | MailerLite | OAuth via Composio | ⚠️ Pending | Composio |
@@ -117,6 +119,7 @@ graph TD
 | VPS Server | TBD (SSH / control panel) | ✅ Active | Malcolm manages |
 | Open WebUI | TBD | ❓ Unknown | TBD |
 | Google Search Console | Google OAuth | ⚠️ Not yet set up | TBD |
+| Google AI Studio | API Key | ✅ Active | `.env` file (gitignored) + Bitwarden |
 
 ---
 
@@ -127,12 +130,31 @@ graph TD
 | WordPress Admin | https://loveoverexile.com/wp-admin | Manage website | loveoverexile (user) |
 | GitHub | https://github.com/MrSmithNL | Version control | MrSmithNL |
 | Bitwarden | https://vault.bitwarden.com | Credential vault | msmithnl@gmail.com |
-| Rube / Composio | https://rube.app | Automation bridge | No account needed |
+| Composio | https://composio.dev | Automation bridge | ⚠️ Account to be created |
 | Zoho Mail | https://mail.zoho.com | Email management | ⚠️ To be created |
 | MailerLite | https://mailerlite.com | Email marketing | ⚠️ To be created |
 | Google Search Console | https://search.google.com/search-console | SEO monitoring | ⚠️ To be set up |
+| Google AI Studio | https://aistudio.google.com | Imagen 4 API for image generation | msmithnl@gmail.com |
 | VPS Provider | TBD | Server management | Malcolm |
 | Domain Registrar | TBD | DNS + renewal | Malcolm |
+
+---
+
+## Image Workflow (built 2026-02-27)
+
+```
+Define images needed for a page
+    ↓ (prompts, aspect ratios, SEO filenames)
+python3 scripts/generate-images.py
+    ↓ (Imagen 4 → Pillow optimise → WordPress media upload)
+Image URLs returned → inserted into Avada shortcodes
+    ↓ (REST API → WordPress draft)
+Preview at wp-admin link
+```
+
+Scripts: `scripts/generate-images.py`
+Skill: `~/.claude/skills/loe-image-generator/SKILL.md`
+Optimisation targets: 16:9 backgrounds < 150 KB, cards < 90 KB, inline < 90 KB, mobile hero < 100 KB
 
 ---
 
@@ -158,6 +180,8 @@ Docs: `docs/content-workflow.md`
 | Page | URL | Status |
 |------|-----|--------|
 | Privacy Policy | https://loveoverexile.com/privacy-policy/ | ✅ Published |
+| Home | https://loveoverexile.com/ | ⚠️ Draft — LOE text + Imagen 4 images pushed, awaiting Malcolm review |
+| The Book | https://loveoverexile.com/the-book/ | ⚠️ Draft — needs Avada layout (currently plain text) |
 | All other pages | — | ⚠️ Demo content — to be replaced |
 
 ---
@@ -173,3 +197,6 @@ Docs: `docs/content-workflow.md`
 | 2026-02-27 | File permissions configured — Read/Edit/Write auto-approved in settings.json | No |
 | 2026-02-27 | Rube MCP configured in ~/.claude.json — gateway to Composio integrations | Yes |
 | 2026-02-27 | Email accounts created on VPS: info, contact, malcolm @loveoverexile.com | Yes |
+| 2026-02-27 | Rube MCP removed — auth model changed, broken. Composio direct setup needed instead. | Yes |
+| 2026-02-27 | Google AI Studio added — Imagen 4 API key stored in .env. loe-image-generator skill created. | Yes |
+| 2026-02-27 | Home page updated — LOE text content + 13 Imagen 4 images generated, optimised, and pushed as draft (ID 1023) | No |

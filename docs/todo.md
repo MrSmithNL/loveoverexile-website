@@ -18,15 +18,18 @@
 
 ### WP-008 — Set up email waitlist / subscription
 **Priority:** 🔴 High — most important conversion action before book launch
+**Status:** ⏸️ Paused — account setup issues. Resume when accounts are ready.
 
 **What needs doing:**
-Visitors need a way to sign up to be notified when the book launches. Must be live before any real content goes live.
+1. Create Composio account at composio.dev → get API key
+2. Create MailerLite account at mailerlite.com (free tier: 1,000 contacts)
+3. Create Zoho Mail account at mail.zoho.com (to manage loveoverexile.com inboxes via Claude)
+4. I'll write a script to generate Composio MCP URLs for each service
+5. Add MCP servers with `claude mcp add` + authenticate each via browser OAuth
+6. Set up waitlist signup form on homepage and /the-book/ page
+7. Set up welcome/confirmation email
 
-**Steps:**
-- Malcolm to confirm: do you already have a Mailchimp or ConvertKit/Kit account?
-- Set up signup form on homepage and /the-book/ page
-- Connect form to email list
-- Set up welcome/confirmation email
+**Note:** Rube MCP (previously configured) is broken — Rube changed auth model. Old config removed from ~/.claude.json. Direct Composio approach needed instead.
 
 ---
 
@@ -135,3 +138,6 @@ Confirm URL, access method, whether still in use.
 | 2026-02-27 | WP-007 — Full site structure designed based on book's 3-part structure. |
 | 2026-02-27 | File permissions configured — Read/Edit/Write now auto-approved in settings.json. |
 | 2026-02-27 | WP-002 — Content workflow built. Push script works. Privacy Policy pushed to WP as draft. |
+| 2026-02-27 | Rube MCP broken (auth changed). Removed from config. WP-008 paused — Composio/MailerLite/Zoho accounts needed. |
+| 2026-02-27 | WP-005 — Started writing real site content (The Book page, Home page). |
+| 2026-02-27 | WP-005 — Home page: LOE text content + 13 AI images (Imagen 4, web-optimised) pushed as draft. loe-image-generator skill created. |
