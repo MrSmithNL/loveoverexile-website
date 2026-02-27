@@ -328,7 +328,7 @@ done
 - 32 core skills installed (document processing, writing, design, research, productivity, development)
 - 832 Composio automation skills installed (CRM, project management, email, social media, etc.)
 - Skills take effect immediately — no restart needed
-- Full registry documented in: `docs/skills-registry.md`
+- Full registry documented in: `~/.claude/docs/skills-registry.md` (global — applies to all projects)
 
 **What this means in plain English:**
 Skills are instruction files that teach Claude Code how to do specific tasks — like creating PDFs, writing Twitter posts, downloading videos, or connecting to apps like Gmail, Slack, and Notion. With 864 skills installed, Claude can now handle a much wider range of tasks automatically.
