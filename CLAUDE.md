@@ -17,6 +17,17 @@ If no skill exists: proceed with the direct approach.
 
 ---
 
+## Architecture Maintenance — Always Automatic
+
+After any change that adds, modifies, or removes a service, tool, account, connection, or credential:
+1. Update `docs/architecture.md` — diagram, components, connections, accounts, change log
+2. Update `docs/todo.md` — mark completed items, add new ones
+3. Commit and push both files
+
+This happens automatically without being asked. Malcolm should never need to request it.
+
+---
+
 ## Autonomous Permissions
 
 Malcolm has granted full autonomous permission for the following — no confirmation needed:
