@@ -1,0 +1,254 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="The Book"
+  description="Love Over Exile — a book by Malcolm Smith on surviving parental alienation, staying whole, and choosing love. Join the waitlist for the launch."
+  ogType="book"
+>
+
+  <!-- Hero -->
+  <section class="section book-hero section-dark">
+    <div class="container">
+      <div class="book-hero-inner">
+        <div class="book-cover-col">
+          <div class="book-cover-frame">
+            <img
+              src="/images/book-cover.jpg"
+              alt="Love Over Exile — book cover"
+              width="360"
+              height="490"
+              loading="eager"
+              decoding="async"
+            />
+          </div>
+        </div>
+        <div class="book-hero-content">
+          <p class="eyebrow">Coming soon</p>
+          <h1>Love Over Exile</h1>
+          <p class="byline">by Malcolm Smith</p>
+          <p class="book-tagline">
+            For every parent who has been pushed out of their child's life —
+            and refused to disappear.
+          </p>
+          <div class="waitlist-box">
+            <p class="waitlist-label">Join the waitlist — be first to know when it launches</p>
+            <!-- MailerLite embed will replace this form -->
+            <form class="waitlist-form" action="#" method="post">
+              <input type="email" name="email" placeholder="Your email address" required />
+              <button type="submit" class="btn btn-primary">Join the Waitlist</button>
+            </form>
+            <p class="waitlist-note">No spam. Unsubscribe at any time.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- What the book is -->
+  <section class="section">
+    <div class="container-narrow">
+      <p class="section-label">About the book</p>
+      <h2>This book is not about the other parent</h2>
+      <p class="lead">
+        There are plenty of resources about the legal battle, the psychology of the alienating
+        parent, and the research into parental alienation. This book is about <em>you</em>.
+      </p>
+      <p>
+        It is about what happens inside you when your child is turned against you. About the
+        grief that has no name, the guilt that isn't yours, and the question of how you stay
+        a loving parent when you have no access to your child.
+      </p>
+      <p>
+        It is also a practical book. Because surviving this requires both inner work and
+        external strategy — and most resources give you one or the other, not both.
+      </p>
+    </div>
+  </section>
+
+  <!-- Three Parts -->
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-label">Inside the book</p>
+        <h2>Three Parts. One Journey.</h2>
+      </div>
+      <div class="parts-grid">
+        <div class="part-block">
+          <div class="part-roman">I</div>
+          <h3>Understanding Parental Alienation</h3>
+          <p>What is it? How does it happen? Why does the legal system struggle with it?
+          What does the research say — and what does it miss? An honest, evidence-based
+          account of the phenomenon and its effects on children and parents.</p>
+          <ul>
+            <li>The spectrum from mild to severe alienation</li>
+            <li>How children are affected — and what they need</li>
+            <li>Why courts and therapists often get it wrong</li>
+            <li>What the research actually shows</li>
+          </ul>
+        </div>
+        <div class="part-block">
+          <div class="part-roman">II</div>
+          <h3>The Survival Guide</h3>
+          <p>Practical strategies for the acute phase — when you are in the middle of it
+          and need a framework to function. Legal options, communication tactics, protecting
+          your mental health, and keeping the door open for your child.</p>
+          <ul>
+            <li>Legal options and their realistic chances</li>
+            <li>Communication strategies that preserve relationships</li>
+            <li>Managing your mental health under extreme stress</li>
+            <li>What to say (and not say) to your child</li>
+          </ul>
+        </div>
+        <div class="part-block">
+          <div class="part-roman">III</div>
+          <h3>Inner Freedom</h3>
+          <p>The long game. This section is about how to rebuild your identity, find
+          meaning in exile, and choose love even when you cannot express it. Not
+          "moving on" — but moving forward, with your love intact.</p>
+          <ul>
+            <li>Rebuilding identity after forced absence</li>
+            <li>Choosing love as a daily practice</li>
+            <li>Finding community and connection</li>
+            <li>The long arc of reconnection — and hope</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="section section-dark" style="text-align:center;">
+    <div class="container-narrow">
+      <h2>Be first to know when it launches</h2>
+      <p style="opacity:0.8; margin-bottom:2rem;">
+        Join the waitlist and receive the free Survival Guide in the meantime.
+      </p>
+      <a href="/free-guide" class="btn btn-primary" style="font-size:1.05rem;">Get the Free Guide →</a>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+.book-hero { padding-block: 5rem; }
+.book-hero-inner {
+  display: grid;
+  grid-template-columns: 380px 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+.book-cover-frame {
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 32px 80px rgba(0,0,0,0.5);
+  aspect-ratio: 3/4;
+  background: rgba(255,255,255,0.08);
+}
+.book-cover-frame img { width: 100%; height: 100%; object-fit: cover; }
+.eyebrow {
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-amber-light);
+  margin-bottom: 0.5rem;
+}
+.byline {
+  font-family: var(--font-serif);
+  font-size: 1.1rem;
+  font-style: italic;
+  color: rgba(247,243,238,0.7);
+  margin-bottom: 1.5rem;
+}
+.book-tagline {
+  font-size: 1.15rem;
+  line-height: 1.65;
+  color: rgba(247,243,238,0.85);
+  margin-bottom: 2rem;
+  font-style: italic;
+}
+.waitlist-box {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 12px;
+  padding: 1.5rem;
+}
+.waitlist-label {
+  font-size: 0.9rem;
+  color: rgba(247,243,238,0.7);
+  margin-bottom: 1rem;
+}
+.waitlist-form {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+.waitlist-form input {
+  flex: 1;
+  min-width: 220px;
+  background: rgba(255,255,255,0.1);
+  border-color: rgba(255,255,255,0.2);
+  color: var(--color-ivory);
+}
+.waitlist-form input::placeholder { color: rgba(247,243,238,0.4); }
+.waitlist-note {
+  font-size: 0.78rem;
+  color: rgba(247,243,238,0.4);
+  margin: 0.75rem 0 0;
+}
+
+.section-label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-amber);
+  margin-bottom: 0.75rem;
+}
+.section-header { text-align: center; margin-bottom: 3rem; }
+.lead {
+  font-size: 1.1rem;
+  line-height: 1.75;
+  color: var(--color-charcoal-mid);
+  margin-bottom: 1.25rem;
+}
+
+.parts-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+.part-block {
+  padding: 2rem;
+  background: var(--color-ivory);
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+}
+.part-roman {
+  font-family: var(--font-serif);
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--color-amber);
+  line-height: 1;
+  margin-bottom: 1rem;
+  opacity: 0.7;
+}
+.part-block h3 { margin-bottom: 0.75rem; font-size: 1.15rem; }
+.part-block p { font-size: 0.92rem; color: var(--color-charcoal-mid); margin-bottom: 1rem; }
+.part-block ul {
+  padding-left: 1.25rem;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+.part-block li { font-size: 0.88rem; color: var(--color-charcoal-mid); }
+
+@media (max-width: 900px) {
+  .book-hero-inner { grid-template-columns: 1fr; }
+  .book-cover-col { display: none; }
+  .parts-grid { grid-template-columns: 1fr; }
+}
+</style>

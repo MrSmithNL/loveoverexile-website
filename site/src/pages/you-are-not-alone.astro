@@ -1,0 +1,160 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="You Are Not Alone"
+  description="The research on parental alienation — how many families are affected, what the evidence shows, and what it means for you. You are not alone in this."
+>
+
+  <!-- Hero -->
+  <section class="section section-dark" style="text-align:center; padding-block:6rem;">
+    <div class="container-narrow">
+      <p class="eyebrow">The data</p>
+      <h1>You Are Not Alone</h1>
+      <p style="font-size:1.15rem; opacity:0.8; max-width:580px; margin-inline:auto; line-height:1.75;">
+        One of the most painful aspects of parental alienation is the feeling that no one
+        understands — that what is happening to you is too strange, too specific, too
+        invisible for the world to recognise. The data tells a different story.
+      </p>
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <section class="section">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-card card">
+          <div class="stat-big">22 million</div>
+          <div class="stat-desc">children worldwide are estimated to be affected by parental alienation</div>
+          <div class="stat-source">Gardner, R.A. (2002) — widely cited estimate; see also PASG research</div>
+        </div>
+        <div class="stat-card card">
+          <div class="stat-big">11–15%</div>
+          <div class="stat-desc">of children in high-conflict divorces show significant signs of parental alienation</div>
+          <div class="stat-source">Bernet, W. et al. (2020), Journal of Child Custody</div>
+        </div>
+        <div class="stat-card card">
+          <div class="stat-big">1 in 5</div>
+          <div class="stat-desc">divorcing families experience significant alienating behaviours by one parent</div>
+          <div class="stat-source">Various — including Harman, Kruk & Hines (2018)</div>
+        </div>
+        <div class="stat-card card">
+          <div class="stat-big">Both</div>
+          <div class="stat-desc">mothers and fathers are alienating parents — though the experiencing parent is statistically more often the father</div>
+          <div class="stat-source">Harman, J.E. et al., multiple studies 2016–2022</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- What the research shows -->
+  <section class="section section-alt">
+    <div class="container-narrow prose">
+      <p class="section-label">What the evidence shows</p>
+      <h2>What we know — and what it means</h2>
+
+      <h3>Parental alienation is recognised as harmful</h3>
+      <p>
+        The psychological and medical communities have moved — slowly, but measurably — toward
+        recognising parental alienation as a real phenomenon with serious effects on children.
+        The American Psychological Association, the American Bar Association, and family court
+        systems in multiple jurisdictions now acknowledge it, even if their responses vary widely.
+      </p>
+
+      <h3>Children suffer long-term harm</h3>
+      <p>
+        Research by Amy Baker and others documents the long-term effects on children who were
+        alienated from a parent: higher rates of depression, anxiety, low self-esteem, difficulty
+        forming trusting relationships, and — in many cases — eventual regret and grief when they
+        understand what happened. This is why fighting for your relationship with your child is
+        not futile: it matters for their future, not only yours.
+      </p>
+
+      <h3>You are statistically far from alone</h3>
+      <p>
+        If parental alienation affects even 11% of high-conflict divorces — a conservative
+        estimate — and there are hundreds of thousands of such divorces per year in English-speaking
+        countries alone, the number of affected parents runs into the millions. The isolation
+        you feel is a result of stigma, legal confidentiality, and the shame that is imposed on
+        alienated parents — not of rarity.
+      </p>
+
+      <h3>The legal system is behind</h3>
+      <p>
+        Family courts in most jurisdictions are not well-equipped to identify or respond to
+        parental alienation. Judges, CAFCASS officers, and court-appointed therapists vary
+        enormously in their understanding. This is why having a clear, evidence-based account
+        of what is happening — and why — is so important if you are engaged in legal proceedings.
+      </p>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section section-dark" style="text-align:center;">
+    <div class="container-narrow">
+      <h2>Find community with people who understand</h2>
+      <p style="opacity:0.8; margin-bottom:2rem;">
+        The statistics don't make the experience less painful. But they do mean there are
+        people out there who know exactly what you're going through.
+      </p>
+      <div style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap;">
+        <a href="/community" class="btn btn-primary">Join the Community</a>
+        <a href="/free-guide" class="btn btn-outline-light">Get the Free Guide</a>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+.eyebrow {
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-amber-light);
+  margin-bottom: 1rem;
+}
+.section-label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-amber);
+  margin-bottom: 0.75rem;
+}
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+}
+.stat-card { text-align: center; padding: 2rem 1.5rem; }
+.stat-big {
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  color: var(--color-green-deep);
+  line-height: 1.1;
+  margin-bottom: 0.75rem;
+}
+.stat-desc {
+  font-size: 0.92rem;
+  color: var(--color-charcoal);
+  line-height: 1.6;
+  margin-bottom: 0.75rem;
+}
+.stat-source {
+  font-size: 0.75rem;
+  color: var(--color-warm-grey);
+  font-style: italic;
+  line-height: 1.5;
+}
+
+@media (max-width: 900px) {
+  .stats-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 600px) {
+  .stats-grid { grid-template-columns: 1fr; }
+}
+</style>

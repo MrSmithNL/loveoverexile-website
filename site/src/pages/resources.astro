@@ -1,0 +1,135 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const resources = {
+  'Books': [
+    { title: 'Parental Alienation — Understanding Children Who Reject a Parent', author: 'Amy J.L. Baker', note: 'The foundational research-based book on PA from the child\'s perspective.' },
+    { title: 'Adult Children of Parental Alienation Syndrome', author: 'Amy J.L. Baker', note: 'Long-term impact on children who were alienated — and eventual reconnection.' },
+    { title: 'Divorce Poison', author: 'Richard A. Warshak', note: 'Practical guidance on countering alienating behaviour.' },
+    { title: 'Co-parenting with a Toxic Ex', author: 'Amy J.L. Baker & Paul Fine', note: 'Practical strategies for managing a high-conflict co-parent.' },
+  ],
+  'Organisations': [
+    { title: 'Parental Alienation Study Group (PASG)', url: 'https://pasg.info', note: 'The world\'s leading academic body on parental alienation research.' },
+    { title: 'NAAP — National Association of Alienated Parents (UK)', url: 'https://naap.org.uk', note: 'UK-focused advocacy and support for alienated parents.' },
+    { title: 'Families Need Fathers (UK)', url: 'https://fnf.org.uk', note: 'Legal support and campaigning for shared parenting rights.' },
+    { title: 'PASG Research Database', url: 'https://pasg.info/research', note: 'Peer-reviewed research on parental alienation.' },
+  ],
+  'Crisis & Mental Health': [
+    { title: 'Samaritans (UK)', url: 'https://samaritans.org', phone: '116 123', note: 'Available 24/7 for emotional support.' },
+    { title: 'Mind (UK)', url: 'https://mind.org.uk', note: 'Mental health support and resources for adults.' },
+    { title: 'Crisis Text Line (US)', url: 'https://crisistextline.org', note: 'Text HOME to 741741.' },
+  ],
+};
+---
+
+<BaseLayout
+  title="Resources"
+  description="Resources for alienated parents — books, organisations, professionals, and crisis support. Curated by Malcolm Smith, author of Love Over Exile."
+>
+
+  <section class="section">
+    <div class="container-narrow">
+      <p class="eyebrow">Resources</p>
+      <h1>Resources</h1>
+      <p class="intro">
+        A curated selection of books, organisations, and support resources for alienated parents.
+        This list will grow as the community contributes recommendations.
+      </p>
+
+      {Object.entries(resources).map(([category, items]) => (
+        <div class="resource-section">
+          <h2>{category}</h2>
+          <div class="resource-list">
+            {items.map((item: any) => (
+              <div class="resource-item">
+                <div class="resource-main">
+                  {item.url ? (
+                    <a href={item.url} target="_blank" rel="noopener noreferrer" class="resource-title">{item.title}</a>
+                  ) : (
+                    <span class="resource-title">{item.title}</span>
+                  )}
+                  {item.author && <span class="resource-author">by {item.author}</span>}
+                  {item.phone && <span class="resource-phone">{item.phone}</span>}
+                </div>
+                {item.note && <p class="resource-note">{item.note}</p>}
+              </div>
+            ))}
+          </div>
+        </div>
+      ))}
+
+      <div class="resource-section">
+        <h2>Professional Directory</h2>
+        <p style="color:var(--color-charcoal-mid);">
+          A directory of therapists, lawyers, and coaches who understand parental alienation
+          is coming soon. If you are a professional who works with alienated parents and would
+          like to be included, <a href="/contact">get in touch</a>.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+.eyebrow {
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-amber);
+  margin-bottom: 0.5rem;
+}
+.intro {
+  font-size: 1.05rem;
+  color: var(--color-charcoal-mid);
+  margin-bottom: 3rem;
+  line-height: 1.7;
+}
+.resource-section {
+  margin-bottom: 3rem;
+}
+.resource-section h2 {
+  font-size: 1.3rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid var(--color-border);
+}
+.resource-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+.resource-item {
+  padding: 1.25rem;
+  background: var(--color-ivory-alt);
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+}
+.resource-main {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+.resource-title {
+  font-weight: 600;
+  color: var(--color-green-deep);
+  font-size: 0.95rem;
+  text-decoration: none;
+}
+a.resource-title:hover { color: var(--color-amber); }
+.resource-author,
+.resource-phone {
+  font-size: 0.85rem;
+  color: var(--color-warm-grey);
+}
+.resource-note {
+  font-size: 0.88rem;
+  color: var(--color-charcoal-mid);
+  margin: 0;
+  line-height: 1.6;
+}
+</style>

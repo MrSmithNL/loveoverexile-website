@@ -1,0 +1,146 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Contact"
+  description="Get in touch with Malcolm Smith — author of Love Over Exile. For questions, press enquiries, or to share your experience."
+  noIndex={false}
+>
+
+  <section class="section">
+    <div class="container-narrow">
+      <p class="eyebrow">Get in touch</p>
+      <h1>Contact</h1>
+      <p class="intro">
+        Malcolm reads every message. Response times vary — this is a personal project, not
+        a large organisation — but nothing is ignored.
+      </p>
+
+      <div class="contact-grid">
+        <div class="contact-form-col">
+          <form class="contact-form" action="#" method="post">
+            <div class="field">
+              <label for="name">Your name</label>
+              <input type="text" id="name" name="name" placeholder="First name or full name" required />
+            </div>
+            <div class="field">
+              <label for="email">Email address</label>
+              <input type="email" id="email" name="email" placeholder="your@email.com" required />
+            </div>
+            <div class="field">
+              <label for="subject">Subject</label>
+              <input type="text" id="subject" name="subject" placeholder="What's this about?" required />
+            </div>
+            <div class="field">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" rows="6" placeholder="Your message..." required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary" style="width:100%;">Send Message</button>
+          </form>
+        </div>
+
+        <div class="contact-info-col">
+          <div class="contact-info-card">
+            <h3>Other ways to connect</h3>
+            <ul class="contact-links">
+              <li>
+                <span class="contact-icon" aria-hidden="true">✉</span>
+                <div>
+                  <strong>Email</strong>
+                  <p>info@loveoverexile.com</p>
+                </div>
+              </li>
+              <li>
+                <span class="contact-icon" aria-hidden="true">💬</span>
+                <div>
+                  <strong>Community forum</strong>
+                  <p><a href="/community">Join the community →</a></p>
+                </div>
+              </li>
+              <li>
+                <span class="contact-icon" aria-hidden="true">📸</span>
+                <div>
+                  <strong>Instagram</strong>
+                  <p><a href="https://instagram.com/loveoverexile" target="_blank" rel="noopener">@loveoverexile</a></p>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div class="contact-note">
+            <p>
+              <strong>Please note:</strong> Love Over Exile is not a crisis service.
+              If you are in crisis, please contact your national crisis line.
+              In the UK: <strong>Samaritans 116 123</strong>.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+.eyebrow {
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-amber);
+  margin-bottom: 0.5rem;
+}
+.intro {
+  font-size: 1.05rem;
+  color: var(--color-charcoal-mid);
+  margin-bottom: 3rem;
+  max-width: 560px;
+}
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: 3rem;
+  align-items: start;
+}
+.contact-form { display: flex; flex-direction: column; gap: 1.25rem; }
+.field { display: flex; flex-direction: column; gap: 0.4rem; }
+.field label {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--color-green-deep);
+}
+
+.contact-info-card {
+  background: var(--color-ivory-alt);
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  padding: 1.75rem;
+  margin-bottom: 1.25rem;
+}
+.contact-info-card h3 { margin-bottom: 1.25rem; font-size: 1rem; }
+.contact-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+.contact-links li { display: flex; gap: 0.75rem; align-items: flex-start; }
+.contact-icon { font-size: 1.1rem; margin-top: 0.1em; flex-shrink: 0; }
+.contact-links strong { display: block; font-size: 0.88rem; margin-bottom: 0.2rem; }
+.contact-links p { font-size: 0.88rem; color: var(--color-charcoal-mid); margin: 0; }
+
+.contact-note {
+  padding: 1.25rem;
+  background: rgba(196,154,60,0.08);
+  border-left: 3px solid var(--color-amber);
+  border-radius: 0 8px 8px 0;
+}
+.contact-note p { font-size: 0.88rem; color: var(--color-charcoal-mid); margin: 0; line-height: 1.65; }
+
+@media (max-width: 768px) {
+  .contact-grid { grid-template-columns: 1fr; }
+}
+</style>

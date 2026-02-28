@@ -1,0 +1,172 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Free Survival Guide"
+  description="Download the free Parental Alienation Survival Guide by Malcolm Smith — practical advice for parents in the acute phase. Free when you join the community."
+>
+
+  <section class="section guide-hero">
+    <div class="container">
+      <div class="guide-inner">
+        <div class="guide-content">
+          <p class="eyebrow">Free resource</p>
+          <h1>The Parental Alienation<br />Survival Guide</h1>
+          <p class="guide-subtitle">
+            A practical guide for parents in the acute phase of parental alienation.
+            What to do, what to avoid, and how to hold yourself together.
+          </p>
+
+          <ul class="guide-contents">
+            <li>Understanding what is happening — and why it's happening to you</li>
+            <li>The most common mistakes alienated parents make (and how to avoid them)</li>
+            <li>Legal options: what helps, what doesn't, and how to prioritise</li>
+            <li>How to communicate with your child when contact is limited or blocked</li>
+            <li>Protecting your mental health in the acute phase</li>
+            <li>When to get professional support — and what kind</li>
+            <li>The long game: staying present without burning out</li>
+          </ul>
+
+          <div class="guide-form-box">
+            <p class="form-label">Get the guide — free when you join the Love Over Exile community</p>
+            <!-- MailerLite embed placeholder -->
+            <form class="guide-form" action="#" method="post">
+              <input type="text" name="name" placeholder="Your first name" required />
+              <input type="email" name="email" placeholder="Your email address" required />
+              <button type="submit" class="btn btn-primary" style="width:100%;">
+                Send Me the Guide →
+              </button>
+            </form>
+            <p class="form-note">
+              You'll receive the guide by email and be added to the Love Over Exile community
+              list. No spam. Unsubscribe at any time.
+            </p>
+          </div>
+        </div>
+
+        <div class="guide-preview-wrap">
+          <div class="guide-preview">
+            <img
+              src="/images/survival-guide-cover.jpg"
+              alt="Parental Alienation Survival Guide — cover preview"
+              width="380"
+              height="500"
+              loading="eager"
+              decoding="async"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- What you'll get -->
+  <section class="section section-alt">
+    <div class="container-narrow" style="text-align:center;">
+      <p class="section-label">Why this guide</p>
+      <h2>Written from the inside out</h2>
+      <p style="color:var(--color-charcoal-mid); font-size:1.05rem; line-height:1.75; max-width:560px; margin-inline:auto;">
+        Most parental alienation resources are either academic or legal. This guide is
+        neither. It is written by someone who has been through it — for parents who are
+        going through it right now, and need something they can actually use.
+      </p>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+.guide-hero { padding-block: 5rem; }
+.guide-inner {
+  display: grid;
+  grid-template-columns: 1fr 400px;
+  gap: 5rem;
+  align-items: start;
+}
+.eyebrow {
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-amber);
+  margin-bottom: 0.75rem;
+}
+.guide-subtitle {
+  font-size: 1.1rem;
+  color: var(--color-charcoal-mid);
+  line-height: 1.7;
+  margin-block: 1rem 2rem;
+}
+.guide-contents {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+.guide-contents li {
+  padding-left: 1.5rem;
+  position: relative;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--color-charcoal);
+}
+.guide-contents li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: var(--color-amber);
+  font-weight: 700;
+}
+
+.guide-form-box {
+  background: var(--color-ivory-alt);
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  padding: 1.75rem;
+}
+.form-label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-green-deep);
+  margin-bottom: 1.25rem;
+}
+.guide-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+.form-note {
+  font-size: 0.78rem;
+  color: var(--color-warm-grey);
+  margin: 0.75rem 0 0;
+  line-height: 1.5;
+}
+
+.guide-preview {
+  position: sticky;
+  top: 6rem;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(30,51,40,0.15);
+  aspect-ratio: 3/4;
+  background: var(--color-border);
+}
+.guide-preview img { width: 100%; height: 100%; object-fit: cover; }
+
+.section-label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-amber);
+  margin-bottom: 0.75rem;
+}
+
+@media (max-width: 900px) {
+  .guide-inner { grid-template-columns: 1fr; }
+  .guide-preview-wrap { display: none; }
+}
+</style>

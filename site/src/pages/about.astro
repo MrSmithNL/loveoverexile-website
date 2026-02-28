@@ -1,0 +1,153 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="About the Author"
+  description="Malcolm Smith is the author of Love Over Exile. This is his personal story of surviving parental alienation — and why he wrote the book."
+  ogType="profile"
+>
+
+  <!-- Hero -->
+  <section class="section about-hero">
+    <div class="container">
+      <div class="about-hero-inner">
+        <div class="about-photo-wrap">
+          <img
+            src="/images/malcolm-smith-author.jpg"
+            alt="Malcolm Smith — author of Love Over Exile"
+            width="460"
+            height="540"
+            loading="eager"
+            decoding="async"
+            class="about-photo"
+          />
+        </div>
+        <div class="about-hero-content">
+          <p class="eyebrow">About the author</p>
+          <h1>Malcolm Smith</h1>
+          <p class="about-subtitle">
+            Author. Alienated parent. Father.
+          </p>
+          <blockquote class="pull-quote">
+            "I didn't write this book because I had all the answers.
+            I wrote it because I needed it to exist — and it didn't."
+          </blockquote>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Story -->
+  <section class="section">
+    <div class="container-narrow prose">
+
+      <h2>The beginning</h2>
+      <p>
+        Malcolm Smith's experience of parental alienation began like most do — not with a single
+        dramatic event, but with a slow erosion. A child who became distant. Phone calls that
+        went unanswered. Messages passed through lawyers. A legal system that moved at a pace
+        wholly out of step with the damage being done.
+      </p>
+      <p>
+        What followed were years of navigating family courts, therapeutic interventions, and the
+        particular kind of grief that comes from losing someone who is still alive — who you
+        love more than anything — and who no longer seems to know who you are.
+      </p>
+
+      <h2>Why he wrote the book</h2>
+      <p>
+        When Malcolm looked for resources that spoke to his experience — not clinical literature,
+        not legal guides, but something human — he found almost nothing. There were advocacy
+        organisations arguing about whether parental alienation was "real." There were support
+        forums full of anger and despair. There was very little that offered both practical help
+        and a pathway toward something other than bitterness.
+      </p>
+      <p>
+        So he wrote it himself. <em>Love Over Exile</em> is the book he needed — and didn't have.
+        It is honest about the legal and systemic failures. It is practical about what actually
+        helps. And it is grounded in a core conviction: that love, maintained over years, across
+        distance and rejection, is not weakness. It is the only thing that has a chance of
+        working — for you, and eventually, for your child.
+      </p>
+
+      <h2>The name</h2>
+      <p>
+        The title comes from a choice that every alienated parent faces: whether to let
+        the pain of exile harden into resentment, or to continue choosing love — not as
+        a sentimental gesture, but as a deliberate, daily act of refusing to become what
+        the situation might make you.
+      </p>
+      <p>
+        Love Over Exile is not about pretending things are fine. It is about choosing, in full
+        knowledge of how much it costs, to stay a loving presence in your child's life — even
+        when your child cannot see you.
+      </p>
+
+      <h2>What Malcolm believes</h2>
+      <p>
+        Parental alienation is under-researched, under-recognised, and poorly handled by the
+        institutions that should protect children from it. The parents who suffer it often do so
+        in isolation, without language for what is happening to them, without community, and
+        without a roadmap for the long journey ahead.
+      </p>
+      <p>
+        That isolation is what this website, this community, and this book are designed to end.
+      </p>
+
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section section-alt" style="text-align:center;">
+    <div class="container-narrow">
+      <h2>Read the book</h2>
+      <p style="color: var(--color-charcoal-mid); margin-bottom:2rem;">
+        Join the waitlist for <em>Love Over Exile</em> — and get the free Survival Guide
+        while you wait.
+      </p>
+      <div style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap;">
+        <a href="/the-book" class="btn btn-primary">Join the Waitlist</a>
+        <a href="/free-guide" class="btn btn-outline">Get the Free Guide</a>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+.about-hero { padding-block: 5rem; }
+.about-hero-inner {
+  display: grid;
+  grid-template-columns: 460px 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+.about-photo {
+  width: 100%;
+  border-radius: 16px;
+  object-fit: cover;
+  aspect-ratio: 5/6;
+  background: var(--color-border);
+}
+.eyebrow {
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-amber);
+  margin-bottom: 0.5rem;
+}
+.about-subtitle {
+  font-family: var(--font-serif);
+  font-size: 1.2rem;
+  font-style: italic;
+  color: var(--color-charcoal-mid);
+  margin-bottom: 2rem;
+}
+
+@media (max-width: 900px) {
+  .about-hero-inner { grid-template-columns: 1fr; }
+  .about-photo-wrap { display: none; }
+}
+</style>

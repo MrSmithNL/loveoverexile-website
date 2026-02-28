@@ -1,0 +1,223 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+// Placeholder articles — will be replaced by Sanity CMS getStaticPaths
+export async function getStaticPaths() {
+  const articles = [
+    {
+      slug: 'signs-of-parental-alienation',
+      title: 'Signs of Parental Alienation: What to Look For and What It Means',
+      description: 'The patterns that indicate deliberate alienation versus normal post-separation conflict — and why the distinction matters for your strategy.',
+      category: 'Understanding PA',
+      date: '2026-03-01',
+      readTime: '8 min',
+      content: `
+        <p>This article will be published soon. Join the waitlist to be notified.</p>
+      `,
+    },
+    {
+      slug: 'how-to-cope-with-parental-alienation',
+      title: 'How to Cope With Parental Alienation: A Framework for the Acute Phase',
+      description: 'A practical framework for parents in the acute phase of parental alienation.',
+      category: 'Survival Guide',
+      date: '2026-03-15',
+      readTime: '12 min',
+      content: `<p>This article will be published soon.</p>`,
+    },
+    {
+      slug: 'choosing-love-over-exile',
+      title: 'Choosing Love Over Exile: What It Actually Means to Stay Present',
+      description: '"Staying present" sounds like a platitude until you understand what it requires — and what it gives back.',
+      category: 'Inner Freedom',
+      date: '2026-04-01',
+      readTime: '10 min',
+      content: `<p>This article will be published soon.</p>`,
+    },
+  ];
+
+  return articles.map(article => ({
+    params: { slug: article.slug },
+    props: { article },
+  }));
+}
+
+const { article } = Astro.props;
+const formattedDate = new Date(article.date).toLocaleDateString('en-GB', {
+  day: 'numeric', month: 'long', year: 'numeric',
+});
+---
+
+<BaseLayout
+  title={article.title}
+  description={article.description}
+  ogType="article"
+>
+
+  <article class="article-page">
+
+    <!-- Article header -->
+    <header class="article-header section">
+      <div class="container-narrow">
+        <div class="article-meta">
+          <a href="/articles" class="back-link">← All articles</a>
+          <span class="article-tag">{article.category}</span>
+        </div>
+        <h1 class="article-title">{article.title}</h1>
+        <div class="article-byline">
+          <span>By Malcolm Smith</span>
+          <span class="byline-sep">·</span>
+          <time datetime={article.date}>{formattedDate}</time>
+          <span class="byline-sep">·</span>
+          <span>{article.readTime} read</span>
+        </div>
+        <p class="article-description">{article.description}</p>
+      </div>
+    </header>
+
+    <!-- Article body -->
+    <div class="container-narrow prose article-body" set:html={article.content} />
+
+    <!-- Article footer -->
+    <footer class="article-footer section section-alt">
+      <div class="container-narrow">
+        <div class="article-footer-inner">
+          <div>
+            <p class="footer-label">Written by</p>
+            <p class="footer-author">Malcolm Smith — author of <em>Love Over Exile</em></p>
+            <a href="/about" class="footer-link">Read Malcolm's story →</a>
+          </div>
+          <div>
+            <p class="footer-label">Continue reading</p>
+            <a href="/articles" class="btn btn-outline">All articles →</a>
+          </div>
+        </div>
+
+        <!-- Guide CTA -->
+        <div class="article-guide-cta">
+          <div class="guide-cta-content">
+            <p class="guide-cta-label">Free resource</p>
+            <h3>Get the Free Survival Guide</h3>
+            <p>Practical advice for parents in the acute phase of parental alienation.</p>
+          </div>
+          <a href="/free-guide" class="btn btn-primary">Get the Guide →</a>
+        </div>
+      </div>
+    </footer>
+
+  </article>
+
+</BaseLayout>
+
+<style>
+.article-header { padding-bottom: 2rem; }
+.article-meta {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+.back-link {
+  font-size: 0.88rem;
+  color: var(--color-warm-grey);
+  text-decoration: none;
+  transition: color 0.15s;
+}
+.back-link:hover { color: var(--color-green-deep); }
+.article-tag {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-amber);
+  background: rgba(196,154,60,0.1);
+  border-radius: 4px;
+  padding: 0.2em 0.6em;
+}
+.article-title {
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+.article-byline {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.88rem;
+  color: var(--color-warm-grey);
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+.byline-sep { opacity: 0.5; }
+.article-description {
+  font-size: 1.1rem;
+  color: var(--color-charcoal-mid);
+  line-height: 1.7;
+  border-left: 4px solid var(--color-amber);
+  padding-left: 1.25rem;
+  margin: 0;
+  font-style: italic;
+}
+
+.article-body { padding-block: 3rem; }
+
+.article-footer-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 2rem;
+  flex-wrap: wrap;
+  margin-bottom: 2.5rem;
+}
+.footer-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-warm-grey);
+  margin-bottom: 0.4rem;
+}
+.footer-author {
+  font-size: 0.95rem;
+  color: var(--color-green-deep);
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+.footer-link {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--color-amber);
+  text-decoration: none;
+}
+.footer-link:hover { color: var(--color-green-deep); }
+
+.article-guide-cta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+  padding: 2rem;
+  background: var(--color-green-deep);
+  border-radius: 12px;
+  color: var(--color-ivory);
+}
+.guide-cta-label {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-amber-light);
+  margin-bottom: 0.4rem;
+}
+.article-guide-cta h3 {
+  color: var(--color-ivory);
+  font-size: 1.1rem;
+  margin-bottom: 0.4rem;
+}
+.article-guide-cta p {
+  font-size: 0.9rem;
+  color: rgba(247,243,238,0.75);
+  margin: 0;
+}
+</style>

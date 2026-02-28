@@ -1,0 +1,200 @@
+---
+const navLinks = [
+  { label: 'Home',             href: '/' },
+  { label: 'The Book',         href: '/the-book' },
+  { label: 'About the Author', href: '/about' },
+  { label: 'Articles',         href: '/articles' },
+  { label: 'Community',        href: '/community' },
+];
+
+const currentPath = Astro.url.pathname;
+const isActive = (href: string) =>
+  href === '/' ? currentPath === '/' : currentPath.startsWith(href);
+---
+
+<header class="site-header">
+  <div class="container">
+    <nav class="nav-inner" aria-label="Main navigation">
+      <!-- Logo -->
+      <a href="/" class="logo" aria-label="Love Over Exile — Home">
+        <span class="logo-text">Love Over Exile</span>
+      </a>
+
+      <!-- Desktop links -->
+      <ul class="nav-links" role="list">
+        {navLinks.map(link => (
+          <li>
+            <a
+              href={link.href}
+              class={`nav-link ${isActive(link.href) ? 'nav-link--active' : ''}`}
+              aria-current={isActive(link.href) ? 'page' : undefined}
+            >
+              {link.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+
+      <!-- CTA -->
+      <a href="/free-guide" class="btn btn-primary nav-cta">
+        Get the Free Guide
+      </a>
+
+      <!-- Mobile hamburger -->
+      <button class="hamburger" id="menu-toggle" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+  </div>
+
+  <!-- Mobile menu -->
+  <div class="mobile-menu" id="mobile-menu" role="dialog" aria-label="Mobile navigation">
+    <ul role="list">
+      {navLinks.map(link => (
+        <li>
+          <a href={link.href} class={`mobile-nav-link ${isActive(link.href) ? 'mobile-nav-link--active' : ''}`}>
+            {link.label}
+          </a>
+        </li>
+      ))}
+      <li>
+        <a href="/free-guide" class="btn btn-primary" style="width: 100%; justify-content: center; margin-top: 0.5rem;">
+          Get the Free Guide
+        </a>
+      </li>
+    </ul>
+  </div>
+</header>
+
+<style>
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--color-ivory);
+  border-bottom: 1px solid var(--color-border);
+  backdrop-filter: blur(8px);
+}
+
+.nav-inner {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  height: 68px;
+}
+
+.logo {
+  flex-shrink: 0;
+  text-decoration: none;
+}
+.logo-text {
+  font-family: var(--font-serif);
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--color-green-deep);
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  flex: 1;
+}
+
+.nav-link {
+  display: block;
+  padding: 0.4rem 0.75rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--color-charcoal);
+  text-decoration: none;
+  border-radius: 5px;
+  transition: color 0.15s, background 0.15s;
+  white-space: nowrap;
+}
+.nav-link:hover {
+  color: var(--color-green-deep);
+  background: rgba(30, 51, 40, 0.06);
+}
+.nav-link--active {
+  color: var(--color-green-deep);
+  font-weight: 600;
+}
+
+.nav-cta {
+  flex-shrink: 0;
+  font-size: 0.88rem;
+  padding: 0.6rem 1.2rem;
+}
+
+/* Hamburger */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+  margin-left: auto;
+}
+.hamburger span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--color-green-deep);
+  border-radius: 2px;
+  transition: all 0.2s;
+}
+
+/* Mobile menu */
+.mobile-menu {
+  display: none;
+  padding: 1.5rem;
+  border-top: 1px solid var(--color-border);
+  background: var(--color-ivory);
+}
+.mobile-menu ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+.mobile-nav-link {
+  display: block;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--color-charcoal);
+  text-decoration: none;
+  border-radius: 6px;
+  transition: background 0.15s;
+}
+.mobile-nav-link:hover,
+.mobile-nav-link--active {
+  background: rgba(30, 51, 40, 0.06);
+  color: var(--color-green-deep);
+}
+
+@media (max-width: 900px) {
+  .nav-links, .nav-cta { display: none; }
+  .hamburger { display: flex; }
+  .mobile-menu.is-open { display: block; }
+}
+</style>
+
+<script>
+const toggle = document.getElementById('menu-toggle');
+const menu   = document.getElementById('mobile-menu');
+toggle?.addEventListener('click', () => {
+  const open = menu?.classList.toggle('is-open');
+  toggle.setAttribute('aria-expanded', String(open));
+});
+</script>

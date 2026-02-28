@@ -1,0 +1,154 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Community"
+  description="Join the Love Over Exile community — a moderated forum for alienated parents. A place where lived experience is shared, respected, and supported."
+>
+
+  <!-- Hero -->
+  <section class="section section-dark community-hero">
+    <div class="container-narrow" style="text-align:center;">
+      <p class="eyebrow">The community</p>
+      <h1>A place where people understand<br />because they've lived it</h1>
+      <p class="hero-body">
+        Not a social media group. Not an anonymous forum. A moderated community of
+        alienated parents — real, permanent, and cared for.
+      </p>
+      <a href="#join" class="btn btn-primary" style="font-size:1.05rem;">Join the Community</a>
+    </div>
+  </section>
+
+  <!-- What it is -->
+  <section class="section">
+    <div class="container-narrow">
+      <p class="section-label">What this is</p>
+      <h2>Built for parents. Run with care.</h2>
+      <p>
+        The Love Over Exile community is a Discourse forum — a structured, moderated space
+        designed to support long-term connection, not just quick venting. It is free to join,
+        and run by Malcolm with AI-assisted moderation.
+      </p>
+    </div>
+  </section>
+
+  <!-- Categories -->
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-label">Forum categories</p>
+        <h2>Where would you like to go?</h2>
+      </div>
+      <div class="categories-grid">
+        {[
+          { icon: '👋', title: 'Introduce Yourself', desc: 'Every new member starts here. Tell us your story — as much or as little as you want.' },
+          { icon: '🧠', title: 'Understanding PA', desc: 'Resources, explanations, research. What is it, how does it work, and what does the evidence say?' },
+          { icon: '⚖️', title: 'Court & Legal', desc: 'Sharing experiences with the legal system. (Not legal advice — just lived experience.)' },
+          { icon: '💛', title: 'Emotional Wellbeing', desc: 'The personal, emotional side. The hardest conversations, held with the most care.' },
+          { icon: '🛠️', title: 'Survival Strategies', desc: 'Practical approaches that have worked for community members. Shared and discussed honestly.' },
+          { icon: '🌱', title: 'Success Stories', desc: 'When things improve. Evidence that the long arc sometimes bends toward reunion.' },
+          { icon: '📖', title: 'The Book', desc: 'Discussion of Love Over Exile chapters. Connect what you\'re reading to your own experience.' },
+          { icon: '📚', title: 'Resources', desc: 'Reading lists, organisations, therapy directories, podcasts, and more.' },
+        ].map(cat => (
+          <div class="category-card card">
+            <div class="category-icon" aria-hidden="true">{cat.icon}</div>
+            <h3>{cat.title}</h3>
+            <p>{cat.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Safety -->
+  <section class="section">
+    <div class="container-narrow">
+      <p class="section-label">Safety & moderation</p>
+      <h2>You are in good hands</h2>
+      <p>
+        The community is moderated by Malcolm and an AI assistant — clearly identified, always
+        transparent. Every post is reviewed. A crisis protocol is in place for any member in
+        acute distress, connecting them immediately with professional crisis resources and alerting Malcolm.
+      </p>
+      <p>
+        The AI assistant ("LOE Community Support") is clearly labelled as AI in every post.
+        Nothing sensitive is ever handled by AI alone.
+      </p>
+    </div>
+  </section>
+
+  <!-- Join CTA -->
+  <section class="section section-dark" id="join" style="text-align:center;">
+    <div class="container-narrow">
+      <h2>Join the community</h2>
+      <p style="opacity:0.8; margin-bottom:2rem; font-size:1.05rem;">
+        The forum is coming soon. Enter your email to be notified when it opens.
+      </p>
+      <!-- MailerLite embed placeholder -->
+      <form class="join-form" action="#" method="post">
+        <input type="email" name="email" placeholder="Your email address" required style="max-width:360px;" />
+        <button type="submit" class="btn btn-primary">Notify Me</button>
+      </form>
+      <p style="font-size:0.8rem; opacity:0.4; margin-top:1rem;">Free to join. No spam. Unsubscribe at any time.</p>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+.community-hero { padding-block: 6rem; }
+.eyebrow {
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-amber-light);
+  margin-bottom: 1rem;
+}
+.hero-body {
+  font-size: 1.1rem;
+  color: rgba(247,243,238,0.8);
+  margin-block: 1.5rem 2rem;
+  line-height: 1.7;
+}
+.section-label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-amber);
+  margin-bottom: 0.75rem;
+}
+.section-header { text-align: center; margin-bottom: 3rem; }
+.categories-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.25rem;
+}
+.category-card { text-align: center; }
+.category-icon { font-size: 1.75rem; margin-bottom: 0.75rem; }
+.category-card h3 { font-size: 1rem; margin-bottom: 0.5rem; }
+.category-card p { font-size: 0.88rem; color: var(--color-charcoal-mid); margin: 0; }
+.join-form {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.join-form input {
+  flex: 1;
+  min-width: 240px;
+  background: rgba(255,255,255,0.1);
+  border-color: rgba(255,255,255,0.2);
+  color: var(--color-ivory);
+}
+.join-form input::placeholder { color: rgba(247,243,238,0.4); }
+
+@media (max-width: 900px) {
+  .categories-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 600px) {
+  .categories-grid { grid-template-columns: 1fr; }
+}
+</style>

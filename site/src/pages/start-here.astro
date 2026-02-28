@@ -1,0 +1,109 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Start Here"
+  description="New to Love Over Exile? Start here — a curated guide to the most important resources depending on where you are in your experience of parental alienation."
+>
+
+  <section class="section">
+    <div class="container-narrow">
+      <p class="eyebrow">New here?</p>
+      <h1>Start Here</h1>
+      <p class="intro">
+        This is the place to begin if you've just found Love Over Exile.
+        Depending on where you are in your experience, a different starting point will help most.
+      </p>
+
+      <div class="start-paths">
+        <div class="path-card card">
+          <div class="path-when">If you're in the acute phase right now...</div>
+          <h3>Get the Free Survival Guide</h3>
+          <p>If contact has just broken down or you're in the middle of a legal battle, start with the practical guide. It covers what to do (and what to avoid) in the first weeks and months.</p>
+          <a href="/free-guide" class="btn btn-primary" style="margin-top:1rem;">Get the Free Guide →</a>
+        </div>
+
+        <div class="path-card card">
+          <div class="path-when">If you're trying to understand what's happening...</div>
+          <h3>Understanding Parental Alienation</h3>
+          <p>If you're not sure whether what you're experiencing is parental alienation, or you need to understand it more clearly — to explain it to a judge, a therapist, or yourself — start here.</p>
+          <a href="/understanding" class="btn btn-outline" style="margin-top:1rem;">Start Understanding →</a>
+        </div>
+
+        <div class="path-card card">
+          <div class="path-when">If you're in the long game and looking for meaning...</div>
+          <h3>Inner Freedom</h3>
+          <p>If the acute legal phase is behind you but the pain and uncertainty remain, and you're trying to rebuild your life while staying open to your child — this is where to go.</p>
+          <a href="/inner-freedom" class="btn btn-outline" style="margin-top:1rem;">Explore Inner Freedom →</a>
+        </div>
+
+        <div class="path-card card">
+          <div class="path-when">If you need to talk to people who understand...</div>
+          <h3>Join the Community</h3>
+          <p>The Love Over Exile community is a forum for alienated parents — moderated, real, and free. Sometimes what you need most is to be heard by someone who has lived it.</p>
+          <a href="/community" class="btn btn-outline" style="margin-top:1rem;">Join the Community →</a>
+        </div>
+      </div>
+
+      <hr class="divider" style="margin-block:3rem;" />
+
+      <div class="start-about">
+        <h2>About this site</h2>
+        <p>
+          Love Over Exile is built around a book by Malcolm Smith — an alienated father who
+          documented his experience, what he learned, and what helped. The site brings together
+          the book's content, a community forum, and free resources.
+        </p>
+        <p>
+          Everything here is free. The book will be available soon — join the waitlist to be
+          first to know.
+        </p>
+        <div style="display:flex; gap:1rem; flex-wrap:wrap; margin-top:1.5rem;">
+          <a href="/about" class="btn btn-outline">About Malcolm →</a>
+          <a href="/the-book" class="btn btn-outline">About the Book →</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+.eyebrow {
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-amber);
+  margin-bottom: 0.5rem;
+}
+.intro {
+  font-size: 1.05rem;
+  color: var(--color-charcoal-mid);
+  margin-bottom: 3rem;
+  line-height: 1.7;
+}
+.start-paths {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 1rem;
+}
+.path-card { display: flex; flex-direction: column; }
+.path-when {
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-warm-grey);
+  margin-bottom: 0.5rem;
+}
+.path-card h3 { font-size: 1.1rem; margin-bottom: 0.75rem; }
+.path-card p { font-size: 0.92rem; color: var(--color-charcoal-mid); line-height: 1.65; flex:1; margin: 0; }
+
+@media (max-width: 640px) {
+  .start-paths { grid-template-columns: 1fr; }
+}
+</style>
