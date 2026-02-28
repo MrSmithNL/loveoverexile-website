@@ -16,6 +16,105 @@
 
 ## Open Items
 
+### SITE-001 — Deploy Astro site to Vercel (Malcolm action needed)
+**Priority:** 🔴 High
+**Status:** 🔲 Ready to deploy — one-time browser login required from Malcolm
+
+**What needs doing:**
+1. Malcolm opens Terminal and runs: `cd "/Users/malcolmsmith/Claude Code/Projects/loveoverexile-website/site"`
+2. Run: `vercel login` → choose GitHub login in browser → authorise
+3. Run: `vercel` → answer prompts:
+   - Set up and deploy? **Y**
+   - Which scope? → Malcolm's account
+   - Link to existing project? **N** (first time)
+   - Project name: `loveoverexile`
+   - Directory: **./` (or press Enter for current `site/` dir)
+   - Want to override settings? **N**
+4. Vercel gives a preview URL — share it with Claude to review
+5. Run `vercel --prod` to promote to production
+
+**After deploy:**
+- Set `site` environment variable in Vercel dashboard if needed
+- Connect GitHub → Settings → Git → loveoverexile-website repo
+  (Future pushes to `main` will auto-deploy)
+
+---
+
+### SITE-002 — Set up Google Analytics 4
+**Priority:** 🔴 High — should be in place before real traffic starts
+**Status:** 🔲 Malcolm action needed
+
+**What Malcolm does:**
+1. Go to analytics.google.com → sign in with msmithnl@gmail.com
+2. Create Account: "Love Over Exile"
+3. Create Property: "loveoverexile.com", Web platform
+4. Copy the Measurement ID (format: G-XXXXXXXXXX) → paste to Claude
+
+**What Claude does:**
+- Uncomment the GA4 script block in `site/src/layouts/BaseLayout.astro`
+- Replace `G-XXXXXXXXXX` with the real ID
+- Add GDPR cookie consent banner
+- Commit + push → auto-deploys
+
+---
+
+### SITE-003 — Generate site images (Imagen 4)
+**Priority:** 🔴 High — pages won't look finished without images
+**Status:** 🔲 Ready to run
+
+**Images needed** (all go in `site/public/images/`):
+- `hero-path.jpg` — person walking toward light through forest
+- `malcolm-smith-author.jpg` — warm author portrait style
+- `book-cover.jpg` — book cover design
+- `community-warmth.jpg` — warm candlelight / connection
+- `survival-guide-cover.jpg` — guide document cover
+- `og-default.jpg` — 1200×630 Open Graph default
+
+**How:** Claude runs `scripts/generate-images.py` with new prompts for each
+(See loe-image-generator skill)
+
+---
+
+### SITE-004 — Connect MailerLite forms
+**Priority:** 🔴 High — waitlist + free guide download is the #1 conversion goal
+**Status:** ⏸️ Waiting on MailerLite account setup
+
+**What needs doing:**
+1. Create MailerLite account (mailerlite.com — free to 500 contacts)
+2. Create group: "Waitlist — Book"
+3. Create group: "Free Guide Downloads"
+4. Create form embed code → Claude replaces placeholder `<form>` tags in:
+   - `site/src/pages/the-book.astro` (waitlist form)
+   - `site/src/pages/free-guide.astro` (guide download form)
+   - `site/src/pages/community.astro` (notify me form)
+5. Set up welcome email + guide delivery automation
+
+---
+
+### SITE-005 — WordPress backup
+**Priority:** 🟡 Medium — before DNS cutover
+**Status:** 🔲 Malcolm action needed
+
+1. In WordPress admin → Plugins → Install "UpdraftPlus"
+2. Settings → UpdraftPlus → Backup Now (Files + Database)
+3. Download backup to local machine and Google Drive
+4. When new Astro site is live and DNS is pointed to Vercel, WordPress can be
+   archived at classic.loveoverexile.com
+
+---
+
+### SITE-006 — DNS cutover (GoDaddy)
+**Priority:** 🟡 Medium — after Vercel site is live and tested
+**Status:** 🔲 After SITE-001
+
+**What Malcolm does in GoDaddy:**
+1. Log into GoDaddy DNS management → loveoverexile.com
+2. Change `@` A record → Vercel will provide the IP (shown after deploy)
+3. Add `www` CNAME → `cname.vercel-dns.com`
+4. Done — propagation takes 1–48 hours
+
+---
+
 ### WP-008 — Set up email waitlist / subscription
 **Priority:** 🔴 High — most important conversion action before book launch
 **Status:** ⏸️ Paused — account setup issues. Resume when accounts are ready.
@@ -142,3 +241,8 @@ Confirm URL, access method, whether still in use.
 | 2026-02-27 | WP-005 — Started writing real site content (The Book page, Home page). |
 | 2026-02-27 | WP-005 — Home page: LOE text content + 13 AI images (Imagen 4, web-optimised) pushed as draft. loe-image-generator skill created. |
 | 2026-02-27 | WP-005 — Malcolm's Story page: About Us (ID 1887) fully replaced with LOE content — all 6 sections, 53 replacements. Script: scripts/replace-about-us.py |
+| 2026-02-28 | Major pivot: Abandoned WordPress/Avada. Decision to build from scratch with Astro. |
+| 2026-02-28 | Competitor analysis, SEO/social research, community strategy research. Design brief written. |
+| 2026-02-28 | Navigation finalised with Malcolm. Astro project scaffolded. Design system, BaseLayout, Nav written. |
+| 2026-02-28 | Full site build: 18 pages, Footer, Homepage (10 sections), all inner pages, article template. |
+| 2026-02-28 | Build passes with zero errors. Sitemap generating. Pushed to GitHub. Ready for Vercel deploy. |

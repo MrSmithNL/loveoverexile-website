@@ -3,8 +3,8 @@
 > **Scope: Project-specific — components unique to loveoverexile.com.**
 > This project is built on the global foundation. See `~/.claude/docs/architecture.md` for the shared tooling layer (Claude Code, VS Code, Bitwarden, GitHub CLI, etc.).
 >
-> **Last updated:** 2026-02-27
-> **Status:** Active — content workflow live, home page LOE content + AI images pushed as draft. Rube MCP removed (broken). Composio setup pending.
+> **Last updated:** 2026-02-28
+> **Status:** Active — Astro site built (18 pages, zero errors), pushed to GitHub. WordPress archived. Vercel deploy pending Malcolm login. Images pending Imagen 4 generation.
 
 ---
 
@@ -73,19 +73,23 @@ graph TD
 
 | # | Component | What It Is | Where It Lives | Status |
 |---|-----------|-----------|----------------|--------|
-| 1 | WordPress | Website CMS — Avada theme | VPS Server | ✅ Active |
-| 2 | WordPress REST API | Programmatic content management | VPS Server | ✅ Active — credentials in .env |
-| 3 | Email Server | loveoverexile.com mailboxes | VPS Server | ✅ Active — info, contact, malcolm |
-| 4 | Rube MCP | Bridge connecting Claude to external services | rube.app/mcp | ❌ Removed — auth model changed, broken |
-| 5 | Composio | OAuth connector for external service APIs | composio.dev | ⚠️ Account needed — direct setup (no Rube) |
-| 6 | Zoho Mail | Manages loveoverexile.com inboxes with full API | Zoho cloud | ⚠️ Account needed — will connect via Composio |
-| 7 | MailerLite | Email waitlist + newsletter for book launch | MailerLite cloud | ⚠️ Account needed — will connect via Composio |
-| 8 | Google Search Console | SEO monitoring and indexing | Google | ⚠️ Setup pending |
-| 9 | Open WebUI | Self-hosted AI chat interface | VPS Server | ❓ Status TBD |
-| 10 | VPS Server | Hosts WordPress + email + Open WebUI | Cloud — provider TBD | ✅ Active |
-| 11 | Domain — loveoverexile.com | Domain name + DNS | Registrar TBD | ✅ Active |
-| 12 | GitHub Repo | Version control and project backup | github.com/MrSmithNL | ✅ Active — private |
-| 13 | Google AI Studio (Imagen 4) | AI image generation for website | Google cloud | ✅ Active — API key in .env |
+| 1 | **Astro Site** | New website (replaces WordPress) | `site/` in GitHub repo | ✅ Built — 18 pages, awaiting Vercel deploy |
+| 2 | Vercel | Hosting + CDN + auto-deploy from GitHub | vercel.com | ⚠️ Account needed — Malcolm logs in with `vercel login` |
+| 3 | WordPress | Old website (Avada theme) — to be archived | VPS Server | ⚠️ Will become classic.loveoverexile.com after DNS cutover |
+| 4 | WordPress REST API | Programmatic content management (old) | VPS Server | 🔜 No longer primary — Astro replaces this |
+| 5 | Email Server | loveoverexile.com mailboxes | VPS Server | ✅ Active — info, contact, malcolm |
+| 6 | Composio | OAuth connector for external service APIs | composio.dev | ⚠️ Account needed |
+| 7 | Zoho Mail | Manages loveoverexile.com inboxes | Zoho cloud | ⚠️ Account needed |
+| 8 | MailerLite | Email waitlist + newsletter for book launch | MailerLite cloud | ⚠️ Account needed |
+| 9 | Google Analytics 4 | Website analytics | Google | ⚠️ Malcolm needs to create property + get Measurement ID |
+| 10 | Google Search Console | SEO monitoring and indexing | Google | ⚠️ Setup pending after DNS cutover |
+| 11 | VPS Server | Hosts WordPress + email | Cloud — provider TBD | ✅ Active |
+| 12 | Domain — loveoverexile.com | Domain name + DNS | GoDaddy | ✅ Active — DNS cutover to Vercel pending |
+| 13 | GitHub Repo | Version control and auto-deploy trigger | github.com/MrSmithNL | ✅ Active — private |
+| 14 | Google AI Studio (Imagen 4) | AI image generation for website | Google cloud | ✅ Active — API key in .env |
+| 15 | Discourse | Community forum (coming later) | Dedicated VPS (Hetzner ~4 GB) | 🔜 Planned — after site is live |
+| 16 | Ayrshare | Social media posting API | ayrshare.com | 🔜 Planned — after site is live |
+| 17 | n8n | Automation: RSS → Claude → social pipeline | Self-hosted on VPS | 🔜 Planned — after site is live |
 
 ---
 
@@ -175,15 +179,40 @@ Docs: `docs/content-workflow.md`
 
 ---
 
-## Pages Live on Site
+## Astro Site Pages (built 2026-02-28)
+
+All pages live in `site/src/pages/`. Built with Astro v5.18.0 + Tailwind CSS v4.
+
+| Page | Route | Status |
+|------|-------|--------|
+| Homepage | `/` | ✅ Built — 10 sections |
+| The Book | `/the-book` | ✅ Built — waitlist + 3-part breakdown |
+| About the Author | `/about` | ✅ Built — Malcolm's story |
+| Articles index | `/articles` | ✅ Built — placeholder articles |
+| Article template | `/articles/[slug]` | ✅ Built — ready for Sanity CMS |
+| Community | `/community` | ✅ Built — forum categories + join CTA |
+| Free Guide | `/free-guide` | ✅ Built — download landing page |
+| You Are Not Alone | `/you-are-not-alone` | ✅ Built — PA statistics |
+| FAQ | `/faq` | ✅ Built — 2 sections (LOE + PA) |
+| Contact | `/contact` | ✅ Built — form + crisis note |
+| Understanding PA | `/understanding` | ✅ Built — Part I hub |
+| Survival Guide | `/survival-guide` | ✅ Built — Part II hub |
+| Inner Freedom | `/inner-freedom` | ✅ Built — Part III hub |
+| Resources | `/resources` | ✅ Built — books + orgs |
+| Start Here | `/start-here` | ✅ Built — curated entry point |
+| Privacy Policy | `/privacy-policy` | ✅ Built — updated for Astro site |
+
+**Images:** `/public/images/` folder created. Real images pending Imagen 4 generation.
+
+## Old WordPress Pages
 
 | Page | URL | Status |
 |------|-----|--------|
-| Privacy Policy | https://loveoverexile.com/privacy-policy/ | ✅ Published |
-| Home | https://loveoverexile.com/ | ⚠️ Draft — LOE text + Imagen 4 images pushed, awaiting Malcolm review |
-| The Book | https://loveoverexile.com/the-book/ | ⚠️ Draft — needs Avada layout (currently plain text) |
-| Malcolm's Story (About Us) | https://loveoverexile.com/about-us/ | ⚠️ Draft — full LOE content pushed (ID 1887), awaiting Malcolm review |
-| All other pages | — | ⚠️ Demo content — to be replaced |
+| Privacy Policy | https://loveoverexile.com/privacy-policy/ | ✅ Published (WordPress) |
+| Home | https://loveoverexile.com/ | ⚠️ Draft — will be replaced by Astro |
+| The Book | https://loveoverexile.com/the-book/ | ⚠️ Draft |
+| Malcolm's Story | https://loveoverexile.com/about-us/ | ⚠️ Draft |
+| All other pages | — | ⚠️ Demo content |
 
 ---
 
@@ -202,3 +231,6 @@ Docs: `docs/content-workflow.md`
 | 2026-02-27 | Google AI Studio added — Imagen 4 API key stored in .env. loe-image-generator skill created. | Yes |
 | 2026-02-27 | Home page updated — LOE text content + 13 Imagen 4 images generated, optimised, and pushed as draft (ID 1023) | No |
 | 2026-02-27 | Malcolm's Story page — About Us (ID 1887) replaced with full LOE narrative content across all 6 Avada sections (53 replacements). Script: scripts/replace-about-us.py | No |
+| 2026-02-28 | **Major pivot** — Abandoned WordPress/Avada. Decided to build from scratch with Astro. Design brief written (`docs/site-design-brief.md`). | No |
+| 2026-02-28 | Full Astro site built — 18 pages, design system (Tailwind v4 + CSS custom properties), Nav + Footer components, BaseLayout with SEO/OG/JSON-LD. | Yes |
+| 2026-02-28 | Astro config updated — site URL set, sitemap integration working, generates sitemap-index.xml. Build passes zero errors. Pushed to GitHub. | Yes |
