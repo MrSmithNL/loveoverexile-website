@@ -16,27 +16,15 @@
 
 ## Open Items
 
-### SITE-001 — Deploy Astro site to Vercel (Malcolm action needed)
-**Priority:** 🔴 High
-**Status:** 🔲 Ready to deploy — one-time browser login required from Malcolm
+### SITE-001 — Deploy Astro site to Vercel
+**Priority:** ✅ Done — 2026-02-28
+**Status:** Live at https://loveoverexile-website.vercel.app/
 
-**What needs doing:**
-1. Malcolm opens Terminal and runs: `cd "/Users/malcolmsmith/Claude Code/Projects/loveoverexile-website/site"`
-2. Run: `vercel login` → choose GitHub login in browser → authorise
-3. Run: `vercel` → answer prompts:
-   - Set up and deploy? **Y**
-   - Which scope? → Malcolm's account
-   - Link to existing project? **N** (first time)
-   - Project name: `loveoverexile`
-   - Directory: **./` (or press Enter for current `site/` dir)
-   - Want to override settings? **N**
-4. Vercel gives a preview URL — share it with Claude to review
-5. Run `vercel --prod` to promote to production
-
-**After deploy:**
-- Set `site` environment variable in Vercel dashboard if needed
-- Connect GitHub → Settings → Git → loveoverexile-website repo
-  (Future pushes to `main` will auto-deploy)
+- Vercel account created (GitHub login)
+- GitHub repo connected via Vercel GitHub App
+- All 18 pages building and loading correctly
+- Auto-deploy active — pushes to `main` trigger new builds
+- DNS cutover to loveoverexile.com pending (see SITE-006)
 
 ---
 
@@ -92,14 +80,12 @@
 ---
 
 ### SITE-005 — WordPress backup
-**Priority:** 🟡 Medium — before DNS cutover
-**Status:** 🔲 Malcolm action needed
+**Priority:** ✅ Done — 2026-02-28
+**Status:** Complete
 
-1. In WordPress admin → Plugins → Install "UpdraftPlus"
-2. Settings → UpdraftPlus → Backup Now (Files + Database)
-3. Download backup to local machine and Google Drive
-4. When new Astro site is live and DNS is pointed to Vercel, WordPress can be
-   archived at classic.loveoverexile.com
+- Content backup (all pages, posts, 104 media files) exported via REST API → `backups/wordpress-2026-02-28/` (local only, gitignored)
+- Full .wpress backup (All-in-One WP Migration) → saved to Google Drive by Malcolm
+- WordPress remains live at loveoverexile.com until DNS cutover
 
 ---
 
@@ -246,3 +232,4 @@ Confirm URL, access method, whether still in use.
 | 2026-02-28 | Navigation finalised with Malcolm. Astro project scaffolded. Design system, BaseLayout, Nav written. |
 | 2026-02-28 | Full site build: 18 pages, Footer, Homepage (10 sections), all inner pages, article template. |
 | 2026-02-28 | Build passes with zero errors. Sitemap generating. Pushed to GitHub. Ready for Vercel deploy. |
+| 2026-02-28 | SITE-001 — Vercel deployed. All 18 pages live at https://loveoverexile-website.vercel.app/ GitHub auto-deploy active. |

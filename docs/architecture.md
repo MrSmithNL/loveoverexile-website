@@ -73,8 +73,8 @@ graph TD
 
 | # | Component | What It Is | Where It Lives | Status |
 |---|-----------|-----------|----------------|--------|
-| 1 | **Astro Site** | New website (replaces WordPress) | `site/` in GitHub repo | ✅ Built — 18 pages, awaiting Vercel deploy |
-| 2 | Vercel | Hosting + CDN + auto-deploy from GitHub | vercel.com | ⚠️ Account needed — Malcolm logs in with `vercel login` |
+| 1 | **Astro Site** | New website (replaces WordPress) | `site/` in GitHub repo | ✅ Live — https://loveoverexile-website.vercel.app/ |
+| 2 | Vercel | Hosting + CDN + auto-deploy from GitHub | vercel.com | ✅ Live — GitHub connected, auto-deploy active |
 | 3 | WordPress | Old website (Avada theme) — to be archived | VPS Server | ⚠️ Will become classic.loveoverexile.com after DNS cutover |
 | 4 | WordPress REST API | Programmatic content management (old) | VPS Server | 🔜 No longer primary — Astro replaces this |
 | 5 | Email Server | loveoverexile.com mailboxes | VPS Server | ✅ Active — info, contact, malcolm |
@@ -234,3 +234,4 @@ All pages live in `site/src/pages/`. Built with Astro v5.18.0 + Tailwind CSS v4.
 | 2026-02-28 | **Major pivot** — Abandoned WordPress/Avada. Decided to build from scratch with Astro. Design brief written (`docs/site-design-brief.md`). | No |
 | 2026-02-28 | Full Astro site built — 18 pages, design system (Tailwind v4 + CSS custom properties), Nav + Footer components, BaseLayout with SEO/OG/JSON-LD. | Yes |
 | 2026-02-28 | Astro config updated — site URL set, sitemap integration working, generates sitemap-index.xml. Build passes zero errors. Pushed to GitHub. | Yes |
+| 2026-02-28 | Vercel deployed — GitHub App connected, all 18 pages live at https://loveoverexile-website.vercel.app/ Auto-deploy from main active. | Yes |
