@@ -46,7 +46,10 @@ const socialLinks = [
     <div class="footer-top">
       <!-- Brand -->
       <div class="footer-brand">
-        <a href="/" class="footer-logo">Love Over Exile</a>
+        <a href="/" class="footer-logo">
+          <img src="/images/logo.png" alt="" class="footer-logo-img" width="40" height="40" />
+          Love Over Exile
+        </a>
         <p class="footer-tagline">
           A book, a community, and a pathway through parental alienation —
           for parents who refuse to give up.
@@ -122,6 +125,15 @@ const socialLinks = [
   color: var(--color-ivory);
   text-decoration: none;
   letter-spacing: -0.01em;
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+.footer-logo-img {
+  height: 40px;
+  width: auto;
+  display: block;
+  flex-shrink: 0;
 }
 .footer-logo:hover { color: var(--color-amber-light); }
 
@@ -152,7 +164,7 @@ const socialLinks = [
 .social-link:hover {
   color: var(--color-ivory);
   border-color: var(--color-amber);
-  background: rgba(196, 154, 60, 0.12);
+  background: rgba(208, 57, 26, 0.12);
 }
 
 .footer-col h4,

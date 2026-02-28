@@ -17,6 +17,7 @@ const isActive = (href: string) =>
     <nav class="nav-inner" aria-label="Main navigation">
       <!-- Logo -->
       <a href="/" class="logo" aria-label="Love Over Exile — Home">
+        <img src="/images/logo.png" alt="" class="logo-img" width="38" height="38" />
         <span class="logo-text">Love Over Exile</span>
       </a>
 
@@ -86,6 +87,14 @@ const isActive = (href: string) =>
 .logo {
   flex-shrink: 0;
   text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+.logo-img {
+  height: 38px;
+  width: auto;
+  display: block;
 }
 .logo-text {
   font-family: var(--font-serif);
@@ -119,7 +128,7 @@ const isActive = (href: string) =>
 }
 .nav-link:hover {
   color: var(--color-green-deep);
-  background: rgba(30, 51, 40, 0.06);
+  background: rgba(29, 46, 92, 0.06);
 }
 .nav-link--active {
   color: var(--color-green-deep);
@@ -179,7 +188,7 @@ const isActive = (href: string) =>
 }
 .mobile-nav-link:hover,
 .mobile-nav-link--active {
-  background: rgba(30, 51, 40, 0.06);
+  background: rgba(29, 46, 92, 0.06);
   color: var(--color-green-deep);
 }
 

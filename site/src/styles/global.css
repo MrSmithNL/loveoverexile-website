@@ -3,14 +3,14 @@
 /* ── Design Tokens ──────────────────────────────────────────── */
 @theme {
   /* Colours */
-  --color-ivory:        #F7F3EE;
-  --color-ivory-alt:    #FDFBF8;
-  --color-green-deep:   #1E3328;
-  --color-green-dark:   #162B20;
-  --color-green-mid:    #2A4A35;
-  --color-sage:         #8FA888;
-  --color-amber:        #C49A3C;
-  --color-amber-light:  #E8C96A;
+  --color-ivory:        #F8F4EF;
+  --color-ivory-alt:    #FDF9F5;
+  --color-green-deep:   #1D2E5C;
+  --color-green-dark:   #121C3D;
+  --color-green-mid:    #263A6E;
+  --color-sage:         #6676A8;
+  --color-amber:        #D0391A;
+  --color-amber-light:  #E85F2E;
   --color-charcoal:     #2C2C2C;
   --color-charcoal-mid: #4A4A4A;
   --color-warm-grey:    #8A8178;
@@ -115,13 +115,13 @@ a:hover { color: var(--color-green-deep); }
 
 .btn-primary {
   background-color: var(--color-amber);
-  color: var(--color-green-deep);
+  color: #ffffff;
   border-color: var(--color-amber);
 }
 .btn-primary:hover {
   background-color: var(--color-amber-light);
   border-color: var(--color-amber-light);
-  color: var(--color-green-deep);
+  color: #ffffff;
 }
 
 .btn-outline {
@@ -153,7 +153,7 @@ a:hover { color: var(--color-green-deep); }
   transition: box-shadow 0.2s, transform 0.2s;
 }
 .card:hover {
-  box-shadow: 0 8px 32px rgba(30, 51, 40, 0.10);
+  box-shadow: 0 8px 32px rgba(29, 46, 92, 0.10);
   transform: translateY(-2px);
 }
 
