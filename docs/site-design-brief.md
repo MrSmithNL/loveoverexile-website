@@ -86,42 +86,77 @@ All fonts free via Google Fonts. No licence cost.
 
 ### Primary Navigation (always visible)
 ```
-[LOGO]  Home  |  The Book  |  Malcolm's Story  |  Articles  |  Community  |  [Join the Waitlist →]
+[LOGO]  Home  |  The Book  |  About the Author  |  Articles  |  Community  |  [Get the Free Guide →]
 ```
+
+Note: CTA is "Get the Free Guide" (the Survival Guide brochure) — offers immediate tangible value. Email/community signup happens as part of the download flow.
 
 ### Full Site Map
 
 ```
-/                          Home
-/the-book                  The Book (waitlist + pre-order page)
-/malcolm                   Malcolm's Story (author page)
-/articles                  Articles index (main blog)
-  /articles/[slug]         Individual articles
+/                              Home
 
-/understanding             Understanding Parental Alienation (Part 1 hub)
+/the-book                      The Book
+                               (waitlist, book description, what's inside)
+
+/about                         About the Author
+                               (Malcolm's personal journey and story)
+
+/you-are-not-alone             You Are Not Alone
+                               (research data — statistics, studies, evidence)
+
+/free-guide                    Free Survival Guide
+                               (landing page — PDF download gated behind email/community signup)
+
+/faq                           FAQ
+                               ├── Section 1: About Love Over Exile
+                               └── Section 2: About Parental Alienation
+
+/articles                      Articles  (all articles index)
+  /articles/[slug]             Individual articles
+
+/understanding                 Understanding Parental Alienation (Part 1 hub)
   /articles/understanding/...  Part 1 articles
-/survival-guide            Survival Guide (Part 2 hub)
-  /articles/survival/...   Part 2 articles
-/inner-freedom             Inner Freedom (Part 3 hub)
-  /articles/freedom/...    Part 3 articles
 
-/community                 Forum landing page + embed / link to Discourse
-/resources                 Reading list, useful links, organisations
-/contact                   Contact form → info@ email
-/privacy-policy            Privacy Policy (already written)
-/newsletter                Newsletter archive page (optional)
+/survival-guide                Survival Guide (Part 2 hub)
+  /articles/survival/...       Part 2 articles
+
+/inner-freedom                 Inner Freedom (Part 3 hub)
+  /articles/freedom/...        Part 3 articles
+
+/start-here                    Start Here
+                               (curated entry point for first-time visitors)
+
+/community                     Community (Discourse forum landing + link)
+
+/resources                     Resources
+  /resources/professionals     Professional Directory (therapists, lawyers, coaches who understand PA)
+
+/contact                       Contact form → info@ email
+
+/privacy-policy                Privacy Policy (already written and published)
 ```
 
 ### Homepage Sections (in order)
-1. **Hero** — Malcolm's core statement + waitlist CTA
+1. **Hero** — Malcolm's core statement + "Get the Free Guide" CTA
 2. **The Problem** — What parental alienation is (brief, compassionate)
-3. **Malcolm's Story** — Short version with link to full story
+3. **About the Author** — Short version with link to full story
 4. **The Book** — Cover + description + waitlist
 5. **Three Journeys** (Understanding / Survival / Inner Freedom) — The site's three content hubs
-6. **From the Articles** — Latest 3 articles
-7. **Community** — Forum teaser / join
-8. **Newsletter** — Email signup
-9. **Footer** — Full navigation, social links, legal
+6. **You Are Not Alone** — Key data point (e.g. "22 million children affected worldwide") with link
+7. **From the Articles** — Latest 3 articles
+8. **Community** — Forum teaser / join
+9. **Free Guide** — Download CTA
+10. **Footer** — Full navigation, social links, legal
+
+### Footer Navigation
+```
+The Book          About the Author      You Are Not Alone
+Articles          Understanding         Survival Guide
+Inner Freedom     FAQ                   Free Guide
+Community         Resources             Contact
+Privacy Policy    [Social icons]
+```
 
 ---
 
@@ -136,8 +171,17 @@ All fonts free via Google Fonts. No licence cost.
 | Content (Malcolm edits) | **Sanity CMS** | Free tier | Headless CMS — Malcolm edits articles like a word processor |
 | Content (articles/pages) | **Markdown + Sanity** | Free | Articles authored in Sanity, stored as structured data |
 | Image generation | **Google Imagen 4** | Pay-per-use | AI-generated imagery via `scripts/generate-images.py` |
+| Analytics | **Google Analytics 4** | Free | Page views, traffic sources, conversions — embedded in all pages via BaseLayout |
+| Cookie consent | Custom GDPR banner | Free | Required for GA + EU visitors. Built into site layout. |
 | SEO | **astro-seo** + JSON-LD | Free | Person, Book, Article schema; Open Graph; sitemaps |
 | RSS feed | **@astrojs/rss** | Free | Triggers automation pipeline when articles publish |
+
+**Malcolm's GA setup (one-time task, when ready):**
+1. Go to analytics.google.com → sign in with msmithnl@gmail.com
+2. Create Account: "Love Over Exile"
+3. Create Property: "loveoverexile.com"
+4. Choose Web → enter https://loveoverexile.com
+5. Copy the Measurement ID (format: G-XXXXXXXXXX) → send to Claude → embedded in 2 minutes
 
 ### Email Marketing
 
