@@ -26,6 +26,7 @@ Love Over Exile occupies a unique gap in the parental alienation space:
 |---------|--------|-------|
 | `parental alienation` | Mixed — education, support, legal | High volume, high competition. Owned by PASG, law firms, therapy sites. Build toward this. |
 | `alienated parent` | Support-seeking | Slightly lower competition. High emotional intent. Priority. |
+| `love over exile` | Brand | Malcolm's book title. Own this completely — every mention builds authority. |
 
 ---
 
