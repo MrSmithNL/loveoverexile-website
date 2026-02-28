@@ -90,6 +90,8 @@ graph TD
 | 15 | Discourse | Community forum (coming later) | Dedicated VPS (Hetzner ~4 GB) | 🔜 Planned — after site is live |
 | 16 | Ayrshare | Social media posting API | ayrshare.com | 🔜 Planned — after site is live |
 | 17 | n8n | Automation: RSS → Claude → social pipeline | Self-hosted on VPS | 🔜 Planned — after site is live |
+| 18 | **SEO Toolkit** | 8-agent SEO automation (audit, keywords, content, links, AI discovery, reporting) | Separate repo: `seo-toolkit` | ✅ Project created — agents not yet built |
+| 19 | Rube MCP | Universal connector for 500+ apps (SEMrush, Ahrefs, GSC, MailerLite, Zoho) | Claude Code user config | ✅ Connected — bearer token auth |
 
 ---
 
@@ -114,7 +116,7 @@ graph TD
 | WordPress REST API | Application Password | ✅ Active | `.env` file (gitignored) + Bitwarden |
 | WordPress Admin | Username + password | ✅ Active | Bitwarden |
 | GitHub | OAuth via GitHub CLI | ✅ Active | macOS keyring |
-| Rube MCP | N/A — removed | ❌ Removed | Deleted from `~/.claude.json` |
+| Rube MCP | Bearer token | ✅ Active | `~/.claude.json` (user scope) + Bitwarden: "Rube MCP — API Key" |
 | Composio | Per-service OAuth tokens | ⚠️ Pending | Managed by Composio |
 | Zoho Mail | OAuth via Composio | ⚠️ Pending | Composio |
 | MailerLite | OAuth via Composio | ⚠️ Pending | Composio |
@@ -235,3 +237,7 @@ All pages live in `site/src/pages/`. Built with Astro v5.18.0 + Tailwind CSS v4.
 | 2026-02-28 | Full Astro site built — 18 pages, design system (Tailwind v4 + CSS custom properties), Nav + Footer components, BaseLayout with SEO/OG/JSON-LD. | Yes |
 | 2026-02-28 | Astro config updated — site URL set, sitemap integration working, generates sitemap-index.xml. Build passes zero errors. Pushed to GitHub. | Yes |
 | 2026-02-28 | Vercel deployed — GitHub App connected, all 18 pages live at https://loveoverexile-website.vercel.app/ Auto-deploy from main active. | Yes |
+| 2026-02-28 | Logo added to Nav + Footer. Colour palette changed to teal/coral to match logo. | No |
+| 2026-02-28 | SEO strategy created — `docs/seo-strategy.md`. Primary keywords: parental alienation, alienated parent, love over exile. | No |
+| 2026-02-28 | Rube MCP re-connected with bearer token auth. API key saved to Bitwarden. | Yes |
+| 2026-02-28 | SEO Toolkit created as separate project — `~/Claude Code/Projects/seo-toolkit/` — 8-agent architecture. GitHub: MrSmithNL/seo-toolkit (private). | Yes |

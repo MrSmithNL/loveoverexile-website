@@ -114,7 +114,7 @@
 6. Set up waitlist signup form on homepage and /the-book/ page
 7. Set up welcome/confirmation email
 
-**Note:** Rube MCP (previously configured) is broken — Rube changed auth model. Old config removed from ~/.claude.json. Direct Composio approach needed instead.
+**Note:** Rube MCP is now connected (bearer token auth). MailerLite and Zoho can be connected through Rube once accounts are created.
 
 ---
 
@@ -132,12 +132,15 @@
 
 ### WP-009 — SEO foundation setup
 **Priority:** 🔴 High — before any real content goes live
+**Status:** ⏭️ Moved to SEO Toolkit project
 
-**What needs doing:**
-- Check if Yoast or Rank Math SEO plugin is already installed (Malcolm checks wp-admin → Plugins)
-- Set correct site title: "Love Over Exile" and tagline
-- Set up Google Search Console
-- Keyword strategy documented in `docs/seo-strategy.md`
+SEO is now managed by a separate standalone project: `~/Claude Code/Projects/seo-toolkit/`
+GitHub: `github.com/MrSmithNL/seo-toolkit` (private)
+
+This includes 8 dedicated agents: Audit, Keywords, Content Optimizer, Rank Tracker, Content Writer, Link Builder, AI Discovery, Reporter.
+
+**Keyword strategy:** documented in `docs/seo-strategy.md` (this repo).
+**Full SEO roadmap:** see `seo-toolkit/docs/todo.md`.
 
 ---
 
@@ -233,3 +236,5 @@ Confirm URL, access method, whether still in use.
 | 2026-02-28 | Full site build: 18 pages, Footer, Homepage (10 sections), all inner pages, article template. |
 | 2026-02-28 | Build passes with zero errors. Sitemap generating. Pushed to GitHub. Ready for Vercel deploy. |
 | 2026-02-28 | SITE-001 — Vercel deployed. All 18 pages live at https://loveoverexile-website.vercel.app/ GitHub auto-deploy active. |
+| 2026-02-28 | Logo added, colours changed to teal/coral. SEO strategy written. Rube MCP fixed (bearer token). |
+| 2026-02-28 | SEO Toolkit created as separate project (github.com/MrSmithNL/seo-toolkit). 8-agent architecture. Love Over Exile = first client. |
