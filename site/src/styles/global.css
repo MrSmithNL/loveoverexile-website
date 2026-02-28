@@ -5,10 +5,10 @@
   /* Colours */
   --color-ivory:        #F8F4EF;
   --color-ivory-alt:    #FDF9F5;
-  --color-green-deep:   #1D2E5C;
-  --color-green-dark:   #121C3D;
-  --color-green-mid:    #263A6E;
-  --color-sage:         #6676A8;
+  --color-green-deep:   #0C5E5D;
+  --color-green-dark:   #074443;
+  --color-green-mid:    #178180;
+  --color-sage:         #5DADA9;
   --color-amber:        #D0391A;
   --color-amber-light:  #E85F2E;
   --color-charcoal:     #2C2C2C;
@@ -153,7 +153,7 @@ a:hover { color: var(--color-green-deep); }
   transition: box-shadow 0.2s, transform 0.2s;
 }
 .card:hover {
-  box-shadow: 0 8px 32px rgba(29, 46, 92, 0.10);
+  box-shadow: 0 8px 32px rgba(12, 94, 93, 0.10);
   transform: translateY(-2px);
 }
 
