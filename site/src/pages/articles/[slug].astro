@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 
-// Placeholder articles — will be replaced by Sanity CMS getStaticPaths
+// Articles — will eventually be replaced by CMS getStaticPaths
 export async function getStaticPaths() {
   const articles = [
     {
@@ -9,29 +9,188 @@ export async function getStaticPaths() {
       title: 'Signs of Parental Alienation: What to Look For and What It Means',
       description: 'The patterns that indicate deliberate alienation versus normal post-separation conflict — and why the distinction matters for your strategy.',
       category: 'Understanding PA',
-      date: '2026-03-01',
+      date: '2026-03-02',
       readTime: '8 min',
       content: `
-        <p>This article will be published soon. Join the waitlist to be notified.</p>
+        <p>There is a crucial distinction between a child who is struggling with the aftermath of a difficult separation and a child who has been systematically turned against a loving parent. The first is painful but normal. The second is parental alienation — and recognising it early changes everything about how you respond.</p>
+
+        <h2>Normal conflict versus deliberate alienation</h2>
+        <p>After any separation, children go through adjustment. They may be angry, confused, or withdrawn. They may say hurtful things. They may prefer one parent's home over the other for entirely practical reasons — the Wi-Fi is better, their friends are closer, the rules are more relaxed.</p>
+        <p>This is not alienation. This is a child processing a difficult transition.</p>
+        <p>Alienation is different. It is characterised by a campaign — sustained, escalating, and disproportionate to anything that has actually happened. The child's rejection of the targeted parent is not proportional to any real grievance. It is absolute, unambivalent, and often expressed in language that sounds borrowed rather than felt.</p>
+
+        <h2>Gardner's eight behavioural manifestations</h2>
+        <p>Dr Richard Gardner identified eight behaviours that consistently appear in alienated children. Not every child will show all eight, but the pattern is unmistakable once you know what to look for:</p>
+        <ol>
+          <li><strong>Campaign of denigration.</strong> The child actively and persistently criticises the targeted parent — not in a moment of anger, but as a sustained, unprompted pattern.</li>
+          <li><strong>Weak, frivolous, or absurd reasons.</strong> When asked why they reject the parent, the child gives reasons that are trivial, contradictory, or make no logical sense. "You breathe too loud." "You always make pasta wrong."</li>
+          <li><strong>Lack of ambivalence.</strong> In healthy relationships — even difficult ones — children hold mixed feelings. An alienated child sees the targeted parent as entirely bad and the alienating parent as entirely good. There is no nuance, no "but I also love you."</li>
+          <li><strong>The independent thinker phenomenon.</strong> The child insists that their rejection is entirely their own idea — that no one has influenced them. This is often the most telling sign, because children rarely need to assert their independence of thought unless someone has coached them to do so.</li>
+          <li><strong>Reflexive support of the alienating parent.</strong> In any conflict or disagreement, the child automatically sides with the alienating parent — even when the facts clearly don't support it.</li>
+          <li><strong>Absence of guilt.</strong> The child shows no remorse for cruel behaviour toward the targeted parent. Cutting a parent out of their life is treated as normal and justified.</li>
+          <li><strong>Borrowed scenarios.</strong> The child describes events they could not have witnessed or uses phrases and vocabulary that clearly come from an adult. A seven-year-old who says "you violated my boundaries" or "I need to protect my mental health from you" is repeating someone else's script.</li>
+          <li><strong>Spread of animosity.</strong> The rejection extends beyond the targeted parent to their entire family — grandparents, aunts, uncles, cousins — with whom the child previously had warm relationships.</li>
+        </ol>
+
+        <h2>The Five-Factor Model</h2>
+        <p>For a more structured diagnostic approach, Dr William Bernet and the Parental Alienation Study Group developed the Five-Factor Model. All five factors must be present for a diagnosis of parental alienation:</p>
+        <ol>
+          <li>The child actively avoids, resists, or refuses contact with the targeted parent.</li>
+          <li>A prior positive relationship existed between the child and the targeted parent.</li>
+          <li>There is no evidence of abuse or neglect by the targeted parent that would justify the rejection.</li>
+          <li>The alienating parent has engaged in specific alienating behaviours.</li>
+          <li>The child exhibits the behavioural manifestations described above.</li>
+        </ol>
+        <p>This framework is important because it protects against false claims in both directions. It rules out cases where a child's rejection is a legitimate response to actual harm, and it identifies cases where the rejection has been manufactured.</p>
+
+        <h2>The 17 tactics</h2>
+        <p>Dr Amy Baker's research identified 17 specific tactics that alienating parents use, grouped into four categories:</p>
+        <p><strong>The Poisoned Narrative:</strong> badmouthing, confiding inappropriate adult information, creating fear of the targeted parent, scapegoating them for everything that goes wrong.</p>
+        <p><strong>The Iron Curtain:</strong> limiting contact, interfering with phone calls and messages, gatekeeping school and medical information, isolating the child from the targeted parent's extended family.</p>
+        <p><strong>The Loyalty Trap:</strong> withdrawing love when the child shows affection to the targeted parent, forcing loyalty tests ("choose me or them"), undermining expressions of love, using the child as a spy.</p>
+        <p><strong>The Erasure:</strong> symbolic de-parenting (removing photos, forbidding the child to use "mum" or "dad"), introducing a replacement parent, manipulating the child's identity, and emotional deletion — treating the targeted parent as if they simply do not exist.</p>
+
+        <h2>Why recognition matters</h2>
+        <p>Understanding these patterns is not an academic exercise. It serves three practical purposes:</p>
+        <p>First, it confirms that you are not imagining things. The confusion and self-doubt that alienated parents feel is a direct result of the alienation process. Having a framework to name what is happening reduces that confusion.</p>
+        <p>Second, it changes your strategy. If you are dealing with normal post-separation conflict, patience, warmth, and time will usually heal the relationship. If you are dealing with deliberate alienation, those same strategies — without additional intervention — may not be enough. You may need professional support, legal documentation, and a fundamentally different approach.</p>
+        <p>Third, it gives you language. When you sit in a therapist's office, a mediator's session, or a courtroom, being able to clearly articulate what is happening — with specific, recognised terminology — is the difference between being heard and being dismissed.</p>
+
+        <h2>A note on blame</h2>
+        <p>Identifying alienation is not about demonising the other parent. Some alienating parents are fully aware of what they are doing. Others are acting from unresolved pain, fear, or personality disorders. Understanding the system is not the same as judging the person.</p>
+        <p>But understanding it is essential. You cannot respond effectively to something you cannot name. And your child cannot be helped by professionals who do not recognise what is happening.</p>
+        <p>That recognition starts with you.</p>
       `,
     },
     {
       slug: 'how-to-cope-with-parental-alienation',
       title: 'How to Cope With Parental Alienation: A Framework for the Acute Phase',
-      description: 'A practical framework for parents in the acute phase of parental alienation.',
+      description: 'When you are in the middle of it, the world feels like it is collapsing. Here is a structure that has helped parents survive the worst periods.',
       category: 'Survival Guide',
-      date: '2026-03-15',
+      date: '2026-03-02',
       readTime: '12 min',
-      content: `<p>This article will be published soon.</p>`,
+      content: `
+        <p>The acute phase of parental alienation is a special kind of hell. Your child has been turned against you — or is being turned — and every instinct you have is screaming at you to do something. Fix it. Fight it. Explain yourself. Make them understand.</p>
+        <p>Most of those instincts, if acted on without a framework, will make things worse.</p>
+        <p>This article is not about positive thinking. It is a practical structure built on the Alienated Parent Resilience and Survival Model — drawing on conflict resolution research, family law strategy, trauma therapy, and the lived experience of parents who have survived this. It will not give you a quick fix, because there is no quick fix. But it will give you something to hold on to.</p>
+
+        <h2>First: secure the foundation</h2>
+        <p>When parental alienation is happening, everything in your life gets pulled into it. Your sleep deteriorates. Your health suffers. Your work performance drops. You stop seeing friends. You spend every waking moment consumed by the situation.</p>
+        <p>This is understandable. It is also dangerous.</p>
+        <p>Maslow's hierarchy of needs applies here with brutal clarity. You are trying to solve a love and belonging problem — the most painful kind — but you cannot solve it if your physical and mental foundations are collapsing. Before anything else:</p>
+        <ul>
+          <li><strong>Sleep.</strong> If you cannot sleep, get medical help. Sleep deprivation impairs decision-making, emotional regulation, and your ability to present well in professional settings — including courtrooms.</li>
+          <li><strong>Physical health.</strong> Exercise is not a luxury. Research consistently shows it is one of the most effective interventions for anxiety and depression. Even walking for 30 minutes a day creates measurable improvement.</li>
+          <li><strong>Professional mental health support.</strong> This is not optional. Find a therapist who understands parental alienation or, at minimum, complex trauma. Not someone who will try to help you "see the other person's perspective" on abuse.</li>
+        </ul>
+        <p>This is not selfishness. It is strategic. You are in a marathon, and you cannot run it on empty.</p>
+
+        <h2>Build your team</h2>
+        <p>Parental alienation cannot be fought alone. You need three types of support:</p>
+        <p><strong>A therapist</strong> — unequivocally on your side. Not neutral, not "balanced," not trying to mediate. Someone who understands that what is happening to you is a form of abuse and who can help you process the trauma while staying functional. Ask potential therapists directly: "Do you have experience with parental alienation?" If they hesitate, keep looking.</p>
+        <p><strong>A lawyer</strong> — who thinks like a general, not a counsellor. Your lawyer's job is to win your case, not to understand your feelings. Choose someone who is strategic, experienced in high-conflict custody cases, and willing to be direct with you about what is realistic and what is not.</p>
+        <p><strong>A support community</strong> — of people who know exactly what this feels like. Professionally facilitated groups are preferable to unmoderated online forums, which can become echo chambers of despair. But even an informal connection with one or two other alienated parents can break the isolation that makes everything harder.</p>
+
+        <h2>The Sphere of Influence</h2>
+        <p>One of the most destructive aspects of alienation is the sense that everything is out of your control. The other parent's behaviour, the court's timeline, your child's responses — none of it is in your hands.</p>
+        <p>The Sphere of Influence model helps you redirect energy where it actually has impact. Three circles:</p>
+        <p><strong>Circle of Control</strong> — your own behaviour, your health, your responses, how you present yourself to professionals, what you document, how you communicate.</p>
+        <p><strong>Circle of Influence</strong> — the long-term perceptions of professionals, the evolving narrative, your child's slowly forming understanding of reality.</p>
+        <p><strong>Circle of Concern</strong> — the other parent's behaviour, court decisions, your child's immediate choices, other people's opinions.</p>
+        <p>Most alienated parents pour 90% of their energy into the Circle of Concern — the one area where they have the least power. The framework asks you to reverse that: invest your energy where it makes a difference, and observe the rest without trying to force it.</p>
+
+        <h2>Communication: the BIFF method</h2>
+        <p>Every written communication with your co-parent should pass four tests. This comes from Bill Eddy at the High Conflict Institute, and it works:</p>
+        <ul>
+          <li><strong>Brief.</strong> No essays. No explanations. No emotional appeals. Short and factual.</li>
+          <li><strong>Informative.</strong> Share necessary information. Do not share feelings, grievances, or arguments.</li>
+          <li><strong>Friendly.</strong> A neutral-to-warm tone. Not cold, not sarcastic, not passive-aggressive. Think "professional email to a colleague you don't particularly like."</li>
+          <li><strong>Firm.</strong> Clear position. No begging, no negotiating on boundaries, no caving to pressure.</li>
+        </ul>
+        <p>Every message you send is potential evidence. Write as if a judge will read it. Because they might.</p>
+
+        <h2>Staying connected during silence</h2>
+        <p>When your child is not responding — when contact has been blocked or they are refusing to engage — the temptation is either to bombard them with messages or to withdraw completely. Both are mistakes.</p>
+        <p>The Breadcrumb Strategy is the middle path: consistent, low-pressure signals of love and presence. A birthday card. A brief text saying you are thinking of them. A photo of something they would find funny. Not demanding a response. Not asking why they haven't called. Just: "I am here. I love you. That has not changed."</p>
+        <p>This serves two purposes. First, it keeps the door open. Your child may not respond now, but they will remember that you did not disappear. Second, it creates a documented trail of ongoing care — evidence that you never stopped trying.</p>
+        <p>When you do have contact, focus on ordinary moments. Not deep conversations about the situation. Not attempts to "set the record straight." Cooking together. Walking the dog. Fixing a bike. These mundane activities rebuild the relational tissue that alienation is designed to destroy.</p>
+
+        <h2>The Stockdale Paradox</h2>
+        <p>Admiral James Stockdale was a prisoner of war in Vietnam for over seven years. When asked who didn't survive, he said it was the optimists — the ones who kept saying "we'll be out by Christmas." When Christmas came and went, their spirits broke.</p>
+        <p>Stockdale survived by holding two contradictory truths simultaneously: <em>unwavering faith</em> that he would eventually prevail, and <em>brutal realism</em> about how difficult the current situation was.</p>
+        <p>This paradox applies directly to parental alienation. You must believe — and have evidence to support — that reconciliation is possible. Many alienated children reconnect with their parents in adulthood. The long arc of truth bends toward reunion.</p>
+        <p>But you must also be honest about where you are right now. The legal system is slow. The other parent may not change. Your child's rejection may continue for years. Holding both truths — hope and realism — without letting either one destroy the other is the central discipline of the long haul.</p>
+
+        <h2>The traps to avoid</h2>
+        <p>Some of the most common mistakes alienated parents make come from entirely understandable impulses:</p>
+        <p><strong>The Logic Trap.</strong> You want to sit your child down and explain, rationally, what is happening. You want to present evidence. You want them to understand. This almost never works. A child who has been alienated is not operating from logic — they are operating from survival. Debating a delusion reinforces it.</p>
+        <p><strong>Overcompensation.</strong> You buy expensive gifts. You plan elaborate outings. You become the "fun parent" to counter the alienator's narrative. But children can sense desperation, and it makes them uncomfortable. Be normal. Be present. Be you.</p>
+        <p><strong>The Holding Pattern.</strong> You put your entire life on pause — waiting for the situation to resolve before you live again. This is the alienator's ultimate victory: not just taking your child, but taking your life. You must continue to grow, to pursue interests, to build a life worth living — both for yourself and for the child who may one day return to it.</p>
+
+        <h2>When to let go of a specific fight</h2>
+        <p>This is the hardest section to write and the hardest to read.</p>
+        <p>There are situations where continuing to fight in the same way becomes self-destruction. Where the legal system has failed. Where every therapeutic intervention has been blocked. Where your child's hostility has become so entrenched that forced contact causes genuine distress — for them and for you.</p>
+        <p>Letting go of a specific battle is not the same as letting go of your child. It is recognising that the current approach is not working, and that preserving yourself — so that you are whole when the door opens again — is the most loving thing you can do.</p>
+        <p>The oxygen mask principle applies: you must secure your own survival before you can help anyone else. Sometimes that means stepping back, not stepping away.</p>
+        <p>And the data is clear: many children who were alienated in childhood seek reconciliation in adulthood. The parent they come back to is rarely the one who fought every battle to the death. It is the one who kept the door open, stayed healthy, and had something to offer beyond pain.</p>
+      `,
     },
     {
       slug: 'choosing-love-over-exile',
       title: 'Choosing Love Over Exile: What It Actually Means to Stay Present',
       description: '"Staying present" sounds like a platitude until you understand what it requires — and what it gives back.',
       category: 'Inner Freedom',
-      date: '2026-04-01',
+      date: '2026-03-02',
       readTime: '10 min',
-      content: `<p>This article will be published soon.</p>`,
+      content: `
+        <p>"Stay present." "Keep the door open." "Don't give up."</p>
+        <p>If you are an alienated parent, you have heard these phrases a hundred times. From therapists, from support groups, from well-meaning friends. And every time, a small voice inside you asks: <em>but how? How do I stay present for someone who has been taught to despise me? How do I keep a door open that someone else keeps slamming shut?</em></p>
+        <p>This article is about the "how." Not the platitude — the practice.</p>
+
+        <h2>What "love over exile" actually means</h2>
+        <p>The title of Malcolm Smith's book — <em>Love Over Exile</em> — is not a metaphor. It is a daily choice.</p>
+        <p>Exile is the default. When your child rejects you, when the legal system fails you, when everyone around you either doesn't understand or has given up — the natural response is to exile yourself. To withdraw. To harden. To protect yourself by deciding that if they don't want you, you don't need them either.</p>
+        <p>That response is human. It is also a trap.</p>
+        <p>Choosing love over exile means refusing that withdrawal — not from a place of desperation or martyrdom, but from a deliberate, clear-eyed decision that love is the better path. Even when it hurts. Even when it is not returned. Even when every rational analysis says it is not working.</p>
+
+        <h2>Radical acceptance: the foundation</h2>
+        <p>Before you can choose love, you have to stop fighting reality.</p>
+        <p>Dr Marsha Linehan, creator of Dialectical Behaviour Therapy, identified a formula that explains much of human suffering: <strong>suffering = pain x resistance</strong>. The pain of alienation is real, and no one is asking you to pretend it isn't. But the resistance — the constant mental argument with what has happened, the "this shouldn't be happening," the "this isn't fair" — that resistance multiplies the pain into something unbearable.</p>
+        <p>Radical acceptance is not approval. It is not agreement. It is not giving up. It is simply, fully acknowledging what is. <em>This is happening. This is where I am. I did not choose it, but I am here.</em></p>
+        <p>This sounds simple. It is one of the hardest things a human being can do. And it must be done again and again — not once, but every day, sometimes every hour.</p>
+
+        <h2>The shift from conditional to unconditional</h2>
+        <p>Most love is conditional. Not in a cynical sense — in a deeply human sense. We love people, and we expect to be loved back. We sacrifice for our children, and we expect to be part of their lives. We are honest and good, and we expect fairness in return.</p>
+        <p>Parental alienation destroys all of those conditions. You loved, and you were rejected. You sacrificed, and you were erased. You were honest, and you were punished for it.</p>
+        <p>The conditional love — "I love you and therefore I deserve to be in your life" — becomes a source of torment. Because the condition is not being met, and you cannot force it to be met.</p>
+        <p>Unconditional love is what remains when you remove all the conditions. It is love that does not depend on being loved back. Love that does not require justice, acknowledgement, or reunion. Love that simply exists — like a fire that keeps burning whether or not anyone comes to warm themselves by it.</p>
+        <p>This is not natural. Humans are wired for reciprocity. Choosing unconditional love is a discipline — a daily decision, not a feeling you achieve once and keep forever.</p>
+
+        <h2>What staying present looks like in practice</h2>
+        <p>Staying present is not a feeling. It is a set of actions:</p>
+        <p><strong>The birthday card.</strong> Every year, without fail. Not a guilt trip. Not "I miss you so much." Just: "Happy birthday. I hope you have a wonderful day. I love you." Simple. Consistent. Undeniable evidence — for your child, for the courts, for yourself — that you never stopped showing up.</p>
+        <p><strong>The open invitation.</strong> When appropriate, extending invitations to ordinary things. "We're having Sunday lunch if you'd like to come." Not pressured. Not desperate. Not attached to whether they accept. The offer itself is the point.</p>
+        <p><strong>The refusal to speak ill.</strong> No matter what the other parent has done, no matter how justified your anger, you do not poison your child's view of their other parent. This is one of the clearest differences between an alienating parent and a targeted parent — and it is one your child will eventually recognise.</p>
+        <p><strong>The life you build.</strong> Perhaps the most important form of presence is the one that is not directly about your child at all. It is the life you continue to build: the career you develop, the friendships you maintain, the interests you pursue, the person you become. When your child eventually comes looking — and research suggests many of them do — what they find matters. A parent consumed by bitterness and victimhood is not what they need. A parent who has found a way to live fully, despite the pain, is.</p>
+
+        <h2>The purpose of suffering</h2>
+        <p>Viktor Frankl, writing from inside a concentration camp, concluded that suffering without meaning is unbearable — but suffering <em>with</em> meaning is endurable. He identified three paths to meaning: through what we create, through what we experience (beauty, love, connection), and through the attitude we take toward unavoidable suffering.</p>
+        <p>For alienated parents, the third path is often the only one available. You did not choose this suffering. You cannot end it by willpower. But you can choose what it makes of you.</p>
+        <p>Malcolm's own vow — "I will not emerge from this fire having merely survived; I will extract every ounce of wisdom it has to offer" — is not bravado. It is a decision to be transformed by the experience rather than destroyed by it.</p>
+        <p>And the transformation is real. Parents who have walked this road and done the inner work describe a depth of compassion, a strength of character, and a quality of love that they did not possess before. None of them would have chosen it. But all of them recognise what it gave them.</p>
+
+        <h2>When they come back</h2>
+        <p>The research on reconciliation between alienated children and targeted parents is hopeful. Many children — particularly in late adolescence and early adulthood — begin to question the narrative they were given. They reach out. Tentatively. Testing. Watching to see who this parent actually is.</p>
+        <p>The most important thing in that moment is restraint. Not an avalanche of emotion. Not "let me tell you everything that happened." Not the urge to be vindicated.</p>
+        <p>Just warmth. Just presence. Just: "I'm here. I've always been here. And there's no rush."</p>
+        <p>This is what choosing love over exile looks like at its most distilled. Not a grand gesture. Not a dramatic confrontation. A quiet, steady flame that has been burning the entire time — waiting for someone to come sit beside it.</p>
+
+        <h2>The daily practice</h2>
+        <p>Choosing love over exile is not a one-time decision. It is a practice. Some days it feels possible. Some days it feels impossible. Some days the anger returns, the grief overwhelms, and the whole thing feels futile.</p>
+        <p>That is normal. The practice is not about never losing the thread. It is about picking it up again — every morning, every evening, every time you feel it slipping.</p>
+        <p>And in the picking it up, something accumulates. A resilience that is not brittle. A love that is not dependent on outcomes. A freedom that exists even in the middle of an unresolved situation.</p>
+        <p>That is inner freedom. Not the absence of pain — but the presence of something stronger than pain.</p>
+      `,
     },
   ];
 

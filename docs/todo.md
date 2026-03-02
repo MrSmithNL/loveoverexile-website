@@ -64,8 +64,8 @@
 ---
 
 ### SITE-004 — Connect MailerLite forms
-**Priority:** ✅ Done — 2026-03-02 (core integration complete, welcome emails parked)
-**Status:** Partial — forms live, welcome emails deferred
+**Priority:** ✅ Done — 2026-03-02 (core integration complete)
+**Status:** Nearly complete — Malcolm needs to activate automations in UI
 
 - MailerLite account: info@loveoverexile.com (Free plan, 500 subscribers, trial ends 2026-03-14)
 - Connected via Composio/Rube MCP (API key auth)
@@ -75,7 +75,10 @@
 - MAILERLITE_API_KEY set in Vercel env vars (tested + working)
 - Domain DNS records correct (DKIM, SPF, DMARC, verification TXT all verified)
 - HTML email templates written: `docs/email-templates/` (3 branded templates)
-- **PARKED:** MailerLite domain auth stuck (`domain_auth: false` in API despite DNS being correct). Automation emails cannot be activated until this resolves. MailerLite API cannot create email design objects — UI-only. Come back to this when domain auth stabilises or consider Resend as alternative for transactional emails.
+- Malcolm created email designs in MailerLite UI for all 3 automations
+- All 3 automation triggers configured via API (subscriber_joins_group → correct group)
+- All 3 automations show `complete: true` with triggers bound
+- **Malcolm action needed:** Go to MailerLite → Automations → toggle each to Active (30 seconds, can't be done via API)
 
 ---
 

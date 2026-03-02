@@ -17,25 +17,155 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     </div>
   </section>
 
+  <!-- Overview -->
   <section class="section">
     <div class="container-narrow prose">
-      <p>
+      <p class="lead-text">
         Understanding parental alienation — what it actually is, how it works psychologically,
         and why institutions so often fail to recognise or address it — is the foundation of
         everything else. You cannot fight what you don't understand.
       </p>
       <p>
-        Articles in this section cover the full spectrum: from the academic definitions to the
-        lived reality, from the legal landscape to the research on long-term effects on children.
+        This section draws on decades of academic research, clinical frameworks, and
+        Malcolm's own ten-year experience to give you the clearest possible picture
+        of what is happening in your family — and why.
       </p>
-      <p style="color:var(--color-warm-grey); font-style:italic;">
-        Articles coming soon. Join the waitlist to be notified when they publish.
+      <p>
+        The goal is not just knowledge. It is the kind of understanding that replaces
+        confusion with clarity, self-blame with recognition, and isolation with the
+        realisation that this is a documented, studied, and increasingly acknowledged
+        phenomenon affecting millions of families worldwide.
       </p>
-      <a href="/free-guide" class="btn btn-outline" style="margin-top:1rem;">
-        Get the Free Survival Guide in the meantime →
-      </a>
     </div>
   </section>
+
+  <!-- Topic cards -->
+  <section class="section section-alt">
+    <div class="container">
+      <p class="section-eyebrow">Topics covered</p>
+      <h2 class="section-heading">What you'll find here</h2>
+      <div class="topics-grid">
+        <div class="topic-card card">
+          <h3>The Signs</h3>
+          <p>
+            How to distinguish deliberate alienation from normal post-separation conflict.
+            Gardner's eight behavioural manifestations, the Five-Factor Model, and what
+            to watch for in your child's words and behaviour.
+          </p>
+          <a href="/articles/signs-of-parental-alienation" class="topic-link">Read the article →</a>
+        </div>
+        <div class="topic-card card">
+          <h3>The System</h3>
+          <p>
+            Alienation is not a one-person act. It involves the alienating parent, the child,
+            enablers, extended family, and — too often — the professional system itself.
+            Understanding who plays what role changes everything.
+          </p>
+        </div>
+        <div class="topic-card card">
+          <h3>The Tactics</h3>
+          <p>
+            The 17 tactics of alienation identified by Dr Amy Baker — from badmouthing and
+            gatekeeping to loyalty traps and identity manipulation. Recognising them is the
+            first step to countering them.
+          </p>
+        </div>
+        <div class="topic-card card">
+          <h3>The Research</h3>
+          <p>
+            What peer-reviewed studies actually show: the scale of the problem (22 million
+            children affected), long-term harm to children, and why the legal system
+            consistently falls behind the science.
+          </p>
+          <a href="/you-are-not-alone" class="topic-link">See the data →</a>
+        </div>
+        <div class="topic-card card">
+          <h3>The Child's Experience</h3>
+          <p>
+            Your child is not choosing this freely. The Systemic Conditioning Model explains
+            how external pressure creates an internal survival crisis — forcing psychological
+            splitting as a coping mechanism, not a genuine preference.
+          </p>
+        </div>
+        <div class="topic-card card">
+          <h3>The Trauma</h3>
+          <p>
+            The 2D Alienation Trauma Pain Model maps the targeted parent's suffering across
+            four levels of heartbreak and eight amplification factors. Understanding your
+            own pain is not self-indulgence — it is survival.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Key insight -->
+  <section class="section">
+    <div class="container-narrow prose">
+      <h2>Why understanding matters</h2>
+      <blockquote class="pull-quote">
+        "Parental alienation is not a custody dispute. It is a recognised form of
+        psychological violence and coercive control that causes profound, multi-layered
+        trauma — to both parent and child."
+      </blockquote>
+      <p>
+        When you first experience alienation, the confusion is overwhelming. Your child
+        says things that make no sense. Professionals who should help seem unable to see
+        what is happening. Friends and family suggest you must have done something wrong.
+        The isolation compounds the pain.
+      </p>
+      <p>
+        Understanding changes the equation. When you can name what is happening — when you
+        can see the patterns, the tactics, the systemic failures — you stop blaming yourself
+        for something that was done to you. You stop expecting the system to rescue you on
+        its own timeline. And you start making decisions from clarity rather than desperation.
+      </p>
+      <p>
+        This is not about becoming an expert in alienation theory. It is about having enough
+        knowledge to protect yourself, advocate for your child, and communicate what is
+        happening to the professionals and people in your life who need to understand it.
+      </p>
+    </div>
+  </section>
+
+  <!-- Articles preview -->
+  <section class="section section-alt">
+    <div class="container">
+      <p class="section-eyebrow">Articles</p>
+      <h2 class="section-heading">Start reading</h2>
+      <div class="articles-preview">
+        <article class="article-preview-card card">
+          <span class="article-tag">Understanding PA</span>
+          <h3><a href="/articles/signs-of-parental-alienation">Signs of Parental Alienation: What to Look For and What It Means</a></h3>
+          <p>
+            The patterns that indicate deliberate alienation versus normal post-separation
+            conflict — and why distinguishing them matters for your strategy.
+          </p>
+          <span class="article-meta">8 min read</span>
+        </article>
+      </div>
+      <p style="margin-top:2rem;">
+        More articles are being published regularly.
+        <a href="/articles">See all articles →</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section section-dark" style="text-align:center;">
+    <div class="container-narrow">
+      <h2>Start with the free guide</h2>
+      <p style="opacity:0.8; margin-bottom:2rem; max-width:540px; margin-inline:auto;">
+        The Survival Guide distils the most immediately useful frameworks and practical
+        advice into a single resource you can use today.
+      </p>
+      <div style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap;">
+        <a href="/free-guide" class="btn btn-primary">Get the Free Guide</a>
+        <a href="/survival-guide" class="btn btn-outline-light">Part II: Survival Guide →</a>
+      </div>
+    </div>
+  </section>
+
 </BaseLayout>
 
 <style>
@@ -53,5 +183,94 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   color: rgba(247,243,238,0.8);
   margin-top: 1.25rem;
   line-height: 1.75;
+}
+.lead-text {
+  font-size: 1.15rem;
+  line-height: 1.75;
+  color: var(--color-charcoal);
+  margin-bottom: 1.5rem;
+}
+.section-eyebrow {
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-amber);
+  margin-bottom: 0.5rem;
+}
+.section-heading {
+  margin-bottom: 2rem;
+}
+
+.topics-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+.topic-card {
+  padding: 2rem;
+}
+.topic-card h3 {
+  font-size: 1.15rem;
+  margin-bottom: 0.75rem;
+  color: var(--color-green-deep);
+}
+.topic-card p {
+  font-size: 0.92rem;
+  line-height: 1.7;
+  color: var(--color-charcoal);
+  margin-bottom: 0.75rem;
+}
+.topic-link {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-amber);
+  text-decoration: none;
+}
+.topic-link:hover { color: var(--color-green-deep); }
+
+.articles-preview {
+  max-width: 680px;
+}
+.article-preview-card {
+  padding: 2rem;
+}
+.article-preview-card h3 {
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+}
+.article-preview-card h3 a {
+  color: var(--color-green-deep);
+  text-decoration: none;
+}
+.article-preview-card h3 a:hover { color: var(--color-amber); }
+.article-preview-card p {
+  font-size: 0.92rem;
+  line-height: 1.7;
+  color: var(--color-charcoal);
+}
+.article-tag {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-amber);
+  background: rgba(196,154,60,0.1);
+  border-radius: 4px;
+  padding: 0.2em 0.6em;
+  display: inline-block;
+  margin-bottom: 0.75rem;
+}
+.article-meta {
+  font-size: 0.82rem;
+  color: var(--color-warm-grey);
+  margin-top: 0.5rem;
+}
+
+@media (max-width: 900px) {
+  .topics-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 600px) {
+  .topics-grid { grid-template-columns: 1fr; }
 }
 </style>
