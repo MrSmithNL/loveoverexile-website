@@ -166,7 +166,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         </div>
         <div class="stat-divider" aria-hidden="true"></div>
         <div class="stat-item">
-          <span class="stat-number" data-target="69" data-suffix="–81%">0</span>
+          <span class="stat-number" data-target="73" data-suffix="%" data-prefix="~">0</span>
           <span class="stat-label">of estranged parent-child relationships eventually reunite</span>
           <span class="stat-source">Reczek, Stacey & Thomeer (2022)</span>
         </div>
@@ -864,6 +864,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           numbers.forEach((el) => {
             const target = parseFloat(el.dataset.target || '0');
             const suffix = el.dataset.suffix || '';
+            const prefix = el.dataset.prefix || '';
             const decimals = parseInt(el.dataset.decimals || '0', 10);
             const duration = 2000;
             const start = performance.now();
@@ -876,9 +877,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
               const current = eased * target;
 
               if (decimals > 0) {
-                el.textContent = current.toFixed(decimals) + suffix;
+                el.textContent = prefix + current.toFixed(decimals) + suffix;
               } else {
-                el.textContent = Math.round(current) + suffix;
+                el.textContent = prefix + Math.round(current) + suffix;
               }
 
               if (progress < 1) {
