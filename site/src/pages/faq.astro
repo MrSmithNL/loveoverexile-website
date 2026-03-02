@@ -54,12 +54,28 @@ const faqPA = [
     a: 'Many researchers and therapists classify severe parental alienation as a form of emotional abuse — of both the child and the target parent. It is included in some academic definitions of child psychological maltreatment. However, legal definitions and court responses vary widely.'
   },
 ];
+
+// FAQPage structured data for rich snippets
+const allFaqItems = [...faqLOE, ...faqPA];
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: allFaqItems.map(item => ({
+    '@type': 'Question',
+    name: item.q,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: item.a,
+    },
+  })),
+};
 ---
 
 <BaseLayout
   title="FAQ"
   description="Frequently asked questions about Love Over Exile and about parental alienation — what it is, how it works, and what you can do."
 >
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
 
   <section class="section">
     <div class="container-narrow">

@@ -1,0 +1,26 @@
+# robots.txt for loveoverexile.com
+# Last updated: 2026-03-02
+
+# Allow all search engines
+User-agent: *
+Allow: /
+Disallow:
+
+# Sitemap location
+Sitemap: https://loveoverexile.com/sitemap-index.xml
+
+# AI crawlers — welcome (we want AI discovery)
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /

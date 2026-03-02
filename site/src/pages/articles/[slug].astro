@@ -45,6 +45,26 @@ const { article } = Astro.props;
 const formattedDate = new Date(article.date).toLocaleDateString('en-GB', {
   day: 'numeric', month: 'long', year: 'numeric',
 });
+
+const siteUrl = 'https://loveoverexile.com';
+const articleSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: article.title,
+  description: article.description,
+  datePublished: article.date,
+  author: {
+    '@type': 'Person',
+    name: 'Malcolm Smith',
+    url: siteUrl,
+  },
+  publisher: {
+    '@type': 'Organization',
+    name: 'Love Over Exile',
+    url: siteUrl,
+  },
+  mainEntityOfPage: `${siteUrl}/articles/${article.slug}`,
+};
 ---
 
 <BaseLayout
@@ -52,6 +72,7 @@ const formattedDate = new Date(article.date).toLocaleDateString('en-GB', {
   description={article.description}
   ogType="article"
 >
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
 
   <article class="article-page">
 

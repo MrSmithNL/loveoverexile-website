@@ -1,5 +1,25 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+
+const siteUrl = 'https://loveoverexile.com';
+const bookSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Book',
+  name: 'Love Over Exile',
+  author: {
+    '@type': 'Person',
+    name: 'Malcolm Smith',
+    url: siteUrl,
+  },
+  description: 'A book on surviving parental alienation, staying whole, and choosing love — by an alienated father who lived it.',
+  url: `${siteUrl}/the-book`,
+  inLanguage: 'en',
+  genre: 'Self-Help',
+  about: {
+    '@type': 'Thing',
+    name: 'Parental Alienation',
+  },
+};
 ---
 
 <BaseLayout
@@ -7,6 +27,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   description="Love Over Exile — a book by Malcolm Smith on surviving parental alienation, staying whole, and choosing love. Join the waitlist for the launch."
   ogType="book"
 >
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(bookSchema)} />
 
   <!-- Hero -->
   <section class="section book-hero section-dark">
