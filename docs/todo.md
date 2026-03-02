@@ -219,6 +219,10 @@ Confirm URL, access method, whether still in use.
 | SITE-004 | MailerLite integration — 3 groups, API endpoint, 3 forms wired, 3 automations created | 2026-03-02 |
 | WP-008 | Email waitlist — superseded by SITE-004 | 2026-03-02 |
 | — | MailerLite welcome emails parked — domain auth issue, HTML templates written in docs/email-templates/ | 2026-03-02 |
+| — | MailerLite automation triggers configured via API (all 3 bound to groups, complete: true) | 2026-03-02 |
+| — | Hub pages filled: Understanding (Part I), Survival Guide (Part II), Inner Freedom (Part III) — all with full content | 2026-03-02 |
+| — | 3 real articles published: Signs of PA (8 min), How to Cope (12 min), Choosing Love Over Exile (10 min) | 2026-03-02 |
+| — | Contact form backend live — /api/contact endpoint, MailerLite Contact Messages group | 2026-03-02 |
 
 ---
 
@@ -249,3 +253,7 @@ Confirm URL, access method, whether still in use.
 | 2026-03-02 | GA4 activated (G-HLYGWZ5HZY). GSC domain verified. SerpAPI connected. Email routing fixed. WordPress cleaned up (cPanel email-only). |
 | 2026-03-02 | SITE-004 — MailerLite integration: Vercel adapter, /api/subscribe endpoint, 3 subscriber groups, 3 forms wired, 3 welcome automations. API key added to Vercel, endpoint tested working. |
 | 2026-03-02 | MailerLite welcome emails: domain auth stuck (API says false despite correct DNS). 3 HTML templates written (docs/email-templates/). MailerLite API can't create email design objects. Parked — revisit later. |
+| 2026-03-02 | MailerLite automation triggers configured via API. All 3 automations complete: true but enabled: false — MailerLite API has no activation endpoint (confirmed via docs). Malcolm needs to toggle Active in UI. |
+| 2026-03-02 | WP-005 — Hub pages filled with real content: Understanding (6 topic cards, key insight, article preview), Survival Guide (6-layer resilience framework, practical tools), Inner Freedom (6 path cards, self-compassion). |
+| 2026-03-02 | WP-005 — 3 articles written: Signs of PA (1500 words, Gardner/Baker), How to Cope (2000 words, BIFF/Stockdale/Sphere), Choosing Love Over Exile (1500 words, radical acceptance/surrender). |
+| 2026-03-02 | Contact form: /api/contact.ts endpoint created, MailerLite Contact Messages group (180832854326904301), form wired with JS, success/error states. |
