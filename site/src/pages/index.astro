@@ -65,7 +65,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           <div class="problem-card-image">
             <img
               src="/images/surviving-parental-alienation.jpg"
-              alt="A child refusing contact with a parent"
+              alt="Recognising the signs of parental alienation"
               width="400"
               height="280"
               loading="lazy"
@@ -73,23 +73,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
             />
           </div>
           <div class="problem-card-body">
-            <p>Your child suddenly refuses all contact — with no explanation you can understand.</p>
-            <span class="problem-card-link">Understand why →</span>
-          </div>
-        </a>
-        <a href="/articles/signs-of-parental-alienation" class="problem-card">
-          <div class="problem-card-image">
-            <img
-              src="/images/surviving-parental-alienation.jpg"
-              alt="Coached words and parental alienation"
-              width="400"
-              height="280"
-              loading="lazy"
-              decoding="async"
-            />
-          </div>
-          <div class="problem-card-body">
-            <p>They repeat things that sound like they've been coached — accusations, rejections, silence.</p>
+            <p>Your child refuses contact, repeats things that sound coached, and rejects you without explanation.</p>
             <span class="problem-card-link">Recognise the signs →</span>
           </div>
         </a>
@@ -464,7 +448,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 }
 .problem-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 1.5rem;
   margin: 0 0 3rem;
 }
@@ -778,9 +762,6 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   .book-cover-wrap { display: none; }
   .community-split { grid-template-columns: 1fr; }
   .community-image-wrap { display: none; }
-}
-@media (max-width: 960px) {
-  .problem-grid { grid-template-columns: 1fr 1fr; }
 }
 @media (max-width: 768px) {
   .problem-grid { grid-template-columns: 1fr; max-width: 400px; margin-inline: auto; }
