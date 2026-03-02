@@ -13,6 +13,9 @@ yarn-error.log*
 pnpm-debug.log*
 
 
+# vercel build output
+.vercel/
+
 # environment variables
 .env
 .env.production

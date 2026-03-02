@@ -85,12 +85,12 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       <p style="opacity:0.8; margin-bottom:2rem; font-size:1.05rem;">
         The forum is coming soon. Enter your email to be notified when it opens.
       </p>
-      <!-- MailerLite embed placeholder -->
-      <form class="join-form" action="#" method="post">
+      <form class="join-form" id="community-form">
         <input type="email" name="email" placeholder="Your email address" required style="max-width:360px;" />
         <button type="submit" class="btn btn-primary">Notify Me</button>
       </form>
       <p style="font-size:0.8rem; opacity:0.4; margin-top:1rem;">Free to join. No spam. Unsubscribe at any time.</p>
+      <p class="form-msg" id="community-msg" style="display:none;"></p>
     </div>
   </section>
 
@@ -151,4 +151,49 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 @media (max-width: 600px) {
   .categories-grid { grid-template-columns: 1fr; }
 }
+
+.form-msg {
+  font-size: 0.85rem;
+  margin: 1rem auto 0;
+  line-height: 1.5;
+}
+.form-msg.success { color: var(--color-amber-light); }
+.form-msg.error { color: #f87171; }
 </style>
+
+<script>
+  const form = document.getElementById('community-form');
+  const msg = document.getElementById('community-msg');
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const btn = form.querySelector('button');
+    const email = new FormData(form as HTMLFormElement).get('email');
+    if (btn) btn.textContent = 'Sending...';
+    try {
+      const res = await fetch('/api/subscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, group: 'community' }),
+      });
+      const data = await res.json();
+      if (msg) {
+        msg.style.display = 'block';
+        if (res.ok) {
+          msg.className = 'form-msg success';
+          msg.textContent = "You're in! We'll notify you when the community opens.";
+          (form as HTMLFormElement).reset();
+        } else {
+          msg.className = 'form-msg error';
+          msg.textContent = data.error || 'Something went wrong. Please try again.';
+        }
+      }
+    } catch {
+      if (msg) {
+        msg.style.display = 'block';
+        msg.className = 'form-msg error';
+        msg.textContent = 'Connection error. Please try again.';
+      }
+    }
+    if (btn) btn.textContent = 'Notify Me';
+  });
+</script>

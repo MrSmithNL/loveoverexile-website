@@ -55,12 +55,12 @@ const bookSchema = {
           </p>
           <div class="waitlist-box">
             <p class="waitlist-label">Join the waitlist — be first to know when it launches</p>
-            <!-- MailerLite embed will replace this form -->
-            <form class="waitlist-form" action="#" method="post">
+            <form class="waitlist-form" id="waitlist-form">
               <input type="email" name="email" placeholder="Your email address" required />
               <button type="submit" class="btn btn-primary">Join the Waitlist</button>
             </form>
             <p class="waitlist-note">No spam. Unsubscribe at any time.</p>
+            <p class="form-msg" id="waitlist-msg" style="display:none;"></p>
           </div>
         </div>
       </div>
@@ -272,4 +272,49 @@ const bookSchema = {
   .book-cover-col { display: none; }
   .parts-grid { grid-template-columns: 1fr; }
 }
+
+.form-msg {
+  font-size: 0.85rem;
+  margin: 0.75rem 0 0;
+  line-height: 1.5;
+}
+.form-msg.success { color: var(--color-amber-light); }
+.form-msg.error { color: #f87171; }
 </style>
+
+<script>
+  const form = document.getElementById('waitlist-form');
+  const msg = document.getElementById('waitlist-msg');
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const btn = form.querySelector('button');
+    const email = new FormData(form as HTMLFormElement).get('email');
+    if (btn) btn.textContent = 'Joining...';
+    try {
+      const res = await fetch('/api/subscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, group: 'waitlist' }),
+      });
+      const data = await res.json();
+      if (msg) {
+        msg.style.display = 'block';
+        if (res.ok) {
+          msg.className = 'form-msg success';
+          msg.textContent = "You're on the list! We'll email you when the book launches.";
+          (form as HTMLFormElement).reset();
+        } else {
+          msg.className = 'form-msg error';
+          msg.textContent = data.error || 'Something went wrong. Please try again.';
+        }
+      }
+    } catch {
+      if (msg) {
+        msg.style.display = 'block';
+        msg.className = 'form-msg error';
+        msg.textContent = 'Connection error. Please try again.';
+      }
+    }
+    if (btn) btn.textContent = 'Join the Waitlist';
+  });
+</script>

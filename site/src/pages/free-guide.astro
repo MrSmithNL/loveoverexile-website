@@ -30,8 +30,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
           <div class="guide-form-box">
             <p class="form-label">Get the guide — free when you join the Love Over Exile community</p>
-            <!-- MailerLite embed placeholder -->
-            <form class="guide-form" action="#" method="post">
+            <form class="guide-form" id="guide-form">
               <input type="text" name="name" placeholder="Your first name" required />
               <input type="email" name="email" placeholder="Your email address" required />
               <button type="submit" class="btn btn-primary" style="width:100%;">
@@ -42,6 +41,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
               You'll receive the guide by email and be added to the Love Over Exile community
               list. No spam. Unsubscribe at any time.
             </p>
+            <p class="form-msg" id="guide-msg" style="display:none;"></p>
           </div>
         </div>
 
@@ -169,4 +169,51 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   .guide-inner { grid-template-columns: 1fr; }
   .guide-preview-wrap { display: none; }
 }
+
+.form-msg {
+  font-size: 0.85rem;
+  margin: 0.75rem 0 0;
+  line-height: 1.5;
+}
+.form-msg.success { color: var(--color-green-deep); }
+.form-msg.error { color: #dc2626; }
 </style>
+
+<script>
+  const form = document.getElementById('guide-form');
+  const msg = document.getElementById('guide-msg');
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const btn = form.querySelector('button');
+    const fd = new FormData(form as HTMLFormElement);
+    const email = fd.get('email');
+    const name = fd.get('name');
+    if (btn) btn.textContent = 'Sending...';
+    try {
+      const res = await fetch('/api/subscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, name, group: 'guide' }),
+      });
+      const data = await res.json();
+      if (msg) {
+        msg.style.display = 'block';
+        if (res.ok) {
+          msg.className = 'form-msg success';
+          msg.textContent = "Check your inbox — the Survival Guide is on its way.";
+          (form as HTMLFormElement).reset();
+        } else {
+          msg.className = 'form-msg error';
+          msg.textContent = data.error || 'Something went wrong. Please try again.';
+        }
+      }
+    } catch {
+      if (msg) {
+        msg.style.display = 'block';
+        msg.className = 'form-msg error';
+        msg.textContent = 'Connection error. Please try again.';
+      }
+    }
+    if (btn) btn.textContent = 'Send Me the Guide →';
+  });
+</script>
