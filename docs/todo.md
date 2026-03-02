@@ -64,17 +64,18 @@
 ---
 
 ### SITE-004 — Connect MailerLite forms
-**Priority:** ✅ Done — 2026-03-02
-**Status:** Complete — forms live, automations created
+**Priority:** ✅ Done — 2026-03-02 (core integration complete, welcome emails parked)
+**Status:** Partial — forms live, welcome emails deferred
 
-- MailerLite account: info@loveoverexile.com (Free plan, 500 subscribers)
+- MailerLite account: info@loveoverexile.com (Free plan, 500 subscribers, trial ends 2026-03-14)
 - Connected via Composio/Rube MCP (API key auth)
 - Three subscriber groups created: Book Waitlist, Free Guide Downloads, Community Notify
 - Vercel adapter added (hybrid mode) for server-side `/api/subscribe` endpoint
 - Forms wired up on: the-book.astro, free-guide.astro, community.astro
-- Three welcome automations created (triggers set, email content pending in MailerLite dashboard)
-- **Malcolm TODO:** Add `MAILERLITE_API_KEY` env var in Vercel project settings
-- **Malcolm TODO:** Design welcome email content in MailerLite → Automations → activate each
+- MAILERLITE_API_KEY set in Vercel env vars (tested + working)
+- Domain DNS records correct (DKIM, SPF, DMARC, verification TXT all verified)
+- HTML email templates written: `docs/email-templates/` (3 branded templates)
+- **PARKED:** MailerLite domain auth stuck (`domain_auth: false` in API despite DNS being correct). Automation emails cannot be activated until this resolves. MailerLite API cannot create email design objects — UI-only. Come back to this when domain auth stabilises or consider Resend as alternative for transactional emails.
 
 ---
 
@@ -214,6 +215,7 @@ Confirm URL, access method, whether still in use.
 | — | Old WordPress files cleaned from cPanel hosting (email-only now) | 2026-03-02 |
 | SITE-004 | MailerLite integration — 3 groups, API endpoint, 3 forms wired, 3 automations created | 2026-03-02 |
 | WP-008 | Email waitlist — superseded by SITE-004 | 2026-03-02 |
+| — | MailerLite welcome emails parked — domain auth issue, HTML templates written in docs/email-templates/ | 2026-03-02 |
 
 ---
 
@@ -242,4 +244,5 @@ Confirm URL, access method, whether still in use.
 | 2026-02-28 | SEO Toolkit created as separate project (github.com/MrSmithNL/seo-toolkit). 8-agent architecture. Love Over Exile = first client. |
 | 2026-03-02 | DNS cutover complete — loveoverexile.com live on Vercel. SEO audit: robots.txt, llms.txt, FAQPage/Article/Book schemas added. GSC + GA4 + SerpAPI OAuth initiated. |
 | 2026-03-02 | GA4 activated (G-HLYGWZ5HZY). GSC domain verified. SerpAPI connected. Email routing fixed. WordPress cleaned up (cPanel email-only). |
-| 2026-03-02 | SITE-004 — MailerLite integration: Vercel adapter, /api/subscribe endpoint, 3 subscriber groups, 3 forms wired, 3 welcome automations. Malcolm TODO: add API key to Vercel + design welcome emails. |
+| 2026-03-02 | SITE-004 — MailerLite integration: Vercel adapter, /api/subscribe endpoint, 3 subscriber groups, 3 forms wired, 3 welcome automations. API key added to Vercel, endpoint tested working. |
+| 2026-03-02 | MailerLite welcome emails: domain auth stuck (API says false despite correct DNS). 3 HTML templates written (docs/email-templates/). MailerLite API can't create email design objects. Parked — revisit later. |
