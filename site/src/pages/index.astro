@@ -49,37 +49,85 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   <!-- ══════════════════════════════════════════════════════
        2. THE PROBLEM
   ══════════════════════════════════════════════════════ -->
-  <section class="section section-alt">
-    <div class="container-narrow">
-      <p class="section-label">What is parental alienation?</p>
-      <h2>When a child is turned against a loving parent</h2>
-      <p class="lead">
-        Parental alienation happens when one parent — through deliberate or unconscious
-        behaviour — damages and destroys a child's relationship with the other parent.
-        It is a form of psychological abuse that harms both child and parent.
-      </p>
+  <section class="section section-alt problem-section">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-label">What is parental alienation?</p>
+        <h2>When a child is turned against a loving parent</h2>
+        <p class="section-intro">
+          Parental alienation happens when one parent — through deliberate or unconscious
+          behaviour — damages and destroys a child's relationship with the other parent.
+          It is a form of psychological abuse that harms both child and parent.
+        </p>
+      </div>
       <div class="problem-grid">
-        <div class="problem-item">
-          <div class="problem-icon" aria-hidden="true">◦</div>
-          <p>Your child suddenly refuses all contact — with no explanation you can understand.</p>
+        <div class="problem-card">
+          <div class="problem-card-image">
+            <img
+              src="/images/surviving-parental-alienation.jpg"
+              alt="A child refusing contact with a parent"
+              width="400"
+              height="280"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+          <div class="problem-card-body">
+            <p>Your child suddenly refuses all contact — with no explanation you can understand.</p>
+          </div>
         </div>
-        <div class="problem-item">
-          <div class="problem-icon" aria-hidden="true">◦</div>
-          <p>They repeat things that sound like they've been coached — accusations, rejections, silence.</p>
+        <div class="problem-card">
+          <div class="problem-card-image">
+            <img
+              src="/images/surviving-parental-alienation.jpg"
+              alt="Coached words and parental alienation"
+              width="400"
+              height="280"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+          <div class="problem-card-body">
+            <p>They repeat things that sound like they've been coached — accusations, rejections, silence.</p>
+          </div>
         </div>
-        <div class="problem-item">
-          <div class="problem-icon" aria-hidden="true">◦</div>
-          <p>Every legal and therapeutic avenue feels like it moves at a fraction of the pace the damage is done.</p>
+        <div class="problem-card">
+          <div class="problem-card-image">
+            <img
+              src="/images/surviving-parental-alienation.jpg"
+              alt="The slow pace of legal and therapeutic systems"
+              width="400"
+              height="280"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+          <div class="problem-card-body">
+            <p>Every legal and therapeutic avenue feels like it moves at a fraction of the pace the damage is done.</p>
+          </div>
         </div>
-        <div class="problem-item">
-          <div class="problem-icon" aria-hidden="true">◦</div>
-          <p>The people around you don't understand why you can't just "fix it" or "move on."</p>
+        <div class="problem-card">
+          <div class="problem-card-image">
+            <img
+              src="/images/surviving-parental-alienation.jpg"
+              alt="Feeling misunderstood by people around you"
+              width="400"
+              height="280"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+          <div class="problem-card-body">
+            <p>The people around you don't understand why you can't just "fix it" or "move on."</p>
+          </div>
         </div>
       </div>
-      <p class="problem-close">
-        If any of this sounds familiar, you are not alone — and this community exists for you.
-      </p>
-      <a href="/you-are-not-alone" class="btn btn-outline" style="margin-top: 1rem;">See the data →</a>
+      <div class="problem-footer">
+        <p class="problem-close">
+          If any of this sounds familiar, you are not alone — and this community exists for you.
+        </p>
+        <a href="/you-are-not-alone" class="btn btn-outline" style="margin-top: 1rem;">See the data →</a>
+      </div>
     </div>
   </section>
 
@@ -435,35 +483,53 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 }
 
 /* ── The Problem ──────────────────────────────── */
+.problem-section .section-intro {
+  max-width: 640px;
+}
 .problem-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1rem;
-  margin: 2rem 0;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  margin: 0 0 3rem;
 }
-.problem-item {
-  display: flex;
-  gap: 0.75rem;
-  align-items: flex-start;
-  padding: 1.25rem;
+.problem-card {
   background: var(--color-ivory);
-  border-radius: 10px;
+  border-radius: 12px;
   border: 1px solid var(--color-border);
+  overflow: hidden;
+  transition: box-shadow 0.2s, transform 0.2s;
 }
-.problem-icon {
-  font-size: 1.4rem;
-  color: var(--color-amber);
-  flex-shrink: 0;
-  line-height: 1;
-  margin-top: 0.1em;
+.problem-card:hover {
+  box-shadow: 0 8px 32px rgba(12, 94, 93, 0.10);
+  transform: translateY(-2px);
 }
-.problem-item p { font-size: 0.95rem; margin: 0; line-height: 1.6; }
+.problem-card-image {
+  aspect-ratio: 3/2;
+  overflow: hidden;
+}
+.problem-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.problem-card-body {
+  padding: 1.25rem 1.25rem 1.5rem;
+}
+.problem-card-body p {
+  font-size: 0.95rem;
+  margin: 0;
+  line-height: 1.6;
+  color: var(--color-charcoal);
+}
+.problem-footer {
+  text-align: center;
+}
 .problem-close {
   font-style: italic;
   color: var(--color-charcoal-mid);
-  border-left: 3px solid var(--color-amber);
-  padding-left: 1rem;
   margin: 0;
+  font-size: 1.05rem;
 }
 
 /* ── About the Author ─────────────────────────── */
@@ -714,8 +780,11 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   .community-split { grid-template-columns: 1fr; }
   .community-image-wrap { display: none; }
 }
+@media (max-width: 960px) {
+  .problem-grid { grid-template-columns: 1fr 1fr; }
+}
 @media (max-width: 768px) {
-  .problem-grid { grid-template-columns: 1fr; }
+  .problem-grid { grid-template-columns: 1fr; max-width: 400px; margin-inline: auto; }
   .journeys-grid { grid-template-columns: 1fr; }
   .articles-grid { grid-template-columns: 1fr; }
   .stats-row { flex-direction: column; align-items: center; }
