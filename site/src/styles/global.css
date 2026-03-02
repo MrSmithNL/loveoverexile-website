@@ -2,15 +2,16 @@
 
 /* ── Design Tokens ──────────────────────────────────────────── */
 @theme {
-  /* Colours */
+  /* Colours — Turquoise Amber Autumn */
   --color-ivory:        #F8F4EF;
   --color-ivory-alt:    #FDF9F5;
-  --color-green-deep:   #0C5E5D;
-  --color-green-dark:   #074443;
-  --color-green-mid:    #178180;
-  --color-sage:         #5DADA9;
-  --color-amber:        #D0391A;
-  --color-amber-light:  #E85F2E;
+  --color-green-deep:   #26788E;
+  --color-green-dark:   #304064;
+  --color-green-mid:    #3290A6;
+  --color-sage:         #A4CCD4;
+  --color-amber:        #E2480C;
+  --color-amber-light:  #F05A20;
+  --color-amber-dark:   #631B08;
   --color-charcoal:     #2C2C2C;
   --color-charcoal-mid: #4A4A4A;
   --color-warm-grey:    #8A8178;
@@ -153,7 +154,7 @@ a:hover { color: var(--color-green-deep); }
   transition: box-shadow 0.2s, transform 0.2s;
 }
 .card:hover {
-  box-shadow: 0 8px 32px rgba(12, 94, 93, 0.10);
+  box-shadow: 0 8px 32px rgba(38, 120, 142, 0.10);
   transform: translateY(-2px);
 }
 
