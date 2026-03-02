@@ -128,7 +128,7 @@ a:hover { color: var(--color-green-deep); }
 }
 
 .btn-outline {
-  background-color: rgba(164, 204, 212, 0.15);
+  background-color: rgba(12, 94, 93, 0.08);
   color: var(--color-green-deep);
   border-color: var(--color-green-deep);
 }
@@ -138,7 +138,7 @@ a:hover { color: var(--color-green-deep); }
 }
 
 .btn-outline-light {
-  background-color: rgba(164, 204, 212, 0.12);
+  background-color: rgba(12, 94, 93, 0.15);
   color: var(--color-ivory);
   border-color: var(--color-ivory);
 }
