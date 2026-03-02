@@ -90,14 +90,13 @@
 ---
 
 ### SITE-006 — DNS cutover (GoDaddy)
-**Priority:** 🟡 Medium — after Vercel site is live and tested
-**Status:** 🔲 After SITE-001
+**Priority:** ✅ Done — 2026-03-02
+**Status:** Complete
 
-**What Malcolm does in GoDaddy:**
-1. Log into GoDaddy DNS management → loveoverexile.com
-2. Change `@` A record → Vercel will provide the IP (shown after deploy)
-3. Add `www` CNAME → `cname.vercel-dns.com`
-4. Done — propagation takes 1–48 hours
+- DNS pointed to Vercel (A record 76.76.21.21, www CNAME cname.vercel-dns.com)
+- Custom domain added in Vercel project settings
+- SSL certificate auto-provisioned
+- Site live at https://loveoverexile.com
 
 ---
 
@@ -212,6 +211,14 @@ Confirm URL, access method, whether still in use.
 | WP-006 | Book manuscript read in full + memory file written → `memory/book-summary.md` | 2026-02-27 |
 | WP-007 | Real site structure designed → `docs/site-structure.md` | 2026-02-27 |
 | WP-002 | Content workflow built — push script + folder structure → `docs/content-workflow.md` | 2026-02-27 |
+| SITE-006 | DNS cutover — loveoverexile.com live on Vercel (GoDaddy → Vercel) | 2026-03-02 |
+| — | robots.txt created (all crawlers + AI bots, sitemap reference) | 2026-03-02 |
+| — | llms.txt created (AI discovery file — site structure, topics, author) | 2026-03-02 |
+| — | FAQPage JSON-LD schema added to FAQ page (12 Q&As, rich snippet eligible) | 2026-03-02 |
+| — | Article JSON-LD schema added to article template | 2026-03-02 |
+| — | Book JSON-LD schema added to The Book page | 2026-03-02 |
+| — | Person schema sameAs URLs commented out until social profiles exist | 2026-03-02 |
+| — | Full technical SEO audit — all 17 pages checked (titles, meta, h1, OG, schema) | 2026-03-02 |
 
 ---
 
@@ -238,3 +245,4 @@ Confirm URL, access method, whether still in use.
 | 2026-02-28 | SITE-001 — Vercel deployed. All 18 pages live at https://loveoverexile-website.vercel.app/ GitHub auto-deploy active. |
 | 2026-02-28 | Logo added, colours changed to teal/coral. SEO strategy written. Rube MCP fixed (bearer token). |
 | 2026-02-28 | SEO Toolkit created as separate project (github.com/MrSmithNL/seo-toolkit). 8-agent architecture. Love Over Exile = first client. |
+| 2026-03-02 | DNS cutover complete — loveoverexile.com live on Vercel. SEO audit: robots.txt, llms.txt, FAQPage/Article/Book schemas added. GSC + GA4 + SerpAPI OAuth initiated. |
