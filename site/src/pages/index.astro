@@ -243,21 +243,21 @@ import BaseLayout from '../layouts/BaseLayout.astro';
             to remain a source of love even when you cannot be present.
           </p>
           <ul class="book-parts">
-            <li>
+            <a href="/about" class="book-part-link">
               <span class="part-number">Part I</span>
-              <span class="part-title">Understanding Parental Alienation</span>
-              <span class="part-desc">What it is, how it works, and why it happens</span>
-            </li>
-            <li>
+              <span class="part-title">My Story</span>
+              <span class="part-desc">How I became an alienated parent — and why I wrote this book</span>
+            </a>
+            <a href="/understanding" class="book-part-link">
               <span class="part-number">Part II</span>
-              <span class="part-title">The Survival Guide</span>
-              <span class="part-desc">Practical strategies for the acute phase</span>
-            </li>
-            <li>
+              <span class="part-title">Understanding Parental Alienation and Survival Guide</span>
+              <span class="part-desc">What it is, how it works, and practical strategies for survival</span>
+            </a>
+            <a href="/inner-freedom" class="book-part-link">
               <span class="part-number">Part III</span>
               <span class="part-title">Inner Freedom</span>
               <span class="part-desc">Finding peace, purpose, and yourself again</span>
-            </li>
+            </a>
           </ul>
           <div class="book-actions">
             <a href="/the-book" class="btn btn-primary">Join the Waitlist</a>
@@ -533,7 +533,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   flex-direction: column;
   gap: 0.75rem;
 }
-.book-parts li {
+.book-part-link {
   display: grid;
   grid-template-columns: 60px 1fr;
   grid-template-rows: auto auto;
@@ -542,6 +542,14 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   background: rgba(255,255,255,0.06);
   border-radius: 8px;
   border: 1px solid rgba(255,255,255,0.1);
+  text-decoration: none;
+  color: inherit;
+  transition: background 0.2s, border-color 0.2s;
+}
+.book-part-link:hover {
+  background: rgba(255,255,255,0.12);
+  border-color: rgba(255,255,255,0.2);
+  color: inherit;
 }
 .part-number {
   font-size: 0.72rem;
