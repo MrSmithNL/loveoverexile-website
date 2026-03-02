@@ -2,6 +2,8 @@
 interface NavChild {
   label: string;
   href: string;
+  highlight?: boolean;
+  separator?: boolean;
 }
 interface NavItem {
   label: string;
@@ -13,10 +15,10 @@ const navItems: NavItem[] = [
   {
     label: 'Parental Alienation',
     children: [
-      { label: 'Start Here',                  href: '/start-here' },
+      { label: 'Start Here',                  href: '/start-here', highlight: true },
       { label: 'What Is Parental Alienation',  href: '/understanding' },
       { label: 'You Are Not Alone',            href: '/you-are-not-alone' },
-      { label: 'How to Recognise It',          href: '/articles/signs-of-parental-alienation' },
+      { label: 'How to Recognise It',          href: '/articles/signs-of-parental-alienation', separator: true },
       { label: 'The Alienating Parent',        href: '/understanding/the-alienating-parent' },
       { label: 'The Child',                    href: '/understanding/the-child' },
       { label: 'The Alienated Parent',         href: '/understanding/the-alienated-parent' },
@@ -27,7 +29,7 @@ const navItems: NavItem[] = [
   {
     label: 'Survival Guide',
     children: [
-      { label: 'Download the Free Guide',      href: '/free-guide' },
+      { label: 'Download the Free Guide',      href: '/free-guide', highlight: true, separator: true },
       { label: 'Health & Safety First',         href: '/survival-guide/health-and-safety' },
       { label: 'Building Your Support Team',    href: '/survival-guide/support-team' },
       { label: 'Communication Strategies',      href: '/survival-guide/communication' },
@@ -85,7 +87,7 @@ const isParentActive = (item: NavItem) =>
       <!-- Desktop links -->
       <ul class="nav-links" role="list">
         {navItems.map(item => (
-          <li class="nav-item">
+          <li class="nav-item" data-dropdown>
             {item.children ? (
               <>
                 <button
@@ -101,12 +103,21 @@ const isParentActive = (item: NavItem) =>
                 <div class="dropdown">
                   <ul role="list" class="dropdown-list">
                     {item.children.map(child => (
-                      <li>
+                      <li class={child.separator ? 'dropdown-separator' : ''}>
                         <a
                           href={child.href}
-                          class={`dropdown-link ${isActive(child.href) ? 'dropdown-link--active' : ''}`}
+                          class:list={[
+                            'dropdown-link',
+                            isActive(child.href) && 'dropdown-link--active',
+                            child.highlight && 'dropdown-link--highlight',
+                          ]}
                           aria-current={isActive(child.href) ? 'page' : undefined}
                         >
+                          {child.highlight && (
+                            <svg class="dropdown-link-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                              <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+                            </svg>
+                          )}
                           {child.label}
                         </a>
                       </li>
@@ -158,11 +169,20 @@ const isParentActive = (item: NavItem) =>
               </button>
               <ul role="list" class="mobile-subnav">
                 {item.children.map(child => (
-                  <li>
+                  <li class={child.separator ? 'mobile-separator' : ''}>
                     <a
                       href={child.href}
-                      class={`mobile-nav-link ${isActive(child.href) ? 'mobile-nav-link--active' : ''}`}
+                      class:list={[
+                        'mobile-nav-link',
+                        isActive(child.href) && 'mobile-nav-link--active',
+                        child.highlight && 'mobile-nav-link--highlight',
+                      ]}
                     >
+                      {child.highlight && (
+                        <svg class="mobile-link-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                          <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+                        </svg>
+                      )}
                       {child.label}
                     </a>
                   </li>
@@ -279,8 +299,9 @@ const isParentActive = (item: NavItem) =>
   position: absolute;
   top: 100%;
   left: 50%;
-  transform: translateX(-50%);
-  min-width: 240px;
+  min-width: 280px;
+  width: max-content;
+  max-width: 340px;
   background: var(--color-ivory);
   border: 1px solid var(--color-border);
   border-radius: 10px;
@@ -289,23 +310,30 @@ const isParentActive = (item: NavItem) =>
   opacity: 0;
   visibility: hidden;
   transform: translateX(-50%) translateY(4px);
-  transition: opacity 0.15s, visibility 0.15s, transform 0.15s;
+  transition: opacity 0.18s ease, visibility 0.18s, transform 0.18s ease;
   pointer-events: none;
-  margin-top: 4px;
 }
 
-/* Show dropdown on hover or when button has aria-expanded=true */
-.nav-item:hover > .dropdown,
-.nav-item:focus-within > .dropdown,
-.nav-link--parent[aria-expanded="true"] + .dropdown {
+/* Invisible bridge: fills the gap between nav button and dropdown
+   so the mouse doesn't lose hover when moving down */
+.dropdown::before {
+  content: '';
+  position: absolute;
+  top: -12px;
+  left: 0;
+  right: 0;
+  height: 12px;
+}
+
+/* Show dropdown — controlled by JS via .is-open class */
+.nav-item.is-open > .dropdown {
   opacity: 1;
   visibility: visible;
   transform: translateX(-50%) translateY(0);
   pointer-events: auto;
 }
 
-.nav-item:hover > .nav-link--parent .nav-chevron,
-.nav-link--parent[aria-expanded="true"] .nav-chevron {
+.nav-item.is-open > .nav-link--parent .nav-chevron {
   transform: rotate(180deg);
 }
 
@@ -315,8 +343,17 @@ const isParentActive = (item: NavItem) =>
   padding: 0;
 }
 
+/* Separator: adds a subtle divider line after an item */
+.dropdown-separator {
+  padding-bottom: 0.35rem;
+  margin-bottom: 0.35rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
 .dropdown-link {
-  display: block;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
   padding: 0.55rem 0.85rem;
   font-size: 0.875rem;
   font-weight: 450;
@@ -325,6 +362,7 @@ const isParentActive = (item: NavItem) =>
   border-radius: 6px;
   transition: color 0.12s, background 0.12s;
   line-height: 1.3;
+  white-space: nowrap;
 }
 .dropdown-link:hover {
   color: var(--color-green-deep);
@@ -333,6 +371,21 @@ const isParentActive = (item: NavItem) =>
 .dropdown-link--active {
   color: var(--color-green-deep);
   font-weight: 600;
+}
+
+/* Highlighted menu item — stands out with amber accent */
+.dropdown-link--highlight {
+  color: var(--color-amber-dark, #a07830);
+  font-weight: 600;
+}
+.dropdown-link--highlight:hover {
+  color: var(--color-amber-dark, #a07830);
+  background: rgba(196, 154, 60, 0.08);
+}
+
+.dropdown-link-icon {
+  flex-shrink: 0;
+  color: var(--color-amber, #c49a3c);
 }
 
 /* ───── CTA ───── */
@@ -444,8 +497,16 @@ const isParentActive = (item: NavItem) =>
   display: block;
 }
 
+.mobile-separator {
+  padding-bottom: 0.35rem;
+  margin-bottom: 0.35rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
 .mobile-nav-link {
-  display: block;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
   padding: 0.5rem 0.75rem 0.5rem 1.5rem;
   font-size: 0.9rem;
   font-weight: 450;
@@ -460,6 +521,21 @@ const isParentActive = (item: NavItem) =>
   color: var(--color-green-deep);
 }
 
+/* Highlighted item in mobile */
+.mobile-nav-link--highlight {
+  color: var(--color-amber-dark, #a07830);
+  font-weight: 600;
+}
+.mobile-nav-link--highlight:hover {
+  background: rgba(196, 154, 60, 0.08);
+  color: var(--color-amber-dark, #a07830);
+}
+
+.mobile-link-icon {
+  flex-shrink: 0;
+  color: var(--color-amber, #c49a3c);
+}
+
 .mobile-nav-cta {
   padding-top: 0.75rem;
 }
@@ -472,7 +548,73 @@ const isParentActive = (item: NavItem) =>
 </style>
 
 <script>
-// Mobile menu toggle
+// ── Desktop dropdown with hover intent (delay before closing) ──
+const OPEN_DELAY = 80;
+const CLOSE_DELAY = 300;
+
+document.querySelectorAll<HTMLElement>('[data-dropdown]').forEach(item => {
+  let openTimer: ReturnType<typeof setTimeout> | null = null;
+  let closeTimer: ReturnType<typeof setTimeout> | null = null;
+
+  const open = () => {
+    if (closeTimer) { clearTimeout(closeTimer); closeTimer = null; }
+    openTimer = setTimeout(() => {
+      // Close any other open dropdowns
+      document.querySelectorAll<HTMLElement>('[data-dropdown].is-open').forEach(other => {
+        if (other !== item) other.classList.remove('is-open');
+      });
+      item.classList.add('is-open');
+    }, OPEN_DELAY);
+  };
+
+  const close = () => {
+    if (openTimer) { clearTimeout(openTimer); openTimer = null; }
+    closeTimer = setTimeout(() => {
+      item.classList.remove('is-open');
+    }, CLOSE_DELAY);
+  };
+
+  item.addEventListener('mouseenter', open);
+  item.addEventListener('mouseleave', close);
+
+  // Also handle click on the parent button (for touch/keyboard)
+  const btn = item.querySelector('.nav-link--parent');
+  btn?.addEventListener('click', () => {
+    const isOpen = item.classList.contains('is-open');
+    document.querySelectorAll<HTMLElement>('[data-dropdown].is-open').forEach(other => {
+      other.classList.remove('is-open');
+    });
+    if (!isOpen) item.classList.add('is-open');
+  });
+
+  // Keep dropdown open while focus is inside (keyboard nav)
+  item.addEventListener('focusin', open);
+  item.addEventListener('focusout', (e) => {
+    const related = (e as FocusEvent).relatedTarget as HTMLElement | null;
+    if (!item.contains(related)) close();
+  });
+});
+
+// Close all dropdowns when clicking outside
+document.addEventListener('click', (e) => {
+  const target = e.target as HTMLElement;
+  if (!target.closest('[data-dropdown]')) {
+    document.querySelectorAll<HTMLElement>('[data-dropdown].is-open').forEach(item => {
+      item.classList.remove('is-open');
+    });
+  }
+});
+
+// Close on Escape
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    document.querySelectorAll<HTMLElement>('[data-dropdown].is-open').forEach(item => {
+      item.classList.remove('is-open');
+    });
+  }
+});
+
+// ── Mobile menu toggle ──
 const toggle = document.getElementById('menu-toggle');
 const menu = document.getElementById('mobile-menu');
 toggle?.addEventListener('click', () => {
@@ -480,25 +622,14 @@ toggle?.addEventListener('click', () => {
   toggle.setAttribute('aria-expanded', String(!!open));
 });
 
-// Mobile accordion toggles
+// ── Mobile accordion toggles ──
 document.querySelectorAll('.mobile-nav-heading:not(.mobile-nav-heading--link)').forEach(btn => {
   btn.addEventListener('click', () => {
     const expanded = btn.getAttribute('aria-expanded') === 'true';
-    // Close all other sections
     document.querySelectorAll('.mobile-nav-heading:not(.mobile-nav-heading--link)').forEach(other => {
       if (other !== btn) other.setAttribute('aria-expanded', 'false');
     });
     btn.setAttribute('aria-expanded', String(!expanded));
   });
-});
-
-// Desktop: close dropdown when clicking outside
-document.addEventListener('click', (e) => {
-  const target = e.target as HTMLElement;
-  if (!target.closest('.nav-item')) {
-    document.querySelectorAll('.nav-link--parent').forEach(btn => {
-      btn.setAttribute('aria-expanded', 'false');
-    });
-  }
 });
 </script>
