@@ -64,18 +64,17 @@
 ---
 
 ### SITE-004 — Connect MailerLite forms
-**Priority:** 🔴 High — waitlist + free guide download is the #1 conversion goal
-**Status:** ⏸️ Waiting on MailerLite account setup
+**Priority:** ✅ Done — 2026-03-02
+**Status:** Complete — forms live, automations created
 
-**What needs doing:**
-1. Create MailerLite account (mailerlite.com — free to 500 contacts)
-2. Create group: "Waitlist — Book"
-3. Create group: "Free Guide Downloads"
-4. Create form embed code → Claude replaces placeholder `<form>` tags in:
-   - `site/src/pages/the-book.astro` (waitlist form)
-   - `site/src/pages/free-guide.astro` (guide download form)
-   - `site/src/pages/community.astro` (notify me form)
-5. Set up welcome email + guide delivery automation
+- MailerLite account: info@loveoverexile.com (Free plan, 500 subscribers)
+- Connected via Composio/Rube MCP (API key auth)
+- Three subscriber groups created: Book Waitlist, Free Guide Downloads, Community Notify
+- Vercel adapter added (hybrid mode) for server-side `/api/subscribe` endpoint
+- Forms wired up on: the-book.astro, free-guide.astro, community.astro
+- Three welcome automations created (triggers set, email content pending in MailerLite dashboard)
+- **Malcolm TODO:** Add `MAILERLITE_API_KEY` env var in Vercel project settings
+- **Malcolm TODO:** Design welcome email content in MailerLite → Automations → activate each
 
 ---
 
@@ -101,19 +100,8 @@
 ---
 
 ### WP-008 — Set up email waitlist / subscription
-**Priority:** 🔴 High — most important conversion action before book launch
-**Status:** ⏸️ Paused — account setup issues. Resume when accounts are ready.
-
-**What needs doing:**
-1. Create Composio account at composio.dev → get API key
-2. Create MailerLite account at mailerlite.com (free tier: 1,000 contacts)
-3. Create Zoho Mail account at mail.zoho.com (to manage loveoverexile.com inboxes via Claude)
-4. I'll write a script to generate Composio MCP URLs for each service
-5. Add MCP servers with `claude mcp add` + authenticate each via browser OAuth
-6. Set up waitlist signup form on homepage and /the-book/ page
-7. Set up welcome/confirmation email
-
-**Note:** Rube MCP is now connected (bearer token auth). MailerLite and Zoho can be connected through Rube once accounts are created.
+**Priority:** ✅ Done — 2026-03-02 (superseded by SITE-004)
+**Status:** Complete — merged into SITE-004 (MailerLite integration)
 
 ---
 
@@ -219,6 +207,13 @@ Confirm URL, access method, whether still in use.
 | — | Book JSON-LD schema added to The Book page | 2026-03-02 |
 | — | Person schema sameAs URLs commented out until social profiles exist | 2026-03-02 |
 | — | Full technical SEO audit — all 17 pages checked (titles, meta, h1, OG, schema) | 2026-03-02 |
+| — | GA4 activated (G-HLYGWZ5HZY) — tracking live | 2026-03-02 |
+| — | GSC domain property added (sc-domain:loveoverexile.com) — DNS verified | 2026-03-02 |
+| — | SerpAPI connected via Composio (100 free searches/month) | 2026-03-02 |
+| — | Email routing fixed after DNS cutover (cPanel Local Mail Exchanger) | 2026-03-02 |
+| — | Old WordPress files cleaned from cPanel hosting (email-only now) | 2026-03-02 |
+| SITE-004 | MailerLite integration — 3 groups, API endpoint, 3 forms wired, 3 automations created | 2026-03-02 |
+| WP-008 | Email waitlist — superseded by SITE-004 | 2026-03-02 |
 
 ---
 
@@ -246,3 +241,5 @@ Confirm URL, access method, whether still in use.
 | 2026-02-28 | Logo added, colours changed to teal/coral. SEO strategy written. Rube MCP fixed (bearer token). |
 | 2026-02-28 | SEO Toolkit created as separate project (github.com/MrSmithNL/seo-toolkit). 8-agent architecture. Love Over Exile = first client. |
 | 2026-03-02 | DNS cutover complete — loveoverexile.com live on Vercel. SEO audit: robots.txt, llms.txt, FAQPage/Article/Book schemas added. GSC + GA4 + SerpAPI OAuth initiated. |
+| 2026-03-02 | GA4 activated (G-HLYGWZ5HZY). GSC domain verified. SerpAPI connected. Email routing fixed. WordPress cleaned up (cPanel email-only). |
+| 2026-03-02 | SITE-004 — MailerLite integration: Vercel adapter, /api/subscribe endpoint, 3 subscriber groups, 3 forms wired, 3 welcome automations. Malcolm TODO: add API key to Vercel + design welcome emails. |
