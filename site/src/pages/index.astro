@@ -180,47 +180,6 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   </section>
 
   <!-- ══════════════════════════════════════════════════════
-       4. ABOUT THE AUTHOR
-  ══════════════════════════════════════════════════════ -->
-  <section class="section">
-    <div class="container">
-      <div class="author-split">
-        <div class="author-image-wrap">
-          <img
-            src="/images/malcolm-smith-author-love-over-exile.jpg"
-            alt="Malcolm Smith, author of Love Over Exile"
-            width="420"
-            height="500"
-            loading="lazy"
-            decoding="async"
-            class="author-photo"
-          />
-        </div>
-        <div class="author-content">
-          <p class="section-label">About the author</p>
-          <h2>Malcolm Smith</h2>
-          <p>
-            Malcolm Smith experienced parental alienation first-hand — the confusion,
-            the grief, the legal maze, and the long, slow work of rebuilding himself
-            while holding on to love for his children.
-          </p>
-          <p>
-            <em>Love Over Exile</em> is not a clinical manual. It is the account of a
-            father who refused to disappear — and what he learned about surviving,
-            staying present, and choosing love over bitterness when everything pushed
-            him toward exile.
-          </p>
-          <blockquote class="pull-quote">
-            "I didn't write this book because I had all the answers.
-            I wrote it because I needed it to exist — and it didn't."
-          </blockquote>
-          <a href="/about" class="btn btn-outline" style="margin-top: 1.5rem;">Read Malcolm's story →</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ══════════════════════════════════════════════════════
        4. THE BOOK
   ══════════════════════════════════════════════════════ -->
   <section class="section section-dark">
@@ -567,21 +526,6 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   font-size: 1.05rem;
 }
 
-/* ── About the Author ─────────────────────────── */
-.author-split {
-  display: grid;
-  grid-template-columns: 420px 1fr;
-  gap: 4rem;
-  align-items: center;
-}
-.author-photo {
-  width: 100%;
-  border-radius: 16px;
-  object-fit: cover;
-  aspect-ratio: 4/5;
-  background: var(--color-border);
-}
-
 /* ── The Book ─────────────────────────────────── */
 .book-split {
   display: grid;
@@ -830,8 +774,6 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 @media (max-width: 1024px) {
   .hero-inner { grid-template-columns: 1fr; gap: 3rem; }
   .hero-image-wrap { display: none; }
-  .author-split { grid-template-columns: 1fr; }
-  .author-image-wrap { display: none; }
   .book-split { grid-template-columns: 1fr; }
   .book-cover-wrap { display: none; }
   .community-split { grid-template-columns: 1fr; }
