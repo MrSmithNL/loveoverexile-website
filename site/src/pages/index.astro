@@ -61,7 +61,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         </p>
       </div>
       <div class="problem-grid">
-        <div class="problem-card">
+        <a href="/understanding" class="problem-card">
           <div class="problem-card-image">
             <img
               src="/images/surviving-parental-alienation.jpg"
@@ -74,9 +74,10 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           </div>
           <div class="problem-card-body">
             <p>Your child suddenly refuses all contact — with no explanation you can understand.</p>
+            <span class="problem-card-link">Understand why →</span>
           </div>
-        </div>
-        <div class="problem-card">
+        </a>
+        <a href="/articles/signs-of-parental-alienation" class="problem-card">
           <div class="problem-card-image">
             <img
               src="/images/surviving-parental-alienation.jpg"
@@ -89,9 +90,10 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           </div>
           <div class="problem-card-body">
             <p>They repeat things that sound like they've been coached — accusations, rejections, silence.</p>
+            <span class="problem-card-link">Recognise the signs →</span>
           </div>
-        </div>
-        <div class="problem-card">
+        </a>
+        <a href="/survival-guide" class="problem-card">
           <div class="problem-card-image">
             <img
               src="/images/surviving-parental-alienation.jpg"
@@ -104,9 +106,10 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           </div>
           <div class="problem-card-body">
             <p>Every legal and therapeutic avenue feels like it moves at a fraction of the pace the damage is done.</p>
+            <span class="problem-card-link">Get practical help →</span>
           </div>
-        </div>
-        <div class="problem-card">
+        </a>
+        <a href="/you-are-not-alone" class="problem-card">
           <div class="problem-card-image">
             <img
               src="/images/surviving-parental-alienation.jpg"
@@ -119,8 +122,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           </div>
           <div class="problem-card-body">
             <p>The people around you don't understand why you can't just "fix it" or "move on."</p>
+            <span class="problem-card-link">You are not alone →</span>
           </div>
-        </div>
+        </a>
       </div>
       <div class="problem-footer">
         <p class="problem-close">
@@ -498,10 +502,15 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   border: 1px solid var(--color-border);
   overflow: hidden;
   transition: box-shadow 0.2s, transform 0.2s;
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
 }
 .problem-card:hover {
   box-shadow: 0 8px 32px rgba(12, 94, 93, 0.10);
   transform: translateY(-2px);
+  color: inherit;
 }
 .problem-card-image {
   aspect-ratio: 3/2;
@@ -515,12 +524,25 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 }
 .problem-card-body {
   padding: 1.25rem 1.25rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
 }
 .problem-card-body p {
   font-size: 0.95rem;
-  margin: 0;
+  margin: 0 0 1rem;
   line-height: 1.6;
   color: var(--color-charcoal);
+  flex: 1;
+}
+.problem-card-link {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--color-amber);
+  transition: color 0.15s;
+}
+.problem-card:hover .problem-card-link {
+  color: var(--color-green-deep);
 }
 .problem-footer {
   text-align: center;
