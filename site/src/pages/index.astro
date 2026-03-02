@@ -136,7 +136,51 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   </section>
 
   <!-- ══════════════════════════════════════════════════════
-       3. ABOUT THE AUTHOR
+       3. YOU ARE NOT ALONE (The Quiet Epidemic)
+  ══════════════════════════════════════════════════════ -->
+  <section class="section section-dark stats-section" id="stats-section">
+    <div class="container" style="text-align:center;">
+      <p class="section-label-light">The quiet epidemic</p>
+      <h2>You Are Not Alone</h2>
+      <p class="stats-subtitle">
+        The isolation you feel is not because this is rare.
+        It's because the world hasn't learned to see it yet.
+      </p>
+      <div class="stats-row">
+        <div class="stat-item">
+          <span class="stat-number" data-target="22" data-suffix="M+">0</span>
+          <span class="stat-label">parents affected in the United States alone</span>
+          <span class="stat-source">Harman, Leder-Elder & Kruk (2019)</span>
+        </div>
+        <div class="stat-divider" aria-hidden="true"></div>
+        <div class="stat-item">
+          <span class="stat-number" data-target="13.4" data-suffix="%" data-decimals="1">0</span>
+          <span class="stat-label">of parents in the U.S. and Canada report being targeted by alienating behaviours</span>
+          <span class="stat-source">Children and Youth Services Review</span>
+        </div>
+        <div class="stat-divider" aria-hidden="true"></div>
+        <div class="stat-item">
+          <span class="stat-number" data-target="39" data-suffix="%">0</span>
+          <span class="stat-label">of separated parents in the UK report experiencing alienating behaviours</span>
+          <span class="stat-source">Dr. Ben Hine (2024)</span>
+        </div>
+        <div class="stat-divider" aria-hidden="true"></div>
+        <div class="stat-item">
+          <span class="stat-number" data-target="69" data-suffix="–81%">0</span>
+          <span class="stat-label">of estranged parent-child relationships eventually reunite</span>
+          <span class="stat-source">Reczek, Stacey & Thomeer (2022)</span>
+        </div>
+      </div>
+      <p class="stats-closing">
+        The research confirms what you already know. This is not a private failure — it is a
+        public health crisis. And there is reason to hold on to hope.
+      </p>
+      <a href="/you-are-not-alone" class="btn btn-outline-light">Read the full research →</a>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════
+       4. ABOUT THE AUTHOR
   ══════════════════════════════════════════════════════ -->
   <section class="section">
     <div class="container">
@@ -274,38 +318,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   </section>
 
   <!-- ══════════════════════════════════════════════════════
-       6. YOU ARE NOT ALONE
-  ══════════════════════════════════════════════════════ -->
-  <section class="section section-dark">
-    <div class="container-narrow" style="text-align:center;">
-      <p class="section-label-light">The scale of this</p>
-      <h2>You Are Not Alone</h2>
-      <div class="stats-row">
-        <div class="stat-item">
-          <span class="stat-number">22M</span>
-          <span class="stat-label">children worldwide affected by parental alienation</span>
-        </div>
-        <div class="stat-divider" aria-hidden="true"></div>
-        <div class="stat-item">
-          <span class="stat-number">1 in 5</span>
-          <span class="stat-label">divorced families report significant alienating behaviours</span>
-        </div>
-        <div class="stat-divider" aria-hidden="true"></div>
-        <div class="stat-item">
-          <span class="stat-number">0</span>
-          <span class="stat-label">mainstream resources combine lived experience, community, and healing</span>
-        </div>
-      </div>
-      <p style="opacity:0.75; margin-bottom:2rem;">
-        The research confirms what you already know in your bones. What most resources
-        miss is the human side — which is exactly why this community exists.
-      </p>
-      <a href="/you-are-not-alone" class="btn btn-outline-light">Read the research →</a>
-    </div>
-  </section>
-
-  <!-- ══════════════════════════════════════════════════════
-       7. FROM THE ARTICLES
+       6. FROM THE ARTICLES
   ══════════════════════════════════════════════════════ -->
   <section class="section">
     <div class="container">
@@ -665,12 +678,20 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 .journey-card:hover .journey-link { color: var(--color-green-deep); }
 
 /* ── Stats ────────────────────────────────────── */
+.stats-subtitle {
+  font-size: 1.1rem;
+  color: rgba(247,243,238,0.75);
+  max-width: 520px;
+  margin-inline: auto;
+  margin-bottom: 0.5rem;
+  line-height: 1.7;
+}
 .stats-row {
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  gap: 2rem;
-  margin: 2.5rem 0 2rem;
+  gap: 2.5rem;
+  margin: 2.5rem 0 2.5rem;
   flex-wrap: wrap;
 }
 .stat-item {
@@ -678,7 +699,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   flex-direction: column;
   align-items: center;
   gap: 0.5rem;
-  max-width: 180px;
+  max-width: 200px;
   text-align: center;
 }
 .stat-number {
@@ -693,12 +714,26 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   color: rgba(247,243,238,0.7);
   line-height: 1.5;
 }
+.stat-source {
+  font-size: 0.7rem;
+  color: rgba(247,243,238,0.35);
+  font-style: italic;
+  margin-top: 0.25rem;
+}
 .stat-divider {
   width: 1px;
   height: 60px;
   background: rgba(247,243,238,0.15);
   align-self: center;
   flex-shrink: 0;
+}
+.stats-closing {
+  font-size: 1rem;
+  color: rgba(247,243,238,0.75);
+  max-width: 560px;
+  margin-inline: auto;
+  margin-bottom: 2rem;
+  line-height: 1.7;
 }
 
 /* ── Articles ─────────────────────────────────── */
@@ -813,3 +848,55 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   .stat-divider { width: 60px; height: 1px; }
 }
 </style>
+
+<script>
+  function animateCountUp() {
+    const section = document.getElementById('stats-section');
+    if (!section) return;
+
+    const numbers = section.querySelectorAll('.stat-number[data-target]');
+    let animated = false;
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting && !animated) {
+          animated = true;
+          numbers.forEach((el) => {
+            const target = parseFloat(el.dataset.target || '0');
+            const suffix = el.dataset.suffix || '';
+            const decimals = parseInt(el.dataset.decimals || '0', 10);
+            const duration = 2000;
+            const start = performance.now();
+
+            function update(now: number) {
+              const elapsed = now - start;
+              const progress = Math.min(elapsed / duration, 1);
+              // Ease-out cubic
+              const eased = 1 - Math.pow(1 - progress, 3);
+              const current = eased * target;
+
+              if (decimals > 0) {
+                el.textContent = current.toFixed(decimals) + suffix;
+              } else {
+                el.textContent = Math.round(current) + suffix;
+              }
+
+              if (progress < 1) {
+                requestAnimationFrame(update);
+              }
+            }
+
+            requestAnimationFrame(update);
+          });
+          observer.disconnect();
+        }
+      });
+    }, { threshold: 0.3 });
+
+    observer.observe(section);
+  }
+
+  document.addEventListener('DOMContentLoaded', animateCountUp);
+  // Also handle Astro view transitions
+  document.addEventListener('astro:page-load', animateCountUp);
+</script>
