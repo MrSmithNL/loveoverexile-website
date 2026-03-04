@@ -1,0 +1,133 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const faqItems = [
+  {
+    q: 'What is Love Over Exile?',
+    a: 'Love Over Exile is a book by Malcolm Smith about surviving parental alienation — and a platform built around it. The website brings together articles, community, and free resources for alienated parents.'
+  },
+  {
+    q: 'When does the book come out?',
+    a: 'The book is in its final stages and will launch soon. Join the waitlist at /the-book to be first to know — and to receive the free Survival Guide while you wait.'
+  },
+  {
+    q: 'Is this a professional or clinical service?',
+    a: 'No. Love Over Exile is a personal platform built by an alienated parent, for alienated parents. Nothing here is legal advice or clinical treatment. For professional support, see the Resources page.'
+  },
+  {
+    q: 'Who runs the community forum?',
+    a: 'Malcolm runs the community with AI-assisted moderation (clearly labelled). For serious or urgent matters, Malcolm is always involved. The AI assistant never handles crisis situations alone.'
+  },
+  {
+    q: 'Is the community free?',
+    a: 'Yes. The community is free to join. The Survival Guide is also free when you sign up.'
+  },
+  {
+    q: 'How do I contact Malcolm?',
+    a: 'Use the Contact page. Malcolm reads every message — response times vary, but nothing is ignored.'
+  },
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqItems.map(item => ({
+    '@type': 'Question',
+    name: item.q,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: item.a,
+    },
+  })),
+};
+---
+
+<BaseLayout
+  title="FAQ — About Love Over Exile"
+  description="Frequently asked questions about Love Over Exile — the book, the website, the community, and how to get involved."
+>
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+
+  <section class="section">
+    <div class="container-narrow">
+      <h1>FAQ — About Love Over Exile</h1>
+      <p class="intro">
+        Questions about the book, this website, the community, and how to get in touch.
+      </p>
+
+      <dl class="faq-list">
+        {faqItems.map(item => (
+          <div class="faq-item">
+            <dt class="faq-q">{item.q}</dt>
+            <dd class="faq-a">{item.a}</dd>
+          </div>
+        ))}
+      </dl>
+
+      <div class="faq-nav">
+        <a href="/faq-parental-alienation" class="btn btn-outline">FAQ about Parental Alienation &rarr;</a>
+      </div>
+
+      <div class="faq-cta">
+        <p>Still have a question?</p>
+        <a href="/contact" class="btn btn-outline">Contact Malcolm &rarr;</a>
+      </div>
+
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+.intro {
+  font-size: 1.05rem;
+  color: var(--color-charcoal-mid);
+  margin-bottom: 3rem;
+}
+
+.faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.faq-item {
+  border-bottom: 1px solid var(--color-border);
+  padding-block: 1.5rem;
+}
+.faq-item:first-child { border-top: 1px solid var(--color-border); }
+
+.faq-q {
+  font-family: var(--font-serif);
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--color-green-deep);
+  margin-bottom: 0.75rem;
+  line-height: 1.35;
+}
+.faq-a {
+  font-size: 0.95rem;
+  color: var(--color-charcoal-mid);
+  line-height: 1.75;
+  margin: 0;
+}
+
+.faq-nav {
+  margin-top: 2.5rem;
+  text-align: center;
+}
+
+.faq-cta {
+  margin-top: 2rem;
+  padding: 2rem;
+  background: var(--color-ivory-alt);
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  text-align: center;
+}
+.faq-cta p {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--color-green-deep);
+  margin-bottom: 1rem;
+}
+</style>
