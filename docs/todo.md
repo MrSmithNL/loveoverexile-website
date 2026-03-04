@@ -64,8 +64,8 @@
 ---
 
 ### SITE-004 — Connect MailerLite forms
-**Priority:** ✅ Done — 2026-03-02 (core integration complete)
-**Status:** Nearly complete — Malcolm needs to activate automations in UI
+**Priority:** ✅ Done — 2026-03-02
+**Status:** Complete — all 3 automations active and sending
 
 - MailerLite account: info@loveoverexile.com (Free plan, 500 subscribers, trial ends 2026-03-14)
 - Connected via Composio/Rube MCP (API key auth)
@@ -77,8 +77,7 @@
 - HTML email templates written: `docs/email-templates/` (3 branded templates)
 - Malcolm created email designs in MailerLite UI for all 3 automations
 - All 3 automation triggers configured via API (subscriber_joins_group → correct group)
-- All 3 automations show `complete: true` with triggers bound
-- **Malcolm action needed:** Go to MailerLite → Automations → toggle each to Active (30 seconds, can't be done via API)
+- All 3 automations enabled and confirmed working (1 email sent each as of 2026-03-04)
 
 ---
 
@@ -103,86 +102,53 @@
 
 ---
 
-### WP-008 — Set up email waitlist / subscription
-**Priority:** ✅ Done — 2026-03-02 (superseded by SITE-004)
-**Status:** Complete — merged into SITE-004 (MailerLite integration)
-
----
-
-### WP-002 — Set up content drafting and publishing workflow
-**Priority:** ✅ Done — 2026-02-27
-**See:** `docs/content-workflow.md`
-
-**What was built:**
-- `content/pages/` and `content/posts/` folder structure
-- `scripts/push-to-wordpress.py` — pushes any Markdown file to WordPress as a draft
-- Privacy Policy drafted, pushed, and **published** → loveoverexile.com/privacy-policy/
-- Full workflow documented in `docs/content-workflow.md`
-
----
-
-### WP-009 — SEO foundation setup
-**Priority:** 🔴 High — before any real content goes live
-**Status:** ⏭️ Moved to SEO Toolkit project
-
-SEO is now managed by a separate standalone project: `~/Claude Code/Projects/seo-toolkit/`
-GitHub: `github.com/MrSmithNL/seo-toolkit` (private)
-
-This includes 8 dedicated agents: Audit, Keywords, Content Optimizer, Rank Tracker, Content Writer, Link Builder, AI Discovery, Reporter.
-
-**Keyword strategy:** documented in `docs/seo-strategy.md` (this repo).
-**Full SEO roadmap:** see `seo-toolkit/docs/todo.md`.
-
----
-
-### WP-005 — Write and publish real content (all pages)
+### SITE-007 — Write and publish real content (all pages)
 **Priority:** 🔴 High
-**Depends on:** WP-002 (workflow), WP-009 (SEO setup)
 **See:** `docs/site-structure.md` for full page list and implementation order
 
 **Implementation order:**
-1. Privacy Policy — legal requirement, must be live before email capture
-2. The Book page — waitlist signup
-3. Home — redesigned with book focus
-4. Understanding What's Happening — highest SEO value
-5. Malcolm's Story — author credibility
-6. Survival Guide — practical value
-7. Inner Freedom — Part 3 content
-8. Articles/Blog — start publishing content
-9. Community/Forum — bbPress setup
+1. ~~Privacy Policy~~ ✅
+2. ~~The Book page~~ ✅
+3. ~~Home~~ ✅
+4. ~~Understanding What's Happening~~ ✅
+5. ~~Malcolm's Story~~ ✅
+6. ~~Survival Guide~~ ✅
+7. ~~Inner Freedom~~ ✅
+8. Articles/Blog — continue publishing content
+9. Community/Forum — forum integration
 10. Resources — reading list
 
 ---
 
-### WP-010 — Forum setup (bbPress)
+### SITE-008 — Forum / community setup
 **Priority:** 🟡 Medium
-**Depends on:** WP-005 (site content established first)
+**Depends on:** SITE-007 (site content established first)
 
 **What needs doing:**
-- Install bbPress plugin
+- Choose forum approach for Astro (embedded Discourse, custom, or third-party)
 - Set up forum categories mirroring site sections
 - Configure moderation (Malcolm as moderator)
 - Create /community/forum/ page
 
 ---
 
-### WP-011 — Social media content pipeline
+### SITE-009 — Social media content pipeline
 **Priority:** 🟡 Medium
-**Depends on:** WP-005 (content exists first)
+**Depends on:** SITE-007 (content exists first)
 
 **What needs doing:**
 Every article structured with: key quote (LinkedIn/Instagram), summary paragraph (newsletter), 5-point list (LinkedIn carousel). Design article template to make repurposing systematic.
 
 ---
 
-### WP-003 — Document VPS and domain registrar details
+### SITE-010 — Document VPS and domain registrar details
 **Priority:** 🟡 Medium
 
 Malcolm to confirm: VPS provider name + control panel URL, domain registrar. Update `docs/accounts-and-access.md`.
 
 ---
 
-### WP-004 — Confirm Open WebUI setup and access
+### SITE-011 — Confirm Open WebUI setup and access
 **Priority:** 🟢 Low
 
 Confirm URL, access method, whether still in use.
@@ -199,10 +165,12 @@ Confirm URL, access method, whether still in use.
 | — | Bitwarden set up with 2FA | 2026-02-27 |
 | — | WordPress REST API connected and tested | 2026-02-27 |
 | — | File write/edit permissions configured in settings.json | 2026-02-27 |
-| WP-001 | WordPress site structure mapped → `docs/site-map.md` | 2026-02-27 |
+| WP-001 | WordPress site structure mapped → `docs/site-map.md` (pre-Astro) | 2026-02-27 |
+| WP-002 | Content workflow built — push script + folder structure (pre-Astro) | 2026-02-27 |
 | WP-006 | Book manuscript read in full + memory file written → `memory/book-summary.md` | 2026-02-27 |
 | WP-007 | Real site structure designed → `docs/site-structure.md` | 2026-02-27 |
-| WP-002 | Content workflow built — push script + folder structure → `docs/content-workflow.md` | 2026-02-27 |
+| WP-008 | Email waitlist — superseded by SITE-004 (MailerLite) | 2026-03-02 |
+| WP-009 | SEO foundation — moved to SEO Toolkit project (PROD-001) | 2026-02-28 |
 | SITE-006 | DNS cutover — loveoverexile.com live on Vercel (GoDaddy → Vercel) | 2026-03-02 |
 | — | robots.txt created (all crawlers + AI bots, sitemap reference) | 2026-03-02 |
 | — | llms.txt created (AI discovery file — site structure, topics, author) | 2026-03-02 |
@@ -217,7 +185,7 @@ Confirm URL, access method, whether still in use.
 | — | Email routing fixed after DNS cutover (cPanel Local Mail Exchanger) | 2026-03-02 |
 | — | Old WordPress files cleaned from cPanel hosting (email-only now) | 2026-03-02 |
 | SITE-004 | MailerLite integration — 3 groups, API endpoint, 3 forms wired, 3 automations created | 2026-03-02 |
-| WP-008 | Email waitlist — superseded by SITE-004 | 2026-03-02 |
+| SITE-004 | MailerLite automations all active and sending | 2026-03-04 |
 | — | MailerLite welcome emails parked — domain auth issue, HTML templates written in docs/email-templates/ | 2026-03-02 |
 | — | MailerLite automation triggers configured via API (all 3 bound to groups, complete: true) | 2026-03-02 |
 | — | Hub pages filled: Understanding (Part I), Survival Guide (Part II), Inner Freedom (Part III) — all with full content | 2026-03-02 |
