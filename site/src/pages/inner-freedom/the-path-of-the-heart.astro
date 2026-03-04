@@ -50,6 +50,15 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     </div>
   </section>
 
+  <!-- Image break -->
+  <div class="container-narrow">
+    <figure class="image-placeholder">
+      <div class="placeholder-box" role="img" aria-label="A forest path at dawn with light breaking through the trees">
+        <span class="placeholder-label">Image: A forest path at dawn — light breaking through trees</span>
+      </div>
+    </figure>
+  </div>
+
   <!-- The shift inward -->
   <section class="section section-alt">
     <div class="container-narrow prose">
@@ -185,6 +194,15 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     </div>
   </section>
 
+  <!-- Image break -->
+  <div class="container-narrow">
+    <figure class="image-placeholder">
+      <div class="placeholder-box" role="img" aria-label="A single candle flame glowing in darkness">
+        <span class="placeholder-label">Image: A single candle flame in darkness</span>
+      </div>
+    </figure>
+  </div>
+
   <!-- The quiet power of surrender -->
   <section class="section">
     <div class="container-narrow prose">
@@ -268,6 +286,15 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
       </p>
     </div>
   </section>
+
+  <!-- Image break -->
+  <div class="container-narrow">
+    <figure class="image-placeholder">
+      <div class="placeholder-box" role="img" aria-label="Still water reflecting sky and clouds at dusk">
+        <span class="placeholder-label">Image: Still water reflecting sky and clouds</span>
+      </div>
+    </figure>
+  </div>
 
   <!-- The alchemy of loss -->
   <section class="section">
@@ -446,6 +473,27 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
   gap: 1rem;
   justify-content: center;
   flex-wrap: wrap;
+}
+
+/* Image placeholders */
+.image-placeholder {
+  margin: 2rem 0;
+}
+.placeholder-box {
+  background: linear-gradient(135deg, #e8e4df 0%, #d4cfc8 100%);
+  border-radius: 12px;
+  aspect-ratio: 16 / 7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px dashed rgba(0,0,0,0.12);
+}
+.placeholder-label {
+  font-size: 0.82rem;
+  color: rgba(0,0,0,0.35);
+  font-style: italic;
+  text-align: center;
+  padding: 1rem;
 }
 
 @media (max-width: 640px) {

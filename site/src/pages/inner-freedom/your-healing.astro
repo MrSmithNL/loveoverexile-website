@@ -48,6 +48,15 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     </div>
   </section>
 
+  <!-- Image break -->
+  <div class="container-narrow">
+    <figure class="image-placeholder">
+      <div class="placeholder-box" role="img" aria-label="Hands holding a small seedling growing from dark soil">
+        <span class="placeholder-label">Image: Hands holding a seedling growing from soil</span>
+      </div>
+    </figure>
+  </div>
+
   <!-- The hierarchy of healing -->
   <section class="section section-alt">
     <div class="container-narrow prose">
@@ -146,6 +155,15 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     </div>
   </section>
 
+  <!-- Image break -->
+  <div class="container-narrow">
+    <figure class="image-placeholder">
+      <div class="placeholder-box" role="img" aria-label="A lighthouse standing on a rocky coastline at sunset">
+        <span class="placeholder-label">Image: A lighthouse on a rocky coast at sunset</span>
+      </div>
+    </figure>
+  </div>
+
   <!-- The grief that never resolves -->
   <section class="section section-alt">
     <div class="container-narrow prose">
@@ -227,6 +245,15 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     </div>
   </section>
 
+  <!-- Image break -->
+  <div class="container-narrow">
+    <figure class="image-placeholder">
+      <div class="placeholder-box" role="img" aria-label="A winding stone path through a peaceful garden">
+        <span class="placeholder-label">Image: A winding stone path through a garden</span>
+      </div>
+    </figure>
+  </div>
+
   <!-- Constructive grief vs rumination -->
   <section class="section section-alt">
     <div class="container-narrow prose">
@@ -305,6 +332,15 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
       </blockquote>
     </div>
   </section>
+
+  <!-- Image break -->
+  <div class="container-narrow">
+    <figure class="image-placeholder">
+      <div class="placeholder-box" role="img" aria-label="Morning light streaming through a window onto an empty room">
+        <span class="placeholder-label">Image: Morning light through a window</span>
+      </div>
+    </figure>
+  </div>
 
   <!-- Facing yourself -->
   <section class="section section-alt">
@@ -513,6 +549,27 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
   gap: 1rem;
   justify-content: center;
   flex-wrap: wrap;
+}
+
+/* Image placeholders */
+.image-placeholder {
+  margin: 2rem 0;
+}
+.placeholder-box {
+  background: linear-gradient(135deg, #e8e4df 0%, #d4cfc8 100%);
+  border-radius: 12px;
+  aspect-ratio: 16 / 7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px dashed rgba(0,0,0,0.12);
+}
+.placeholder-label {
+  font-size: 0.82rem;
+  color: rgba(0,0,0,0.35);
+  font-style: italic;
+  text-align: center;
+  padding: 1rem;
 }
 
 @media (max-width: 640px) {

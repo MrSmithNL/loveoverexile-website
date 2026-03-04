@@ -47,6 +47,15 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     </div>
   </section>
 
+  <!-- Image break -->
+  <div class="container-narrow">
+    <figure class="image-placeholder">
+      <div class="placeholder-box" role="img" aria-label="A notebook and pen on a weathered wooden desk beside a window">
+        <span class="placeholder-label">Image: A notebook and pen on a weathered desk by a window</span>
+      </div>
+    </figure>
+  </div>
+
   <!-- Frankl -->
   <section class="section section-alt">
     <div class="container-narrow prose">
@@ -150,6 +159,15 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     </div>
   </section>
 
+  <!-- Image break -->
+  <div class="container-narrow">
+    <figure class="image-placeholder">
+      <div class="placeholder-box" role="img" aria-label="Kintsugi pottery — broken ceramic repaired with gold">
+        <span class="placeholder-label">Image: Kintsugi pottery — broken ceramic repaired with gold</span>
+      </div>
+    </figure>
+  </div>
+
   <!-- The paradox -->
   <section class="section section-alt">
     <div class="container-narrow prose">
@@ -240,6 +258,15 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
       </p>
     </div>
   </section>
+
+  <!-- Image break -->
+  <div class="container-narrow">
+    <figure class="image-placeholder">
+      <div class="placeholder-box" role="img" aria-label="Dawn light breaking over a wide horizon">
+        <span class="placeholder-label">Image: Dawn light breaking over a horizon</span>
+      </div>
+    </figure>
+  </div>
 
   <!-- Where to go from here -->
   <section class="section section-alt">
@@ -343,6 +370,27 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
   line-height: 1.6;
   color: var(--color-charcoal-mid);
   display: block;
+}
+
+/* Image placeholders */
+.image-placeholder {
+  margin: 2rem 0;
+}
+.placeholder-box {
+  background: linear-gradient(135deg, #e8e4df 0%, #d4cfc8 100%);
+  border-radius: 12px;
+  aspect-ratio: 16 / 7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px dashed rgba(0,0,0,0.12);
+}
+.placeholder-label {
+  font-size: 0.82rem;
+  color: rgba(0,0,0,0.35);
+  font-style: italic;
+  text-align: center;
+  padding: 1rem;
 }
 
 @media (max-width: 768px) {

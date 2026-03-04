@@ -46,6 +46,15 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     </div>
   </section>
 
+  <!-- Image break -->
+  <div class="container-narrow">
+    <figure class="image-placeholder">
+      <div class="placeholder-box" role="img" aria-label="A still lake reflecting mountains at dawn">
+        <span class="placeholder-label">Image: A still lake reflecting mountains at dawn</span>
+      </div>
+    </figure>
+  </div>
+
   <!-- What it is and is not -->
   <section class="section section-alt">
     <div class="container-narrow prose">
@@ -155,6 +164,15 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     </div>
   </section>
 
+  <!-- Image break -->
+  <div class="container-narrow">
+    <figure class="image-placeholder">
+      <div class="placeholder-box" role="img" aria-label="A single balanced stone on rocks beside calm water">
+        <span class="placeholder-label">Image: A balanced stone on rocks by calm water</span>
+      </div>
+    </figure>
+  </div>
+
   <!-- DBT principles -->
   <section class="section section-alt">
     <div class="container-narrow prose">
@@ -236,6 +254,15 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
       </p>
     </div>
   </section>
+
+  <!-- Image break -->
+  <div class="container-narrow">
+    <figure class="image-placeholder">
+      <div class="placeholder-box" role="img" aria-label="An open road through a landscape at sunrise">
+        <span class="placeholder-label">Image: An open road through a landscape at sunrise</span>
+      </div>
+    </figure>
+  </div>
 
   <!-- Daily practice -->
   <section class="section section-alt">
@@ -392,6 +419,27 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
   line-height: 1.6;
   color: var(--color-charcoal-mid);
   display: block;
+}
+
+/* Image placeholders */
+.image-placeholder {
+  margin: 2rem 0;
+}
+.placeholder-box {
+  background: linear-gradient(135deg, #e8e4df 0%, #d4cfc8 100%);
+  border-radius: 12px;
+  aspect-ratio: 16 / 7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px dashed rgba(0,0,0,0.12);
+}
+.placeholder-label {
+  font-size: 0.82rem;
+  color: rgba(0,0,0,0.35);
+  font-style: italic;
+  text-align: center;
+  padding: 1rem;
 }
 
 @media (max-width: 768px) {

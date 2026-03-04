@@ -122,6 +122,17 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     </div>
   </section>
 
+  <!-- Image break -->
+  <section class="section" style="padding-block: 0;">
+    <div class="container-narrow">
+      <figure class="image-placeholder">
+        <div class="placeholder-box" role="img" aria-label="A path leading through open fields toward distant mountains at golden hour">
+          <span class="placeholder-label">Image: A path through open fields toward distant mountains</span>
+        </div>
+      </figure>
+    </div>
+  </section>
+
   <!-- The deeper question -->
   <section class="section">
     <div class="container-narrow prose">
@@ -325,6 +336,27 @@ a.path-card:hover {
   font-size: 0.82rem;
   color: var(--color-warm-grey);
   margin-top: 0.5rem;
+}
+
+/* Image placeholders */
+.image-placeholder {
+  margin: 2rem 0;
+}
+.placeholder-box {
+  background: linear-gradient(135deg, #e8e4df 0%, #d4cfc8 100%);
+  border-radius: 12px;
+  aspect-ratio: 16 / 7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px dashed rgba(0,0,0,0.12);
+}
+.placeholder-label {
+  font-size: 0.82rem;
+  color: rgba(0,0,0,0.35);
+  font-style: italic;
+  text-align: center;
+  padding: 1rem;
 }
 
 @media (max-width: 900px) {
