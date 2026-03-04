@@ -55,14 +55,14 @@ const faqSchema = {
         Questions about the book, this website, the community, and how to get in touch.
       </p>
 
-      <dl class="faq-list">
+      <div class="faq-list">
         {faqItems.map(item => (
-          <div class="faq-item">
-            <dt class="faq-q">{item.q}</dt>
-            <dd class="faq-a">{item.a}</dd>
-          </div>
+          <details class="faq-item">
+            <summary class="faq-q">{item.q}</summary>
+            <p class="faq-a">{item.a}</p>
+          </details>
         ))}
-      </dl>
+      </div>
 
       <div class="faq-nav">
         <a href="/faq-parental-alienation" class="btn btn-outline">FAQ about Parental Alienation &rarr;</a>
@@ -92,7 +92,6 @@ const faqSchema = {
 }
 .faq-item {
   border-bottom: 1px solid var(--color-border);
-  padding-block: 1.5rem;
 }
 .faq-item:first-child { border-top: 1px solid var(--color-border); }
 
@@ -101,14 +100,33 @@ const faqSchema = {
   font-size: 1.05rem;
   font-weight: 600;
   color: var(--color-green-deep);
-  margin-bottom: 0.75rem;
   line-height: 1.35;
+  cursor: pointer;
+  padding: 1.5rem 2rem 1.5rem 0;
+  list-style: none;
+  position: relative;
+}
+.faq-q::-webkit-details-marker { display: none; }
+.faq-q::after {
+  content: '+';
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.3rem;
+  font-weight: 400;
+  color: var(--color-green-deep);
+  transition: transform 0.2s;
+}
+.faq-item[open] .faq-q::after {
+  content: '−';
 }
 .faq-a {
   font-size: 0.95rem;
   color: var(--color-charcoal-mid);
   line-height: 1.75;
   margin: 0;
+  padding: 0 0 1.5rem;
 }
 
 .faq-nav {
