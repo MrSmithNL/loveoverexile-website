@@ -75,8 +75,11 @@ const navItems: NavItem[] = [
 ];
 
 const currentPath = Astro.url.pathname;
-const isActive = (href: string) =>
-  href === '/' ? currentPath === '/' : currentPath.startsWith(href);
+const isActive = (href: string) => {
+  if (href === '/') return currentPath === '/';
+  // Exact match or match followed by / to prevent /inner-freedom matching /inner-freedom/soul-awareness
+  return currentPath === href || currentPath.startsWith(href + '/');
+};
 const isParentActive = (item: NavItem) =>
   item.children?.some(child => isActive(child.href)) ?? false;
 ---
