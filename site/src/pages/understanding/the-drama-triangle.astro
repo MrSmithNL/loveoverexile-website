@@ -138,8 +138,8 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
         <strong>Signature behaviours:</strong> gatekeeping access and
         information, creating the "Golden Parent" narrative, and projecting
         their own abusive behaviours onto you.
-        <a href="/understanding/the-alienating-parent">Read the full profile &rarr;</a>
       </p>
+      <a href="/understanding/the-alienating-parent" class="profile-btn">Read the full profile &rarr;</a>
     </div>
   </section>
 
@@ -187,8 +187,8 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
       <p>
         The child's rejection is a survival strategy, not a free choice — a
         domestic form of Stockholm Syndrome.
-        <a href="/understanding/the-child">Read the full profile &rarr;</a>
       </p>
+      <a href="/understanding/the-child" class="profile-btn">Read the full profile &rarr;</a>
     </div>
   </section>
 
@@ -232,9 +232,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
           </p>
         </div>
       </div>
-      <p>
-        <a href="/understanding/the-alienated-parent">Read the full profile &rarr;</a>
-      </p>
+      <a href="/understanding/the-alienated-parent" class="profile-btn">Read the full profile &rarr;</a>
     </div>
   </section>
 
@@ -261,8 +259,8 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
         "contaminated." The trauma is intergenerational — grandparents watch
         their adult child suffer while simultaneously losing their own
         connection to their grandchildren.
-        <a href="/understanding/affected-family">Read more &rarr;</a>
       </p>
+      <a href="/understanding/affected-family" class="profile-btn">Read more &rarr;</a>
 
       <div class="role-header" style="margin-top:2.5rem;">
         <span class="role-number">5</span>
@@ -296,8 +294,8 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
         rather than challenging it. Psychologist Jennifer Freyd coined the term
         <em>institutional betrayal</em> to describe the trauma inflicted when
         a system fails to protect the person dependent on it.
-        <a href="/understanding/institutions">Read more &rarr;</a>
       </p>
+      <a href="/understanding/institutions" class="profile-btn">Read more &rarr;</a>
     </div>
   </section>
 
@@ -468,6 +466,24 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
   font-size: 0.86rem;
   line-height: 1.65;
   color: var(--color-charcoal-mid);
+}
+
+/* Profile buttons */
+.profile-btn {
+  display: inline-block;
+  padding: 0.6rem 1.4rem;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--color-green-deep);
+  border: 2px solid var(--color-green-deep);
+  border-radius: 6px;
+  text-decoration: none;
+  transition: background 0.2s, color 0.2s;
+  margin-top: 0.5rem;
+}
+.profile-btn:hover {
+  background: var(--color-green-deep);
+  color: white;
 }
 
 /* Pull quote */
