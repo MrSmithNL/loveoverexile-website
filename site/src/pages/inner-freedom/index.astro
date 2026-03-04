@@ -49,7 +49,25 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
         destroyed by it. These are the stages — not linear, not neat, but real.
       </p>
       <div class="path-grid">
-        <div class="path-card card">
+        <a href="/inner-freedom/the-path-of-the-heart" class="path-card card">
+          <h3>The Path of the Heart</h3>
+          <p>
+            Moving beyond survival to true inner freedom. The spiritual dimension of
+            recovery — acceptance, surrender, meaning, and the discovery of your true
+            self beneath the roles and stories.
+          </p>
+          <span class="card-link">Read more &rarr;</span>
+        </a>
+        <a href="/inner-freedom/your-healing" class="path-card card">
+          <h3>Your Healing</h3>
+          <p>
+            The architecture of recovery: survival first, then stabilisation, then deep
+            healing. Judith Herman's safety-first model, Pauline Boss's six steps of
+            resilience, and the slow, messy path back to yourself.
+          </p>
+          <span class="card-link">Read more &rarr;</span>
+        </a>
+        <a href="/inner-freedom/radical-acceptance" class="path-card card">
           <h3>Radical Acceptance</h3>
           <p>
             Dr Marsha Linehan's foundational insight: suffering equals pain multiplied by
@@ -57,8 +75,9 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
             acknowledging reality as it is — the precondition for ending the unnecessary
             layer of suffering that resistance adds to genuine pain.
           </p>
-        </div>
-        <div class="path-card card">
+          <span class="card-link">Read more &rarr;</span>
+        </a>
+        <a href="/inner-freedom/finding-meaning" class="path-card card">
           <h3>Finding Meaning</h3>
           <p>
             Viktor Frankl survived the concentration camps and concluded that meaning can be
@@ -66,17 +85,9 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
             connection (beauty and love you can still receive), and through attitude (how
             you choose to carry your suffering). This applies directly.
           </p>
-        </div>
-        <div class="path-card card">
-          <h3>Surrender</h3>
-          <p>
-            Not giving up — but releasing the need to control the outcome. Malcolm describes
-            the moment he stopped fighting the situation and started allowing it to transform
-            him. What followed was not defeat. It was the most profound experience of
-            unconditional love he had ever known.
-          </p>
-        </div>
-        <div class="path-card card">
+          <span class="card-link">Read more &rarr;</span>
+        </a>
+        <a href="/inner-freedom/ambiguous-loss" class="path-card card">
           <h3>Ambiguous Loss</h3>
           <p>
             Dr Pauline Boss named the grief that has no closure. Your child is alive but
@@ -85,8 +96,9 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
             identity, normalising ambivalence, revising attachment, discovering new hope —
             are the map through this territory.
           </p>
-        </div>
-        <div class="path-card card">
+          <span class="card-link">Read more &rarr;</span>
+        </a>
+        <a href="/inner-freedom/rebuilding-identity" class="path-card card">
           <h3>Rebuilding Identity</h3>
           <p>
             When your identity as a parent is stripped away, who are you? The answer is not
@@ -94,8 +106,9 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
             are more than this single role — and that the person you are becoming through
             this suffering is someone worth knowing.
           </p>
-        </div>
-        <div class="path-card card">
+          <span class="card-link">Read more &rarr;</span>
+        </a>
+        <a href="/inner-freedom/unconditional-love" class="path-card card">
           <h3>Unconditional Love</h3>
           <p>
             The ultimate choice. Love that is not conditional on being loved back. Love that
@@ -103,7 +116,8 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
             is a discipline, a daily decision, and the beating heart of what it means to
             choose love over exile.
           </p>
-        </div>
+          <span class="card-link">Read more &rarr;</span>
+        </a>
       </div>
     </div>
   </section>
@@ -118,8 +132,10 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
       </blockquote>
       <p>
         Most resources on parental alienation focus on the external battle: legal strategies,
-        custody evaluations, therapeutic interventions. These matter — enormously. Part II
-        of this site covers them in detail.
+        custody evaluations, therapeutic interventions. These matter — enormously.
+        <a href="/survival-guide">Part II of this site</a> covers them in detail, including
+        the <a href="/survival-guide/pa-trauma">PA Trauma Model</a> and
+        <a href="/survival-guide/health-and-safety">Health &amp; Safety</a> guidance.
       </p>
       <p>
         But there is a question that legal strategies cannot answer and therapy alone
@@ -249,8 +265,14 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
   grid-template-columns: repeat(3, 1fr);
   gap: 1.5rem;
 }
-.path-card {
+a.path-card {
   padding: 2rem;
+  text-decoration: none;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+a.path-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
 }
 .path-card h3 {
   font-size: 1.1rem;
@@ -261,6 +283,14 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
   font-size: 0.92rem;
   line-height: 1.7;
   color: var(--color-charcoal);
+}
+.card-link {
+  display: inline-block;
+  margin-top: 0.75rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--color-green-deep);
+  letter-spacing: 0.02em;
 }
 
 .articles-preview { max-width: 680px; }
