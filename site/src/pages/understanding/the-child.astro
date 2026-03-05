@@ -58,6 +58,9 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
           loading="lazy"
         />
       </a>
+      <figcaption>
+        The Alienated Child: Systemic Conditioning, Survival and Response Model — an original model from <a href="/the-book">Love Over Exile</a>
+      </figcaption>
     </figure>
   </div>
 
@@ -238,6 +241,16 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
   transition: opacity 0.15s;
 }
 .model-image a:hover img { opacity: 0.9; }
+.model-image figcaption {
+  text-align: center;
+  font-size: 0.82rem;
+  color: var(--color-charcoal-mid);
+  margin-top: 0.75rem;
+  font-style: italic;
+}
+.model-image figcaption a {
+  color: var(--color-green-deep);
+}
 
 /* Card grid */
 .child-grid {
