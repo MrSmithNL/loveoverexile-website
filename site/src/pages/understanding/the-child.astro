@@ -45,6 +45,19 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     </div>
   </section>
 
+  <!-- Model image -->
+  <div class="container-narrow">
+    <figure class="model-image">
+      <img
+        src="/images/alienated-child-systemic-conditioning-model.png"
+        alt="The Alienated Child: Systemic Conditioning Survival and Response Model — showing external conditioning and manifestations, internal loyalty conflict and survival responses, and the long-term cost of alienation"
+        width="1200"
+        height="675"
+        loading="lazy"
+      />
+    </figure>
+  </div>
+
   <!-- The impossible position -->
   <section class="section section-alt">
     <div class="container-narrow prose">
@@ -330,6 +343,16 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
   gap: 1rem;
   justify-content: center;
   flex-wrap: wrap;
+}
+
+.model-image {
+  margin: 2.5rem 0;
+}
+.model-image img {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  display: block;
 }
 
 @media (max-width: 700px) {

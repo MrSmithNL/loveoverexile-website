@@ -55,6 +55,16 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
         relationship between you and the things that occupy your mind.
       </p>
 
+      <figure class="model-image">
+        <img
+          src="/images/alienated-parent-sphere-of-influence.png"
+          alt="The Alienated Parent Sphere of Influence model — three concentric circles showing Circle of Control (inner), Circle of Influence (middle), and Circle of Concern (outer), with specific actions and areas mapped to each level"
+          width="1169"
+          height="1014"
+          loading="lazy"
+        />
+      </figure>
+
       <div class="sphere-grid">
         <div class="sphere-card card sphere-control">
           <div class="sphere-label">Inner circle</div>
@@ -332,6 +342,16 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
   gap: 1rem;
   justify-content: center;
   flex-wrap: wrap;
+}
+
+.model-image {
+  margin: 2.5rem 0;
+}
+.model-image img {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  display: block;
 }
 
 @media (max-width: 768px) {

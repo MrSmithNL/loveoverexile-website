@@ -45,6 +45,19 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     </div>
   </section>
 
+  <!-- Model image -->
+  <div class="container-narrow">
+    <figure class="model-image">
+      <img
+        src="/images/alienating-parent-machine-of-erasure-model.png"
+        alt="The Machine of Erasure model — showing the alienating parent's motive and fuel at the centre, surrounded by manipulation strategies and methods, escalation patterns, and the objective results including the child as independent phenomenon and the targeted parent's erasure"
+        width="992"
+        height="957"
+        loading="lazy"
+      />
+    </figure>
+  </div>
+
   <!-- What drives alienating behaviour -->
   <section class="section section-alt">
     <div class="container-narrow prose">
@@ -287,6 +300,15 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
   font-size: 0.95rem;
   line-height: 1.7;
   color: var(--color-charcoal);
+}
+.model-image {
+  margin: 2.5rem 0;
+}
+.model-image img {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  display: block;
 }
 .cta-links {
   display: flex;
