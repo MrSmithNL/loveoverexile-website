@@ -51,86 +51,30 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     <div class="container-narrow prose">
       <h2>The Sphere of Influence</h2>
       <p>
-        When everything feels out of control, the mind instinctively fixates on the things
-        you cannot change: court rulings, the alienator's lies, your child's current
-        hostility. The more energy you pour into these uncontrollable forces, the more
-        powerless you feel.
+        When everything feels out of control, your mind instinctively fixates on things
+        you cannot change — court rulings, the alienator's lies, your child's current
+        hostility. The more energy you pour into these, the more powerless you feel.
       </p>
       <p>
-        A core principle in resilience is understanding your Sphere of Influence. It is
-        a framework for redirecting your energy where it actually makes a difference.
-        Imagine three concentric circles:
-      </p>
-
-      <div class="sphere-grid">
-        <div class="sphere-card card">
-          <h3>Circle of Control</h3>
-          <p>
-            This is where you have full control — your behaviour, your responses,
-            your integrity, your health, your boundaries, and your choices.
-          </p>
-          <p class="sphere-action">
-            <strong>How to use it:</strong> Invest your energy here first. Regulate
-            yourself before responding. Act legally and consistently. Protect your
-            physical and mental health. When everything else feels unstable, this
-            circle is your anchor. Your conduct becomes your evidence, and your
-            steadiness becomes your strength.
-          </p>
-        </div>
-        <div class="sphere-card card">
-          <h3>Circle of Influence</h3>
-          <p>
-            This is where you have some effect through your actions, but not control
-            over outcomes. It includes your child's long-term perception, professional
-            opinions, extended family dynamics, and how the broader narrative evolves.
-          </p>
-          <p class="sphere-action">
-            <strong>How to use it:</strong> Think long-term. Influence is built through
-            credibility, patience, and consistency — not force. You cannot make someone
-            see differently today, but your steady behaviour plants seeds. Operate
-            strategically, not reactively.
-          </p>
-        </div>
-        <div class="sphere-card card">
-          <h3>Circle of Concern</h3>
-          <p>
-            This includes the other parent's behaviour, institutional delays, court
-            decisions, and your child's immediate choices. These are realities that
-            may deeply affect you but are not directly within your power.
-          </p>
-          <p class="sphere-action">
-            <strong>How to use it:</strong> Practise conscious acceptance. Acceptance
-            is not agreement — it is refusing to waste energy fighting what you cannot
-            control. By releasing this circle, you free strength for where you still
-            have agency.
-          </p>
-        </div>
-      </div>
-
-      <h3>The trap</h3>
-      <p>
-        The trap is the mind's natural tendency to spiral into the Circle of Concern.
-        You spend hours obsessing over legal strategies, imagining conversations that
-        have not happened, or asking "Why?" about the past. This is cognitive exhaustion.
-        It feels like work, but it produces nothing except more anxiety.
+        The Sphere of Influence is a framework that distinguishes between three circles:
+        what you can <strong>control</strong> (your behaviour, health, and choices),
+        what you can <strong>influence</strong> (your child's long-term perception,
+        professional opinions), and what you can only <strong>accept</strong> (the
+        other parent's behaviour, court timelines, your child's immediate choices).
       </p>
       <p>
-        Reclaiming your power means gently redirecting your focus — again and again —
-        back to your Sphere of Influence. This is not denial; it is the disciplined
-        stewardship of your limited energy. You need to be able to tell yourself,
-        "I am safe today. I am okay this week." You do not need perfect answers about
-        the future; you just need "good enough" answers to soothe your mind today.
-        Let the professionals — your lawyer, mediator, therapist — carry the weight
-        of the strategy. Your job is to steward your own sanity.
+        Redirecting your energy from the outer circle to the inner one is one of the
+        most powerful survival skills in this entire guide.
       </p>
-
-      <blockquote class="pull-quote">
-        "When you catch yourself obsessing about something in the outer circle —
-        and you will, regularly — gently redirect your attention inward. 'What can
-        I actually do right now, in this moment, that is within my control?' That
-        question, asked honestly and repeatedly, is one of the most powerful survival
-        tools you have."
-      </blockquote>
+      <a href="/survival-guide/sphere-of-influence" class="sphere-link-card card">
+        <h3>Read the full Sphere of Influence guide</h3>
+        <p>
+          The three circles explained in detail — how to use each one, the trap of
+          spiralling into the Circle of Concern, and a daily practice for reclaiming
+          your energy.
+        </p>
+        <span class="card-link">Read more &rarr;</span>
+      </a>
     </div>
   </section>
 
@@ -419,28 +363,38 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
   margin-bottom: 1.5rem;
 }
 
-.sphere-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.25rem;
-  margin-block: 2rem;
+a.sphere-link-card {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  padding: 2rem;
+  margin-top: 1.5rem;
+  transition: border-color 0.15s, box-shadow 0.15s;
 }
-.sphere-card { padding: 1.5rem; }
-.sphere-card h3 {
-  font-size: 0.95rem;
+a.sphere-link-card:hover {
+  border-color: var(--color-green-deep);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+}
+a.sphere-link-card h3 {
+  font-size: 1.1rem;
   margin-bottom: 0.5rem;
   color: var(--color-green-deep);
 }
-.sphere-card p {
-  font-size: 0.88rem;
-  line-height: 1.65;
+a.sphere-link-card p {
+  font-size: 0.92rem;
+  line-height: 1.7;
   color: var(--color-charcoal);
 }
-.sphere-action {
-  margin-top: 0.75rem;
+.card-link {
+  display: inline-block;
+  margin-top: auto;
   padding-top: 0.75rem;
-  border-top: 1px solid var(--color-border);
   font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-amber);
+}
+a.sphere-link-card:hover .card-link {
+  color: var(--color-green-deep);
 }
 
 .journal-grid {
