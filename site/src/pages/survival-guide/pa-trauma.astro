@@ -66,7 +66,8 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
   <!-- Dimension One -->
   <section class="section section-alt">
     <div class="container-narrow prose">
-      <h2>Dimension One: The Four Core Wounds</h2>
+      <p class="dimension-label">Dimension One</p>
+      <h2>The Four Core Wounds</h2>
       <p class="dimension-subtitle">The invisible depths of the primary wound</p>
       <p>
         These are not linear stages to be completed or transcended. They are
@@ -140,7 +141,8 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
   <!-- Dimension Two -->
   <section class="section">
     <div class="container-narrow prose">
-      <h2>Dimension Two: The 8 Compounding Factors</h2>
+      <p class="dimension-label">Dimension Two</p>
+      <h2>The 8 Compounding Factors</h2>
       <p class="dimension-subtitle">Why the pain becomes unbearable</p>
       <p>
         If Dimension One describes what is lost, Dimension Two describes the
@@ -568,6 +570,13 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
   line-height: 1.75;
   color: var(--color-charcoal);
   margin-bottom: 1.5rem;
+}
+.dimension-label {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.05rem;
+  color: var(--color-amber);
+  margin-bottom: 0.15rem;
 }
 .dimension-subtitle {
   font-style: italic;
