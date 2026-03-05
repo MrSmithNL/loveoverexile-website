@@ -3,8 +3,8 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
 ---
 
 <BaseLayout
-  title="Weaponising Institutions — Legal System, Therapy, and False Allegations"
-  description="How alienating parents weaponise the legal system, therapy, and child protective services. False allegations as the nuclear option. When institutions become participants in the abuse."
+  title="Weaponising Institutions — Legal System, Therapy, and Child Protective Services"
+  description="How alienating parents weaponise the legal system, therapy, and child protective services. When the institutions designed to protect your child become participants in the erasure."
 >
 
   <!-- Hero -->
@@ -114,84 +114,6 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
     </div>
   </section>
 
-  <!-- False allegations -->
-  <section class="section">
-    <div class="container-narrow prose">
-      <h2>False allegations: the nuclear option</h2>
-      <p>
-        Of all the weapons in the alienator's arsenal, false allegations are the
-        most devastating. They are easy to make, extraordinarily effective, and
-        the damage they cause is often permanent — regardless of the outcome.
-      </p>
-
-      <h3>Why they work</h3>
-      <p>
-        The moment an allegation is made, the system enters a "freeze" —
-        supervised contact, suspended visits, investigations that can take
-        months. During this freeze, the alienation programme operates
-        unchallenged. The child is told that the targeted parent did something
-        terrible. By the time the allegation is found to be unfounded, the
-        programming has had months to harden.
-      </p>
-
-      <h3>Three paths to a false accusation</h3>
-      <p>
-        Warshak identifies three distinct mechanisms through which false
-        allegations arise:
-      </p>
-      <div class="paths-grid">
-        <div class="path-card card">
-          <h4>Conscious fabrication</h4>
-          <p>
-            The alienating parent knowingly invents an allegation. This is the
-            rarest form but the most discussed — and the most clearly criminal.
-          </p>
-        </div>
-        <div class="path-card card">
-          <h4>Misinterpretation magnified</h4>
-          <p>
-            A real event — a bruise from playing, a child's casual remark — is
-            reinterpreted through the lens of the alienator's narrative and
-            amplified into something sinister. The alienator may genuinely believe
-            their interpretation.
-          </p>
-        </div>
-        <div class="path-card card">
-          <h4>Implanted memory</h4>
-          <p>
-            The child is repeatedly exposed to a version of events until their
-            brain records it as genuine memory. Elizabeth Loftus's research
-            demonstrates that children's memories are highly malleable — and
-            that a trusted adult can implant memories of events that never
-            occurred.
-          </p>
-        </div>
-      </div>
-
-      <h3>Timing as a diagnostic</h3>
-      <p>
-        Clinicians note a critical distinction: genuine allegations of abuse
-        typically emerge early — at or near the time of the alleged event.
-        Weaponised allegations appear later, often when the alienating parent
-        is losing control — when you file for more custody time, when the court
-        orders increased contact, or when the child begins to reconnect with you.
-        The timing itself is diagnostic.
-      </p>
-
-      <div class="callout-box">
-        <p class="callout-label">The data</p>
-        <p>
-          Canadian research shows that false allegations triple during contested
-          custody disputes. Sexual abuse allegations — statistically rare (under
-          2% of all allegations) — carry disproportionate impact because the
-          system must investigate them seriously, regardless of the source. The
-          alienator knows this. The allegation is designed not to be proven, but
-          to trigger a process that does the damage for them.
-        </p>
-      </div>
-    </div>
-  </section>
-
   <!-- The systemic problem -->
   <section class="section section-alt">
     <div class="container-narrow prose">
@@ -241,12 +163,12 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
     <div class="container-narrow">
       <h2>Where to go from here</h2>
       <p style="opacity:0.85; margin-bottom:2rem; max-width:580px; margin-inline:auto;">
-        Understanding the weaponisation of institutions prepares you to navigate
-        them strategically. The final piece is understanding the spectrum of
-        alienation — from unconscious to deliberate.
+        When institutional weaponisation is not enough, some alienators escalate
+        to the ultimate weapon. The next page explores false allegations — the
+        nuclear option — and why they are so devastatingly effective.
       </p>
       <div class="next-links">
-        <a href="/understanding/the-alienating-parent/conscious-vs-unconscious" class="btn btn-primary">Conscious vs Unconscious Alienation</a>
+        <a href="/understanding/the-alienating-parent/the-nuclear-option" class="btn btn-primary">The Nuclear Option</a>
         <a href="/understanding/the-alienating-parent" class="btn btn-outline-light">Back to The Alienating Parent</a>
       </div>
     </div>
@@ -305,53 +227,10 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
   line-height: 1.7;
   color: var(--color-charcoal);
 }
-.paths-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.25rem;
-  margin-block: 1.5rem;
-}
-.path-card { padding: 1.25rem; }
-.path-card h4 {
-  font-size: 0.9rem;
-  color: var(--color-green-deep);
-  margin-bottom: 0.5rem;
-}
-.path-card p {
-  font-size: 0.85rem;
-  line-height: 1.6;
-  color: var(--color-charcoal);
-  margin: 0;
-}
-.callout-box {
-  background: var(--color-ivory);
-  border: 1px solid var(--color-border);
-  border-left: 4px solid var(--color-amber);
-  border-radius: 8px;
-  padding: 1.5rem 2rem;
-  margin-top: 2rem;
-}
-.callout-label {
-  font-size: 0.82rem;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--color-amber);
-  margin-bottom: 0.5rem;
-}
-.callout-box > p:last-child {
-  margin-bottom: 0;
-  font-size: 0.95rem;
-  line-height: 1.7;
-  color: var(--color-charcoal);
-}
 .next-links {
   display: flex;
   gap: 1rem;
   justify-content: center;
   flex-wrap: wrap;
-}
-@media (max-width: 700px) {
-  .paths-grid { grid-template-columns: 1fr; }
 }
 </style>
