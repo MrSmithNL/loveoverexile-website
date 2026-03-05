@@ -95,6 +95,28 @@ a:hover { color: var(--color-green-deep); }
   color: var(--color-ivory);
 }
 
+.section-dark-mid {
+  background-color: var(--color-green-mid);
+  color: var(--color-ivory);
+}
+.section-dark-mid h1,
+.section-dark-mid h2,
+.section-dark-mid h3,
+.section-dark-mid h4 {
+  color: var(--color-ivory);
+}
+
+.section-dark-light {
+  background-color: #2aadac;
+  color: var(--color-ivory);
+}
+.section-dark-light h1,
+.section-dark-light h2,
+.section-dark-light h3,
+.section-dark-light h4 {
+  color: var(--color-ivory);
+}
+
 .section-alt {
   background-color: var(--color-ivory-alt);
 }
