@@ -45,56 +45,60 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
       <p class="section-eyebrow">Topics covered</p>
       <h2 class="section-heading">What you'll find here</h2>
       <div class="topics-grid">
-        <div class="topic-card card">
+        <a href="/understanding/the-child/recognising-alienation" class="topic-card card">
           <h3>The Signs</h3>
           <p>
             How to distinguish deliberate alienation from normal post-separation conflict.
             Gardner's eight behavioural manifestations, the Five-Factor Model, and what
             to watch for in your child's words and behaviour.
           </p>
-          <a href="/articles/signs-of-parental-alienation" class="topic-link">Read the article →</a>
-        </div>
-        <div class="topic-card card">
+          <span class="topic-link">Read more &rarr;</span>
+        </a>
+        <a href="/understanding/the-drama-triangle" class="topic-card card">
           <h3>The System</h3>
           <p>
             Alienation is not a one-person act. It involves the alienating parent, the child,
             enablers, extended family, and — too often — the professional system itself.
             Understanding who plays what role changes everything.
           </p>
-        </div>
-        <div class="topic-card card">
+          <span class="topic-link">Read more &rarr;</span>
+        </a>
+        <a href="/understanding/the-alienating-parent/bakers-17-strategies" class="topic-card card">
           <h3>The Tactics</h3>
           <p>
             The 17 tactics of alienation identified by Dr Amy Baker — from badmouthing and
             gatekeeping to loyalty traps and identity manipulation. Recognising them is the
             first step to countering them.
           </p>
-        </div>
-        <div class="topic-card card">
+          <span class="topic-link">Read more &rarr;</span>
+        </a>
+        <a href="/you-are-not-alone" class="topic-card card">
           <h3>The Research</h3>
           <p>
             What peer-reviewed studies actually show: the scale of the problem (22 million
             children affected), long-term harm to children, and why the legal system
             consistently falls behind the science.
           </p>
-          <a href="/you-are-not-alone" class="topic-link">See the data →</a>
-        </div>
-        <div class="topic-card card">
+          <span class="topic-link">See the data &rarr;</span>
+        </a>
+        <a href="/understanding/the-child" class="topic-card card">
           <h3>The Child's Experience</h3>
           <p>
             Your child is not choosing this freely. The Systemic Conditioning Model explains
             how external pressure creates an internal survival crisis — forcing psychological
             splitting as a coping mechanism, not a genuine preference.
           </p>
-        </div>
-        <div class="topic-card card">
+          <span class="topic-link">Read more &rarr;</span>
+        </a>
+        <a href="/survival-guide/pa-trauma" class="topic-card card">
           <h3>The Trauma</h3>
           <p>
             The 2D Alienation Trauma Pain Model maps the targeted parent's suffering across
             four levels of heartbreak and eight amplification factors. Understanding your
             own pain is not self-indulgence — it is survival.
           </p>
-        </div>
+          <span class="topic-link">Read more &rarr;</span>
+        </a>
       </div>
     </div>
   </section>
@@ -207,8 +211,17 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
   grid-template-columns: repeat(3, 1fr);
   gap: 1.5rem;
 }
-.topic-card {
+a.topic-card {
   padding: 2rem;
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+a.topic-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
 }
 .topic-card h3 {
   font-size: 1.15rem;
@@ -220,14 +233,13 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
   line-height: 1.7;
   color: var(--color-charcoal);
   margin-bottom: 0.75rem;
+  flex: 1;
 }
 .topic-link {
   font-size: 0.85rem;
   font-weight: 600;
-  color: var(--color-amber);
-  text-decoration: none;
+  color: var(--color-green-deep);
 }
-.topic-link:hover { color: var(--color-green-deep); }
 
 .articles-preview {
   max-width: 680px;
