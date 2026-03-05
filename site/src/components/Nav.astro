@@ -151,6 +151,13 @@ const isParentActive = (item: NavItem) =>
         ))}
       </ul>
 
+      <!-- Search trigger -->
+      <button class="nav-search-btn" id="search-trigger" type="button" aria-label="Search the site">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>
+        </svg>
+      </button>
+
       <!-- CTA -->
       <a href="/free-guide" class="btn btn-primary nav-cta">
         Get the Free Guide
@@ -401,6 +408,26 @@ const isParentActive = (item: NavItem) =>
   color: var(--color-green-deep);
 }
 
+/* ───── Search button ───── */
+.nav-search-btn {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: none;
+  background: none;
+  color: var(--color-green-deep);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: color 0.15s, background 0.15s;
+}
+.nav-search-btn:hover {
+  color: #074544;
+  background: rgba(12, 94, 93, 0.08);
+}
+
 /* ───── CTA ───── */
 .nav-cta {
   flex-shrink: 0;
@@ -557,6 +584,7 @@ const isParentActive = (item: NavItem) =>
 @media (max-width: 1024px) {
   .nav-links, .nav-cta { display: none; }
   .hamburger { display: flex; }
+  .nav-search-btn { margin-left: auto; }
 }
 </style>
 
@@ -624,6 +652,13 @@ document.addEventListener('keydown', (e) => {
     document.querySelectorAll<HTMLElement>('[data-dropdown].is-open').forEach(item => {
       item.classList.remove('is-open');
     });
+  }
+});
+
+// ── Search trigger ──
+document.getElementById('search-trigger')?.addEventListener('click', () => {
+  if (typeof (window as any).__openSearch === 'function') {
+    (window as any).__openSearch();
   }
 });
 

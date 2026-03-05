@@ -2,6 +2,7 @@
 import '../styles/global.css';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
+import SearchModal from '../components/SearchModal.astro';
 
 interface Props {
   title: string;
@@ -108,9 +109,10 @@ const orgSchema = {
 </head>
 <body>
   <Nav />
-  <main id="main-content">
+  <main id="main-content" data-pagefind-body>
     <slot />
   </main>
   <Footer />
+  <SearchModal />
 </body>
 </html>
