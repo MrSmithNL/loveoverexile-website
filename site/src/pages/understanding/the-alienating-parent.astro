@@ -48,13 +48,15 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
   <!-- Model image -->
   <div class="container-narrow">
     <figure class="model-image">
-      <img
-        src="/images/alienating-parent-machine-of-erasure-model.png"
-        alt="The Machine of Erasure model — showing the alienating parent's motive and fuel at the centre, surrounded by manipulation strategies and methods, escalation patterns, and the objective results including the child as independent phenomenon and the targeted parent's erasure"
-        width="992"
-        height="957"
-        loading="lazy"
-      />
+      <a href="/images/alienating-parent-machine-of-erasure-model.png" target="_blank" rel="noopener" aria-label="View full-size Machine of Erasure model">
+        <img
+          src="/images/alienating-parent-machine-of-erasure-model.png"
+          alt="The Machine of Erasure model — showing the alienating parent's motive and fuel at the centre, surrounded by manipulation strategies and methods, escalation patterns, and the objective results including the child as independent phenomenon and the targeted parent's erasure"
+          width="992"
+          height="957"
+          loading="lazy"
+        />
+      </a>
     </figure>
   </div>
 
@@ -304,11 +306,19 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 .model-image {
   margin: 2.5rem 0;
 }
+.model-image a {
+  display: block;
+  cursor: zoom-in;
+}
 .model-image img {
   width: 100%;
   height: auto;
   border-radius: 12px;
   display: block;
+  transition: opacity 0.15s;
+}
+.model-image a:hover img {
+  opacity: 0.9;
 }
 .cta-links {
   display: flex;

@@ -56,13 +56,15 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
       </p>
 
       <figure class="model-image">
-        <img
-          src="/images/alienated-parent-sphere-of-influence.png"
-          alt="The Alienated Parent Sphere of Influence model — three concentric circles showing Circle of Control (inner), Circle of Influence (middle), and Circle of Concern (outer), with specific actions and areas mapped to each level"
-          width="1169"
-          height="1014"
-          loading="lazy"
-        />
+        <a href="/images/alienated-parent-sphere-of-influence.png" target="_blank" rel="noopener" aria-label="View full-size Sphere of Influence model">
+          <img
+            src="/images/alienated-parent-sphere-of-influence.png"
+            alt="The Alienated Parent Sphere of Influence model — three concentric circles showing Circle of Control (inner), Circle of Influence (middle), and Circle of Concern (outer), with specific actions and areas mapped to each level"
+            width="1169"
+            height="1014"
+            loading="lazy"
+          />
+        </a>
       </figure>
 
       <div class="sphere-grid">
@@ -347,11 +349,19 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 .model-image {
   margin: 2.5rem 0;
 }
+.model-image a {
+  display: block;
+  cursor: zoom-in;
+}
 .model-image img {
   width: 100%;
   height: auto;
   border-radius: 12px;
   display: block;
+  transition: opacity 0.15s;
+}
+.model-image a:hover img {
+  opacity: 0.9;
 }
 
 @media (max-width: 768px) {
