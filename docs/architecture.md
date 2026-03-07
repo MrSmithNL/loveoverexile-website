@@ -159,7 +159,7 @@ Preview at wp-admin link
 ```
 
 Scripts: `scripts/generate-images.py`
-Skill: `~/.claude/skills/loe-image-generator/SKILL.md`
+Skill: `~/.claude/skills/website-image-generator/SKILL.md`
 Optimisation targets: 16:9 backgrounds < 150 KB, cards < 90 KB, inline < 90 KB, mobile hero < 100 KB
 
 ---

@@ -68,7 +68,7 @@ Commit + push → auto-deploy
 5. **Add to page** — Reference the image in the relevant Astro page with proper alt text (80-125 characters, descriptive, keyword-natural). See alt text standards in `docs/seo-strategy.md`.
 6. **Deploy** — Commit and push. Vercel auto-deploys with the new image.
 
-**Skill available:** `~/.claude/skills/loe-image-generator/SKILL.md` — check this before generating images.
+**Skill available:** `~/.claude/skills/website-image-generator/SKILL.md` — check this before generating images.
 
 ---
 

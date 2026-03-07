@@ -59,7 +59,7 @@
 - `og-default.jpg` — 1200×630 Open Graph default
 
 **How:** Claude runs `scripts/generate-images.py` with new prompts for each
-(See loe-image-generator skill)
+(See website-image-generator skill)
 
 ---
 
@@ -207,7 +207,7 @@ Confirm URL, access method, whether still in use.
 | 2026-02-27 | WP-002 — Content workflow built. Push script works. Privacy Policy pushed to WP as draft. |
 | 2026-02-27 | Rube MCP broken (auth changed). Removed from config. WP-008 paused — Composio/MailerLite/Zoho accounts needed. |
 | 2026-02-27 | WP-005 — Started writing real site content (The Book page, Home page). |
-| 2026-02-27 | WP-005 — Home page: LOE text content + 13 AI images (Imagen 4, web-optimised) pushed as draft. loe-image-generator skill created. |
+| 2026-02-27 | WP-005 — Home page: LOE text content + 13 AI images (Imagen 4, web-optimised) pushed as draft. website-image-generator skill created. |
 | 2026-02-27 | WP-005 — Malcolm's Story page: About Us (ID 1887) fully replaced with LOE content — all 6 sections, 53 replacements. Script: scripts/replace-about-us.py |
 | 2026-02-28 | Major pivot: Abandoned WordPress/Avada. Decision to build from scratch with Astro. |
 | 2026-02-28 | Competitor analysis, SEO/social research, community strategy research. Design brief written. |

@@ -11,7 +11,7 @@ Standards:
 - No watermarks: Imagen 4 does not add watermarks
 - Section-specific prompts: every image tailored to its placement
 
-See ~/.claude/skills/loe-image-generator/SKILL.md for full documentation.
+See ~/.claude/skills/website-image-generator/SKILL.md for full documentation.
 """
 
 import os
