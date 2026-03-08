@@ -4533,3 +4533,226 @@ figure {
   margin: 5mm 0;
   break-inside: avoid;
 }
+
+/* --------------------------------------------------------------------------
+   95. ABOUT/BIO PAGE
+   -------------------------------------------------------------------------- */
+
+.page-bio {
+  break-before: page;
+  padding: 20mm;
+  text-align: center;
+}
+
+.bio-photo-frame {
+  width: 40mm;
+  height: 40mm;
+  border-radius: 50%;
+  overflow: hidden;
+  margin: 0 auto 8mm;
+  border: 3px solid var(--gold);
+}
+
+.bio-photo-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.bio-name {
+  font-family: var(--font-heading);
+  font-size: 22pt;
+  font-weight: 700;
+  color: var(--sage-dark);
+  margin-bottom: 3mm;
+}
+
+.bio-tagline {
+  font-family: var(--font-heading);
+  font-size: 12pt;
+  font-style: italic;
+  color: var(--sage);
+  margin-bottom: 8mm;
+}
+
+.bio-text {
+  max-width: 130mm;
+  margin: 0 auto 8mm;
+  font-size: 10.5pt;
+  line-height: 1.7;
+  text-align: justify;
+  color: var(--text);
+}
+
+.bio-links {
+  display: flex;
+  justify-content: center;
+  gap: 8mm;
+  margin-top: 8mm;
+}
+
+.bio-link {
+  font-family: var(--font-body);
+  font-size: 9pt;
+  font-weight: 700;
+  color: var(--teal);
+  text-transform: uppercase;
+  letter-spacing: 1pt;
+  text-decoration: none;
+  padding: 2mm 5mm;
+  border: 1.5px solid var(--teal);
+  border-radius: 3px;
+}
+
+/* --------------------------------------------------------------------------
+   96. REFERENCE COLUMNS — Two-column resource layout
+   -------------------------------------------------------------------------- */
+
+.reference-columns {
+  column-count: 2;
+  column-gap: 8mm;
+  column-rule: 0.5pt solid var(--border-light);
+  margin: 5mm 0;
+}
+
+.reference-columns p {
+  text-align: justify;
+  hyphens: auto;
+}
+
+.reference-columns h3 {
+  column-span: all;
+}
+
+.reference-card {
+  display: flex;
+  gap: 3mm;
+  padding: 3mm 5mm;
+  background: var(--white);
+  border: 1px solid var(--border-light);
+  border-left: 3px solid var(--teal);
+  margin-bottom: 2mm;
+  break-inside: avoid;
+  font-size: 9pt;
+}
+
+.reference-card-icon {
+  font-family: 'FA6Solid';
+  font-weight: 900;
+  font-size: 12pt;
+  color: var(--teal);
+  width: 8mm;
+  flex-shrink: 0;
+  text-align: center;
+  padding-top: 1mm;
+}
+
+.reference-card-content {
+  flex: 1;
+}
+
+.reference-card-content strong {
+  display: block;
+  font-size: 9.5pt;
+  margin-bottom: 0.5mm;
+}
+
+.reference-card-content p {
+  font-size: 8.5pt;
+  margin: 0;
+  color: var(--text-light);
+  text-align: left;
+}
+
+/* --------------------------------------------------------------------------
+   97. ANGLED SECTIONS — Diagonal transitions using gradients
+   -------------------------------------------------------------------------- */
+
+.angled-section-teal {
+  position: relative;
+  background: var(--teal);
+  color: var(--white);
+  padding: 12mm 25mm;
+  margin: 8mm -20mm;
+}
+
+.angled-section-teal::before {
+  content: "";
+  position: absolute;
+  top: -15mm;
+  left: 0;
+  right: 0;
+  height: 15mm;
+  background: linear-gradient(
+    to bottom right,
+    var(--bg-cream) 49.5%,
+    var(--teal) 50%
+  );
+}
+
+.angled-section-teal::after {
+  content: "";
+  position: absolute;
+  bottom: -15mm;
+  left: 0;
+  right: 0;
+  height: 15mm;
+  background: linear-gradient(
+    to top left,
+    var(--bg-cream) 49.5%,
+    var(--teal) 50%
+  );
+}
+
+.angled-section-teal h3 { color: var(--white); margin-top: 0; }
+.angled-section-teal p { color: rgba(255,255,255,0.9); }
+.angled-section-teal strong { color: var(--white); }
+
+.angled-section-gold {
+  position: relative;
+  background: var(--gold-light);
+  padding: 12mm 25mm;
+  margin: 8mm -20mm;
+}
+
+.angled-section-gold::before {
+  content: "";
+  position: absolute;
+  top: -12mm;
+  left: 0; right: 0;
+  height: 12mm;
+  background: linear-gradient(
+    to bottom right,
+    var(--bg-cream) 49.5%,
+    var(--gold-light) 50%
+  );
+}
+
+.angled-section-gold::after {
+  content: "";
+  position: absolute;
+  bottom: -12mm;
+  left: 0; right: 0;
+  height: 12mm;
+  background: linear-gradient(
+    to top left,
+    var(--bg-cream) 49.5%,
+    var(--gold-light) 50%
+  );
+}
+
+/* --------------------------------------------------------------------------
+   98. GRID-12 FLEXIBLE GRID
+   -------------------------------------------------------------------------- */
+
+.grid-12 {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5mm;
+  margin: 5mm 0;
+}
+
+.col-4 { flex: 0 0 calc(33.333% - 4mm); min-width: 45mm; }
+.col-6 { flex: 0 0 calc(50% - 3mm); min-width: 65mm; }
+.col-8 { flex: 0 0 calc(66.666% - 2mm); min-width: 90mm; }
+.col-12 { flex: 0 0 100%; }

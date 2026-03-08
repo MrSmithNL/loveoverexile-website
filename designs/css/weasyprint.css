@@ -1,0 +1,247 @@
+/* ==========================================================================
+   WEASYPRINT.CSS — Paged Media Features (WeasyPrint Only)
+
+   Features that ONLY work in WeasyPrint:
+   - @page rules with :left/:right pseudo-classes
+   - Named pages (page: cover, page: chapter, etc.)
+   - Running headers via string-set / content(string)
+   - Page counters in margin boxes (@top-left, @bottom-center)
+   - Float: footnote
+   - Target-counter for TOC page numbers
+
+   Import order: base.css → weasyprint.css
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   PAGE RULES
+   -------------------------------------------------------------------------- */
+
+@page {
+  size: A4;
+  margin: 22mm 20mm 28mm 20mm;
+  background: var(--bg-cream);
+
+  /* Branded circle page numbers */
+  @bottom-center {
+    content: counter(page);
+    font-family: 'Inter', sans-serif;
+    font-size: 8pt;
+    font-weight: 700;
+    color: var(--white);
+    background: var(--teal);
+    width: 8mm;
+    height: 8mm;
+    line-height: 8mm;
+    text-align: center;
+    border-radius: 50%;
+  }
+
+  /* Thin gradient colour bar in top margin */
+  @top-center {
+    content: "";
+    background: linear-gradient(90deg, var(--teal), var(--gold), var(--teal));
+    height: 0.5mm;
+    width: 100%;
+    opacity: 0.6;
+  }
+}
+
+@page :left {
+  margin-left: var(--margin-outside);
+  margin-right: var(--margin-inside);
+
+  @top-left {
+    content: string(booktitle);
+    font-family: 'Inter', sans-serif;
+    font-size: 7.5pt;
+    color: var(--sage-muted);
+    letter-spacing: 0.5pt;
+    text-transform: uppercase;
+    border-bottom: 0.5pt solid var(--border-light);
+    padding-bottom: 4pt;
+  }
+}
+
+@page :right {
+  margin-left: var(--margin-inside);
+  margin-right: var(--margin-outside);
+
+  @top-right {
+    content: string(section);
+    font-family: 'Inter', sans-serif;
+    font-size: 7.5pt;
+    color: var(--sage-muted);
+    letter-spacing: 0.5pt;
+    border-bottom: 0.5pt solid var(--border-light);
+    padding-bottom: 4pt;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   NAMED PAGES
+   -------------------------------------------------------------------------- */
+
+/* Cover — full bleed, no headers */
+@page cover {
+  margin: 0;
+  background:
+    linear-gradient(180deg, transparent 0%, transparent 40%, rgba(7,68,67,0.7) 60%, rgba(7,68,67,0.95) 100%),
+    var(--teal-dark);
+  @top-left { content: none; }
+  @top-center { content: none; background: none; }
+  @top-right { content: none; }
+  @bottom-center { content: none; background: none; }
+}
+
+/* Chapter opener — teal background */
+@page chapter {
+  background:
+    radial-gradient(ellipse at 85% 15%, rgba(226,72,12,0.08) 0%, transparent 50%),
+    radial-gradient(ellipse at 10% 90%, rgba(255,255,255,0.06) 0%, transparent 40%),
+    linear-gradient(160deg, #074443 0%, #0C5E5D 40%, #074443 100%);
+  margin: 0;
+  @top-left { content: none; }
+  @top-center { content: none; background: none; }
+  @top-right { content: none; }
+  @bottom-center { content: none; background: none; }
+}
+
+/* Clean page — no running headers (TOC, author note, bio) */
+@page clean {
+  @top-left { content: none; }
+  @top-center { content: none; background: none; }
+  @top-right { content: none; }
+}
+
+/* Full bleed image page */
+@page fullbleed {
+  margin: 0;
+  background: black;
+  @top-left { content: none; }
+  @top-center { content: none; background: none; }
+  @top-right { content: none; }
+  @bottom-center { content: none; background: none; }
+}
+
+/* Photo overlay page */
+@page photo-overlay {
+  margin: 0;
+  @top-left { content: none; }
+  @top-center { content: none; background: none; }
+  @top-right { content: none; }
+  @bottom-center { content: none; background: none; }
+}
+
+/* Stat/impact page */
+@page stat-page {
+  margin: 0;
+  background: linear-gradient(160deg, #074443 0%, #0C5E5D 50%, #074443 100%);
+  @top-left { content: none; }
+  @top-center { content: none; background: none; }
+  @top-right { content: none; }
+  @bottom-center { content: none; background: none; }
+}
+
+/* Split layout page */
+@page split-page {
+  margin: 0;
+  background: var(--bg-cream);
+  @top-left { content: none; }
+  @top-center { content: none; background: none; }
+  @top-right { content: none; }
+  @bottom-center { content: none; background: none; }
+}
+
+/* Back cover */
+@page backcover {
+  margin: 0;
+  background: var(--sage-dark);
+  @top-left { content: none; }
+  @top-center { content: none; background: none; }
+  @top-right { content: none; }
+  @bottom-center { content: none; background: none; }
+}
+
+/* Bio page — clean, no running headers */
+@page bio {
+  @top-left { content: none; }
+  @top-center { content: none; background: none; }
+  @top-right { content: none; }
+}
+
+/* Blank pages */
+@page :blank {
+  @top-left { content: none; }
+  @top-center { content: none; background: none; }
+  @top-right { content: none; }
+  @bottom-center { content: none; background: none; }
+}
+
+/* --------------------------------------------------------------------------
+   PAGE ASSIGNMENTS
+   -------------------------------------------------------------------------- */
+
+.cover { page: cover; }
+.chapter-opener { page: chapter; }
+.toc { page: clean; }
+.author-note { page: clean; }
+.photo-page { page: photo-overlay; }
+.stat-page { page: stat-page; }
+.split-layout { page: split-page; }
+.back-cover { page: backcover; }
+.page-bio { page: bio; }
+.disclaimer { page: clean; }
+
+/* --------------------------------------------------------------------------
+   RUNNING HEADERS — String-set
+   -------------------------------------------------------------------------- */
+
+h1 { string-set: booktitle content(); }
+h2 { string-set: section content(); }
+.chapter-title { string-set: section content(); }
+
+/* --------------------------------------------------------------------------
+   TOC — Auto page numbers via target-counter()
+   -------------------------------------------------------------------------- */
+
+.toc-auto li.toc-part a::after {
+  content: target-counter(attr(href), page);
+  float: right;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  color: var(--sage);
+  font-size: 10pt;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.toc-auto li.toc-chapter a::after {
+  content: leader('.') ' ' target-counter(attr(href), page);
+  font-family: var(--font-heading);
+  font-weight: 700;
+  color: var(--sage);
+}
+
+/* --------------------------------------------------------------------------
+   FOOTNOTE SYSTEM
+   -------------------------------------------------------------------------- */
+
+.footnote {
+  float: footnote;
+  font-size: 8pt;
+  line-height: 1.4;
+  color: var(--text-light);
+}
+
+.footnote::footnote-call {
+  font-size: 7pt;
+  vertical-align: super;
+  color: var(--teal);
+  font-weight: 700;
+}
+
+.footnote::footnote-marker {
+  font-size: 7pt;
+  color: var(--teal);
+  font-weight: 700;
+}

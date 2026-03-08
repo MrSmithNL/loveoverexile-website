@@ -1,0 +1,1537 @@
+/* ==========================================================================
+   BASE.CSS — Shared Ebook Design System Core
+   Works in both WeasyPrint and Playwright (Chromium)
+
+   This is the dual-target architecture core. It contains:
+   - Design tokens (CSS custom properties)
+   - Typography system
+   - All 8 page type templates
+   - 4 CSS Grid editorial patterns
+   - Component library (callouts, quotes, cards, etc.)
+   - Bold visual techniques (gradients, geometric shapes, angled sections)
+
+   Renderer-specific features live in:
+   - weasyprint.css  (@page rules, running headers, named pages)
+   - playwright.css  (clip-path, box-shadow, shape-outside, complex grid)
+   ========================================================================== */
+
+/* ==========================================================================
+   1. DESIGN TOKENS — 3-Layer Architecture
+   ========================================================================== */
+
+:root {
+  /* --- Layer 1: Primitives (raw brand values) --- */
+  --color-teal-600: #0C5E5D;
+  --color-teal-800: #074443;
+  --color-teal-500: #178180;
+  --color-teal-100: #E0F0F0;
+  --color-sage-400: #A4CCD4;
+  --color-sage-200: #DBE9ED;
+  --color-sage-500: #7AABB5;
+  --color-amber-600: #E2480C;
+  --color-amber-100: #FFF0EB;
+  --color-amber-900: #631B08;
+  --color-gold-500: #D4910A;
+  --color-gold-100: #F5EDDA;
+  --color-cream-50: #FDF9F5;
+  --color-cream-100: #F8F4EF;
+  --color-cream-200: #F0EBE3;
+  --color-charcoal: #2C2C2C;
+  --color-text: #2C2C2C;
+  --color-text-light: #4A4A4A;
+  --color-text-muted: #8A8178;
+  --color-white: #FFFFFF;
+  --color-border-light: #E2DBD0;
+  --color-border: #D0CCC4;
+
+  /* --- Layer 2: Semantic (purpose-based aliases) --- */
+  --color-primary: var(--color-teal-600);
+  --color-primary-dark: var(--color-teal-800);
+  --color-primary-mid: var(--color-teal-500);
+  --color-primary-light: var(--color-teal-100);
+  --color-accent: var(--color-gold-500);
+  --color-accent-light: var(--color-gold-100);
+  --color-danger: var(--color-amber-600);
+  --color-danger-light: var(--color-amber-100);
+  --color-danger-dark: var(--color-amber-900);
+  --color-surface: var(--color-cream-100);
+  --color-surface-warm: var(--color-cream-200);
+  --color-surface-light: var(--color-cream-50);
+
+  /* Backwards compat aliases */
+  --bg-cream: var(--color-cream-100);
+  --bg-warm: var(--color-cream-200);
+  --bg-light: var(--color-cream-50);
+  --teal: var(--color-teal-600);
+  --teal-dark: var(--color-teal-800);
+  --teal-mid: var(--color-teal-500);
+  --teal-light: var(--color-teal-100);
+  --sage: var(--color-sage-400);
+  --sage-light: var(--color-sage-200);
+  --sage-muted: var(--color-sage-500);
+  --sage-dark: var(--color-teal-800);
+  --amber: var(--color-amber-600);
+  --amber-light: var(--color-amber-100);
+  --amber-dark: var(--color-amber-900);
+  --gold: var(--color-gold-500);
+  --gold-light: var(--color-gold-100);
+  --charcoal: var(--color-charcoal);
+  --text: var(--color-text);
+  --text-light: var(--color-text-light);
+  --text-muted: var(--color-text-muted);
+  --white: var(--color-white);
+  --border-light: var(--color-border-light);
+  --border: var(--color-border);
+
+  /* --- Layer 3: Component tokens --- */
+  --font-heading: 'Lora', Georgia, serif;
+  --font-body: 'Inter', 'Helvetica Neue', sans-serif;
+  --font-icon: 'FA6Solid';
+
+  /* Spacing scale (A4 page context) */
+  --space-xs: 2mm;
+  --space-sm: 3mm;
+  --space-md: 5mm;
+  --space-lg: 8mm;
+  --space-xl: 12mm;
+  --space-2xl: 20mm;
+
+  /* Page dimensions */
+  --page-width: 210mm;
+  --page-height: 297mm;
+  --margin-page: 22mm;
+  --margin-inside: 26mm;
+  --margin-outside: 20mm;
+}
+
+/* ==========================================================================
+   2. TYPOGRAPHY SYSTEM
+   ========================================================================== */
+
+html {
+  font-family: var(--font-body);
+  font-size: 10.5pt;
+  font-weight: 400;
+  line-height: 1.65;
+  color: var(--text);
+  hyphens: auto;
+  font-kerning: normal;
+  font-variant-ligatures: common-ligatures;
+  font-variant-numeric: oldstyle-nums proportional-nums;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  font-family: var(--font-heading);
+  font-size: 32pt;
+  font-weight: 700;
+  color: var(--sage-dark);
+  line-height: 1.2;
+  margin: 0 0 0.5em 0;
+  text-align: left;
+}
+
+h2 {
+  font-family: var(--font-heading);
+  font-size: 24pt;
+  font-weight: 700;
+  color: var(--sage-dark);
+  line-height: 1.25;
+  margin: 0 0 0.6em 0;
+  text-align: left;
+  break-after: avoid;
+}
+
+h3 {
+  font-family: var(--font-heading);
+  font-size: 14pt;
+  font-weight: 700;
+  color: var(--teal);
+  line-height: 1.35;
+  margin: 1.5em 0 0.5em 0;
+  text-align: left;
+  break-after: avoid;
+}
+
+h4 {
+  font-family: var(--font-body);
+  font-size: 11pt;
+  font-weight: 700;
+  color: var(--sage-dark);
+  text-transform: uppercase;
+  letter-spacing: 1pt;
+  margin: 1.2em 0 0.4em 0;
+  text-align: left;
+  break-after: avoid;
+}
+
+p {
+  margin: 0 0 0.7em 0;
+  orphans: 3;
+  widows: 3;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* Lead paragraph after H2 — slightly larger */
+h2 + p {
+  font-size: 11pt;
+  line-height: 1.7;
+  color: var(--charcoal);
+}
+
+strong {
+  font-weight: 700;
+  color: var(--charcoal);
+}
+
+em {
+  font-style: italic;
+  color: var(--text-light);
+}
+
+a {
+  color: var(--sage);
+  text-decoration: none;
+}
+
+/* Stat numbers — always lining numerals */
+.stat-number,
+.fact-number,
+.feature-num {
+  font-variant-numeric: lining-nums tabular-nums;
+}
+
+/* ==========================================================================
+   3. THE 8 PAGE TYPE TEMPLATES
+
+   These are the core reusable page types for any marketing-style ebook.
+   Each can be used standalone or composed together.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   PAGE TYPE 1: COVER PAGE
+   Full-bleed gradient/image background, large title, author name
+   -------------------------------------------------------------------------- */
+
+.page-cover {
+  position: relative;
+  width: var(--page-width);
+  height: var(--page-height);
+  overflow: hidden;
+  break-before: page;
+}
+
+.page-cover-image {
+  position: absolute;
+  top: 0; left: 0;
+  width: var(--page-width);
+  height: var(--page-height);
+  object-fit: cover;
+  z-index: 0;
+}
+
+.page-cover-overlay {
+  position: absolute;
+  top: 0; left: 0;
+  width: var(--page-width);
+  height: var(--page-height);
+  background: linear-gradient(
+    180deg,
+    rgba(7,68,67,0.05) 0%,
+    rgba(7,68,67,0.2) 35%,
+    rgba(7,68,67,0.7) 55%,
+    rgba(7,68,67,0.92) 75%,
+    rgba(7,68,67,1) 100%
+  );
+  z-index: 1;
+}
+
+.page-cover-content {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  padding: 40mm 30mm 35mm;
+  z-index: 2;
+}
+
+.page-cover-badge {
+  font-family: var(--font-body);
+  font-size: 8pt;
+  font-weight: 700;
+  color: var(--gold);
+  text-transform: uppercase;
+  letter-spacing: 3pt;
+  margin-bottom: 15mm;
+}
+
+.page-cover-title {
+  font-family: var(--font-heading);
+  font-size: 36pt;
+  font-weight: 700;
+  color: var(--white);
+  line-height: 1.15;
+  margin: 0 0 6mm;
+}
+
+.page-cover-subtitle {
+  font-family: var(--font-heading);
+  font-size: 14pt;
+  font-weight: 400;
+  font-style: italic;
+  color: rgba(255, 255, 255, 0.85);
+  line-height: 1.4;
+  margin: 0 0 15mm;
+}
+
+.page-cover-rule {
+  width: 60mm;
+  height: 1px;
+  background: var(--gold);
+  margin-bottom: 10mm;
+}
+
+.page-cover-author {
+  font-family: var(--font-body);
+  font-size: 11pt;
+  color: rgba(255, 255, 255, 0.8);
+  letter-spacing: 1pt;
+}
+
+/* --------------------------------------------------------------------------
+   PAGE TYPE 2: CHAPTER OPENER
+   Teal gradient bg, large chapter number, decorative corners, accent band
+   -------------------------------------------------------------------------- */
+
+.page-chapter-opener {
+  break-before: page;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  height: var(--page-height);
+  padding: 50mm 40mm;
+  box-sizing: border-box;
+  color: var(--white);
+  background:
+    radial-gradient(ellipse at 85% 15%, rgba(226,72,12,0.08) 0%, transparent 50%),
+    radial-gradient(ellipse at 10% 90%, rgba(255,255,255,0.06) 0%, transparent 40%),
+    linear-gradient(160deg, #074443 0%, #0C5E5D 40%, #074443 100%);
+}
+
+/* Decorative corner brackets */
+.page-chapter-opener::before {
+  content: "";
+  position: absolute;
+  top: 25mm; right: 25mm;
+  width: 35mm; height: 35mm;
+  border-top: 1.5px solid rgba(196,163,90,0.35);
+  border-right: 1.5px solid rgba(196,163,90,0.35);
+}
+
+.page-chapter-opener::after {
+  content: "";
+  position: absolute;
+  bottom: 25mm; left: 25mm;
+  width: 35mm; height: 35mm;
+  border-bottom: 1.5px solid rgba(196,163,90,0.35);
+  border-left: 1.5px solid rgba(196,163,90,0.35);
+}
+
+.chapter-number {
+  font-family: var(--font-body);
+  font-size: 9pt;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 4pt;
+  color: var(--gold);
+  margin-bottom: 8mm;
+}
+
+.chapter-title {
+  font-family: var(--font-heading);
+  font-size: 34pt;
+  font-weight: 700;
+  color: var(--white);
+  line-height: 1.2;
+  margin: 0 0 8mm;
+  max-width: 80%;
+}
+
+/* Giant background number */
+.chapter-part-bg {
+  position: absolute;
+  bottom: 30mm; right: 30mm;
+  font-family: var(--font-heading);
+  font-size: 180pt;
+  font-weight: 700;
+  color: rgba(255,255,255,0.04);
+  line-height: 1;
+  z-index: 0;
+}
+
+/* --------------------------------------------------------------------------
+   PAGE TYPE 3: STANDARD CONTENT PAGE
+   Body text with optional sidebar, pull quotes, callout boxes
+   -------------------------------------------------------------------------- */
+
+.page-content {
+  break-before: page;
+}
+
+.page-content h2 {
+  margin-top: 0;
+  padding-top: var(--space-md);
+}
+
+.page-content h3 {
+  break-after: avoid;
+}
+
+/* Content with sidebar — asymmetric 2:1 ratio */
+.content-with-sidebar {
+  display: flex;
+  gap: var(--space-lg);
+  break-inside: avoid;
+}
+
+.content-main {
+  flex: 2;
+}
+
+.content-sidebar {
+  flex: 1;
+  background: var(--teal-light);
+  padding: var(--space-md) var(--space-md);
+  border-left: 3px solid var(--teal);
+  font-size: 9pt;
+  line-height: 1.5;
+  border-radius: 0 4px 4px 0;
+}
+
+/* --------------------------------------------------------------------------
+   PAGE TYPE 4: FEATURE/HIGHLIGHT PAGE
+   Asymmetric grid, bold gradient background, large visual elements
+   -------------------------------------------------------------------------- */
+
+.page-feature {
+  break-before: page;
+  width: var(--page-width);
+  height: var(--page-height);
+  box-sizing: border-box;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Full-bleed gradient feature background */
+.page-feature-gradient {
+  background: linear-gradient(160deg, #074443 0%, #0C5E5D 50%, #074443 100%);
+  color: var(--white);
+  padding: 40mm;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Split feature — image left, content right */
+.page-feature-split {
+  display: flex;
+  width: var(--page-width);
+  height: var(--page-height);
+  box-sizing: border-box;
+}
+
+.feature-split-image {
+  width: 50%;
+  object-fit: cover;
+}
+
+.feature-split-content {
+  width: 50%;
+  padding: 35mm 25mm;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* --------------------------------------------------------------------------
+   PAGE TYPE 5: CHECKLIST/ACTION PAGE
+   Numbered or bulleted lists with custom styling, action callouts
+   -------------------------------------------------------------------------- */
+
+.page-checklist {
+  break-before: page;
+  padding-top: var(--space-2xl);
+}
+
+.action-checklist {
+  list-style: none;
+  padding: 0;
+  margin: var(--space-md) 0;
+  counter-reset: action-item;
+}
+
+.action-checklist li {
+  counter-increment: action-item;
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-sm);
+  padding: var(--space-sm) 0;
+  border-bottom: 0.5pt solid var(--border-light);
+  font-size: 10pt;
+  line-height: 1.55;
+  break-inside: avoid;
+}
+
+.action-checklist li::before {
+  content: counter(action-item);
+  font-family: var(--font-heading);
+  font-size: 14pt;
+  font-weight: 700;
+  color: var(--white);
+  background: var(--teal);
+  width: 8mm;
+  height: 8mm;
+  line-height: 8mm;
+  text-align: center;
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-top: 1mm;
+}
+
+/* Checkbox variant */
+.action-checklist-check li::before {
+  content: "";
+  width: 5mm;
+  height: 5mm;
+  border: 2px solid var(--teal);
+  border-radius: 2px;
+  background: var(--white);
+}
+
+/* --------------------------------------------------------------------------
+   PAGE TYPE 6: QUOTE/TESTIMONIAL PAGE
+   Large centred quote with decorative marks, colour background
+   -------------------------------------------------------------------------- */
+
+.page-quote {
+  break-before: page;
+  width: var(--page-width);
+  height: var(--page-height);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 50mm 35mm;
+  box-sizing: border-box;
+  text-align: center;
+  color: var(--white);
+  background: linear-gradient(160deg, #074443 0%, #0C5E5D 50%, #074443 100%);
+}
+
+.page-quote-mark {
+  font-family: var(--font-heading);
+  font-size: 72pt;
+  color: var(--gold);
+  line-height: 0.6;
+  margin-bottom: 8mm;
+}
+
+.page-quote-text {
+  font-family: var(--font-heading);
+  font-size: 22pt;
+  font-weight: 400;
+  font-style: italic;
+  line-height: 1.45;
+  color: var(--white);
+  max-width: 130mm;
+  margin-bottom: 10mm;
+}
+
+.page-quote-author {
+  font-family: var(--font-body);
+  font-size: 10pt;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2pt;
+  color: var(--gold);
+}
+
+.page-quote-author::before {
+  content: "";
+  display: block;
+  width: 30mm;
+  height: 0.5pt;
+  background: var(--gold);
+  margin: 0 auto 4mm;
+}
+
+/* Decorative circle accent behind quote */
+.page-quote::before {
+  content: "";
+  position: absolute;
+  width: 100mm;
+  height: 100mm;
+  border-radius: 50%;
+  border: 1.5px solid rgba(212,145,10,0.2);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -60%);
+}
+
+/* --------------------------------------------------------------------------
+   PAGE TYPE 7: TWO-COLUMN REFERENCE PAGE
+   Multi-column layout for glossaries, FAQs, resource lists
+   -------------------------------------------------------------------------- */
+
+.page-reference {
+  break-before: page;
+  padding-top: var(--space-xl);
+}
+
+.reference-columns {
+  column-count: 2;
+  column-gap: 8mm;
+  column-rule: 0.5pt solid var(--border-light);
+  margin: var(--space-md) 0;
+}
+
+.reference-columns p {
+  text-align: justify;
+  hyphens: auto;
+}
+
+.reference-columns h3 {
+  column-span: all;
+}
+
+/* Resource card for reference lists */
+.reference-card {
+  display: flex;
+  gap: var(--space-sm);
+  padding: var(--space-sm) var(--space-md);
+  background: var(--white);
+  border: 1px solid var(--border-light);
+  border-left: 3px solid var(--teal);
+  margin-bottom: var(--space-xs);
+  break-inside: avoid;
+  font-size: 9pt;
+}
+
+.reference-card-icon {
+  font-family: var(--font-icon);
+  font-weight: 900;
+  font-size: 12pt;
+  color: var(--teal);
+  width: 8mm;
+  flex-shrink: 0;
+  text-align: center;
+  padding-top: 1mm;
+}
+
+.reference-card-content {
+  flex: 1;
+}
+
+.reference-card-content strong {
+  display: block;
+  font-size: 9.5pt;
+  margin-bottom: 0.5mm;
+}
+
+.reference-card-content p {
+  font-size: 8.5pt;
+  margin: 0;
+  color: var(--text-light);
+  text-align: left;
+}
+
+/* --------------------------------------------------------------------------
+   PAGE TYPE 8: ABOUT/BIO PAGE
+   Author photo, bio text, social/website links
+   -------------------------------------------------------------------------- */
+
+.page-bio {
+  break-before: page;
+  padding: var(--space-2xl) var(--margin-page);
+  text-align: center;
+}
+
+.bio-photo-frame {
+  width: 40mm;
+  height: 40mm;
+  border-radius: 50%;
+  overflow: hidden;
+  margin: 0 auto var(--space-lg);
+  border: 3px solid var(--gold);
+}
+
+.bio-photo-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.bio-name {
+  font-family: var(--font-heading);
+  font-size: 22pt;
+  font-weight: 700;
+  color: var(--sage-dark);
+  margin-bottom: var(--space-sm);
+}
+
+.bio-tagline {
+  font-family: var(--font-heading);
+  font-size: 12pt;
+  font-style: italic;
+  color: var(--sage);
+  margin-bottom: var(--space-lg);
+}
+
+.bio-text {
+  max-width: 130mm;
+  margin: 0 auto var(--space-lg);
+  font-size: 10.5pt;
+  line-height: 1.7;
+  text-align: justify;
+  color: var(--text);
+}
+
+.bio-links {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-lg);
+  margin-top: var(--space-lg);
+}
+
+.bio-link {
+  font-family: var(--font-body);
+  font-size: 9pt;
+  font-weight: 700;
+  color: var(--teal);
+  text-transform: uppercase;
+  letter-spacing: 1pt;
+  text-decoration: none;
+  padding: var(--space-xs) var(--space-md);
+  border: 1.5px solid var(--teal);
+  border-radius: 3px;
+}
+
+/* Full-width bio variant with teal background */
+.page-bio-dark {
+  background: linear-gradient(160deg, #074443 0%, #0C5E5D 50%, #074443 100%);
+  color: var(--white);
+}
+
+.page-bio-dark .bio-name { color: var(--white); }
+.page-bio-dark .bio-tagline { color: var(--gold); }
+.page-bio-dark .bio-text { color: rgba(255,255,255,0.85); }
+.page-bio-dark .bio-link {
+  color: var(--gold);
+  border-color: var(--gold);
+}
+
+/* ==========================================================================
+   4. CSS GRID EDITORIAL PATTERNS
+
+   Four reusable grid patterns from the CodePen magazine research.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   GRID PATTERN A: ASYMMETRIC FEATURE GRID
+   Large hero block spans 2 columns, smaller items fill remaining cells.
+   The 2:1 ratio creates editorial energy.
+   -------------------------------------------------------------------------- */
+
+.grid-asymmetric {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-md);
+  margin: var(--space-lg) 0;
+  break-inside: avoid;
+}
+
+.grid-asymmetric-hero {
+  flex: 2 1 60%;
+  min-width: 90mm;
+}
+
+.grid-asymmetric-side {
+  flex: 1 1 30%;
+  min-width: 45mm;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.grid-asymmetric-item {
+  background: var(--white);
+  border: 1px solid var(--border-light);
+  border-radius: 4px;
+  padding: var(--space-md);
+  break-inside: avoid;
+}
+
+.grid-asymmetric-item-accent {
+  border-top: 3px solid var(--teal);
+}
+
+/* --------------------------------------------------------------------------
+   GRID PATTERN B: NAMED AREAS LAYOUT
+   Visual semantic layout using named regions.
+   -------------------------------------------------------------------------- */
+
+.grid-named {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-md);
+  margin: var(--space-lg) 0;
+  break-inside: avoid;
+}
+
+.grid-named-header {
+  flex: 0 0 100%;
+}
+
+.grid-named-main {
+  flex: 2 1 60%;
+  min-width: 90mm;
+}
+
+.grid-named-aside {
+  flex: 1 1 30%;
+  min-width: 45mm;
+}
+
+.grid-named-footer {
+  flex: 0 0 100%;
+}
+
+/* --------------------------------------------------------------------------
+   GRID PATTERN C: OVERLAPPING ELEMENTS
+   Items that visually overlap for depth and dynamism.
+   Uses negative margins and relative positioning (both renderers).
+   -------------------------------------------------------------------------- */
+
+.grid-overlap {
+  position: relative;
+  margin: var(--space-lg) 0;
+  padding-bottom: 15mm;
+  break-inside: avoid;
+}
+
+.grid-overlap-bg {
+  background: var(--teal-light);
+  border-radius: 4px;
+  padding: var(--space-lg);
+  min-height: 50mm;
+}
+
+.grid-overlap-card {
+  position: relative;
+  background: var(--white);
+  border: 1px solid var(--border-light);
+  border-radius: 4px;
+  padding: var(--space-md) var(--space-lg);
+  margin: -10mm var(--space-lg) 0;
+  z-index: 1;
+}
+
+.grid-overlap-card-accent {
+  border-left: 4px solid var(--gold);
+}
+
+/* --------------------------------------------------------------------------
+   GRID PATTERN D: 12-COLUMN FLEXIBLE GRID
+   Utility classes for spanning columns in a 12-column system.
+   Uses percentages for WeasyPrint compatibility.
+   -------------------------------------------------------------------------- */
+
+.grid-12 {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-md);
+  margin: var(--space-md) 0;
+}
+
+.col-4 { flex: 0 0 calc(33.333% - 4mm); min-width: 45mm; }
+.col-6 { flex: 0 0 calc(50% - 3mm); min-width: 65mm; }
+.col-8 { flex: 0 0 calc(66.666% - 2mm); min-width: 90mm; }
+.col-12 { flex: 0 0 100%; }
+
+/* ==========================================================================
+   5. BOLD VISUAL TECHNIQUES
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   ANGLED SECTIONS — Diagonal transitions using gradients
+   (Works in both renderers — no clip-path needed)
+   -------------------------------------------------------------------------- */
+
+.angled-section-teal {
+  position: relative;
+  background: var(--teal);
+  color: var(--white);
+  padding: var(--space-xl) var(--margin-inside);
+  margin: var(--space-lg) calc(-1 * var(--margin-inside));
+}
+
+/* Top angle using gradient */
+.angled-section-teal::before {
+  content: "";
+  position: absolute;
+  top: -15mm;
+  left: 0;
+  right: 0;
+  height: 15mm;
+  background: linear-gradient(
+    to bottom right,
+    var(--bg-cream) 49.5%,
+    var(--teal) 50%
+  );
+}
+
+/* Bottom angle */
+.angled-section-teal::after {
+  content: "";
+  position: absolute;
+  bottom: -15mm;
+  left: 0;
+  right: 0;
+  height: 15mm;
+  background: linear-gradient(
+    to top left,
+    var(--bg-cream) 49.5%,
+    var(--teal) 50%
+  );
+}
+
+.angled-section-teal h3 { color: var(--white); margin-top: 0; }
+.angled-section-teal p { color: rgba(255,255,255,0.9); }
+.angled-section-teal strong { color: var(--white); }
+
+/* Gold accent variant */
+.angled-section-gold {
+  position: relative;
+  background: var(--gold-light);
+  padding: var(--space-xl) var(--margin-inside);
+  margin: var(--space-lg) calc(-1 * var(--margin-inside));
+}
+
+.angled-section-gold::before {
+  content: "";
+  position: absolute;
+  top: -12mm;
+  left: 0; right: 0;
+  height: 12mm;
+  background: linear-gradient(
+    to bottom right,
+    var(--bg-cream) 49.5%,
+    var(--gold-light) 50%
+  );
+}
+
+.angled-section-gold::after {
+  content: "";
+  position: absolute;
+  bottom: -12mm;
+  left: 0; right: 0;
+  height: 12mm;
+  background: linear-gradient(
+    to top left,
+    var(--bg-cream) 49.5%,
+    var(--gold-light) 50%
+  );
+}
+
+/* --------------------------------------------------------------------------
+   GEOMETRIC DECORATIVE SHAPES
+   Pure CSS shapes using pseudo-elements and border-radius
+   -------------------------------------------------------------------------- */
+
+/* Large circle accent — top right */
+.deco-circle-tr {
+  position: relative;
+}
+
+.deco-circle-tr::before {
+  content: "";
+  position: absolute;
+  width: 60mm;
+  height: 60mm;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(164,204,212,0.12), rgba(164,204,212,0.03));
+  top: -15mm;
+  right: -10mm;
+  z-index: 0;
+}
+
+/* Small circle accent — bottom left */
+.deco-circle-bl {
+  position: relative;
+}
+
+.deco-circle-bl::before {
+  content: "";
+  position: absolute;
+  width: 45mm;
+  height: 45mm;
+  border-radius: 50%;
+  background: linear-gradient(315deg, rgba(212,145,10,0.1), rgba(212,145,10,0.02));
+  bottom: -10mm;
+  left: -8mm;
+  z-index: 0;
+}
+
+/* Diamond shape accent */
+.deco-diamond {
+  position: relative;
+}
+
+.deco-diamond::after {
+  content: "";
+  position: absolute;
+  width: 20mm;
+  height: 20mm;
+  background: rgba(212,145,10,0.08);
+  transform: rotate(45deg);
+  top: 10mm;
+  right: 15mm;
+  z-index: 0;
+}
+
+/* Dot grid pattern background */
+.deco-dots {
+  background-image: radial-gradient(circle, rgba(0,0,0,0.04) 1px, transparent 1px);
+  background-size: 8mm 8mm;
+}
+
+/* Diagonal stripe pattern */
+.deco-stripes {
+  background-image: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 10px,
+    rgba(0,0,0,0.02) 10px,
+    rgba(0,0,0,0.02) 20px
+  );
+}
+
+/* Radial spotlight */
+.deco-spotlight {
+  background-image: radial-gradient(circle at center, rgba(12,94,93,0.06), transparent 70%);
+}
+
+/* Corner bracket frame */
+.deco-corner-frame {
+  position: relative;
+  padding: var(--space-lg);
+  margin: var(--space-lg) 0;
+  break-inside: avoid;
+}
+
+.deco-corner-frame::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 15mm; height: 15mm;
+  border-top: 2px solid var(--gold);
+  border-left: 2px solid var(--gold);
+}
+
+.deco-corner-frame::after {
+  content: "";
+  position: absolute;
+  bottom: 0; right: 0;
+  width: 15mm; height: 15mm;
+  border-bottom: 2px solid var(--gold);
+  border-right: 2px solid var(--gold);
+}
+
+/* Double-rule classic print frame */
+.deco-double-rule {
+  border: 1px solid var(--sage-muted);
+  outline: 1px solid var(--sage-muted);
+  outline-offset: 3px;
+  padding: var(--space-lg);
+  margin: var(--space-md) 0;
+  break-inside: avoid;
+}
+
+/* --------------------------------------------------------------------------
+   GRADIENT BACKGROUNDS — Full-bleed colour sections
+   -------------------------------------------------------------------------- */
+
+.bg-teal {
+  background: var(--teal);
+  color: var(--white);
+}
+
+.bg-teal-gradient {
+  background: linear-gradient(160deg, #074443 0%, #0C5E5D 50%, #074443 100%);
+  color: var(--white);
+}
+
+.bg-gold-light {
+  background: var(--gold-light);
+}
+
+.bg-cream {
+  background: var(--bg-cream);
+}
+
+.bg-warm {
+  background: var(--bg-warm);
+}
+
+/* Gradient accent band — thin decorative bar */
+.accent-band {
+  height: 4mm;
+  background: linear-gradient(90deg, var(--teal), var(--gold), var(--teal));
+  margin: var(--space-lg) 0;
+}
+
+/* ==========================================================================
+   6. COMPONENT LIBRARY
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   CALLOUT BOXES
+   -------------------------------------------------------------------------- */
+
+.callout {
+  padding: var(--space-md) var(--space-lg);
+  margin: var(--space-md) 0;
+  border-radius: 3px;
+  break-inside: avoid;
+  font-size: 10pt;
+  line-height: 1.55;
+}
+
+.callout-label {
+  font-family: var(--font-body);
+  font-size: 8pt;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5pt;
+  margin-bottom: 2mm;
+}
+
+.callout p:last-child { margin-bottom: 0; }
+
+.callout-insight {
+  background: var(--sage-light);
+  border-left: 4px solid var(--sage);
+}
+.callout-insight .callout-label { color: var(--sage-dark); }
+
+.callout-key {
+  background: var(--gold-light);
+  border-left: 4px solid var(--gold);
+}
+.callout-key .callout-label { color: var(--gold); }
+
+.callout-warning {
+  background: var(--amber-light);
+  border-left: 4px solid var(--amber);
+}
+.callout-warning .callout-label { color: var(--amber); }
+
+/* --------------------------------------------------------------------------
+   PULL QUOTES
+   -------------------------------------------------------------------------- */
+
+.pull-quote-enhanced {
+  text-align: center;
+  padding: 8mm 15mm;
+  margin: 8mm 0;
+  break-inside: avoid;
+  position: relative;
+  background: var(--bg-light);
+  border-radius: 4px;
+}
+
+.pull-quote-enhanced::before {
+  content: "\201C";
+  font-family: var(--font-heading);
+  font-size: 60pt;
+  color: var(--sage-light);
+  position: absolute;
+  top: -2mm;
+  left: 5mm;
+  line-height: 1;
+}
+
+.pull-quote-enhanced p {
+  font-family: var(--font-heading);
+  font-size: 14pt;
+  font-style: italic;
+  line-height: 1.55;
+  color: var(--sage-dark);
+  margin: 0;
+  position: relative;
+  z-index: 1;
+}
+
+.pull-quote-enhanced cite {
+  display: block;
+  margin-top: 3mm;
+  font-family: var(--font-body);
+  font-size: 9pt;
+  font-style: normal;
+  color: var(--text-light);
+  letter-spacing: 0.5pt;
+  position: relative;
+  z-index: 1;
+}
+
+/* Floated inset pull quote */
+.inset-pull-quote {
+  float: left;
+  width: 55mm;
+  margin: 0 6mm 4mm 0;
+  padding: var(--space-md);
+  break-inside: avoid;
+  position: relative;
+  border-top: 2px solid var(--gold);
+  border-bottom: 2px solid var(--gold);
+}
+
+.inset-pull-quote p {
+  font-family: var(--font-heading);
+  font-size: 12pt;
+  font-style: italic;
+  line-height: 1.5;
+  color: var(--sage-dark);
+  margin: 4mm 0 0;
+  text-align: left;
+}
+
+/* --------------------------------------------------------------------------
+   ACCENT CARDS
+   -------------------------------------------------------------------------- */
+
+.accent-card {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-md);
+  padding: var(--space-md) var(--space-lg);
+  margin: var(--space-md) 0;
+  border-radius: 4px;
+  break-inside: avoid;
+}
+
+.accent-card-icon {
+  font-family: var(--font-icon);
+  font-weight: 900;
+  font-size: 18pt;
+  width: 12mm;
+  height: 12mm;
+  line-height: 12mm;
+  text-align: center;
+  border-radius: 3px;
+  flex-shrink: 0;
+}
+
+.accent-card-content { flex: 1; }
+.accent-card-content h4 { margin-top: 0; text-transform: none; letter-spacing: 0; }
+
+.accent-card-teal {
+  background: var(--teal-light);
+  border-left: 4px solid var(--teal);
+}
+.accent-card-teal .accent-card-icon { background: var(--teal); color: var(--white); }
+
+.accent-card-amber {
+  background: var(--amber-light);
+  border-left: 4px solid var(--amber);
+}
+.accent-card-amber .accent-card-icon { background: var(--amber); color: var(--white); }
+
+/* --------------------------------------------------------------------------
+   ICON GRID — 2x3 or 2x2 grid of icons with labels
+   -------------------------------------------------------------------------- */
+
+.icon-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-md);
+  break-inside: avoid;
+  margin: var(--space-lg) 0;
+}
+
+.icon-grid-item {
+  width: 46%;
+  background: var(--white);
+  border-radius: 3mm;
+  padding: var(--space-lg) var(--space-md);
+  text-align: center;
+  border: 1px solid var(--border-light);
+}
+
+.icon-grid-item .grid-icon {
+  font-family: var(--font-icon);
+  font-weight: 900;
+  font-size: 24pt;
+  color: var(--teal);
+  display: block;
+  margin-bottom: 3mm;
+}
+
+.icon-grid-item .grid-title {
+  font-family: var(--font-heading);
+  font-size: 10pt;
+  font-weight: 700;
+  color: var(--teal-dark);
+  margin-bottom: 2mm;
+}
+
+.icon-grid-item .grid-desc {
+  font-size: 8.5pt;
+  color: var(--text-light);
+  line-height: 1.45;
+}
+
+/* --------------------------------------------------------------------------
+   STAT DISPLAYS
+   -------------------------------------------------------------------------- */
+
+.stat-row {
+  display: flex;
+  justify-content: space-between;
+  margin: var(--space-md) 0;
+  break-inside: avoid;
+}
+
+.stat-item {
+  flex: 1;
+  text-align: center;
+  padding: var(--space-md);
+}
+
+.stat-item + .stat-item {
+  border-left: 1px solid var(--border-light);
+}
+
+.stat-number {
+  font-family: var(--font-heading);
+  font-size: 36pt;
+  font-weight: 700;
+  color: var(--sage);
+  line-height: 1.1;
+  display: block;
+  font-variant-numeric: lining-nums tabular-nums;
+}
+
+.stat-label {
+  font-family: var(--font-body);
+  font-size: 8pt;
+  color: var(--text-light);
+  text-transform: uppercase;
+  letter-spacing: 1pt;
+  margin-top: 2mm;
+  display: block;
+}
+
+/* --------------------------------------------------------------------------
+   TIMELINE
+   -------------------------------------------------------------------------- */
+
+.vertical-timeline {
+  position: relative;
+  padding-left: 15mm;
+  margin: var(--space-lg) 0;
+}
+
+.vertical-timeline::before {
+  content: "";
+  position: absolute;
+  left: 5mm;
+  top: 0; bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--teal), var(--gold));
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: var(--space-md);
+  break-inside: avoid;
+}
+
+.timeline-item::before {
+  content: "";
+  position: absolute;
+  left: -12mm;
+  top: 1mm;
+  width: 6mm; height: 6mm;
+  border-radius: 50%;
+  background: var(--teal);
+  border: 2px solid var(--white);
+}
+
+.timeline-item-title {
+  font-family: var(--font-heading);
+  font-size: 11pt;
+  font-weight: 700;
+  color: var(--teal-dark);
+  margin-bottom: 1mm;
+}
+
+.timeline-item p {
+  font-size: 9.5pt;
+  line-height: 1.5;
+  margin-bottom: 0;
+  color: var(--text-light);
+  text-align: left;
+}
+
+.timeline-item-active::before {
+  background: var(--gold);
+  width: 7mm; height: 7mm;
+  left: -12.5mm;
+}
+
+/* --------------------------------------------------------------------------
+   TABLES
+   -------------------------------------------------------------------------- */
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: var(--space-md) 0;
+  font-size: 9.5pt;
+  break-inside: avoid;
+  font-variant-numeric: lining-nums tabular-nums;
+}
+
+table th {
+  padding: 3mm 4mm;
+  background: var(--sage-light);
+  color: var(--sage-dark);
+  font-weight: 700;
+  text-align: left;
+  border-bottom: 2px solid var(--sage);
+  font-size: 8.5pt;
+  text-transform: uppercase;
+  letter-spacing: 0.5pt;
+}
+
+table td {
+  padding: 2.5mm 4mm;
+  border-bottom: 0.5pt solid var(--border-light);
+  vertical-align: top;
+  text-align: left;
+}
+
+table tr:last-child td { border-bottom: none; }
+table tbody tr:nth-child(even) td { background: rgba(248,244,239,0.5); }
+
+/* --------------------------------------------------------------------------
+   LISTS
+   -------------------------------------------------------------------------- */
+
+ul.custom {
+  list-style: none;
+  padding-left: 0;
+}
+
+ul.custom li {
+  padding-left: 6mm;
+  position: relative;
+  margin-bottom: 2mm;
+}
+
+ul.custom li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 6pt;
+  width: 2.5mm;
+  height: 2.5mm;
+  border-radius: 50%;
+  background: var(--teal);
+}
+
+/* --------------------------------------------------------------------------
+   SECTION DIVIDERS
+   -------------------------------------------------------------------------- */
+
+.divider-fade {
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--sage-muted), transparent);
+  margin: 8mm 0;
+}
+
+.ornamental-divider {
+  text-align: center;
+  margin: 10mm 0;
+  position: relative;
+}
+
+.ornamental-divider::before {
+  content: "";
+  position: absolute;
+  left: 20%; right: 20%;
+  top: 50%;
+  height: 0.5px;
+  background: linear-gradient(to right, transparent, var(--sage-muted), transparent);
+}
+
+.ornamental-divider .ornament {
+  display: inline-block;
+  background: var(--bg-cream);
+  padding: 0 4mm;
+  position: relative;
+  z-index: 1;
+  font-size: 14pt;
+  color: var(--gold);
+  letter-spacing: 3pt;
+}
+
+/* ==========================================================================
+   7. UTILITY CLASSES
+   ========================================================================== */
+
+.page-break { break-before: page; }
+.avoid-break { break-inside: avoid; }
+.keep-with-next { break-after: avoid; }
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+.text-small { font-size: 9pt; }
+.text-muted { color: var(--text-light); }
+.text-teal { color: var(--teal); }
+.text-gold { color: var(--gold); }
+.text-white { color: var(--white); }
+.mt-0 { margin-top: 0; }
+.mb-0 { margin-bottom: 0; }
+.mt-1 { margin-top: 3mm; }
+.mb-1 { margin-bottom: 3mm; }
+.mt-2 { margin-top: 6mm; }
+.mb-2 { margin-bottom: 6mm; }
+
+/* Drop cap */
+.drop-cap::first-letter {
+  font-family: var(--font-heading);
+  font-size: 3.4em;
+  color: var(--teal);
+  font-weight: 700;
+  line-height: 0.85;
+  padding-right: 1pt;
+}
+
+/* Font Awesome icon inline */
+.fa-icon {
+  font-family: var(--font-icon);
+  font-weight: 900;
+}
+
+/* Small caps */
+.small-caps {
+  font-variant-caps: small-caps;
+  letter-spacing: 0.5pt;
+}

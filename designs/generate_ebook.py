@@ -1569,6 +1569,76 @@ def post_process_html(html: str) -> str:
         html
     )
 
+    # --- 67. TWO-COLUMN REFERENCE — Wrap Part 6 resources section ---
+    # Find "Community and Support" h2 and wrap the next paragraphs in columns
+    community_marker = '>Community and Support</h2>'
+    community_pos = html.find(community_marker)
+    if community_pos >= 0:
+        # Find the 3rd <h3> after this section to wrap the resource lists
+        h3_count = 0
+        search_pos = community_pos + len(community_marker)
+        first_h3 = None
+        for _ in range(20):
+            next_h3 = html.find('<h3>', search_pos)
+            if next_h3 < 0:
+                break
+            h3_count += 1
+            if h3_count == 2:
+                first_h3 = next_h3
+            if h3_count == 4:
+                # Wrap from the 2nd h3 to here in reference-columns
+                html = (html[:first_h3]
+                        + '<div class="reference-columns">'
+                        + html[first_h3:next_h3]
+                        + '</div>'
+                        + html[next_h3:])
+                break
+            search_pos = next_h3 + 4
+
+    # --- 68. ANGLED SECTION — "The Cast of Characters" ---
+    html = re.sub(
+        r'(<h2 id="ch-\d+">The Cast of Characters</h2>)',
+        '<div class="angled-section-teal">'
+        r'\1',
+        html
+    )
+    # Close after 2 paragraphs
+    cast_marker = '>The Cast of Characters</h2>'
+    cast_pos = html.find(cast_marker)
+    if cast_pos >= 0:
+        close_pos = cast_pos
+        for _ in range(3):
+            next_p = html.find('</p>', close_pos + 1)
+            if next_p >= 0:
+                close_pos = next_p
+        if close_pos > cast_pos:
+            html = html[:close_pos + 4] + '</div>' + html[close_pos + 4:]
+
+    # --- 69. ASYMMETRIC GRID — For "The Four Pillars of Support" icon blocks ---
+    # Wrap the icon blocks in a grid-12 layout for better visual rhythm
+    pillars_marker = '>The Four Pillars of Support</h3></div>'
+    pillars_pos = html.find(pillars_marker)
+    if pillars_pos >= 0:
+        # The icon blocks immediately follow — wrap in a grid
+        blocks_start = pillars_pos + len(pillars_marker)
+        # Find the 4th icon-block closing div
+        block_count = 0
+        search = blocks_start
+        for _ in range(20):
+            next_block = html.find('</div></div>', search)
+            if next_block < 0:
+                break
+            block_count += 1
+            if block_count == 4:
+                blocks_end = next_block + len('</div></div>')
+                html = (html[:blocks_start]
+                        + '<div class="grid-12">'
+                        + html[blocks_start:blocks_end]
+                        + '</div>'
+                        + html[blocks_end:])
+                break
+            search = next_block + 12
+
     # --- 66. STAT PAGE — "69-81%" before Part 6 ---
     stat_page_3 = (
         '<div class="stat-page">'
@@ -1725,6 +1795,23 @@ def build_html(content_html: str, toc_html: str) -> str:
 
 <!-- ====== CONTENT ====== -->
 {content_html}
+
+<!-- ====== ABOUT THE AUTHOR ====== -->
+<section class="page-bio author-note">
+  <div class="bio-photo-frame">
+    <div style="width:100%;height:100%;background:linear-gradient(135deg,var(--teal),var(--teal-dark));display:flex;align-items:center;justify-content:center;font-family:var(--font-heading);font-size:24pt;color:var(--gold);font-weight:700;">MS</div>
+  </div>
+  <div class="bio-name">Malcolm Smith</div>
+  <div class="bio-tagline">Author &bull; Advocate &bull; Alienated Father</div>
+  <div class="bio-text">
+    <p>Malcolm Smith is the founder of Love Over Exile, a platform dedicated to supporting alienated parents through research-based guidance and lived experience. After more than a decade navigating parental alienation firsthand, he created the resources he wished had existed at the beginning of his own journey.</p>
+    <p>His work draws on the research of the world&rsquo;s leading experts in parental alienation, coercive control, attachment, and trauma &mdash; translated into plain language for parents in crisis.</p>
+    <p>Malcolm lives in the Netherlands and continues to advocate for greater recognition of parental alienation as a form of family violence.</p>
+  </div>
+  <div class="bio-links">
+    <span class="bio-link">loveoverexile.com</span>
+  </div>
+</section>
 
 <!-- ====== BACK COVER ====== -->
 <section class="back-cover">
