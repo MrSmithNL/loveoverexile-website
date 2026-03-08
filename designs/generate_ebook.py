@@ -216,7 +216,7 @@ def md_to_html(md_text: str) -> tuple[str, list]:
                     )
 
             html_parts.append(
-                f'<section class="chapter-opener" id="{part_id}">'
+                f'<section class="chapter-opener" id="{part_id}" style="page: chapter">'
                 f"{motif_html}"
                 f'<div class="chapter-number">{part_label}</div>'
                 f'<div class="chapter-rule"></div>'
@@ -420,7 +420,7 @@ def build_toc_html(toc_entries: list) -> str:
         )
 
     return (
-        '<nav class="toc">\n'
+        '<nav class="toc" style="page: clean">\n'
         "  <h2>Contents</h2>\n"
         '  <ul class="toc-auto">\n'
         f'    {"".join(items)}\n'
@@ -1443,9 +1443,9 @@ def post_process_html(html: str) -> str:
     }
     for part_id, reflection_html in reflection_parts.items():
         html = html.replace(
-            f'<section class="chapter-opener" id="{part_id}">',
+            f'<section class="chapter-opener" id="{part_id}" style="page: chapter">',
             reflection_html
-            + f'<section class="chapter-opener" id="{part_id}">',
+            + f'<section class="chapter-opener" id="{part_id}" style="page: chapter">',
         )
 
     # ===================================================================
@@ -1674,7 +1674,7 @@ def post_process_html(html: str) -> str:
     # #55: STAT PAGE — 22M
     # ===================================================================
     stat_page_22m = (
-        '<div class="stat-page">'
+        '<div class="stat-page" style="page: stat-page">'
         '<div class="stat-number">22M</div>'
         '<div class="stat-label">Parents Affected by Alienation</div>'
         '<div class="stat-desc">An estimated 22 million adults in the '
@@ -1697,7 +1697,7 @@ def post_process_html(html: str) -> str:
     # #56: PHOTO OVERLAY — Before Part 3
     # ===================================================================
     photo_page_1 = (
-        '<div class="photo-page">'
+        '<div class="photo-page" style="page: photo-overlay">'
         f'<img src="{IMG_DIR / "surviving-parental-alienation.jpg"}" '
         f'alt="">'
         '<div class="photo-overlay"></div>'
@@ -1771,7 +1771,7 @@ def post_process_html(html: str) -> str:
             f"<p>{desc}</p></div></div>"
         )
     split_mistakes = (
-        '<div class="split-layout">'
+        '<div class="split-layout" style="page: split-page">'
         '<div class="split-sidebar">'
         '<div class="split-label">Warning</div>'
         '<div class="split-sidebar-title">The 10 Mistakes That Make It '
@@ -1794,7 +1794,7 @@ def post_process_html(html: str) -> str:
     # #59: QUOTE PAGE — Viktor Frankl
     # ===================================================================
     quote_page = (
-        '<div class="quote-page">'
+        '<div class="quote-page" style="page: clean">'
         '<div class="quote-mark">\u201C</div>'
         '<div class="quote-text">Everything can be taken from a person '
         "but one thing: the last of the human freedoms \u2014 to choose "
@@ -1811,7 +1811,7 @@ def post_process_html(html: str) -> str:
     # #60: STAT PAGE — 82%
     # ===================================================================
     stat_page_82 = (
-        '<div class="stat-page">'
+        '<div class="stat-page" style="page: stat-page">'
         '<div class="stat-number">82%</div>'
         '<div class="stat-label">Of Alienated Children Eventually Seek '
         "Reconnection</div>"
@@ -1832,7 +1832,7 @@ def post_process_html(html: str) -> str:
     # #61: PHOTO OVERLAY — Before Part 6
     # ===================================================================
     photo_page_2 = (
-        '<div class="photo-page">'
+        '<div class="photo-page" style="page: photo-overlay">'
         f'<img src="{IMG_DIR / "community-help-for-alienated-parents.jpg"}'
         f'" alt="">'
         '<div class="photo-overlay"></div>'
@@ -1955,7 +1955,7 @@ def post_process_html(html: str) -> str:
     # #66: STAT PAGE — 69-81%
     # ===================================================================
     stat_page_69 = (
-        '<div class="stat-page">'
+        '<div class="stat-page" style="page: stat-page">'
         '<div class="stat-number">69\u201381%</div>'
         '<div class="stat-label">Of Estrangements Are Not Permanent'
         "</div>"
@@ -2105,7 +2105,7 @@ def build_html(content_html: str, toc_html: str) -> str:
 {content_html}
 
 <!-- ====== ABOUT THE AUTHOR ====== -->
-<section class="page-bio author-note">
+<section class="page-bio author-note" style="page: bio">
   <div class="bio-photo-frame">
     <div style="width:100%;height:100%;background:linear-gradient(135deg,#0C5E5D,#D4910A);display:flex;align-items:center;justify-content:center;font-family:'Lora',serif;font-size:24pt;color:#fff;font-weight:700;">MS</div>
   </div>
@@ -2122,7 +2122,7 @@ def build_html(content_html: str, toc_html: str) -> str:
 </section>
 
 <!-- ====== BACK COVER ====== -->
-<section class="back-cover">
+<section class="back-cover" style="page: backcover">
   <blockquote>&ldquo;The truth, while suppressed, is rarely destroyed completely.&rdquo;<br>&mdash; Dr. Amy Baker</blockquote>
   <h2>Love Over Exile</h2>
   <p class="cover-subtitle"><em>Bearing the Unbearable</em></p>

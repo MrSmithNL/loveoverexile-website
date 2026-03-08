@@ -135,15 +135,15 @@
 @page {
   size: A4;
   margin: 22mm 20mm 28mm 20mm;
-  background-color: var(--bg-cream);
+  background-color: #FDF9F5;
 
   @bottom-center {
     content: counter(page);
-    font-family: var(--font-body);
+    font-family: 'Inter', 'Helvetica Neue', sans-serif;
     font-size: 8pt;
     font-weight: 700;
-    color: var(--white);
-    background-color: var(--teal);
+    color: #FFFFFF;
+    background-color: #0C5E5D;
     width: 8mm;
     height: 8mm;
     border-radius: 50%;
@@ -154,7 +154,7 @@
 
   @top-center {
     content: "";
-    background: linear-gradient(90deg, var(--teal), var(--gold), var(--teal));
+    background: linear-gradient(90deg, #0C5E5D, #D4910A, #0C5E5D);
     height: 0.5mm;
     width: 100%;
     opacity: 0.6;
@@ -162,41 +162,50 @@
 }
 
 @page :left {
-  margin-left: var(--margin-outside);
-  margin-right: var(--margin-inside);
+  margin-left: 20mm;
+  margin-right: 26mm;
 
   @top-left {
     content: string(booktitle);
-    font-family: var(--font-body);
+    font-family: 'Inter', 'Helvetica Neue', sans-serif;
     font-size: 7.5pt;
     text-transform: uppercase;
-    color: var(--sage-muted);
+    color: #7AABB5;
     letter-spacing: 0.5pt;
-    border-bottom: 0.5pt solid var(--border-light);
+    border-bottom: 0.5pt solid #E2DBD0;
     padding-bottom: 2mm;
   }
 }
 
 @page :right {
-  margin-left: var(--margin-inside);
-  margin-right: var(--margin-outside);
+  margin-left: 26mm;
+  margin-right: 20mm;
 
   @top-right {
     content: string(section);
-    font-family: var(--font-body);
+    font-family: 'Inter', 'Helvetica Neue', sans-serif;
     font-size: 7.5pt;
     text-transform: uppercase;
-    color: var(--sage-muted);
+    color: #7AABB5;
     letter-spacing: 0.5pt;
-    border-bottom: 0.5pt solid var(--border-light);
+    border-bottom: 0.5pt solid #E2DBD0;
     padding-bottom: 2mm;
   }
 }
 
 @page cover {
   margin: 0;
-  background: linear-gradient(160deg, var(--teal-dark) 0%, var(--teal) 40%, var(--teal-mid) 100%);
+  background:
+    linear-gradient(180deg, transparent 0%, transparent 40%, rgba(7,68,67,0.7) 60%, rgba(7,68,67,0.95) 100%),
+    #074443;
 
+  @bottom-center { content: none; }
+  @top-center { content: none; }
+  @top-left { content: none; }
+  @top-right { content: none; }
+}
+
+@page :first {
   @bottom-center { content: none; }
   @top-center { content: none; }
   @top-left { content: none; }
@@ -205,7 +214,10 @@
 
 @page chapter {
   margin: 0;
-  background: radial-gradient(ellipse at 30% 70%, var(--teal-mid) 0%, var(--teal) 40%, var(--teal-dark) 100%);
+  background:
+    radial-gradient(ellipse at 85% 15%, rgba(226,72,12,0.08) 0%, transparent 50%),
+    radial-gradient(ellipse at 10% 90%, rgba(255,255,255,0.06) 0%, transparent 40%),
+    linear-gradient(160deg, #074443 0%, #0C5E5D 40%, #074443 100%);
 
   @bottom-center { content: none; }
   @top-center { content: none; }
@@ -241,7 +253,7 @@
 
 @page stat-page {
   margin: 0;
-  background: linear-gradient(160deg, var(--teal-dark) 0%, var(--teal) 60%, var(--teal-mid) 100%);
+  background: linear-gradient(160deg, #074443 0%, #0C5E5D 50%, #074443 100%);
 
   @bottom-center { content: none; }
   @top-center { content: none; }
@@ -251,7 +263,7 @@
 
 @page split-page {
   margin: 0;
-  background-color: var(--bg-cream);
+  background-color: #F8F4EF;
 
   @bottom-center { content: none; }
   @top-center { content: none; }
@@ -261,7 +273,7 @@
 
 @page backcover {
   margin: 0;
-  background-color: var(--sage-dark);
+  background-color: #7AABB5;
 
   @bottom-center { content: none; }
   @top-center { content: none; }
@@ -377,47 +389,32 @@ strong {
    ========================================================================== */
 
 .cover {
-  page: cover;
-  break-before: page;
-  min-height: 250mm;
-  position: relative;
-  overflow: hidden;
+  padding-top: 150mm;
+  color: #FFFFFF;
+  break-after: page;
+  background:
+    linear-gradient(180deg, transparent 0%, transparent 30%, rgba(7,68,67,0.7) 50%, rgba(7,68,67,0.95) 70%, #074443 100%),
+    #074443;
+  margin: -24mm -28mm -30mm -28mm;
+  padding-left: 28mm;
+  padding-right: 28mm;
+  padding-bottom: 30mm;
 }
 
 .cover-image {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  display: none;
 }
 
 .cover-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(180deg, rgba(7,68,67,0.3) 0%, rgba(7,68,67,0.85) 60%, rgba(7,68,67,0.95) 100%);
+  display: none;
 }
 
 .cover-accent {
-  position: absolute;
-  bottom: 120mm;
-  left: 20mm;
-  width: 40mm;
-  height: 2px;
-  background-color: var(--gold);
+  display: none;
 }
 
 .cover-content {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 20mm;
-  color: var(--white);
+  color: #FFFFFF;
 }
 
 .cover-badge {
@@ -542,7 +539,6 @@ strong {
    ========================================================================== */
 
 .chapter-opener {
-  page: chapter;
   break-before: page;
   min-height: 250mm;
   display: flex;
@@ -550,8 +546,17 @@ strong {
   align-items: center;
   justify-content: center;
   text-align: center;
-  color: var(--white);
+  color: #FFFFFF;
   padding: 30mm;
+  background:
+    radial-gradient(ellipse at 85% 15%, rgba(226,72,12,0.08) 0%, transparent 50%),
+    radial-gradient(ellipse at 10% 90%, rgba(255,255,255,0.06) 0%, transparent 40%),
+    linear-gradient(160deg, #074443 0%, #0C5E5D 40%, #074443 100%);
+  margin: -24mm -28mm -30mm -28mm;
+  padding-top: 60mm;
+  padding-bottom: 40mm;
+  padding-left: 30mm;
+  padding-right: 30mm;
 }
 
 .chapter-number {
@@ -605,15 +610,15 @@ strong {
    ========================================================================== */
 
 .back-cover {
-  page: backcover;
   break-before: page;
   min-height: 250mm;
-  background-color: var(--sage-dark);
-  color: var(--white);
-  padding: 30mm;
+  background-color: #7AABB5;
+  color: #FFFFFF;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  margin: -24mm -28mm -30mm -28mm;
+  padding: 30mm 28mm 30mm 28mm;
 }
 
 /* SECTION 10: BIO PAGE
@@ -688,7 +693,6 @@ strong {
    ========================================================================== */
 
 .stat-page {
-  page: stat-page;
   break-before: page;
   min-height: 250mm;
   display: flex;
@@ -696,8 +700,14 @@ strong {
   align-items: center;
   justify-content: center;
   text-align: center;
-  color: var(--white);
+  color: #FFFFFF;
   padding: 40mm;
+  background: linear-gradient(160deg, #074443 0%, #0C5E5D 50%, #074443 100%);
+  margin: -24mm -28mm -30mm -28mm;
+  padding-top: 60mm;
+  padding-bottom: 40mm;
+  padding-left: 40mm;
+  padding-right: 40mm;
 }
 
 .stat-number {
@@ -762,7 +772,7 @@ strong {
   opacity: 0.3;
 }
 
-.quote-page-mark {
+.quote-mark {
   font-family: var(--font-heading);
   font-size: 80pt;
   color: var(--gold);
@@ -771,7 +781,7 @@ strong {
   position: relative;
 }
 
-.quote-page-text {
+.quote-text {
   font-family: var(--font-heading);
   font-size: 18pt;
   font-style: italic;
@@ -781,7 +791,7 @@ strong {
   position: relative;
 }
 
-.quote-page-author {
+.quote-author {
   font-family: var(--font-body);
   font-size: 10pt;
   text-transform: uppercase;
