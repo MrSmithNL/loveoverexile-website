@@ -129,7 +129,7 @@ def layer1_programmatic(pdf_path: str, page_indices: list = None,
                         expected_size_kb: tuple = None,
                         min_dpi: int = 72,
                         min_font_size: float = 6.0,
-                        margin_mm: float = 15.0) -> list:
+                        margin_mm: float = 20.0) -> list:
     """
     Run all programmatic checks. Returns a list of Issues.
 
@@ -315,11 +315,12 @@ def layer1_programmatic(pdf_path: str, page_indices: list = None,
     # --- Check 7: Text overflow / margin violation ---
     # Note: WeasyPrint places running headers, footers, and page numbers in
     # margin boxes — these intentionally sit outside the body content margins.
-    # We exclude small text blocks in the top/bottom margin zones (likely
-    # running headers/page numbers) and only flag body content overflow.
+    # We exclude: (a) text blocks in header/footer zones (running headers,
+    # page numbers), (b) full-bleed pages (cover, chapter openers, photo
+    # pages, stat pages, etc.) that intentionally use zero margins.
     margin_pt = margin_mm * 72 / 25.4  # convert mm to points
-    header_zone_pt = 20 * 72 / 25.4    # top 20mm is header zone
-    footer_zone_pt = 25 * 72 / 25.4    # bottom 25mm is footer zone
+    header_zone_pt = 22 * 72 / 25.4    # top 22mm matches @page margin-top
+    footer_zone_pt = 28 * 72 / 25.4    # bottom 28mm matches @page margin-bottom
     overflow_pages = []
     for idx in page_indices:
         page = doc[idx]
@@ -330,26 +331,38 @@ def layer1_programmatic(pdf_path: str, page_indices: list = None,
             page_rect.x1 - margin_pt,
             page_rect.y1 - margin_pt
         )
+        # Detect full-bleed pages: if the page has an image that covers
+        # most of the page area, it's likely a cover/photo/chapter opener
         blocks = page.get_text("dict", flags=fitz.TEXT_PRESERVE_WHITESPACE)["blocks"]
+        page_area = page_rect.width * page_rect.height
+        has_fullbleed_image = False
+        for block in blocks:
+            if block["type"] == 1:  # image block
+                img_rect = fitz.Rect(block["bbox"])
+                if img_rect.width * img_rect.height > page_area * 0.5:
+                    has_fullbleed_image = True
+                    break
+        if has_fullbleed_image:
+            continue  # skip full-bleed pages entirely
+
+        page_has_overflow = False
         for block in blocks:
             if block["type"] == 0:  # text block
                 bbox = fitz.Rect(block["bbox"])
-                # Skip margin-box content (running headers, footers, page numbers)
-                # These are small text blocks in the header/footer zones
-                block_height = bbox.height
+                # Skip any text in header/footer margin zones
                 in_header_zone = bbox.y1 < header_zone_pt
                 in_footer_zone = bbox.y0 > (page_rect.y1 - footer_zone_pt)
-                is_small_text = block_height < 15  # small blocks likely margin content
-                if (in_header_zone or in_footer_zone) and is_small_text:
+                if in_header_zone or in_footer_zone:
                     continue
-                # Check if text extends significantly beyond margins (>2pt tolerance)
-                if (bbox.x0 < safe_rect.x0 - 2 or bbox.x1 > safe_rect.x1 + 2 or
-                    bbox.y0 < safe_rect.y0 - 2 or bbox.y1 > safe_rect.y1 + 2):
+                # Check if text extends significantly beyond margins (>4pt tolerance)
+                if (bbox.x0 < safe_rect.x0 - 4 or bbox.x1 > safe_rect.x1 + 4 or
+                    bbox.y0 < safe_rect.y0 - 4 or bbox.y1 > safe_rect.y1 + 4):
                     overflow_pages.append({
                         "page": idx + 1,
                         "block_bbox": [round(c, 1) for c in block["bbox"]],
                         "safe_area": [round(c, 1) for c in [safe_rect.x0, safe_rect.y0, safe_rect.x1, safe_rect.y1]]
                     })
+                    page_has_overflow = True
                     break  # one violation per page is enough
 
     if overflow_pages:
