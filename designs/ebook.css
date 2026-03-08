@@ -1,0 +1,4535 @@
+/* ==========================================================================
+   SURVIVAL GUIDE — CSS Print Design System
+   "Quiet Harbour" aesthetic: warm, compassionate, professional
+   For use with WeasyPrint
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. FONT FACES
+   -------------------------------------------------------------------------- */
+
+@font-face {
+  font-family: 'Lora';
+  font-weight: 400;
+  font-style: normal;
+  src: url('fonts/Lora-Regular.ttf');
+}
+
+@font-face {
+  font-family: 'Lora';
+  font-weight: 700;
+  font-style: normal;
+  src: url('fonts/Lora-Bold.ttf');
+}
+
+@font-face {
+  font-family: 'Lora';
+  font-weight: 400;
+  font-style: italic;
+  src: url('fonts/Lora-Italic.ttf');
+}
+
+@font-face {
+  font-family: 'Lora';
+  font-weight: 700;
+  font-style: italic;
+  src: url('fonts/Lora-BoldItalic.ttf');
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-weight: 400;
+  font-style: normal;
+  src: url('fonts/Inter-Regular.ttf');
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-weight: 700;
+  font-style: normal;
+  src: url('fonts/Inter-Bold.ttf');
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-weight: 400;
+  font-style: italic;
+  src: url('fonts/Inter-Italic.ttf');
+}
+
+/* Font Awesome 6 Solid — for icons */
+@font-face {
+  font-family: 'FA6Solid';
+  font-weight: 900;
+  font-style: normal;
+  src: url('fonts/fa-solid-900.ttf');
+}
+
+/* --------------------------------------------------------------------------
+   2. CSS VARIABLES
+   -------------------------------------------------------------------------- */
+
+:root {
+  /* LOE Brand Palette */
+  --bg-cream: #F8F4EF;
+  --bg-warm: #F0EBE3;
+  --bg-light: #FDF9F5;
+  --teal: #0C5E5D;
+  --teal-dark: #074443;
+  --teal-mid: #178180;
+  --teal-light: #E0F0F0;
+  --sage: #A4CCD4;
+  --sage-light: #DBE9ED;
+  --sage-muted: #7AABB5;
+  --amber: #E2480C;
+  --amber-light: #FFF0EB;
+  --amber-dark: #631B08;
+  --gold: #D4910A;
+  --gold-light: #F5EDDA;
+  --charcoal: #2C2C2C;
+  --text: #2C2C2C;
+  --text-light: #4A4A4A;
+  --text-muted: #8A8178;
+  --white: #FFFFFF;
+  --border-light: #E2DBD0;
+  --border: #D0CCC4;
+
+  /* Aliases for backwards compat in existing styles */
+  --sage-dark: var(--teal-dark);
+
+  --font-heading: 'Lora', Georgia, serif;
+  --font-body: 'Inter', 'Helvetica Neue', sans-serif;
+  --font-icon: 'FA6Solid';
+
+  --margin-page: 22mm;
+  --margin-inside: 26mm;
+  --margin-outside: 20mm;
+}
+
+/* --------------------------------------------------------------------------
+   3. PAGE RULES
+   -------------------------------------------------------------------------- */
+
+@page {
+  size: A4;
+  margin: 22mm 20mm 28mm 20mm;
+  background: var(--bg-cream);
+
+  /* Phase 1: Branded circle page numbers */
+  @bottom-center {
+    content: counter(page);
+    font-family: 'Inter', sans-serif;
+    font-size: 8pt;
+    font-weight: 700;
+    color: var(--white);
+    background: var(--teal);
+    width: 8mm;
+    height: 8mm;
+    line-height: 8mm;
+    text-align: center;
+    border-radius: 50%;
+  }
+
+  /* Phase 1: Thin colour bar in top margin */
+  @top-center {
+    content: "";
+    background: linear-gradient(90deg, var(--teal), var(--gold), var(--teal));
+    height: 0.5mm;
+    width: 100%;
+    opacity: 0.6;
+  }
+}
+
+@page :left {
+  margin-left: var(--margin-outside);
+  margin-right: var(--margin-inside);
+
+  @top-left {
+    content: string(booktitle);
+    font-family: 'Inter', sans-serif;
+    font-size: 7.5pt;
+    color: var(--sage-muted);
+    letter-spacing: 0.5pt;
+    text-transform: uppercase;
+    border-bottom: 0.5pt solid var(--border-light);
+    padding-bottom: 4pt;
+  }
+}
+
+@page :right {
+  margin-left: var(--margin-inside);
+  margin-right: var(--margin-outside);
+
+  @top-right {
+    content: string(section);
+    font-family: 'Inter', sans-serif;
+    font-size: 7.5pt;
+    color: var(--sage-muted);
+    letter-spacing: 0.5pt;
+    border-bottom: 0.5pt solid var(--border-light);
+    padding-bottom: 4pt;
+  }
+}
+
+/* Cover page — full bleed, no headers */
+@page cover {
+  margin: 0;
+  background:
+    linear-gradient(180deg, transparent 0%, transparent 40%, rgba(7,68,67,0.7) 60%, rgba(7,68,67,0.95) 100%),
+    var(--teal-dark);
+  @top-left { content: none; }
+  @top-center { content: none; background: none; }
+  @top-right { content: none; }
+  @bottom-center { content: none; background: none; }
+  @bottom-left { content: none; }
+  @bottom-right { content: none; }
+}
+
+/* Chapter opener — teal background with decorative gradient */
+@page chapter {
+  background:
+    radial-gradient(ellipse at 85% 15%, rgba(226,72,12,0.08) 0%, transparent 50%),
+    radial-gradient(ellipse at 10% 90%, rgba(255,255,255,0.06) 0%, transparent 40%),
+    linear-gradient(160deg, #074443 0%, #0C5E5D 40%, #074443 100%);
+  margin: 0;
+  @top-left { content: none; }
+  @top-center { content: none; background: none; }
+  @top-right { content: none; }
+  @bottom-center { content: none; background: none; }
+  @bottom-left { content: none; }
+  @bottom-right { content: none; }
+}
+
+/* Clean page — no running headers (TOC, author note) */
+@page clean {
+  @top-left { content: none; }
+  @top-center { content: none; background: none; }
+  @top-right { content: none; }
+}
+
+/* Full bleed image page */
+@page fullbleed {
+  margin: 0;
+  background: black;
+  @top-left { content: none; }
+  @top-center { content: none; background: none; }
+  @top-right { content: none; }
+  @bottom-center { content: none; background: none; }
+}
+
+/* Back cover */
+@page backcover {
+  margin: 0;
+  background: var(--sage-dark);
+  @top-left { content: none; }
+  @top-center { content: none; background: none; }
+  @top-right { content: none; }
+  @bottom-center { content: none; background: none; }
+}
+
+/* Blank pages */
+@page :blank {
+  @top-left { content: none; }
+  @top-center { content: none; background: none; }
+  @top-right { content: none; }
+  @bottom-center { content: none; background: none; }
+}
+
+/* Photo overlay page — full-bleed image with text */
+@page photo-overlay {
+  margin: 0;
+  @top-left { content: none; }
+  @top-center { content: none; background: none; }
+  @top-right { content: none; }
+  @bottom-center { content: none; background: none; }
+}
+
+/* Stat/impact page — bold colour, no headers */
+@page stat-page {
+  margin: 0;
+  background: linear-gradient(160deg, #074443 0%, #0C5E5D 50%, #074443 100%);
+  @top-left { content: none; }
+  @top-center { content: none; background: none; }
+  @top-right { content: none; }
+  @bottom-center { content: none; background: none; }
+}
+
+/* Split layout page — no headers, cream bg */
+@page split-page {
+  margin: 0;
+  background: var(--bg-cream);
+  @top-left { content: none; }
+  @top-center { content: none; background: none; }
+  @top-right { content: none; }
+  @bottom-center { content: none; background: none; }
+}
+
+/* Colour block page — warm accent background */
+@page colour-block {
+  margin: 0;
+  background: var(--teal-light);
+  @top-left { content: none; }
+  @top-center { content: none; background: none; }
+  @top-right { content: none; }
+  @bottom-center { content: none; background: none; }
+}
+
+/* --------------------------------------------------------------------------
+   4. BASE TYPOGRAPHY
+   -------------------------------------------------------------------------- */
+
+html {
+  font-family: var(--font-body);
+  font-size: 10.5pt;
+  font-weight: 400;
+  line-height: 1.65;
+  color: var(--text);
+  /* Enhanced typography */
+  hyphens: auto;
+  font-kerning: normal;
+  font-variant-ligatures: common-ligatures;
+  font-variant-numeric: oldstyle-nums proportional-nums;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  font-family: var(--font-heading);
+  font-size: 32pt;
+  font-weight: 700;
+  color: var(--sage-dark);
+  line-height: 1.2;
+  margin: 0 0 0.5em 0;
+  string-set: booktitle content();
+}
+
+h2 {
+  font-family: var(--font-heading);
+  font-size: 24pt;
+  font-weight: 700;
+  color: var(--sage-dark);
+  line-height: 1.25;
+  margin: 0 0 0.6em 0;
+  string-set: section content();
+  text-align: left;
+  break-after: avoid;
+}
+
+h3 {
+  font-family: var(--font-heading);
+  font-size: 14pt;
+  font-weight: 700;
+  color: var(--teal);
+  line-height: 1.35;
+  margin: 1.5em 0 0.5em 0;
+  text-align: left;
+  break-after: avoid;
+}
+
+h4 {
+  font-family: var(--font-body);
+  font-size: 11pt;
+  font-weight: 700;
+  color: var(--sage-dark);
+  text-transform: uppercase;
+  letter-spacing: 1pt;
+  margin: 1.2em 0 0.4em 0;
+}
+
+p {
+  margin: 0 0 0.7em 0;
+  orphans: 3;
+  widows: 3;
+  text-align: justify;
+  hyphens: auto;
+}
+
+p.justified {
+  text-align: justify;
+  hyphens: auto;
+}
+
+strong {
+  font-weight: 700;
+  color: var(--charcoal);
+}
+
+em {
+  font-style: italic;
+  color: var(--text-light);
+}
+
+/* First paragraph after H2 — slightly larger lead text */
+h2 + p {
+  font-size: 11pt;
+  line-height: 1.7;
+  color: var(--charcoal);
+}
+
+a {
+  color: var(--sage);
+  text-decoration: none;
+}
+
+/* --------------------------------------------------------------------------
+   5. COVER PAGE
+   -------------------------------------------------------------------------- */
+
+.cover {
+  page: cover;
+  position: relative;
+  width: 210mm;
+  height: 297mm;
+  overflow: hidden;
+}
+
+.cover-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 210mm;
+  height: 297mm;
+  object-fit: cover;
+  z-index: 0;
+}
+
+.cover-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 210mm;
+  height: 297mm;
+  background: linear-gradient(
+    180deg,
+    rgba(7,68,67,0.05) 0%,
+    rgba(7,68,67,0.2) 35%,
+    rgba(7,68,67,0.7) 55%,
+    rgba(7,68,67,0.92) 75%,
+    rgba(7,68,67,1) 100%
+  );
+  z-index: 1;
+}
+
+/* Decorative top accent on cover */
+.cover-accent {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 210mm;
+  height: 4mm;
+  background: linear-gradient(90deg, var(--gold), var(--gold-light), var(--gold));
+  z-index: 2;
+}
+
+.cover-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 40mm 30mm 35mm 30mm;
+  z-index: 2;
+}
+
+.cover-badge {
+  font-family: var(--font-body);
+  font-size: 8pt;
+  font-weight: 700;
+  color: var(--gold);
+  text-transform: uppercase;
+  letter-spacing: 3pt;
+  margin-bottom: 15mm;
+}
+
+.cover-title {
+  font-family: var(--font-heading);
+  font-size: 36pt;
+  font-weight: 700;
+  color: var(--white);
+  line-height: 1.15;
+  margin: 0 0 6mm 0;
+}
+
+.cover-subtitle {
+  font-family: var(--font-heading);
+  font-size: 14pt;
+  font-weight: 400;
+  font-style: italic;
+  color: rgba(255, 255, 255, 0.85);
+  line-height: 1.4;
+  margin: 0 0 15mm 0;
+}
+
+.cover-rule {
+  width: 60mm;
+  height: 1px;
+  background: var(--gold);
+  margin-bottom: 10mm;
+}
+
+.cover-author {
+  font-family: var(--font-body);
+  font-size: 11pt;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.8);
+  letter-spacing: 1pt;
+}
+
+.cover-url {
+  font-family: var(--font-body);
+  font-size: 9pt;
+  color: var(--gold);
+  margin-top: 4mm;
+  letter-spacing: 0.5pt;
+}
+
+/* --------------------------------------------------------------------------
+   6. AUTHOR NOTE PAGE
+   -------------------------------------------------------------------------- */
+
+.author-note {
+  page: clean;
+  break-before: page;
+  padding-top: 25mm;
+}
+
+.author-note h2 {
+  font-size: 18pt;
+  color: var(--sage);
+  font-weight: 400;
+  font-style: italic;
+  margin-bottom: 1.5em;
+}
+
+.author-note p {
+  font-size: 11pt;
+  line-height: 1.8;
+  margin-bottom: 1em;
+}
+
+.author-note .signature {
+  font-family: var(--font-heading);
+  font-size: 16pt;
+  font-style: italic;
+  color: var(--sage-dark);
+  margin-top: 1.5em;
+}
+
+/* --------------------------------------------------------------------------
+   7. TABLE OF CONTENTS
+   -------------------------------------------------------------------------- */
+
+.toc {
+  page: clean;
+  break-before: page;
+  padding-top: 20mm;
+}
+
+.toc h2 {
+  font-size: 20pt;
+  color: var(--sage-dark);
+  margin-bottom: 1.5em;
+  padding-bottom: 0.5em;
+  border-bottom: 2px solid var(--gold);
+}
+
+/* Auto-generated TOC with page numbers via target-counter() */
+.toc-auto {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.toc-auto li {
+  margin-bottom: 0;
+  padding: 0;
+}
+
+/* Part-level entries */
+.toc-auto li.toc-part {
+  margin-top: 1.2em;
+  margin-bottom: 0.3em;
+}
+
+.toc-auto li.toc-part a {
+  font-family: var(--font-body);
+  font-size: 8pt;
+  font-weight: 700;
+  color: var(--sage);
+  text-transform: uppercase;
+  letter-spacing: 2pt;
+  text-decoration: none;
+  display: block;
+  padding-bottom: 0.3em;
+  border-bottom: 0.5pt solid var(--border-light);
+}
+
+.toc-auto li.toc-part a::after {
+  content: target-counter(attr(href), page);
+  float: right;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  color: var(--sage);
+  font-size: 10pt;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+/* Chapter-level entries */
+.toc-auto li.toc-chapter {
+  padding: 0.35em 0 0.35em 0;
+}
+
+.toc-auto li.toc-chapter a {
+  font-family: var(--font-body);
+  font-size: 10.5pt;
+  color: var(--text);
+  text-decoration: none;
+  display: block;
+}
+
+.toc-auto li.toc-chapter a::after {
+  content: leader('.') ' ' target-counter(attr(href), page);
+  font-family: var(--font-heading);
+  font-weight: 700;
+  color: var(--sage);
+}
+
+/* Fallback manual TOC (original styles preserved) */
+.toc-section {
+  margin-bottom: 1.5em;
+}
+
+.toc-section-title {
+  font-family: var(--font-body);
+  font-size: 8pt;
+  font-weight: 700;
+  color: var(--sage);
+  text-transform: uppercase;
+  letter-spacing: 2pt;
+  margin-bottom: 0.6em;
+  padding-bottom: 0.3em;
+  border-bottom: 0.5pt solid var(--border-light);
+}
+
+.toc-item {
+  display: block;
+  padding: 0.35em 0;
+  font-size: 10.5pt;
+  color: var(--text);
+}
+
+.toc-number {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  color: var(--sage);
+  width: 2em;
+  display: inline-block;
+}
+
+.toc-title {
+  display: inline;
+}
+
+.toc-dots {
+  display: inline;
+}
+
+.toc-page {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  color: var(--sage);
+  float: right;
+}
+
+/* --------------------------------------------------------------------------
+   8. CHAPTER OPENER
+   -------------------------------------------------------------------------- */
+
+.chapter-opener {
+  page: chapter;
+  break-before: page;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  height: 297mm;
+  padding: 50mm 40mm;
+  box-sizing: border-box;
+  color: var(--white);
+}
+
+/* Decorative corner accent on chapter openers */
+.chapter-opener::before {
+  content: "";
+  position: absolute;
+  top: 25mm;
+  right: 25mm;
+  width: 35mm;
+  height: 35mm;
+  border-top: 1.5px solid rgba(196,163,90,0.35);
+  border-right: 1.5px solid rgba(196,163,90,0.35);
+}
+
+.chapter-opener::after {
+  content: "";
+  position: absolute;
+  bottom: 25mm;
+  left: 25mm;
+  width: 35mm;
+  height: 35mm;
+  border-bottom: 1.5px solid rgba(196,163,90,0.35);
+  border-left: 1.5px solid rgba(196,163,90,0.35);
+}
+
+.chapter-number {
+  font-family: var(--font-body);
+  font-size: 9pt;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 4pt;
+  color: var(--gold);
+  margin-bottom: 8mm;
+}
+
+.chapter-title {
+  font-family: var(--font-heading);
+  font-size: 34pt;
+  font-weight: 700;
+  color: var(--white);
+  line-height: 1.2;
+  margin: 0 0 8mm 0;
+  string-set: section content();
+}
+
+.chapter-subtitle {
+  font-family: var(--font-heading);
+  font-size: 13pt;
+  font-weight: 400;
+  font-style: italic;
+  color: rgba(255, 255, 255, 0.75);
+  line-height: 1.5;
+  max-width: 80%;
+}
+
+.chapter-rule {
+  width: 50mm;
+  height: 2px;
+  background: linear-gradient(90deg, var(--gold), rgba(196,163,90,0.2));
+  margin: 8mm 0;
+}
+
+/* Chapter motif image (botanical illustration overlay) */
+.chapter-motif {
+  position: absolute;
+  top: 20mm;
+  right: 20mm;
+  width: 65mm;
+  height: 65mm;
+  opacity: 0.10;
+  object-fit: contain;
+}
+
+/* --------------------------------------------------------------------------
+   9. CONTENT PAGES
+   -------------------------------------------------------------------------- */
+
+.content-page {
+  break-before: page;
+}
+
+.content-page h2 {
+  margin-top: 0;
+  padding-top: 5mm;
+}
+
+.content-page h3 {
+  break-after: avoid;
+}
+
+/* Drop cap — inline approach (avoids WeasyPrint float bugs with images) */
+.drop-cap::first-letter {
+  font-family: var(--font-heading);
+  font-size: 2.8em;
+  color: var(--sage);
+  font-weight: 700;
+}
+
+/* Lead paragraph — slightly larger */
+.lead {
+  font-size: 12pt;
+  line-height: 1.7;
+  color: var(--charcoal);
+  margin-bottom: 1em;
+}
+
+/* Two column layout */
+.two-col {
+  columns: 2;
+  column-gap: 8mm;
+  column-rule: 0.5pt solid var(--border-light);
+}
+
+.two-col p {
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* --------------------------------------------------------------------------
+   10. CALLOUT BOXES
+   -------------------------------------------------------------------------- */
+
+/* Base callout */
+.callout {
+  padding: 5mm 6mm;
+  margin: 4mm 0;
+  border-radius: 3px;
+  break-inside: avoid;
+  font-size: 10pt;
+  line-height: 1.55;
+}
+
+.callout-label {
+  font-family: var(--font-body);
+  font-size: 8pt;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5pt;
+  margin-bottom: 2mm;
+}
+
+.callout p:last-child {
+  margin-bottom: 0;
+}
+
+/* Insight callout — sage accent */
+.callout-insight {
+  background: var(--sage-light);
+  border-left: 4px solid var(--sage);
+}
+
+.callout-insight .callout-label {
+  color: var(--sage-dark);
+}
+
+/* Key takeaway — gold accent */
+.callout-key {
+  background: var(--gold-light);
+  border-left: 4px solid var(--gold);
+}
+
+.callout-key .callout-label {
+  color: var(--gold);
+}
+
+/* Warning — amber accent */
+.callout-warning {
+  background: var(--amber-light);
+  border-left: 4px solid var(--amber);
+}
+
+.callout-warning .callout-label {
+  color: var(--amber);
+}
+
+/* Bordered callout — full sage border */
+.callout-bordered {
+  background: var(--bg-light);
+  border: 1.5px solid var(--sage);
+  padding: 6mm 7mm;
+}
+
+.callout-bordered .callout-label {
+  color: var(--sage);
+}
+
+/* --------------------------------------------------------------------------
+   11. PULL QUOTES
+   -------------------------------------------------------------------------- */
+
+.pull-quote {
+  text-align: center;
+  padding: 6mm 12mm;
+  margin: 6mm 0;
+  break-inside: avoid;
+}
+
+.pull-quote::before,
+.pull-quote::after {
+  content: "";
+  display: block;
+  width: 40mm;
+  height: 1.5px;
+  background: var(--sage);
+  margin: 0 auto 4mm;
+}
+
+.pull-quote::after {
+  margin: 4mm auto 0;
+}
+
+.pull-quote p {
+  font-family: var(--font-heading);
+  font-size: 14pt;
+  font-style: italic;
+  line-height: 1.55;
+  color: var(--sage-dark);
+  margin: 0;
+}
+
+.pull-quote cite {
+  display: block;
+  margin-top: 3mm;
+  font-family: var(--font-body);
+  font-size: 9pt;
+  font-style: normal;
+  color: var(--text-light);
+  letter-spacing: 0.5pt;
+}
+
+/* Full-width quote band */
+.quote-band {
+  background: var(--sage-dark);
+  margin: 5mm 0;
+  padding: 10mm 15mm;
+  break-inside: avoid;
+  border-radius: 3px;
+}
+
+.quote-band p {
+  font-family: var(--font-heading);
+  font-size: 15pt;
+  font-style: italic;
+  line-height: 1.5;
+  color: var(--white);
+  text-align: center;
+  margin: 0;
+}
+
+.quote-band cite {
+  display: block;
+  margin-top: 3mm;
+  font-family: var(--font-body);
+  font-size: 9pt;
+  font-style: normal;
+  color: var(--gold);
+  text-align: center;
+  letter-spacing: 0.5pt;
+}
+
+/* Inline quote with left border */
+.quote-mark {
+  padding: 4mm 5mm 4mm 8mm;
+  margin: 5mm 0;
+  border-left: 3px solid var(--sage);
+  background: var(--sage-light);
+  border-radius: 0 3px 3px 0;
+  break-inside: avoid;
+}
+
+.quote-mark p {
+  font-family: var(--font-heading);
+  font-size: 12pt;
+  font-style: italic;
+  line-height: 1.5;
+  color: var(--sage-dark);
+  margin: 0;
+}
+
+/* --------------------------------------------------------------------------
+   12. STATISTICS / NUMBER CALLOUTS
+   -------------------------------------------------------------------------- */
+
+.stat-row {
+  display: flex;
+  justify-content: space-between;
+  margin: 5mm 0;
+  break-inside: avoid;
+}
+
+.stat-item {
+  flex: 1;
+  text-align: center;
+  padding: 4mm;
+}
+
+.stat-item + .stat-item {
+  border-left: 1px solid var(--border-light);
+}
+
+.stat-number {
+  font-family: var(--font-heading);
+  font-size: 36pt;
+  font-weight: 700;
+  color: var(--sage);
+  line-height: 1.1;
+  display: block;
+  font-variant-numeric: lining-nums tabular-nums;
+}
+
+.stat-label {
+  font-family: var(--font-body);
+  font-size: 8pt;
+  color: var(--text-light);
+  text-transform: uppercase;
+  letter-spacing: 1pt;
+  margin-top: 2mm;
+  display: block;
+}
+
+/* Single large stat */
+.stat-hero {
+  text-align: center;
+  padding: 8mm 0;
+  margin: 4mm 0;
+  break-inside: avoid;
+}
+
+.stat-hero .stat-number {
+  font-size: 52pt;
+  color: var(--sage-dark);
+}
+
+.stat-hero .stat-label {
+  font-size: 10pt;
+  letter-spacing: 1.5pt;
+}
+
+/* --------------------------------------------------------------------------
+   13. MODEL DIAGRAMS & IMAGES
+   -------------------------------------------------------------------------- */
+
+.model-diagram {
+  margin: 5mm 0;
+  break-inside: avoid;
+  text-align: center;
+}
+
+.model-diagram img {
+  max-width: 100%;
+  height: auto;
+  max-height: 110mm;
+  border-radius: 4px;
+}
+
+.model-diagram figcaption {
+  font-family: var(--font-body);
+  font-size: 8pt;
+  color: var(--text-light);
+  font-style: italic;
+  margin-top: 2mm;
+  text-align: center;
+}
+
+/* Full-width image */
+.full-image {
+  margin: 4mm 0;
+  break-inside: avoid;
+}
+
+.full-image img {
+  width: 100%;
+  height: auto;
+  max-height: 85mm;
+  display: block;
+  border-radius: 4px;
+}
+
+/* Inset image with rounded corners */
+.inset-image {
+  margin: 4mm 0;
+  break-inside: avoid;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.inset-image img {
+  width: 100%;
+  height: auto;
+  max-height: 70mm;
+  object-fit: cover;
+  display: block;
+}
+
+/* Image with caption overlay */
+.image-caption {
+  position: relative;
+  margin: 4mm 0;
+  break-inside: avoid;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.image-caption img {
+  width: 100%;
+  height: 65mm;
+  object-fit: cover;
+  display: block;
+}
+
+.image-caption figcaption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(transparent, rgba(0,0,0,0.7));
+  color: white;
+  padding: 10mm 5mm 4mm;
+  font-size: 9pt;
+  font-style: italic;
+}
+
+/* --------------------------------------------------------------------------
+   14. NUMBERED LISTS
+   -------------------------------------------------------------------------- */
+
+/* Circled numbers */
+ol.circled {
+  list-style: none;
+  counter-reset: circled;
+  padding-left: 0;
+}
+
+ol.circled li {
+  counter-increment: circled;
+  padding-left: 12mm;
+  position: relative;
+  margin-bottom: 3mm;
+  min-height: 7mm;
+}
+
+ol.circled li::before {
+  content: counter(circled);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 7mm;
+  height: 7mm;
+  line-height: 7mm;
+  text-align: center;
+  border-radius: 50%;
+  background: var(--sage);
+  color: var(--white);
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 8pt;
+}
+
+/* Steps with connecting line */
+ol.steps {
+  list-style: none;
+  counter-reset: steps;
+  padding-left: 12mm;
+  position: relative;
+}
+
+ol.steps::before {
+  content: "";
+  position: absolute;
+  left: 3.5mm;
+  top: 4mm;
+  bottom: 4mm;
+  width: 1px;
+  background: var(--sage-light);
+}
+
+ol.steps li {
+  counter-increment: steps;
+  position: relative;
+  margin-bottom: 4mm;
+  padding-left: 6mm;
+}
+
+ol.steps li::before {
+  content: counter(steps);
+  position: absolute;
+  left: -12mm;
+  width: 7mm;
+  height: 7mm;
+  line-height: 7mm;
+  text-align: center;
+  border-radius: 50%;
+  background: var(--sage-dark);
+  color: var(--white);
+  font-weight: 700;
+  font-size: 8pt;
+  z-index: 1;
+}
+
+/* Numbered items with bold title */
+.numbered-item {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 3mm;
+  break-inside: avoid;
+}
+
+.numbered-item .num {
+  font-family: var(--font-heading);
+  font-size: 18pt;
+  font-weight: 700;
+  color: var(--sage);
+  width: 10mm;
+  flex-shrink: 0;
+  line-height: 1.2;
+}
+
+.numbered-item .content {
+  flex: 1;
+}
+
+.numbered-item .content strong {
+  display: block;
+  margin-bottom: 1mm;
+}
+
+/* Unordered list with custom bullets */
+ul.custom {
+  list-style: none;
+  padding-left: 0;
+}
+
+ul.custom li {
+  padding-left: 6mm;
+  position: relative;
+  margin-bottom: 2mm;
+}
+
+ul.custom li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 5pt;
+  width: 3mm;
+  height: 3mm;
+  border-radius: 50%;
+  background: var(--gold);
+}
+
+/* --------------------------------------------------------------------------
+   15. MECHANISM / CATEGORY GROUPS
+   -------------------------------------------------------------------------- */
+
+.mechanism-group {
+  margin: 4mm 0;
+  break-inside: avoid;
+}
+
+.mechanism-title {
+  font-family: var(--font-body);
+  font-size: 10pt;
+  font-weight: 700;
+  color: var(--sage-dark);
+  text-transform: uppercase;
+  letter-spacing: 1pt;
+  padding: 2mm 4mm;
+  background: var(--sage-light);
+  margin-bottom: 2mm;
+  border-left: 3px solid var(--sage);
+}
+
+.mechanism-items {
+  padding-left: 6mm;
+  font-size: 10pt;
+}
+
+.mechanism-items p {
+  margin-bottom: 1.5mm;
+}
+
+/* --------------------------------------------------------------------------
+   16. PILLAR / FRAMEWORK CARDS
+   -------------------------------------------------------------------------- */
+
+.pillar-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4mm;
+  margin: 5mm 0;
+}
+
+.pillar-card {
+  flex: 1 1 45%;
+  min-width: 70mm;
+  background: var(--white);
+  border: 1px solid var(--border-light);
+  border-top: 3px solid var(--sage);
+  border-radius: 3px;
+  padding: 5mm;
+  break-inside: avoid;
+}
+
+.pillar-card h4 {
+  margin-top: 0;
+  font-size: 10pt;
+  color: var(--sage-dark);
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+.pillar-card p {
+  font-size: 9.5pt;
+  margin-bottom: 0;
+  color: var(--text-light);
+}
+
+/* --------------------------------------------------------------------------
+   17. RESOURCES / LINK BLOCKS
+   -------------------------------------------------------------------------- */
+
+.resource-group {
+  margin: 4mm 0;
+  break-inside: avoid;
+}
+
+.resource-group h4 {
+  font-size: 10pt;
+  color: var(--sage);
+  border-bottom: 1px solid var(--border-light);
+  padding-bottom: 2mm;
+  margin-bottom: 3mm;
+}
+
+.resource-item {
+  padding: 2mm 0 2mm 4mm;
+  border-left: 2px solid var(--sage-light);
+  margin-bottom: 2mm;
+  font-size: 10pt;
+}
+
+.resource-item strong {
+  color: var(--sage-dark);
+}
+
+/* --------------------------------------------------------------------------
+   18. SECTION DIVIDERS
+   -------------------------------------------------------------------------- */
+
+.divider {
+  text-align: center;
+  margin: 8mm 0;
+  color: var(--sage-muted);
+  font-size: 10pt;
+  letter-spacing: 4pt;
+  position: relative;
+}
+
+/* Ornamental divider with lines and central motif */
+.divider::before,
+.divider::after {
+  content: "";
+  display: inline-block;
+  width: 25mm;
+  height: 0.5px;
+  background: linear-gradient(to right, transparent, var(--sage-muted));
+  vertical-align: middle;
+  margin: 0 3mm;
+}
+
+.divider::after {
+  background: linear-gradient(to left, transparent, var(--sage-muted));
+}
+
+.divider-line {
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    var(--border),
+    transparent
+  );
+  margin: 5mm 0;
+}
+
+/* Ornamental leaf divider (image-based) */
+.divider-ornament {
+  text-align: center;
+  margin: 8mm 0;
+}
+
+.divider-ornament img {
+  width: 30mm;
+  height: auto;
+  opacity: 0.5;
+}
+
+/* --------------------------------------------------------------------------
+   19. ABOUT THE BOOK / CTA PAGE
+   -------------------------------------------------------------------------- */
+
+.book-cta {
+  break-before: page;
+  padding-top: 15mm;
+}
+
+.book-parts {
+  margin: 5mm 0;
+}
+
+.book-part {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 5mm;
+  break-inside: avoid;
+}
+
+.book-part-number {
+  font-family: var(--font-heading);
+  font-size: 28pt;
+  font-weight: 700;
+  color: var(--sage-light);
+  width: 15mm;
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+.book-part-content {
+  flex: 1;
+  padding-left: 3mm;
+  border-left: 2px solid var(--sage);
+}
+
+.book-part-content h4 {
+  margin-top: 0;
+  text-transform: none;
+  letter-spacing: 0;
+  font-size: 12pt;
+}
+
+/* --------------------------------------------------------------------------
+   20. BACK COVER
+   -------------------------------------------------------------------------- */
+
+.back-cover {
+  page: backcover;
+  break-before: page;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 297mm;
+  padding: 50mm 40mm;
+  box-sizing: border-box;
+  text-align: center;
+  color: var(--white);
+}
+
+.back-cover .back-quote {
+  font-family: var(--font-heading);
+  font-size: 18pt;
+  font-style: italic;
+  line-height: 1.5;
+  color: var(--white);
+  margin-bottom: 5mm;
+  max-width: 120mm;
+}
+
+.back-cover cite {
+  font-family: var(--font-body);
+  font-size: 10pt;
+  font-style: normal;
+  color: var(--gold);
+  letter-spacing: 0.5pt;
+  display: block;
+  margin-bottom: 20mm;
+}
+
+.back-cover .back-title {
+  font-family: var(--font-heading);
+  font-size: 22pt;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 3mm;
+}
+
+.back-cover .back-desc {
+  font-size: 10pt;
+  color: rgba(255, 255, 255, 0.7);
+  max-width: 110mm;
+  line-height: 1.6;
+  margin-bottom: 15mm;
+}
+
+.back-cover .back-author {
+  font-family: var(--font-heading);
+  font-size: 14pt;
+  color: var(--white);
+  margin-bottom: 10mm;
+}
+
+.back-cover .back-url {
+  font-family: var(--font-body);
+  font-size: 11pt;
+  color: var(--gold);
+  letter-spacing: 1pt;
+}
+
+/* --------------------------------------------------------------------------
+   21. BEFORE / AFTER COMPARISON
+   -------------------------------------------------------------------------- */
+
+.comparison {
+  display: flex;
+  gap: 0;
+  margin: 5mm 0;
+  break-inside: avoid;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.comparison-before,
+.comparison-after {
+  flex: 1;
+  padding: 5mm 5mm;
+}
+
+.comparison-before {
+  background: #F0E8E2;
+  border-right: 2px solid var(--border);
+}
+
+.comparison-after {
+  background: var(--sage-light);
+}
+
+.comparison-label {
+  font-family: var(--font-body);
+  font-size: 7.5pt;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5pt;
+  margin-bottom: 3mm;
+  display: block;
+}
+
+.comparison-before .comparison-label {
+  color: #8B6F5C;
+}
+
+.comparison-after .comparison-label {
+  color: var(--sage-dark);
+}
+
+.comparison-before p,
+.comparison-after p {
+  font-size: 9.5pt;
+  margin-bottom: 2mm;
+  line-height: 1.45;
+}
+
+.comparison-before p:last-child,
+.comparison-after p:last-child {
+  margin-bottom: 0;
+}
+
+/* --------------------------------------------------------------------------
+   22. MYTH vs REALITY
+   -------------------------------------------------------------------------- */
+
+.myth-reality {
+  margin: 4mm 0;
+  break-inside: avoid;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.myth-row {
+  display: flex;
+  gap: 0;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.myth-row:last-child {
+  border-bottom: none;
+}
+
+.myth-cell,
+.reality-cell {
+  flex: 1;
+  padding: 3mm 4mm;
+  font-size: 9.5pt;
+  line-height: 1.45;
+}
+
+.myth-cell {
+  background: #FAF0F0;
+  color: #7A4040;
+  border-right: 2px solid var(--border-light);
+}
+
+.reality-cell {
+  background: #F0FAF4;
+  color: var(--sage-dark);
+}
+
+.myth-header,
+.reality-header {
+  font-size: 7.5pt;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5pt;
+  padding: 3mm 4mm;
+}
+
+.myth-header {
+  background: #E8D0D0;
+  color: #7A4040;
+  border-right: 2px solid var(--border-light);
+}
+
+.reality-header {
+  background: #D0E8D8;
+  color: var(--sage-dark);
+}
+
+/* --------------------------------------------------------------------------
+   23. SECTION SUMMARY BOX
+   -------------------------------------------------------------------------- */
+
+.section-summary {
+  background: var(--bg-warm);
+  border: 1.5px solid var(--border);
+  border-top: 3px solid var(--gold);
+  border-radius: 0 0 4px 4px;
+  padding: 5mm 6mm;
+  margin: 5mm 0;
+  break-inside: avoid;
+}
+
+.section-summary-label {
+  font-family: var(--font-body);
+  font-size: 8pt;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5pt;
+  color: var(--gold);
+  margin-bottom: 3mm;
+}
+
+.section-summary ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.section-summary li {
+  padding: 1.5mm 0 1.5mm 5mm;
+  font-size: 9.5pt;
+  line-height: 1.45;
+  position: relative;
+  color: var(--text);
+}
+
+.section-summary li::before {
+  content: "\2713";
+  position: absolute;
+  left: 0;
+  color: var(--gold);
+  font-weight: 700;
+  font-size: 9pt;
+}
+
+/* --------------------------------------------------------------------------
+   24. CHECKLIST
+   -------------------------------------------------------------------------- */
+
+.checklist {
+  list-style: none;
+  padding: 0;
+  margin: 4mm 0;
+}
+
+.checklist li {
+  padding: 2.5mm 0 2.5mm 8mm;
+  position: relative;
+  font-size: 10pt;
+  line-height: 1.5;
+  break-inside: avoid;
+}
+
+.checklist li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 3.5mm;
+  width: 4mm;
+  height: 4mm;
+  border: 1.5px solid var(--sage);
+  border-radius: 1px;
+  background: var(--white);
+}
+
+.checklist-checked li::before {
+  background: var(--sage);
+  border-color: var(--sage);
+}
+
+.checklist-checked li::after {
+  content: "\2713";
+  position: absolute;
+  left: 0.5mm;
+  top: 2mm;
+  color: var(--white);
+  font-size: 8pt;
+  font-weight: 700;
+}
+
+/* --------------------------------------------------------------------------
+   25. CALLOUT VARIANTS — Remember, Try This, Caution
+   -------------------------------------------------------------------------- */
+
+/* Remember — warm, gentle reminder */
+.callout-remember {
+  background: #FBF6EE;
+  border-left: 4px solid var(--gold);
+  position: relative;
+}
+
+.callout-remember .callout-label {
+  color: var(--amber);
+}
+
+.callout-remember .callout-icon {
+  font-size: 16pt;
+  line-height: 1;
+  margin-bottom: 2mm;
+}
+
+/* Try This — action-oriented, inviting */
+.callout-try {
+  background: #EEF5F0;
+  border: 1.5px dashed var(--sage);
+  border-radius: 4px;
+  padding: 5mm 6mm;
+}
+
+.callout-try .callout-label {
+  color: var(--sage-dark);
+}
+
+/* Caution — softer than warning */
+.callout-caution {
+  background: #FFF8F0;
+  border-left: 4px solid #D4910A;
+}
+
+.callout-caution .callout-label {
+  color: #B07808;
+}
+
+/* --------------------------------------------------------------------------
+   26. REFLECTION / JOURNAL PROMPT
+   -------------------------------------------------------------------------- */
+
+.reflection-prompt {
+  background: var(--white);
+  border: 1px solid var(--sage-muted);
+  border-radius: 4px;
+  padding: 5mm 6mm;
+  margin: 5mm 0;
+  break-inside: avoid;
+}
+
+.reflection-prompt-label {
+  font-family: var(--font-heading);
+  font-size: 10pt;
+  font-weight: 700;
+  font-style: italic;
+  color: var(--sage);
+  margin-bottom: 3mm;
+}
+
+.reflection-prompt p {
+  font-family: var(--font-heading);
+  font-style: italic;
+  font-size: 11pt;
+  line-height: 1.6;
+  color: var(--sage-dark);
+  margin-bottom: 2mm;
+}
+
+.reflection-prompt p:last-child {
+  margin-bottom: 0;
+}
+
+.reflection-lines {
+  margin-top: 3mm;
+}
+
+.reflection-line {
+  height: 6mm;
+  border-bottom: 0.5pt solid var(--border-light);
+}
+
+/* --------------------------------------------------------------------------
+   27. DID YOU KNOW? PANEL
+   -------------------------------------------------------------------------- */
+
+.did-you-know {
+  background: var(--sage-dark);
+  color: var(--white);
+  border-radius: 4px;
+  padding: 5mm 6mm;
+  margin: 5mm 0;
+  break-inside: avoid;
+}
+
+.did-you-know-label {
+  font-family: var(--font-body);
+  font-size: 8pt;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2pt;
+  color: var(--gold);
+  margin-bottom: 2mm;
+}
+
+.did-you-know p {
+  font-size: 10.5pt;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.92);
+  margin-bottom: 0;
+}
+
+.did-you-know strong {
+  color: var(--white);
+}
+
+/* --------------------------------------------------------------------------
+   28. HIGHLIGHT BAR
+   -------------------------------------------------------------------------- */
+
+.highlight-bar {
+  background: var(--gold-light);
+  border-left: 4px solid var(--gold);
+  padding: 3mm 5mm;
+  margin: 4mm 0;
+  break-inside: avoid;
+}
+
+.highlight-bar p {
+  font-size: 10.5pt;
+  font-weight: 700;
+  color: var(--charcoal);
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* --------------------------------------------------------------------------
+   29. BREATHING PAUSE
+   -------------------------------------------------------------------------- */
+
+.breathing-pause {
+  text-align: center;
+  background: var(--bg-light);
+  border: 1px solid var(--border-light);
+  border-radius: 8px;
+  padding: 6mm 8mm;
+  margin: 5mm 0;
+  break-inside: avoid;
+}
+
+.breathing-pause-title {
+  font-family: var(--font-heading);
+  font-size: 12pt;
+  font-style: italic;
+  color: var(--sage);
+  margin-bottom: 3mm;
+}
+
+.breathing-steps {
+  font-family: var(--font-body);
+  font-size: 10pt;
+  color: var(--text-light);
+  line-height: 2.2;
+}
+
+.breathing-steps strong {
+  color: var(--sage-dark);
+  font-size: 11pt;
+}
+
+/* --------------------------------------------------------------------------
+   30. SCENARIO CARD
+   -------------------------------------------------------------------------- */
+
+.scenario-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  margin: 5mm 0;
+  overflow: hidden;
+  break-inside: avoid;
+}
+
+.scenario-header {
+  background: var(--sage-light);
+  padding: 3mm 5mm;
+  font-family: var(--font-body);
+  font-size: 8pt;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5pt;
+  color: var(--sage-dark);
+}
+
+.scenario-body {
+  padding: 4mm 5mm;
+}
+
+.scenario-situation {
+  font-family: var(--font-heading);
+  font-style: italic;
+  font-size: 10.5pt;
+  color: var(--text);
+  line-height: 1.5;
+  margin-bottom: 3mm;
+  padding-bottom: 3mm;
+  border-bottom: 0.5pt solid var(--border-light);
+}
+
+.scenario-response {
+  font-size: 9.5pt;
+  color: var(--text);
+  line-height: 1.5;
+}
+
+.scenario-response strong {
+  color: var(--sage-dark);
+}
+
+/* --------------------------------------------------------------------------
+   31. ICON BADGE (for inline labels)
+   -------------------------------------------------------------------------- */
+
+.badge {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-size: 7pt;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1pt;
+  padding: 1mm 3mm;
+  border-radius: 2px;
+  vertical-align: middle;
+}
+
+.badge-sage {
+  background: var(--sage-light);
+  color: var(--sage-dark);
+}
+
+.badge-gold {
+  background: var(--gold-light);
+  color: var(--amber);
+}
+
+.badge-amber {
+  background: var(--amber-light);
+  color: var(--amber);
+}
+
+/* --------------------------------------------------------------------------
+   32. UTILITY CLASSES
+   -------------------------------------------------------------------------- */
+
+.page-break {
+  break-before: page;
+}
+
+.avoid-break {
+  break-inside: avoid;
+}
+
+.keep-with-next {
+  break-after: avoid;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-small {
+  font-size: 9pt;
+}
+
+.text-muted {
+  color: var(--text-light);
+}
+
+.text-sage {
+  color: var(--sage);
+}
+
+.text-gold {
+  color: var(--gold);
+}
+
+.mt-0 { margin-top: 0; }
+.mb-0 { margin-bottom: 0; }
+.mt-1 { margin-top: 3mm; }
+.mb-1 { margin-bottom: 3mm; }
+.mt-2 { margin-top: 6mm; }
+.mb-2 { margin-bottom: 6mm; }
+.pt-1 { padding-top: 3mm; }
+.pb-1 { padding-bottom: 3mm; }
+
+/* Indent content */
+.indent {
+  padding-left: 8mm;
+}
+
+/* Horizontal rule */
+hr {
+  border: none;
+  height: 0.5px;
+  background: var(--border);
+  margin: 5mm 0;
+}
+
+/* Accent top bar on section start */
+.accent-top {
+  border-top: 3px solid var(--sage);
+  padding-top: 4mm;
+}
+
+/* Gold accent top bar */
+.accent-gold {
+  border-top: 3px solid var(--gold);
+  padding-top: 4mm;
+}
+
+/* --------------------------------------------------------------------------
+   33. ENHANCED VISUAL ELEMENTS
+   -------------------------------------------------------------------------- */
+
+/* Content page first paragraph drop cap — applied automatically */
+.content-page > p:first-of-type::first-letter {
+  font-family: var(--font-heading);
+  font-size: 3.2em;
+  font-weight: 700;
+  color: var(--sage);
+  line-height: 0.8;
+  padding-right: 2pt;
+}
+
+/* Decorative large part number for chapter openers */
+.chapter-part-bg {
+  position: absolute;
+  bottom: 30mm;
+  right: 30mm;
+  font-family: var(--font-heading);
+  font-size: 180pt;
+  font-weight: 700;
+  color: rgba(255,255,255,0.04);
+  line-height: 1;
+  z-index: 0;
+}
+
+/* Enhanced pull quote with decorative quotation marks */
+.pull-quote-enhanced {
+  text-align: center;
+  padding: 8mm 15mm;
+  margin: 8mm 0;
+  break-inside: avoid;
+  position: relative;
+  background: var(--bg-light);
+  border-radius: 4px;
+}
+
+.pull-quote-enhanced::before {
+  content: "\201C";
+  font-family: var(--font-heading);
+  font-size: 60pt;
+  color: var(--sage-light);
+  position: absolute;
+  top: -2mm;
+  left: 5mm;
+  line-height: 1;
+}
+
+.pull-quote-enhanced p {
+  font-family: var(--font-heading);
+  font-size: 14pt;
+  font-style: italic;
+  line-height: 1.55;
+  color: var(--sage-dark);
+  margin: 0;
+  position: relative;
+  z-index: 1;
+}
+
+.pull-quote-enhanced cite {
+  display: block;
+  margin-top: 3mm;
+  font-family: var(--font-body);
+  font-size: 9pt;
+  font-style: normal;
+  color: var(--text-light);
+  letter-spacing: 0.5pt;
+  position: relative;
+  z-index: 1;
+}
+
+/* Decorative page border for special pages */
+.decorated-page {
+  position: relative;
+}
+
+.decorated-page::before {
+  content: "";
+  position: absolute;
+  top: 5mm;
+  left: 5mm;
+  right: 5mm;
+  bottom: 5mm;
+  border: 0.5pt solid var(--border-light);
+  pointer-events: none;
+}
+
+/* Half-page colour band for visual variety — overridden by Phase 4 section 86 */
+
+/* Back cover enhancement — gradient overlay */
+.back-cover::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 210mm;
+  height: 297mm;
+  background:
+    radial-gradient(ellipse at 50% 40%, rgba(196,163,90,0.08) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 80%, rgba(255,255,255,0.05) 0%, transparent 30%);
+  z-index: 0;
+}
+
+.back-cover > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Copyright / imprint page */
+@page imprint {
+  @top-left { content: none; }
+  @top-right { content: none; }
+}
+
+.imprint-page {
+  page: imprint;
+  break-before: page;
+  padding-top: 60mm;
+  font-size: 9pt;
+  color: var(--text-light);
+  line-height: 1.8;
+}
+
+.imprint-page p {
+  margin-bottom: 0.5em;
+}
+
+/* --------------------------------------------------------------------------
+   34. LOGO
+   -------------------------------------------------------------------------- */
+
+.cover-logo {
+  position: absolute;
+  top: 18mm;
+  left: 30mm;
+  width: 22mm;
+  height: auto;
+  z-index: 2;
+  opacity: 0.95;
+}
+
+/* --------------------------------------------------------------------------
+   35. FONT AWESOME ICON SYSTEM
+   -------------------------------------------------------------------------- */
+
+.icon {
+  font-family: 'FA6Solid';
+  font-weight: 900;
+  font-style: normal;
+  display: inline-block;
+  margin-right: 2mm;
+}
+
+.icon-sm { font-size: 9pt; }
+.icon-md { font-size: 12pt; }
+.icon-lg { font-size: 16pt; }
+
+.icon-teal { color: var(--teal); }
+.icon-amber { color: var(--amber); }
+.icon-sage { color: var(--sage); }
+.icon-gold { color: var(--gold); }
+.icon-white { color: var(--white); }
+
+/* Icon + text block (icon floated left) */
+.icon-block {
+  display: flex;
+  align-items: flex-start;
+  gap: 4mm;
+  margin-bottom: 4mm;
+  break-inside: avoid;
+}
+
+.icon-block-icon {
+  font-family: 'FA6Solid';
+  font-weight: 900;
+  font-size: 14pt;
+  color: var(--teal);
+  width: 10mm;
+  height: 10mm;
+  line-height: 10mm;
+  text-align: center;
+  background: var(--teal-light);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.icon-block-content {
+  flex: 1;
+}
+
+.icon-block-content strong {
+  display: block;
+  margin-bottom: 1mm;
+}
+
+/* --------------------------------------------------------------------------
+   36. HERO BAND — Full-width colour/image section
+   -------------------------------------------------------------------------- */
+
+.hero-band {
+  margin: 6mm -26mm;
+  padding: 10mm 26mm;
+  break-inside: avoid;
+}
+
+.hero-band-teal {
+  background: var(--teal);
+  color: var(--white);
+}
+
+.hero-band-teal h3 {
+  color: var(--white);
+  margin-top: 0;
+}
+
+.hero-band-teal p {
+  color: rgba(255,255,255,0.9);
+}
+
+.hero-band-teal strong {
+  color: var(--white);
+}
+
+.hero-band-cream {
+  background: var(--bg-warm);
+  color: var(--text);
+}
+
+.hero-band-amber {
+  background: var(--amber);
+  color: var(--white);
+}
+
+.hero-band-amber h3 {
+  color: var(--white);
+  margin-top: 0;
+}
+
+/* Hero band with background image */
+.hero-band-image {
+  position: relative;
+  margin: 6mm -26mm;
+  padding: 12mm 26mm;
+  break-inside: avoid;
+}
+
+.hero-band-image img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+.hero-band-image .hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(7,68,67,0.75);
+  z-index: 1;
+}
+
+.hero-band-image .hero-content {
+  position: relative;
+  z-index: 2;
+  color: var(--white);
+}
+
+/* --------------------------------------------------------------------------
+   37. IMAGE-TEXT SECTIONS — Side-by-side and stacked
+   -------------------------------------------------------------------------- */
+
+/* Side-by-side: image left, text right */
+.image-text-row {
+  display: flex;
+  gap: 6mm;
+  margin: 6mm 0;
+  break-inside: avoid;
+}
+
+.image-text-row img {
+  width: 45%;
+  object-fit: cover;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+
+.image-text-row .text-content {
+  flex: 1;
+}
+
+/* Reversed: text left, image right */
+.image-text-row-reverse {
+  display: flex;
+  flex-direction: row-reverse;
+  gap: 6mm;
+  margin: 6mm 0;
+  break-inside: avoid;
+}
+
+.image-text-row-reverse img {
+  width: 45%;
+  object-fit: cover;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+
+.image-text-row-reverse .text-content {
+  flex: 1;
+}
+
+/* Stacked: full-width image above text */
+.image-text-stacked {
+  margin: 6mm 0;
+  break-inside: avoid;
+}
+
+.image-text-stacked img {
+  width: 100%;
+  height: 50mm;
+  object-fit: cover;
+  border-radius: 4px 4px 0 0;
+  display: block;
+}
+
+.image-text-stacked .text-content {
+  background: var(--bg-warm);
+  padding: 5mm 6mm;
+  border-radius: 0 0 4px 4px;
+}
+
+/* Section opener variant: full-bleed image at top of new page */
+.section-opener {
+  break-before: page;
+  /* Use 26mm (the larger inside margin) so it bleeds on both left and right pages */
+  margin: -22mm -26mm 0 -26mm;
+  break-inside: avoid;
+  position: relative;
+}
+
+.section-opener img {
+  width: 100%;
+  height: 90mm;
+  object-fit: cover;
+  display: block;
+}
+
+/* Overlay title on the image with gradient for readability */
+.section-opener .text-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 12mm 26mm 6mm 26mm;
+  background: linear-gradient(to top, rgba(7,68,67,0.85) 0%, rgba(7,68,67,0.4) 60%, transparent 100%);
+}
+
+.section-opener .text-content h2 {
+  color: var(--white);
+  margin: 0;
+  font-size: 22pt;
+}
+
+/* --------------------------------------------------------------------------
+   38. ACCENT CARDS — Coloured info boxes with icons
+   -------------------------------------------------------------------------- */
+
+.accent-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 5mm;
+  padding: 5mm 6mm;
+  margin: 4mm 0;
+  border-radius: 4px;
+  break-inside: avoid;
+}
+
+.accent-card-icon {
+  font-family: 'FA6Solid';
+  font-weight: 900;
+  font-size: 18pt;
+  width: 12mm;
+  height: 12mm;
+  line-height: 12mm;
+  text-align: center;
+  border-radius: 3px;
+  flex-shrink: 0;
+}
+
+.accent-card-content {
+  flex: 1;
+}
+
+.accent-card-content h4 {
+  margin-top: 0;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+/* Teal variant — Phase 1: gradient border accent */
+.accent-card-teal {
+  background: var(--teal-light);
+  border-left: 4px solid transparent;
+  border-image: linear-gradient(to bottom, var(--teal), var(--gold)) 1;
+}
+
+.accent-card-teal .accent-card-icon {
+  background: var(--teal);
+  color: var(--white);
+}
+
+/* Amber variant — Phase 1: gradient border accent */
+.accent-card-amber {
+  background: var(--amber-light);
+  border-left: 4px solid transparent;
+  border-image: linear-gradient(to bottom, var(--amber), var(--gold)) 1;
+}
+
+.accent-card-amber .accent-card-icon {
+  background: var(--amber);
+  color: var(--white);
+}
+
+/* --------------------------------------------------------------------------
+   39. TWO-TONE PAGE SECTIONS
+   -------------------------------------------------------------------------- */
+
+/* Top section with colour background */
+.page-section-coloured {
+  margin: 0 -26mm;
+  padding: 8mm 26mm;
+  background: var(--teal-light);
+}
+
+.page-section-coloured h3 {
+  color: var(--teal-dark);
+  margin-top: 0;
+}
+
+/* Teal dark section (dark bg, white text) */
+.page-section-dark {
+  margin: 0 -26mm;
+  padding: 8mm 26mm;
+  background: var(--teal-dark);
+  color: var(--white);
+}
+
+.page-section-dark h3 {
+  color: var(--white);
+  margin-top: 0;
+}
+
+.page-section-dark p {
+  color: rgba(255,255,255,0.85);
+}
+
+/* --------------------------------------------------------------------------
+   40. KEY FACTS STRIP — Horizontal stat bar
+   -------------------------------------------------------------------------- */
+
+.key-facts-strip {
+  display: flex;
+  margin: 6mm -26mm;
+  break-inside: avoid;
+}
+
+.key-facts-strip .fact {
+  flex: 1;
+  text-align: center;
+  padding: 6mm 4mm;
+  background: var(--teal);
+  color: var(--white);
+  border-right: 1px solid rgba(255,255,255,0.2);
+}
+
+.key-facts-strip .fact:last-child {
+  border-right: none;
+}
+
+.key-facts-strip .fact-number {
+  font-family: var(--font-heading);
+  font-size: 28pt;
+  font-weight: 700;
+  display: block;
+  line-height: 1.1;
+  font-variant-numeric: lining-nums tabular-nums;
+}
+
+.key-facts-strip .fact-label {
+  font-size: 7.5pt;
+  text-transform: uppercase;
+  letter-spacing: 1pt;
+  opacity: 0.8;
+  margin-top: 2mm;
+  display: block;
+}
+
+/* --------------------------------------------------------------------------
+   41. DROP CAP — Editorial first-letter styling
+   -------------------------------------------------------------------------- */
+
+/* Drop cap uses initial-letter (no float — avoids WeasyPrint crash) */
+.drop-cap::first-letter {
+  font-family: var(--font-heading);
+  font-size: 3.4em;
+  color: var(--teal);
+  font-weight: 700;
+  line-height: 0.85;
+  padding-right: 1pt;
+}
+
+/* --------------------------------------------------------------------------
+   42. COMPARISON PANEL — Side-by-side "Do / Don't"
+   -------------------------------------------------------------------------- */
+
+.comparison-panel {
+  display: flex;
+  margin: 6mm 0;
+  break-inside: avoid;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.comparison-panel .panel-do {
+  flex: 1;
+  padding: 5mm 6mm;
+  background: var(--teal-light);
+}
+
+.comparison-panel .panel-do h4 {
+  color: var(--teal-dark);
+  margin-top: 0;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+.comparison-panel .panel-dont {
+  flex: 1;
+  padding: 5mm 6mm;
+  background: var(--amber-light);
+}
+
+.comparison-panel .panel-dont h4 {
+  color: var(--amber-dark);
+  margin-top: 0;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+/* --------------------------------------------------------------------------
+   43. CHECKLIST PANEL — Styled checkbox list
+   -------------------------------------------------------------------------- */
+
+.checklist-panel {
+  margin: 5mm 0;
+  padding: 5mm 6mm;
+  background: var(--teal-light);
+  border-radius: 4px;
+  break-inside: avoid;
+}
+
+.checklist-panel h4 {
+  color: var(--teal-dark);
+  margin-top: 0;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+.checklist-panel ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.checklist-panel li {
+  padding: 1.5mm 0 1.5mm 7mm;
+  position: relative;
+  font-size: 9.5pt;
+  line-height: 1.5;
+}
+
+.checklist-panel li::before {
+  content: "\2610";
+  position: absolute;
+  left: 0;
+  color: var(--teal);
+  font-size: 11pt;
+}
+
+/* --------------------------------------------------------------------------
+   44. MULTI-COLUMN TEXT — Newspaper-style columns
+   -------------------------------------------------------------------------- */
+
+.two-column {
+  column-count: 2;
+  column-gap: 6mm;
+  column-rule: 0.5pt solid var(--border-light);
+  margin: 4mm 0;
+}
+
+/* --------------------------------------------------------------------------
+   45. PROGRESS BAR — Horizontal percentage bars
+   -------------------------------------------------------------------------- */
+
+.progress-bar {
+  margin: 3mm 0;
+  break-inside: avoid;
+}
+
+.progress-bar-label {
+  font-size: 8.5pt;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 1mm;
+}
+
+.progress-bar-track {
+  height: 5mm;
+  background: var(--sage-light);
+  border-radius: 2.5mm;
+  overflow: hidden;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--teal) 0%, var(--teal-mid) 100%);
+  border-radius: 2.5mm;
+}
+
+/* --------------------------------------------------------------------------
+   46. STEP INDICATOR — Horizontal process steps
+   -------------------------------------------------------------------------- */
+
+.step-indicator {
+  display: flex;
+  margin: 6mm 0;
+  break-inside: avoid;
+}
+
+.step-indicator .step {
+  flex: 1;
+  text-align: center;
+  position: relative;
+  padding: 0 3mm;
+}
+
+.step-indicator .step-number {
+  display: block;
+  width: 10mm;
+  height: 10mm;
+  line-height: 10mm;
+  border-radius: 50%;
+  background: var(--teal);
+  color: var(--white);
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 12pt;
+  margin: 0 auto 2mm auto;
+}
+
+.step-indicator .step-label {
+  display: block;
+  font-size: 8pt;
+  font-weight: 700;
+  color: var(--teal-dark);
+  text-transform: uppercase;
+  letter-spacing: 0.5pt;
+}
+
+.step-indicator .step-desc {
+  display: block;
+  font-size: 7.5pt;
+  color: var(--text-light);
+  margin-top: 1mm;
+}
+
+/* --------------------------------------------------------------------------
+   47. KEY TAKEAWAYS BOX — Chapter-end summary
+   -------------------------------------------------------------------------- */
+
+.key-takeaways {
+  border-top: 3mm solid var(--teal);
+  background: var(--bg-warm);
+  padding: 5mm 6mm;
+  margin: 6mm 0;
+  break-inside: avoid;
+}
+
+.key-takeaways h4 {
+  font-family: var(--font-heading);
+  font-size: 12pt;
+  text-transform: uppercase;
+  letter-spacing: 1pt;
+  color: var(--teal-dark);
+  margin: 0 0 3mm 0;
+}
+
+.key-takeaways h4 .fa-icon {
+  font-family: 'FA6Solid';
+  font-weight: 900;
+  margin-right: 2mm;
+}
+
+.key-takeaways ol {
+  margin: 0;
+  padding-left: 6mm;
+  counter-reset: takeaway;
+  list-style: none;
+}
+
+.key-takeaways li {
+  counter-increment: takeaway;
+  padding: 1.5mm 0;
+  font-size: 9.5pt;
+  line-height: 1.5;
+}
+
+.key-takeaways li::before {
+  content: counter(takeaway) ".";
+  font-weight: 700;
+  color: var(--teal);
+  margin-right: 2mm;
+  font-size: 10pt;
+}
+
+/* --------------------------------------------------------------------------
+   48. ADMONITION BOXES — Warning / Tip / Legal Note
+   -------------------------------------------------------------------------- */
+
+.admonition {
+  border-left: 4px solid var(--sage);
+  padding: 3mm 4mm;
+  margin: 4mm 0;
+  break-inside: avoid;
+  background: var(--sage-light);
+}
+
+.admonition-header {
+  font-size: 7.5pt;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5pt;
+  margin-bottom: 1.5mm;
+}
+
+.admonition-header .admonition-icon {
+  font-family: 'FA6Solid';
+  font-weight: 900;
+  font-size: 9pt;
+  margin-right: 1.5mm;
+}
+
+.admonition p {
+  font-size: 9pt;
+  margin: 0;
+}
+
+.admonition-warning {
+  border-left-color: var(--amber);
+  background: var(--amber-light);
+}
+
+.admonition-warning .admonition-header {
+  color: var(--amber-dark);
+}
+
+.admonition-tip {
+  border-left-color: var(--teal);
+  background: var(--teal-light);
+}
+
+.admonition-tip .admonition-header {
+  color: var(--teal-dark);
+}
+
+.admonition-legal {
+  border-left-color: var(--sage-dark);
+  background: var(--sage-light);
+}
+
+.admonition-legal .admonition-header {
+  color: var(--sage-dark);
+}
+
+/* --------------------------------------------------------------------------
+   49. TESTIMONY / CASE STUDY CARD
+   -------------------------------------------------------------------------- */
+
+.testimony-card {
+  background: var(--bg-warm);
+  padding: 6mm;
+  border-left: 3px solid var(--amber);
+  margin: 5mm 0;
+  break-inside: avoid;
+  position: relative;
+}
+
+.testimony-card::before {
+  content: "\201C";
+  font-family: var(--font-heading);
+  font-size: 36pt;
+  color: var(--amber);
+  opacity: 0.3;
+  position: absolute;
+  top: 2mm;
+  left: 3mm;
+  line-height: 1;
+}
+
+.testimony-card .testimony-text {
+  font-style: italic;
+  font-size: 9.5pt;
+  line-height: 1.6;
+  padding-left: 4mm;
+}
+
+.testimony-card .testimony-attribution {
+  border-top: 1px solid var(--border-light);
+  margin-top: 3mm;
+  padding-top: 2mm;
+  font-size: 8pt;
+  color: var(--text-light);
+  font-style: normal;
+}
+
+/* --------------------------------------------------------------------------
+   50. BEFORE/AFTER NARRATIVE BLOCK
+   -------------------------------------------------------------------------- */
+
+.before-after {
+  margin: 5mm 0;
+  break-inside: avoid;
+}
+
+.before-after .before-box {
+  background: var(--amber-light);
+  padding: 4mm 5mm;
+  border-radius: 3px 3px 0 0;
+}
+
+.before-after .before-box h4 {
+  color: var(--amber-dark);
+  margin: 0 0 1mm 0;
+  font-size: 9pt;
+  text-transform: uppercase;
+  letter-spacing: 0.5pt;
+}
+
+.before-after .transition-arrow {
+  text-align: center;
+  font-family: 'FA6Solid';
+  font-size: 14pt;
+  color: var(--teal);
+  padding: 2mm 0;
+  background: var(--bg-warm);
+}
+
+.before-after .after-box {
+  background: var(--teal-light);
+  padding: 4mm 5mm;
+  border-radius: 0 0 3px 3px;
+}
+
+.before-after .after-box h4 {
+  color: var(--teal-dark);
+  margin: 0 0 1mm 0;
+  font-size: 9pt;
+  text-transform: uppercase;
+  letter-spacing: 0.5pt;
+}
+
+.before-after p {
+  font-size: 9.5pt;
+  margin: 0;
+}
+
+/* --------------------------------------------------------------------------
+   51. DIALOGUE / CONVERSATION BLOCK
+   -------------------------------------------------------------------------- */
+
+.dialogue {
+  margin: 5mm 0;
+  break-inside: avoid;
+}
+
+.dialogue-msg {
+  padding: 3mm 4mm;
+  border-radius: 3mm;
+  margin-bottom: 2mm;
+  max-width: 80%;
+  font-size: 9.5pt;
+  line-height: 1.5;
+}
+
+.dialogue-msg .speaker {
+  font-size: 7pt;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.3pt;
+  margin-bottom: 1mm;
+  display: block;
+}
+
+.dialogue-msg-right {
+  margin-left: auto;
+  background: var(--teal-light);
+  border-bottom-right-radius: 0;
+}
+
+.dialogue-msg-right .speaker {
+  color: var(--teal-dark);
+}
+
+.dialogue-msg-left {
+  margin-right: auto;
+  background: #f0eeea;
+  border-bottom-left-radius: 0;
+}
+
+.dialogue-msg-left .speaker {
+  color: var(--text-light);
+}
+
+/* --------------------------------------------------------------------------
+   52. ANNOTATION STRIPE — Compact running reminder
+   -------------------------------------------------------------------------- */
+
+.annotation-stripe {
+  background: var(--teal);
+  color: var(--white);
+  padding: 2mm 26mm;
+  font-size: 7.5pt;
+  text-transform: uppercase;
+  letter-spacing: 1.5pt;
+  text-align: center;
+  margin: 5mm -26mm;
+}
+
+/* --------------------------------------------------------------------------
+   53. EVIDENCE LOG TEMPLATE — Printable worksheet
+   -------------------------------------------------------------------------- */
+
+.evidence-log {
+  border: 1px solid var(--sage-dark);
+  padding: 4mm;
+  background: #fafafa;
+  margin: 5mm 0;
+  break-inside: avoid;
+}
+
+.evidence-log h4 {
+  color: var(--teal-dark);
+  margin: 0 0 3mm 0;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+.evidence-log-row {
+  display: flex;
+  margin-bottom: 2mm;
+  align-items: flex-end;
+}
+
+.evidence-log-label {
+  font-weight: 700;
+  font-size: 8pt;
+  width: 22mm;
+  flex-shrink: 0;
+  color: var(--text);
+}
+
+.evidence-log-field {
+  flex: 1;
+  border-bottom: 1px dotted var(--sage);
+  min-height: 5mm;
+  font-size: 8pt;
+}
+
+.evidence-log-field-large {
+  flex: 1;
+  border: 1px dotted var(--sage);
+  min-height: 15mm;
+  font-size: 8pt;
+  margin-top: 1mm;
+}
+
+/* --------------------------------------------------------------------------
+   54. LABELLED DIVIDER — Text-on-line section break
+   -------------------------------------------------------------------------- */
+
+.labelled-divider {
+  text-align: center;
+  border-top: 1px solid var(--sage);
+  margin: 6mm 0;
+}
+
+.labelled-divider span {
+  background: var(--white);
+  padding: 0 4mm;
+  position: relative;
+  top: -0.6em;
+  font-size: 8pt;
+  text-transform: uppercase;
+  letter-spacing: 1pt;
+  color: var(--sage);
+  font-family: var(--font-body);
+  font-weight: 700;
+}
+
+/* ==========================================================================
+   PHASE 1: SECTION COLOUR WASHES
+   ========================================================================== */
+
+/* Alternating tint sections — injected via Python with .section-wash class */
+.section-wash-teal {
+  background: linear-gradient(to bottom, rgba(12,94,93,0.04), transparent 60%);
+  padding-top: 4mm;
+  margin: 0 -26mm;
+  padding-left: 26mm;
+  padding-right: 26mm;
+}
+
+.section-wash-gold {
+  background: linear-gradient(to bottom, rgba(212,145,10,0.04), transparent 60%);
+  padding-top: 4mm;
+  margin: 0 -26mm;
+  padding-left: 26mm;
+  padding-right: 26mm;
+}
+
+/* Phase 1: Enhanced gradient-fade dividers */
+.divider-fade {
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--sage-muted), transparent);
+  margin: 8mm 0;
+}
+
+/* ==========================================================================
+   PHASE 2: NEW LAYOUT COMPONENTS
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   55. FLOATED SIDEBAR CALLOUT
+   -------------------------------------------------------------------------- */
+
+.sidebar-callout {
+  float: right;
+  width: 55mm;
+  margin: 0 0 4mm 6mm;
+  padding: 4mm 5mm;
+  background: var(--teal-light);
+  border-left: 3px solid var(--teal);
+  font-size: 9pt;
+  line-height: 1.5;
+  break-inside: avoid;
+}
+
+.sidebar-callout-title {
+  font-family: var(--font-body);
+  font-size: 8pt;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1pt;
+  color: var(--teal-dark);
+  margin-bottom: 2mm;
+}
+
+.sidebar-callout p {
+  margin-bottom: 2mm;
+  color: var(--text);
+}
+
+.sidebar-callout p:last-child {
+  margin-bottom: 0;
+}
+
+/* --------------------------------------------------------------------------
+   56. INSET PULL QUOTE — Magazine-style with large decorative quotes
+   -------------------------------------------------------------------------- */
+
+.inset-pull-quote {
+  float: left;
+  width: 55mm;
+  margin: 0 6mm 4mm 0;
+  padding: 5mm;
+  break-inside: avoid;
+  position: relative;
+  border-top: 2px solid var(--gold);
+  border-bottom: 2px solid var(--gold);
+}
+
+.inset-pull-quote::before {
+  content: "\201C";
+  font-family: var(--font-heading);
+  font-size: 48pt;
+  color: var(--gold);
+  opacity: 0.4;
+  position: absolute;
+  top: 0;
+  left: 2mm;
+  line-height: 1;
+}
+
+.inset-pull-quote p {
+  font-family: var(--font-heading);
+  font-size: 12pt;
+  font-style: italic;
+  line-height: 1.5;
+  color: var(--sage-dark);
+  margin: 4mm 0 0 0;
+  position: relative;
+  z-index: 1;
+}
+
+.inset-pull-quote cite {
+  display: block;
+  font-family: var(--font-body);
+  font-size: 8pt;
+  font-style: normal;
+  color: var(--text-muted);
+  margin-top: 2mm;
+  letter-spacing: 0.3pt;
+}
+
+/* --------------------------------------------------------------------------
+   57. DOUBLE-COLUMN LAYOUT — For resources and reference sections
+   -------------------------------------------------------------------------- */
+
+.double-column {
+  column-count: 2;
+  column-gap: 8mm;
+  column-rule: 0.5pt solid var(--border-light);
+  margin: 4mm 0;
+}
+
+.double-column p {
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* --------------------------------------------------------------------------
+   58. CSS BAR CHART — Horizontal percentage bars for statistics
+   -------------------------------------------------------------------------- */
+
+.bar-chart {
+  margin: 5mm 0;
+  break-inside: avoid;
+}
+
+.bar-chart-title {
+  font-family: var(--font-body);
+  font-size: 8pt;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1pt;
+  color: var(--teal-dark);
+  margin-bottom: 3mm;
+}
+
+.bar-chart-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 2mm;
+}
+
+.bar-chart-label {
+  width: 35mm;
+  font-size: 8.5pt;
+  font-weight: 700;
+  color: var(--text);
+  flex-shrink: 0;
+}
+
+.bar-chart-track {
+  flex: 1;
+  height: 6mm;
+  background: var(--sage-light);
+  border-radius: 3mm;
+  overflow: hidden;
+  position: relative;
+}
+
+.bar-chart-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--teal), var(--teal-mid));
+  border-radius: 3mm;
+  position: relative;
+}
+
+.bar-chart-value {
+  position: absolute;
+  right: 2mm;
+  top: 0;
+  line-height: 6mm;
+  font-size: 7pt;
+  font-weight: 700;
+  color: var(--white);
+}
+
+.bar-chart-fill-amber {
+  background: linear-gradient(90deg, var(--amber), #f5732e);
+}
+
+.bar-chart-fill-gold {
+  background: linear-gradient(90deg, var(--gold), #e8b84a);
+}
+
+/* --------------------------------------------------------------------------
+   59. TAB / BOOKMARK HEADING — File-tab style section headers
+   -------------------------------------------------------------------------- */
+
+.tab-heading {
+  display: inline-block;
+  background: var(--teal);
+  color: var(--white);
+  padding: 2mm 6mm;
+  border-radius: 4px 4px 0 0;
+  font-family: var(--font-body);
+  font-size: 9pt;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1pt;
+  margin-bottom: 0;
+}
+
+.tab-heading + .tab-content {
+  border-top: 3px solid var(--teal);
+  padding-top: 4mm;
+}
+
+/* --------------------------------------------------------------------------
+   60. ORNAMENTAL SECTION DIVIDER — Unicode ornament centred on gradient line
+   -------------------------------------------------------------------------- */
+
+.ornamental-divider {
+  text-align: center;
+  margin: 10mm 0;
+  position: relative;
+}
+
+.ornamental-divider::before {
+  content: "";
+  position: absolute;
+  left: 20%;
+  right: 20%;
+  top: 50%;
+  height: 0.5px;
+  background: linear-gradient(to right, transparent, var(--sage-muted), transparent);
+}
+
+.ornamental-divider .ornament {
+  display: inline-block;
+  background: var(--bg-cream);
+  padding: 0 4mm;
+  position: relative;
+  z-index: 1;
+  font-size: 14pt;
+  color: var(--gold);
+  letter-spacing: 3pt;
+}
+
+/* ==========================================================================
+   PHASE 3: ADVANCED LAYOUT COMPONENTS
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   61. CURVED IMAGE HEADER — Arched bottom on section opener images
+   -------------------------------------------------------------------------- */
+
+.section-opener-curved img {
+  border-radius: 0 0 50% 50% / 0 0 15mm 15mm;
+}
+
+/* --------------------------------------------------------------------------
+   62. RIBBON BANNER HEADING — Extends past margins with folded edges
+   -------------------------------------------------------------------------- */
+
+.ribbon-banner {
+  position: relative;
+  margin: 8mm -30mm 6mm -30mm;
+  padding: 4mm 34mm;
+  background: var(--teal);
+  color: var(--white);
+  text-align: center;
+  break-inside: avoid;
+}
+
+.ribbon-banner h3 {
+  font-family: var(--font-heading);
+  font-size: 14pt;
+  font-weight: 700;
+  color: var(--white);
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 1.5pt;
+}
+
+.ribbon-banner::before,
+.ribbon-banner::after {
+  content: "";
+  position: absolute;
+  bottom: -3mm;
+  width: 0;
+  height: 0;
+  border-style: solid;
+}
+
+.ribbon-banner::before {
+  left: 0;
+  border-width: 3mm 4mm 0 0;
+  border-color: var(--teal-dark) transparent transparent transparent;
+}
+
+.ribbon-banner::after {
+  right: 0;
+  border-width: 3mm 0 0 4mm;
+  border-color: var(--teal-dark) transparent transparent transparent;
+}
+
+/* Gold variant */
+.ribbon-banner-gold {
+  background: var(--gold);
+}
+
+.ribbon-banner-gold::before {
+  border-color: #9a6b07 transparent transparent transparent;
+}
+
+.ribbon-banner-gold::after {
+  border-color: #9a6b07 transparent transparent transparent;
+}
+
+/* --------------------------------------------------------------------------
+   63. VERTICAL TIMELINE — Left-aligned with circle markers
+   -------------------------------------------------------------------------- */
+
+.vertical-timeline {
+  position: relative;
+  padding-left: 15mm;
+  margin: 6mm 0;
+}
+
+.vertical-timeline::before {
+  content: "";
+  position: absolute;
+  left: 5mm;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--teal), var(--gold));
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 5mm;
+  break-inside: avoid;
+}
+
+.timeline-item::before {
+  content: "";
+  position: absolute;
+  left: -12mm;
+  top: 1mm;
+  width: 6mm;
+  height: 6mm;
+  border-radius: 50%;
+  background: var(--teal);
+  border: 2px solid var(--white);
+}
+
+.timeline-item-title {
+  font-family: var(--font-heading);
+  font-size: 11pt;
+  font-weight: 700;
+  color: var(--teal-dark);
+  margin-bottom: 1mm;
+}
+
+.timeline-item p {
+  font-size: 9.5pt;
+  line-height: 1.5;
+  margin-bottom: 0;
+  color: var(--text-light);
+}
+
+/* Active/current item */
+.timeline-item-active::before {
+  background: var(--gold);
+  width: 7mm;
+  height: 7mm;
+  left: -12.5mm;
+}
+
+/* --------------------------------------------------------------------------
+   64. FOOTNOTE SYSTEM — WeasyPrint native float: footnote
+   -------------------------------------------------------------------------- */
+
+.footnote {
+  float: footnote;
+  font-size: 8pt;
+  line-height: 1.4;
+  color: var(--text-light);
+}
+
+.footnote::footnote-call {
+  font-size: 7pt;
+  vertical-align: super;
+  color: var(--teal);
+  font-weight: 700;
+}
+
+.footnote::footnote-marker {
+  font-size: 7pt;
+  color: var(--teal);
+  font-weight: 700;
+}
+
+/* --------------------------------------------------------------------------
+   65. CORNER BRACKET DECORATIVE FRAMES
+   -------------------------------------------------------------------------- */
+
+.corner-frame {
+  position: relative;
+  padding: 8mm;
+  margin: 6mm 0;
+  break-inside: avoid;
+}
+
+.corner-frame::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 15mm;
+  height: 15mm;
+  border-top: 2px solid var(--gold);
+  border-left: 2px solid var(--gold);
+}
+
+.corner-frame::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 15mm;
+  height: 15mm;
+  border-bottom: 2px solid var(--gold);
+  border-right: 2px solid var(--gold);
+}
+
+/* --------------------------------------------------------------------------
+   66. BACKGROUND PATTERNS — Subtle textures on specific components
+   -------------------------------------------------------------------------- */
+
+/* Dot pattern for callout boxes */
+.pattern-dots {
+  background-image: radial-gradient(circle, rgba(0,0,0,0.04) 1px, transparent 1px);
+  background-size: 8mm 8mm;
+}
+
+/* Diagonal stripe for special sections */
+.pattern-stripes {
+  background-image: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 10px,
+    rgba(0,0,0,0.02) 10px,
+    rgba(0,0,0,0.02) 20px
+  );
+}
+
+/* Soft radial spotlight behind key elements */
+.pattern-spotlight {
+  background-image: radial-gradient(circle at center, rgba(12,94,93,0.06), transparent 70%);
+}
+
+/* --------------------------------------------------------------------------
+   67. SMALL CAPS LABELS — Professional label styling
+   -------------------------------------------------------------------------- */
+
+.small-caps {
+  font-variant-caps: small-caps;
+  letter-spacing: 0.5pt;
+}
+
+/* --------------------------------------------------------------------------
+   68. DOUBLE-RULE FRAME — Classic print double border
+   -------------------------------------------------------------------------- */
+
+.double-rule-frame {
+  border: 1px solid var(--sage-muted);
+  outline: 1px solid var(--sage-muted);
+  outline-offset: 3px;
+  padding: 6mm;
+  margin: 5mm 0;
+  break-inside: avoid;
+}
+
+/* --------------------------------------------------------------------------
+   69. CONTENT WARNING — Trigger/content warning box
+   -------------------------------------------------------------------------- */
+
+.content-warning {
+  background: var(--amber-light);
+  border: 1.5px solid var(--amber);
+  border-radius: 4px;
+  padding: 4mm 5mm;
+  margin: 5mm 0;
+  break-inside: avoid;
+}
+
+.content-warning-header {
+  font-family: var(--font-body);
+  font-size: 8pt;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5pt;
+  color: var(--amber-dark);
+  margin-bottom: 2mm;
+}
+
+.content-warning p {
+  font-size: 9pt;
+  color: var(--text);
+  margin-bottom: 0;
+}
+
+/* --------------------------------------------------------------------------
+   70. AFFIRMATION CARD — Encouraging normalisation statement
+   -------------------------------------------------------------------------- */
+
+.affirmation-card {
+  text-align: center;
+  padding: 6mm 10mm;
+  margin: 6mm 0;
+  background: linear-gradient(135deg, var(--teal-light), var(--bg-warm));
+  border-top: 2px solid var(--gold);
+  border-bottom: 2px solid var(--gold);
+  break-inside: avoid;
+}
+
+.affirmation-card p {
+  font-family: var(--font-heading);
+  font-size: 13pt;
+  font-style: italic;
+  line-height: 1.5;
+  color: var(--teal-dark);
+  margin: 0;
+}
+
+.affirmation-card .affirmation-label {
+  font-family: var(--font-body);
+  font-size: 7pt;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2pt;
+  color: var(--gold);
+  margin-bottom: 2mm;
+  display: block;
+}
+
+/* --------------------------------------------------------------------------
+   71. COPING STRATEGY CARD — Quick-reference crisis tool
+   -------------------------------------------------------------------------- */
+
+.coping-card {
+  background: var(--white);
+  border: 2px solid var(--teal);
+  border-radius: 4px;
+  padding: 5mm 6mm;
+  margin: 5mm 0;
+  break-inside: avoid;
+  position: relative;
+}
+
+.coping-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3mm;
+  background: linear-gradient(90deg, var(--teal), var(--gold));
+  border-radius: 2px 2px 0 0;
+}
+
+.coping-card-header {
+  font-family: var(--font-body);
+  font-size: 8pt;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5pt;
+  color: var(--teal-dark);
+  margin: 1mm 0 3mm 0;
+}
+
+.coping-card ol {
+  margin: 0;
+  padding-left: 5mm;
+}
+
+.coping-card li {
+  font-size: 9.5pt;
+  line-height: 1.5;
+  margin-bottom: 1.5mm;
+}
+
+/* --------------------------------------------------------------------------
+   72. TRY THIS / EXERCISE BOX — Practical activity for the reader
+   -------------------------------------------------------------------------- */
+
+.try-this {
+  border: 2px dashed var(--sage);
+  border-radius: 6px;
+  padding: 5mm 6mm;
+  margin: 5mm 0;
+  break-inside: avoid;
+  background: var(--bg-light);
+}
+
+.try-this-header {
+  font-family: var(--font-body);
+  font-size: 9pt;
+  font-weight: 700;
+  color: var(--teal-dark);
+  margin-bottom: 3mm;
+  text-transform: uppercase;
+  letter-spacing: 0.5pt;
+}
+
+.try-this p {
+  font-size: 10pt;
+  line-height: 1.55;
+  margin-bottom: 2mm;
+}
+
+.try-this p:last-child {
+  margin-bottom: 0;
+}
+
+/* Writing lines for exercises */
+.writing-lines {
+  margin-top: 3mm;
+}
+
+.writing-line {
+  height: 7mm;
+  border-bottom: 0.5pt solid var(--border-light);
+}
+
+/* --------------------------------------------------------------------------
+   73. SELF-ASSESSMENT — Rating scale or checklist for reader evaluation
+   -------------------------------------------------------------------------- */
+
+.self-assessment {
+  background: var(--white);
+  border: 1.5px solid var(--sage);
+  border-radius: 4px;
+  padding: 5mm 6mm;
+  margin: 5mm 0;
+  break-inside: avoid;
+}
+
+.self-assessment-header {
+  font-family: var(--font-body);
+  font-size: 8pt;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5pt;
+  color: var(--sage-dark);
+  margin-bottom: 3mm;
+  padding-bottom: 2mm;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.self-assessment-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 3mm;
+  padding: 2mm 0;
+  font-size: 9.5pt;
+  line-height: 1.45;
+  border-bottom: 0.5pt solid var(--border-light);
+}
+
+.self-assessment-item:last-child {
+  border-bottom: none;
+}
+
+.self-assessment-check {
+  width: 4mm;
+  height: 4mm;
+  border: 1.5px solid var(--sage);
+  border-radius: 1px;
+  flex-shrink: 0;
+  margin-top: 1mm;
+}
+
+.self-assessment-note {
+  font-size: 8.5pt;
+  font-style: italic;
+  color: var(--text-light);
+  margin-top: 3mm;
+  padding-top: 2mm;
+  border-top: 1px solid var(--border-light);
+}
+
+/* --------------------------------------------------------------------------
+   74. EPIGRAPH — Opening quote for chapter/section tone-setting
+   -------------------------------------------------------------------------- */
+
+.epigraph {
+  text-align: right;
+  max-width: 75%;
+  margin: 0 0 0 auto;
+  padding: 5mm 0 8mm 0;
+  break-inside: avoid;
+}
+
+.epigraph p {
+  font-family: var(--font-heading);
+  font-size: 11pt;
+  font-style: italic;
+  line-height: 1.55;
+  color: var(--text-light);
+  margin: 0;
+}
+
+.epigraph cite {
+  display: block;
+  font-family: var(--font-body);
+  font-size: 8pt;
+  font-style: normal;
+  color: var(--sage-muted);
+  margin-top: 2mm;
+  letter-spacing: 0.3pt;
+}
+
+/* --------------------------------------------------------------------------
+   75. END MARK — Section/chapter conclusion symbol
+   -------------------------------------------------------------------------- */
+
+.end-mark {
+  text-align: center;
+  margin: 8mm 0;
+  font-size: 12pt;
+  color: var(--gold);
+  letter-spacing: 6pt;
+}
+
+/* --------------------------------------------------------------------------
+   76. NORMALISATION STATEMENT — "It is normal to feel..." box
+   -------------------------------------------------------------------------- */
+
+.normalisation {
+  background: linear-gradient(135deg, var(--bg-warm), var(--teal-light));
+  padding: 4mm 6mm;
+  margin: 5mm 0;
+  border-radius: 4px;
+  break-inside: avoid;
+  border-left: 3px solid var(--gold);
+}
+
+.normalisation p {
+  font-size: 10pt;
+  line-height: 1.55;
+  color: var(--teal-dark);
+  margin: 0;
+  font-style: italic;
+}
+
+.normalisation strong {
+  color: var(--teal-dark);
+  font-style: normal;
+}
+
+/* --------------------------------------------------------------------------
+   77. RESOURCE CARD — Compact info card with category and details
+   -------------------------------------------------------------------------- */
+
+.resource-card {
+  display: flex;
+  gap: 4mm;
+  padding: 4mm 5mm;
+  background: var(--white);
+  border: 1px solid var(--border-light);
+  border-left: 3px solid var(--teal);
+  margin-bottom: 2mm;
+  break-inside: avoid;
+}
+
+.resource-card-icon {
+  font-family: 'FA6Solid';
+  font-weight: 900;
+  font-size: 12pt;
+  color: var(--teal);
+  width: 8mm;
+  flex-shrink: 0;
+  text-align: center;
+  padding-top: 1mm;
+}
+
+.resource-card-content {
+  flex: 1;
+}
+
+.resource-card-content strong {
+  display: block;
+  font-size: 9.5pt;
+  margin-bottom: 0.5mm;
+}
+
+.resource-card-content p {
+  font-size: 8.5pt;
+  margin: 0;
+  color: var(--text-light);
+}
+
+/* ==========================================================================
+   MARKETING-STYLE LAYOUT COMPONENTS
+   Full-page visual units for maximum impact
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   78. PHOTO OVERLAY PAGE — Full-bleed image with gradient + text
+   -------------------------------------------------------------------------- */
+
+.photo-page {
+  page: photo-overlay;
+  break-before: page;
+  position: relative;
+  width: 210mm;
+  height: 297mm;
+  overflow: hidden;
+}
+
+.photo-page img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 210mm;
+  height: 297mm;
+  object-fit: cover;
+  z-index: 0;
+}
+
+.photo-page .photo-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 210mm;
+  height: 297mm;
+  background: linear-gradient(
+    180deg,
+    rgba(7,68,67,0.15) 0%,
+    rgba(7,68,67,0.5) 40%,
+    rgba(7,68,67,0.88) 70%,
+    rgba(7,68,67,0.95) 100%
+  );
+  z-index: 1;
+}
+
+.photo-page .photo-content {
+  position: absolute;
+  bottom: 45mm;
+  left: 30mm;
+  right: 30mm;
+  z-index: 2;
+  color: var(--white);
+}
+
+.photo-page .photo-label {
+  font-family: var(--font-body);
+  font-size: 9pt;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 4pt;
+  color: var(--gold);
+  margin-bottom: 6mm;
+}
+
+.photo-page .photo-title {
+  font-family: var(--font-heading);
+  font-size: 36pt;
+  font-weight: 700;
+  line-height: 1.15;
+  margin: 0 0 6mm 0;
+}
+
+.photo-page .photo-text {
+  font-size: 12pt;
+  line-height: 1.6;
+  color: rgba(255,255,255,0.85);
+  max-width: 120mm;
+}
+
+/* --------------------------------------------------------------------------
+   79. STAT CALLOUT PAGE — Big number impact page
+   -------------------------------------------------------------------------- */
+
+.stat-page {
+  page: stat-page;
+  break-before: page;
+  width: 210mm;
+  height: 297mm;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 40mm;
+  box-sizing: border-box;
+  color: var(--white);
+}
+
+.stat-page .stat-number {
+  font-family: var(--font-heading);
+  font-size: 96pt;
+  font-weight: 700;
+  color: var(--gold);
+  line-height: 1;
+  margin-bottom: 6mm;
+  font-variant-numeric: lining-nums tabular-nums;
+}
+
+.stat-page .stat-label {
+  font-family: var(--font-heading);
+  font-size: 22pt;
+  font-weight: 700;
+  line-height: 1.3;
+  margin-bottom: 8mm;
+  max-width: 130mm;
+}
+
+.stat-page .stat-desc {
+  font-family: var(--font-body);
+  font-size: 11pt;
+  line-height: 1.6;
+  color: rgba(255,255,255,0.7);
+  max-width: 110mm;
+}
+
+.stat-page .stat-source {
+  font-family: var(--font-body);
+  font-size: 8pt;
+  color: rgba(255,255,255,0.4);
+  margin-top: 10mm;
+  text-transform: uppercase;
+  letter-spacing: 1pt;
+}
+
+/* Decorative accent circle behind stat number */
+.stat-page::before {
+  content: "";
+  position: absolute;
+  width: 100mm;
+  height: 100mm;
+  border-radius: 50%;
+  border: 1.5px solid rgba(212,145,10,0.2);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -60%);
+}
+
+/* --------------------------------------------------------------------------
+   80. SPLIT LAYOUT — Side colour panel + content
+   -------------------------------------------------------------------------- */
+
+.split-layout {
+  page: split-page;
+  break-before: page;
+  display: flex;
+  width: 210mm;
+  height: 297mm;
+  box-sizing: border-box;
+}
+
+.split-sidebar {
+  width: 75mm;
+  background: var(--teal);
+  color: var(--white);
+  padding: 35mm 12mm 25mm 15mm;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.split-sidebar .split-label {
+  font-family: var(--font-body);
+  font-size: 8pt;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 3pt;
+  color: var(--gold);
+  margin-bottom: 6mm;
+}
+
+.split-sidebar .split-sidebar-title {
+  font-family: var(--font-heading);
+  font-size: 20pt;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 6mm;
+}
+
+.split-sidebar .split-sidebar-text {
+  font-size: 9pt;
+  line-height: 1.55;
+  color: rgba(255,255,255,0.75);
+}
+
+.split-main {
+  flex: 1;
+  padding: 30mm 20mm 25mm 18mm;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.split-main h3 {
+  font-size: 13pt;
+  color: var(--teal-dark);
+  margin: 0 0 4mm 0;
+}
+
+.split-main p {
+  font-size: 9.5pt;
+  line-height: 1.6;
+  margin: 0 0 3mm 0;
+}
+
+/* --------------------------------------------------------------------------
+   81. ICON GRID — 2x3 or 2x2 grid of icons with labels
+   -------------------------------------------------------------------------- */
+
+.icon-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5mm;
+  break-inside: avoid;
+  margin: 6mm 0;
+}
+
+.icon-grid-item {
+  width: 46%;
+  background: var(--white);
+  border-radius: 3mm;
+  padding: 6mm 5mm;
+  text-align: center;
+  border: 1px solid var(--border-light);
+}
+
+.icon-grid-item .grid-icon {
+  font-family: 'FA6Solid';
+  font-weight: 900;
+  font-size: 24pt;
+  color: var(--teal);
+  display: block;
+  margin-bottom: 3mm;
+}
+
+.icon-grid-item .grid-title {
+  font-family: var(--font-heading);
+  font-size: 10pt;
+  font-weight: 700;
+  color: var(--teal-dark);
+  margin-bottom: 2mm;
+}
+
+.icon-grid-item .grid-desc {
+  font-size: 8.5pt;
+  color: var(--text-light);
+  line-height: 1.45;
+}
+
+/* Dark variant for use on teal backgrounds */
+.icon-grid-dark .icon-grid-item {
+  background: rgba(255,255,255,0.1);
+  border-color: rgba(255,255,255,0.15);
+}
+
+.icon-grid-dark .icon-grid-item .grid-icon {
+  color: var(--gold);
+}
+
+.icon-grid-dark .icon-grid-item .grid-title {
+  color: var(--white);
+}
+
+.icon-grid-dark .icon-grid-item .grid-desc {
+  color: rgba(255,255,255,0.7);
+}
+
+/* --------------------------------------------------------------------------
+   82. FULL-WIDTH QUOTE PAGE — Oversized pull quote on colour background
+   -------------------------------------------------------------------------- */
+
+.quote-page {
+  page: stat-page;
+  break-before: page;
+  width: 210mm;
+  height: 297mm;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 50mm 35mm;
+  box-sizing: border-box;
+  text-align: center;
+  color: var(--white);
+}
+
+.quote-page .quote-mark {
+  font-family: var(--font-heading);
+  font-size: 72pt;
+  color: var(--gold);
+  line-height: 0.6;
+  margin-bottom: 8mm;
+}
+
+.quote-page .quote-text {
+  font-family: var(--font-heading);
+  font-size: 22pt;
+  font-weight: 400;
+  font-style: italic;
+  line-height: 1.45;
+  color: var(--white);
+  max-width: 130mm;
+  margin-bottom: 10mm;
+}
+
+.quote-page .quote-author {
+  font-family: var(--font-body);
+  font-size: 10pt;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2pt;
+  color: var(--gold);
+}
+
+/* Decorative line above author */
+.quote-page .quote-author::before {
+  content: "";
+  display: block;
+  width: 30mm;
+  height: 0.5pt;
+  background: var(--gold);
+  margin: 0 auto 4mm auto;
+}
+
+/* --------------------------------------------------------------------------
+   83. COLOUR BLOCK SECTION — Full-page coloured content section
+   -------------------------------------------------------------------------- */
+
+.colour-block-page {
+  page: colour-block;
+  break-before: page;
+  width: 210mm;
+  min-height: 297mm;
+  padding: 35mm 30mm;
+  box-sizing: border-box;
+}
+
+.colour-block-page h2 {
+  font-size: 28pt;
+  color: var(--teal-dark);
+  margin-bottom: 8mm;
+}
+
+.colour-block-page p {
+  font-size: 10.5pt;
+  line-height: 1.65;
+  color: var(--teal-dark);
+}
+
+/* --------------------------------------------------------------------------
+   84. NUMBERED FEATURE LIST — Large numbers + descriptions
+   -------------------------------------------------------------------------- */
+
+.feature-list {
+  break-inside: avoid;
+  margin: 5mm 0;
+}
+
+.feature-item {
+  display: flex;
+  gap: 5mm;
+  padding: 4mm 0;
+  border-bottom: 0.5pt solid var(--border-light);
+}
+
+.feature-item:last-child {
+  border-bottom: none;
+}
+
+.feature-num {
+  font-family: var(--font-heading);
+  font-size: 28pt;
+  font-weight: 700;
+  color: var(--teal);
+  line-height: 1;
+  width: 12mm;
+  flex-shrink: 0;
+}
+
+.feature-text {
+  flex: 1;
+  padding-top: 1mm;
+}
+
+.feature-text strong {
+  display: block;
+  font-size: 10.5pt;
+  color: var(--teal-dark);
+  margin-bottom: 1mm;
+}
+
+.feature-text p {
+  font-size: 9pt;
+  line-height: 1.5;
+  margin: 0;
+  color: var(--text-light);
+}
+
+/* --------------------------------------------------------------------------
+   85. DECORATIVE SHAPE ACCENTS — Circles and geometric elements
+   -------------------------------------------------------------------------- */
+
+.deco-circle-top-right {
+  position: relative;
+}
+
+.deco-circle-top-right::before {
+  content: "";
+  position: absolute;
+  width: 60mm;
+  height: 60mm;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(164,204,212,0.12), rgba(164,204,212,0.03));
+  top: -15mm;
+  right: -10mm;
+  z-index: 0;
+}
+
+.deco-circle-bottom-left {
+  position: relative;
+}
+
+.deco-circle-bottom-left::before {
+  content: "";
+  position: absolute;
+  width: 45mm;
+  height: 45mm;
+  border-radius: 50%;
+  background: linear-gradient(315deg, rgba(212,145,10,0.1), rgba(212,145,10,0.02));
+  bottom: -10mm;
+  left: -8mm;
+  z-index: 0;
+}
+
+/* --------------------------------------------------------------------------
+   86. THICK COLOUR BAND DIVIDER — Visual section break
+   -------------------------------------------------------------------------- */
+
+.colour-band {
+  height: 4mm;
+  background: linear-gradient(90deg, var(--teal), var(--gold), var(--teal));
+  margin: 8mm 0;
+  break-inside: avoid;
+}
+
+/* ==========================================================================
+   PHASE 4: TYPOGRAPHY & READABILITY REFINEMENTS
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   87. IMPROVED TABLE DEFAULTS
+   -------------------------------------------------------------------------- */
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 5mm 0;
+  font-size: 9.5pt;
+  break-inside: avoid;
+  font-variant-numeric: lining-nums tabular-nums;
+}
+
+table th {
+  padding: 3mm 4mm;
+  background: var(--sage-light);
+  color: var(--sage-dark);
+  font-weight: 700;
+  text-align: left;
+  border-bottom: 2px solid var(--sage);
+  font-size: 8.5pt;
+  text-transform: uppercase;
+  letter-spacing: 0.5pt;
+}
+
+table td {
+  padding: 2.5mm 4mm;
+  border-bottom: 0.5pt solid var(--border-light);
+  vertical-align: top;
+  text-align: left;
+}
+
+table tr:last-child td {
+  border-bottom: none;
+}
+
+/* Zebra striping for readability */
+table tbody tr:nth-child(even) td {
+  background: rgba(248,244,239,0.5);
+}
+
+/* --------------------------------------------------------------------------
+   88. IMPROVED BLOCKQUOTE HIERARCHY
+   -------------------------------------------------------------------------- */
+
+/* Short quotes — tighter, more elegant */
+.quote-mark p {
+  font-size: 11.5pt;
+}
+
+/* Pull quote citations — refined spacing */
+.pull-quote-enhanced cite::before {
+  content: "";
+  display: block;
+  width: 20mm;
+  height: 0.5pt;
+  background: var(--sage);
+  margin: 2mm auto;
+}
+
+/* --------------------------------------------------------------------------
+   89. IMPROVED CUSTOM LIST BULLETS — Teal instead of gold for hierarchy
+   -------------------------------------------------------------------------- */
+
+ul.custom li::before {
+  background: var(--teal);
+  width: 2.5mm;
+  height: 2.5mm;
+  top: 6pt;
+}
+
+/* Nested list items — smaller, lighter bullet */
+ul.custom ul li::before {
+  background: transparent;
+  border: 1px solid var(--sage);
+  width: 2mm;
+  height: 2mm;
+}
+
+/* --------------------------------------------------------------------------
+   90. PRINT-OPTIMISED LINK STYLING
+   -------------------------------------------------------------------------- */
+
+a[href]::after {
+  content: none;
+}
+
+/* --------------------------------------------------------------------------
+   91. IMPROVED NUMBERED ITEM SPACING
+   -------------------------------------------------------------------------- */
+
+.numbered-item .num {
+  font-variant-numeric: lining-nums;
+  color: var(--teal);
+}
+
+/* --------------------------------------------------------------------------
+   92. MICRO-TYPOGRAPHY REFINEMENTS
+   -------------------------------------------------------------------------- */
+
+/* Prevent headings from being orphaned at page bottom */
+h2, h3, h4 {
+  break-after: avoid;
+  text-align: left;
+}
+
+/* Improve figure/diagram spacing */
+figure {
+  break-inside: avoid;
+  margin: 5mm 0;
+}
+
+/* Better spacing for content after full-width components */
+.hero-band + p,
+.key-facts-strip + p,
+.annotation-stripe + p {
+  margin-top: 4mm;
+}
+
+/* Improve overall page rhythm — first element after page break */
+.content-page > h2:first-child {
+  margin-top: 0;
+  padding-top: 3mm;
+}
+
+/* Cover subtitle italics refinement */
+.cover-subtitle {
+  font-variant-ligatures: common-ligatures discretionary-ligatures;
+}
+
+/* --------------------------------------------------------------------------
+   93. PROGRESS TRACKER — Horizontal journey map with connected nodes
+   -------------------------------------------------------------------------- */
+
+.progress-tracker {
+  position: relative;
+  margin: 8mm 0;
+  padding: 4mm 0;
+  break-inside: avoid;
+}
+
+.progress-track-bar {
+  position: absolute;
+  top: 7mm;
+  left: 5%;
+  right: 5%;
+  height: 2px;
+  background: var(--border-light);
+}
+
+.progress-track-fill {
+  height: 100%;
+  width: 15%;
+  background: linear-gradient(90deg, var(--teal), var(--gold));
+  border-radius: 1px;
+}
+
+.progress-nodes {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  z-index: 1;
+}
+
+.progress-node {
+  text-align: center;
+  width: 18%;
+}
+
+.progress-dot {
+  width: 5mm;
+  height: 5mm;
+  border-radius: 50%;
+  background: var(--border-light);
+  margin: 0 auto 2mm auto;
+  border: 1.5px solid var(--white);
+}
+
+.progress-node-active .progress-dot {
+  background: var(--teal);
+  width: 6mm;
+  height: 6mm;
+  border: 2px solid var(--gold);
+}
+
+.progress-label {
+  font-family: var(--font-body);
+  font-size: 7pt;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5pt;
+  color: var(--text-muted);
+  line-height: 1.3;
+}
+
+.progress-node-active .progress-label {
+  color: var(--teal-dark);
+}
+
+/* --------------------------------------------------------------------------
+   94. KEY PRINCIPLE CARD — Highlighted insight with icon
+   -------------------------------------------------------------------------- */
+
+.key-principle {
+  display: flex;
+  gap: 5mm;
+  align-items: flex-start;
+  padding: 6mm;
+  margin: 6mm 0;
+  background: linear-gradient(135deg, var(--teal-light), var(--bg-light));
+  border: 1px solid var(--sage);
+  border-radius: 4px;
+  break-inside: avoid;
+}
+
+.key-principle-icon {
+  font-family: 'FA6Solid';
+  font-weight: 900;
+  font-size: 20pt;
+  color: var(--gold);
+  width: 14mm;
+  height: 14mm;
+  line-height: 14mm;
+  text-align: center;
+  background: var(--teal);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.key-principle-text {
+  flex: 1;
+  font-size: 10.5pt;
+  line-height: 1.6;
+  color: var(--teal-dark);
+}
+
+.key-principle-text strong {
+  font-size: 11pt;
+  color: var(--sage-dark);
+  display: block;
+  margin-bottom: 2mm;
+}
+
+.colour-band-thin {
+  height: 1.5mm;
+  background: linear-gradient(90deg, var(--teal), var(--gold));
+  margin: 5mm 0;
+  break-inside: avoid;
+}
