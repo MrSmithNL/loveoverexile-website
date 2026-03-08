@@ -3,8 +3,8 @@
 > **Scope: Project-specific — components unique to loveoverexile.com.**
 > This project is built on the global foundation. See `~/.claude/docs/architecture.md` for the shared tooling layer (Claude Code, VS Code, Bitwarden, GitHub CLI, etc.).
 >
-> **Last updated:** 2026-02-28
-> **Status:** Active — Astro site built (18 pages, zero errors), pushed to GitHub. WordPress archived. Vercel deploy pending Malcolm login. Images pending Imagen 4 generation.
+> **Last updated:** 2026-03-08
+> **Status:** Active — Astro site live on Vercel, ebook PDF pipeline operational (73-page survival guide).
 
 ---
 
@@ -92,6 +92,9 @@ graph TD
 | 17 | n8n | Automation: RSS → Claude → social pipeline | Self-hosted on VPS | 🔜 Planned — after site is live |
 | 18 | **SEO Toolkit** | 8-agent SEO automation (audit, keywords, content, links, AI discovery, reporting) | Separate repo: `seo-toolkit` | ✅ Project created — agents not yet built |
 | 19 | Rube MCP | Universal connector for 500+ apps (SEMrush, Ahrefs, GSC, MailerLite, Zoho) | Claude Code user config | ✅ Connected — bearer token auth |
+| 20 | **Ebook PDF Pipeline** | Dual-renderer system: WeasyPrint (long-form) + Playwright (marketing). 98 CSS sections, 69 visual injections, 8 page templates | `designs/` folder | ✅ Operational — 73-page survival guide |
+| 21 | **WeasyPrint** | CSS paged media PDF renderer for books with running headers, TOC page numbers, named pages | `/opt/homebrew/bin/weasyprint` | ✅ Active |
+| 22 | **Dual-Target CSS** | Modular CSS architecture: `css/base.css` (shared) + `css/weasyprint.css` + `css/playwright.css` | `designs/css/` | ✅ Active |
 
 ---
 
@@ -241,3 +244,4 @@ All pages live in `site/src/pages/`. Built with Astro v5.18.0 + Tailwind CSS v4.
 | 2026-02-28 | SEO strategy created — `docs/seo-strategy.md`. Primary keywords: parental alienation, alienated parent, love over exile. | No |
 | 2026-02-28 | Rube MCP re-connected with bearer token auth. API key saved to Bitwarden. | Yes |
 | 2026-02-28 | SEO Toolkit created as separate project — `~/Claude Code/Projects/seo-toolkit/` — 8-agent architecture. GitHub: MrSmithNL/seo-toolkit (private). | Yes |
+| 2026-03-08 | Ebook PDF pipeline — dual-target CSS architecture (base.css + weasyprint.css + playwright.css). 98 CSS sections, 69 visual injections, 8 page templates, 4 grid patterns. Survival guide: 73 pages, 8242 KB, zero warnings. | Yes |
