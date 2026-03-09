@@ -19,3 +19,7 @@
 *.tmp
 *.log
 backups/
+
+# MkDocs build output
+site/
+encryptcontent.cache

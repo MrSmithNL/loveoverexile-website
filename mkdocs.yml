@@ -1,0 +1,78 @@
+site_name: Love Over Exile (CLIENT-001)
+site_description: Documentation for loveoverexile.com
+site_url: https://mrsmithnl.github.io/loveoverexile-website/
+
+theme:
+  name: material
+  palette:
+    - scheme: slate
+      primary: indigo
+      accent: pink
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+    - scheme: default
+      primary: indigo
+      accent: pink
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+  features:
+    - navigation.tabs
+    - navigation.top
+    - navigation.path
+    - search.suggest
+    - search.highlight
+    - toc.integrate
+
+plugins:
+  - search
+  - encryptcontent:
+      global_password: !ENV [DOCS_PASSWORD, 'SmithAI2026!']
+      title_prefix: ''
+      summary: 'This page is password protected.'
+      placeholder: 'Enter password'
+      encryption_info_message: 'Access restricted — enter password to view.'
+      search_index: 'encrypted'
+      remember_password: true
+      session_storage: true
+
+markdown_extensions:
+  - tables
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+  - toc:
+      permalink: true
+  - attr_list
+  - pymdownx.tasklist:
+      custom_checkbox: true
+
+nav:
+  - Home: index.md
+  - Strategy:
+    - Content Strategy: content-strategy.md
+    - SEO Strategy: seo-strategy.md
+    - Strategic OS: strategic-os.md
+  - Site:
+    - Site Design Brief: site-design-brief.md
+    - Site Structure: site-structure.md
+    - Site Map: site-map.md
+    - Setup Steps: setup-steps.md
+  - Content:
+    - Content Workflow: content-workflow.md
+  - Architecture:
+    - System Architecture: architecture.md
+  - Operations:
+    - Processes & Flows: processes-and-flows.md
+    - Decisions Log: decisions-log.md
+    - Security Risk Log: security-risk-log.md
+    - Accounts & Access: accounts-and-access.md
+    - Metrics: metrics.md
+    - Todo: todo.md
