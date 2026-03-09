@@ -311,7 +311,7 @@ bwunlock
 **Category:** Tool enhancement
 
 **What was done:**
-Installed all 864 skills from the [awesome-claude-skills](https://github.com/ComposioHQ/awesome-claude-skills) repository into `~/.claude/skills/`.
+Installed all 40 core skills plus ~832 Composio tool connectors from the [awesome-claude-skills](https://github.com/ComposioHQ/awesome-claude-skills) repository into `~/.claude/skills/`.
 
 ```bash
 # Clone the repository
@@ -331,7 +331,7 @@ done
 - Full registry documented in: `~/.claude/docs/skills-registry.md` (global — applies to all projects)
 
 **What this means in plain English:**
-Skills are instruction files that teach Claude Code how to do specific tasks — like creating PDFs, writing Twitter posts, downloading videos, or connecting to apps like Gmail, Slack, and Notion. With 864 skills installed, Claude can now handle a much wider range of tasks automatically.
+Skills are instruction files that teach Claude Code how to do specific tasks — like creating PDFs, writing Twitter posts, downloading videos, or connecting to apps like Gmail, Slack, and Notion. With 40 core skills and ~832 Composio tool connectors installed, Claude can now handle a much wider range of tasks automatically.
 
 **How to check what's installed:**
 ```bash
