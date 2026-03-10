@@ -1,0 +1,65 @@
+name: Code Review
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  duplication-check:
+    name: Duplication Check
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: site
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run jscpd duplication detection
+        run: |
+          npx jscpd src/ \
+            --threshold 5 \
+            --reporters consoleFull \
+            --format "typescript,javascript,astro,css,html" \
+            --ignore "node_modules,dist,.astro"
+
+  build-size-check:
+    name: Build Size Check
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: site
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: site/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build site
+        run: npm run build
+
+      - name: Report dist size
+        run: |
+          echo "## Build Size Report" >> $GITHUB_STEP_SUMMARY
+          TOTAL_SIZE=$(du -sh dist/ | cut -f1)
+          FILE_COUNT=$(find dist/ -type f | wc -l)
+          echo "| Metric | Value |" >> $GITHUB_STEP_SUMMARY
+          echo "|--------|-------|" >> $GITHUB_STEP_SUMMARY
+          echo "| Total size | ${TOTAL_SIZE} |" >> $GITHUB_STEP_SUMMARY
+          echo "| File count | ${FILE_COUNT} |" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Largest files" >> $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY
+          find dist/ -type f -exec du -h {} + | sort -rh | head -20 >> $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY
