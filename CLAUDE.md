@@ -37,6 +37,19 @@ This project follows the agency's 5-layer capability hierarchy: **Products → C
 
 ---
 
+## Agency-Wide Delivery Framework
+
+This project operates under the agency's autonomous delivery framework. All standards, processes, and department manager oversight apply here:
+
+- **Quality Manager** — Code quality, testing, documentation standards (`smith-ai-agency/docs/capabilities/quality-manager.md`)
+- **DevOps Manager** — CI/CD, deployment, infrastructure reliability (`smith-ai-agency/docs/capabilities/devops-manager.md`)
+- **Technical Architect** — Architecture decisions, fitness functions, dependency governance (`smith-ai-agency/docs/capabilities/technical-architect.md`)
+- **Delivery Manager** — Sprint planning, objective tracking, blocker resolution (`smith-ai-agency/docs/capabilities/delivery-manager.md`)
+- **Requirements Engineering** — Spec-driven development, 3-gate process (`smith-ai-agency/docs/capabilities/requirements-engineering.md`)
+- **Sprint Management** — 2-week cadence, velocity tracking (`smith-ai-agency/objectives/sprints/`)
+
+---
+
 ## Architecture Maintenance — Always Automatic
 
 After any change that adds, modifies, or removes a service, tool, account, connection, or credential:

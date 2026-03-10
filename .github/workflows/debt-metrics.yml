@@ -1,0 +1,55 @@
+name: Weekly Debt Metrics
+
+# Tracks duplication and open debt issues over time.
+
+on:
+  schedule:
+    - cron: '0 5 * * 1'  # Every Monday 05:00 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  collect-metrics:
+    name: Collect Debt Metrics
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Collect duplication metrics
+        id: duplication
+        run: |
+          npx jscpd . --ignore "node_modules,.git,docs" --reporters json --output .jscpd-report 2>/dev/null || true
+          DUP=$(cat .jscpd-report/jscpd-report.json 2>/dev/null | python3 -c "import json,sys; d=json.load(sys.stdin); print(f'{d.get(\"statistics\",{}).get(\"total\",{}).get(\"percentage\",0):.1f}')" 2>/dev/null || echo "0.0")
+          echo "duplication=${DUP}" >> "$GITHUB_OUTPUT"
+
+      - name: Count open debt issues
+        id: debt_issues
+        run: |
+          COUNT=$(gh issue list --label tech-debt --state open --json number --jq length 2>/dev/null || echo "0")
+          echo "open_debt=${COUNT}" >> "$GITHUB_OUTPUT"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Append metrics to log
+        run: |
+          DATE=$(date +%Y-%m-%d)
+          mkdir -p docs
+          if [ ! -f docs/debt-metrics.md ]; then
+            echo "# Debt Metrics — Weekly Trend" > docs/debt-metrics.md
+            echo "" >> docs/debt-metrics.md
+            echo "| Date | Duplication % | Open Debt Issues |" >> docs/debt-metrics.md
+            echo "|------|---------------|-----------------|" >> docs/debt-metrics.md
+          fi
+          echo "| ${DATE} | ${{ steps.duplication.outputs.duplication }}% | ${{ steps.debt_issues.outputs.open_debt }} |" >> docs/debt-metrics.md
+
+      - name: Commit metrics
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add docs/debt-metrics.md
+          git diff --cached --quiet || git commit -m "metrics: weekly debt metrics $(date +%Y-%m-%d)"
+          git push
