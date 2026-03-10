@@ -1,5 +1,6 @@
-# Claude Code local settings (machine-specific, not for sharing)
-.claude/
+# Claude Code — ignore machine-specific state, keep rules
+.claude/*
+!.claude/rules/
 
 # Secrets and credentials — NEVER commit these
 .env
