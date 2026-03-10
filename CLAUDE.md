@@ -29,6 +29,14 @@ This project follows the agency's 5-layer capability hierarchy: **Products → C
 
 ---
 
+## Related Projects
+
+- **Agency standards:** `~/Claude Code/Projects/smith-ai-agency/docs/capabilities/`
+- **SEO engine (PROD-001):** `~/Claude Code/Projects/seo-toolkit/` — audits and content optimization
+- **CLIENT-002 Hairgenetix:** `~/Claude Code/Projects/hairgenetix/`
+
+---
+
 ## Architecture Maintenance — Always Automatic
 
 After any change that adds, modifies, or removes a service, tool, account, connection, or credential:
