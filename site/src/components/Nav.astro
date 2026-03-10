@@ -657,8 +657,9 @@ document.addEventListener('keydown', (e) => {
 
 // ── Search trigger ──
 document.getElementById('search-trigger')?.addEventListener('click', () => {
-  if (typeof (window as any).__openSearch === 'function') {
-    (window as any).__openSearch();
+  const win = window as Window & { __openSearch?: () => void };
+  if (typeof win.__openSearch === 'function') {
+    win.__openSearch();
   }
 });
 

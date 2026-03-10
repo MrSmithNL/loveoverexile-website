@@ -138,8 +138,8 @@ const itemListSchema = {
   const searchInput = document.getElementById('resource-search') as HTMLInputElement;
   const chips = document.querySelectorAll<HTMLButtonElement>('.chip');
   const items = document.querySelectorAll<HTMLElement>('.resource-item');
-  const countEl = document.getElementById('results-count')!;
-  const noResults = document.getElementById('no-results')!;
+  const countEl = document.getElementById('results-count') as HTMLElement;
+  const noResults = document.getElementById('no-results') as HTMLElement;;
   const resetBtn = document.getElementById('reset-filters');
 
   let activeCategory = 'all';

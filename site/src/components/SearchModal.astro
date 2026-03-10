@@ -265,15 +265,15 @@
 </style>
 
 <script is:inline>
-var pagefind = null;
-var focusedIndex = -1;
-var currentResults = [];
+let pagefind = null;
+let focusedIndex = -1;
+let currentResults = [];
 
-var overlay = document.getElementById('search-overlay');
-var input = document.getElementById('search-input');
-var resultList = document.getElementById('search-result-list');
-var emptyState = document.getElementById('search-empty');
-var noResults = document.getElementById('search-no-results');
+const overlay = document.getElementById('search-overlay');
+const input = document.getElementById('search-input');
+const resultList = document.getElementById('search-result-list');
+const emptyState = document.getElementById('search-empty');
+const noResults = document.getElementById('search-no-results');
 
 // ── Open / close ──
 function openSearch() {
@@ -318,10 +318,10 @@ function getSection(url) {
 }
 
 // ── Perform search ──
-var debounceTimer = null;
+let debounceTimer = null;
 
 function performSearch() {
-  var query = input.value.trim();
+  const query = input.value.trim();
 
   if (!query) {
     resultList.innerHTML = '';
@@ -347,8 +347,8 @@ function performSearch() {
     await initPagefind();
     if (!pagefind) return;
 
-    var search = await pagefind.search(query);
-    var results = await Promise.all(
+    const search = await pagefind.search(query);
+    const results = await Promise.all(
       search.results.slice(0, 12).map(function(r) { return r.data(); })
     );
 
@@ -363,8 +363,8 @@ function performSearch() {
 
     noResults.style.display = 'none';
     resultList.innerHTML = results.map(function(r, i) {
-      var section = getSection(r.url);
-      var sectionHtml = section
+      const section = getSection(r.url);
+      const sectionHtml = section
         ? '<span class="search-result-section">' + section + '</span>'
         : '';
       return '<li class="search-result-item" role="option">' +
@@ -407,7 +407,7 @@ input.addEventListener('keydown', function(e) {
   } else if (e.key === 'Enter') {
     e.preventDefault();
     if (focusedIndex >= 0 && currentResults[focusedIndex]) {
-      var href = currentResults[focusedIndex].getAttribute('href');
+      const href = currentResults[focusedIndex].getAttribute('href');
       if (href) window.location.href = href;
     }
   }
@@ -423,8 +423,8 @@ document.addEventListener('keydown', function(e) {
   }
 
   // "/" to open (when not typing in an input)
-  var target = e.target;
-  var isInput = target.tagName === 'INPUT' || target.tagName === 'TEXTAREA' || target.isContentEditable;
+  const target = e.target;
+  const isInput = target.tagName === 'INPUT' || target.tagName === 'TEXTAREA' || target.isContentEditable;
 
   if (e.key === '/' && !isInput && !overlay.classList.contains('is-open')) {
     e.preventDefault();

@@ -3,29 +3,33 @@
 /* ── Design Tokens ──────────────────────────────────────────── */
 @theme {
   /* Colours — Turquoise Amber Autumn */
-  --color-ivory:        #F8F4EF;
-  --color-ivory-alt:    #FDF9F5;
-  --color-green-deep:   #0C5E5D;
-  --color-green-dark:   #074443;
-  --color-green-mid:    #178180;
-  --color-sage:         #A4CCD4;
-  --color-blue:         #304064;
-  --color-blue-light:   #26788E;
-  --color-amber:        #E2480C;
-  --color-amber-light:  #F05A20;
-  --color-amber-dark:   #631B08;
-  --color-charcoal:     #2C2C2C;
-  --color-charcoal-mid: #4A4A4A;
-  --color-warm-grey:    #8A8178;
-  --color-border:       #E2DBD0;
+  --color-ivory: #f8f4ef;
+  --color-ivory-alt: #fdf9f5;
+  --color-green-deep: #0c5e5d;
+  --color-green-dark: #074443;
+  --color-green-mid: #178180;
+  --color-sage: #a4ccd4;
+  --color-blue: #304064;
+  --color-blue-light: #26788e;
+  --color-amber: #e2480c;
+  --color-amber-light: #f05a20;
+  --color-amber-dark: #631b08;
+  --color-charcoal: #2c2c2c;
+  --color-charcoal-mid: #4a4a4a;
+  --color-warm-grey: #8a8178;
+  --color-border: #e2dbd0;
 
   /* Typography */
-  --font-serif:   'Lora', 'Georgia', serif;
-  --font-sans:    'Inter', 'Helvetica Neue', sans-serif;
+  --font-serif: "Lora", "Georgia", serif;
+  --font-sans: "Inter", "Helvetica Neue", sans-serif;
 }
 
 /* ── Base ───────────────────────────────────────────────────── */
-*, *::before, *::after { box-sizing: border-box; }
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
 
 html {
   font-size: 17px;
@@ -41,7 +45,10 @@ body {
 }
 
 /* ── Typography ─────────────────────────────────────────────── */
-h1, h2, h3, h4 {
+h1,
+h2,
+h3,
+h4 {
   font-family: var(--font-serif);
   font-weight: 600;
   color: var(--color-green-deep);
@@ -49,20 +56,34 @@ h1, h2, h3, h4 {
   letter-spacing: -0.01em;
 }
 
-h1 { font-size: clamp(2.2rem, 5vw, 3.5rem); }
-h2 { font-size: clamp(1.7rem, 3.5vw, 2.4rem); }
-h3 { font-size: clamp(1.3rem, 2.5vw, 1.7rem); }
-h4 { font-size: 1.15rem; }
+h1 {
+  font-size: clamp(2.2rem, 5vw, 3.5rem);
+}
+h2 {
+  font-size: clamp(1.7rem, 3.5vw, 2.4rem);
+}
+h3 {
+  font-size: clamp(1.3rem, 2.5vw, 1.7rem);
+}
+h4 {
+  font-size: 1.15rem;
+}
 
-p { margin-bottom: 1.25rem; }
-p:last-child { margin-bottom: 0; }
+p {
+  margin-bottom: 1.25rem;
+}
+p:last-child {
+  margin-bottom: 0;
+}
 
 a {
   color: var(--color-amber);
   text-decoration: none;
   transition: color 0.2s;
 }
-a:hover { color: var(--color-green-deep); }
+a:hover {
+  color: var(--color-green-deep);
+}
 
 /* ── Layout helpers ─────────────────────────────────────────── */
 .container {
@@ -175,10 +196,12 @@ a:hover { color: var(--color-green-deep); }
   border: 1px solid var(--color-border);
   border-radius: 12px;
   padding: 2rem;
-  transition: box-shadow 0.2s, transform 0.2s;
+  transition:
+    box-shadow 0.2s,
+    transform 0.2s;
 }
 .card:hover {
-  box-shadow: 0 8px 32px rgba(12, 94, 93, 0.10);
+  box-shadow: 0 8px 32px rgba(12, 94, 93, 0.1);
   transform: translateY(-2px);
 }
 
@@ -193,7 +216,7 @@ a:hover { color: var(--color-green-deep); }
   padding-left: 2rem;
 }
 .pull-quote::before {
-  content: '';
+  content: "";
   position: absolute;
   left: 0;
   top: 0.2em;
@@ -225,11 +248,21 @@ textarea:focus {
 }
 
 /* ── Utilities ──────────────────────────────────────────────── */
-.text-amber   { color: var(--color-amber); }
-.text-sage    { color: var(--color-sage); }
-.text-muted   { color: var(--color-warm-grey); }
-.text-ivory   { color: var(--color-ivory); }
-.text-green   { color: var(--color-green-deep); }
+.text-amber {
+  color: var(--color-amber);
+}
+.text-sage {
+  color: var(--color-sage);
+}
+.text-muted {
+  color: var(--color-warm-grey);
+}
+.text-ivory {
+  color: var(--color-ivory);
+}
+.text-green {
+  color: var(--color-green-deep);
+}
 
 .divider {
   height: 1px;
@@ -244,10 +277,22 @@ textarea:focus {
   line-height: 1.8;
   color: var(--color-charcoal);
 }
-.prose h2 { margin-top: 2.5rem; margin-bottom: 1rem; }
-.prose h3 { margin-top: 2rem; margin-bottom: 0.75rem; }
-.prose ul, .prose ol { padding-left: 1.5rem; margin-bottom: 1.25rem; }
-.prose li { margin-bottom: 0.4rem; }
+.prose h2 {
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+}
+.prose h3 {
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+}
+.prose ul,
+.prose ol {
+  padding-left: 1.5rem;
+  margin-bottom: 1.25rem;
+}
+.prose li {
+  margin-bottom: 0.4rem;
+}
 .prose blockquote {
   border-left: 4px solid var(--color-amber);
   padding-left: 1.25rem;
@@ -258,5 +303,7 @@ textarea:focus {
 
 /* ── Responsive ─────────────────────────────────────────────── */
 @media (max-width: 768px) {
-  .section { padding-block: 3.5rem; }
+  .section {
+    padding-block: 3.5rem;
+  }
 }
